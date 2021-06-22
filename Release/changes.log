@@ -1,0 +1,15 @@
+22 June 2021
+   [2.7.4 - Revision 2]
+
+     Change log:
+        -Cleaned: initialization process and translation file loading
+
+22 June 2021
+   [2.7.4 - Revision 1]
+
+     Change log:
+	-Added: The changelog system that made the file you're reading now
+        -Added: Error handling for unproperly connected HDD's
+        -Added: Illegal characters filtering on game extraction
+        -Updated: Translation system (string re-use)
+
