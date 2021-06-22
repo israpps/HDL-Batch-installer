@@ -1,0 +1,103 @@
+name: Release HDL Batch Installer
+on:
+  workflow_dispatch:
+  repository_dispatch:
+    types: [HDL_Dump_Updated]
+  push:
+    paths:
+      - 'Release**'
+      - '.github/workflows/*.yml'
+
+#  schedule:
+#   - cron: "0 15 * * 5,2"
+jobs:
+  check-binaries:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v1
+
+      - name: "Check file existence"
+        uses: andstor/file-existence-action@v1
+        with:
+          files: "Release/HDL-Batch-installer.exe, Release/HDL.EXE, Release/Common/config.INI"
+          allow_failure: "true"
+
+  Repack_and_Release:
+    needs: check-binaries
+    runs-on: ubuntu-latest
+    steps:
+
+   # - name: Install dependencies
+   #   run: |
+   #     apk add build-base git zip
+
+    - name: checkout code for release
+      uses: actions/checkout@v1
+
+    - name: update HDL.EXE
+      run: |
+        cd Release
+        wget https://github.com/israpps/hdl-dump/releases/download/hdlinst/HDL.EXE -O $PWD/HDL.EXE
+
+    - name: Repack as latest build
+      if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
+      run: |
+        echo Packing Nightly Build
+        SCH=${GITHUB_SHA::7}
+        cd Release
+        echo commit $SCH>commit.sys
+        echo `date`>>commit.sys
+        cd ..
+        DATEE=`date '+[%Y-%m-%d]'`
+        mv Release HDLBInst$DATEE
+        zip -r HDLBInst\[$SCH\] HDLBInst*/*
+        ls -R
+
+
+    - name: Repack as tagged version
+      if: startsWith(github.ref, 'refs/heads/V')
+      run: |
+        REF=${GITHUB_REF##*/}
+        SCH=${GITHUB_SHA::7}
+        cd Release
+        echo commit $SCH>commit.sys
+        echo tagged release $REF>>commit.sys
+        echo `date`>>commit.sys
+        cd ..
+        mv Release 'HDLBInst[$REF]'
+        zip -r 'HDLBInst\[$REF\]' HDLBInst*/*
+
+    - name: Get Branch name if making tagged release
+      if: startsWith(github.ref, 'refs/heads/V')
+      shell: bash
+      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
+      id: extract_branch
+
+    - name: Upload artifacts
+      if: ${{ success() }}
+      uses: actions/upload-artifact@v2
+      with:
+        name: HDL-INST
+        path: |
+             HDLBInst*.zip
+
+    - name: Create pre-release
+      if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
+      uses: marvinpinto/action-automatic-releases@latest
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "Latest"
+        title: "Latest Version"
+        files: |
+              HDLBInst*.zip
+
+    - name: Create tagged release
+      if: startsWith(github.ref, 'refs/heads/V')
+      uses: marvinpinto/action-automatic-releases@latest
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        prerelease: false
+        automatic_release_tag: ${{ steps.extract_branch.outputs.branch }}
+        files: |
+            HDL-Batch-installer/_bin/*.zip
