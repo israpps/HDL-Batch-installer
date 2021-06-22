@@ -64,13 +64,3 @@ SLPM_551.98;Naxat Soft Reachmania Vol.1 - CR Galaxy Angel [Naxat Best]
 XSPL_670.01;Wonder Zone
 END_OF_DATABASE
 ```
-we'll provide a copy of the [internal database](https://github.com/israpps/HDL-Batch-installer/blob/main/HDL-Batch-installer/gamename/gamename.csv) at this repo.
-
-
-# How to compile:
-
-The project was compiled trough Code::Blocks
-
-you can download wxWidgets clicking the [wxwidgets badge](https://github.com/israpps/HDL-Batch-installer/blob/main/README.md#hdl-batch-installer) above
-
-you can find the Build Configuration used for my wxwidgets [here](https://github.com/israpps/HDL-Batch-installer/tree/main/HDL-Batch-installer/wxwidgets/build.cfg)
