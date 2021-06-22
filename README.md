@@ -36,7 +36,7 @@ When the project gets into a decent state I'll upload it to PSX-place
 
 Just like HDL Batch, this GUI will automatically search the Game Title for the PS2 ISO you're about to Install.
 
-the program has an Internal Database with `14342` Game Titles!
+the program has an Internal Database with `14346` Game Titles!
 
 however, you can use an external database Instead.
 

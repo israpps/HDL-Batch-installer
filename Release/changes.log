@@ -1,4 +1,16 @@
 22 June 2021
+   [2.7.4 - Revision 3]
+
+     Change log:
+        -Cleaned: Settings dialog startup
+        -SRC Format: Whole project source code was reformatted
+        -Updated: Stock HDLDump
+        -Removed: Debug simbols
+        -Reduced: Binary size (before: ~18Mb | now: ~9Mb)
+        -Refactored: Configuration loading
+	-Removed: Modify header wizard code (currently unused)
+
+22 June 2021
    [2.7.4 - Revision 2]
 
      Change log:
