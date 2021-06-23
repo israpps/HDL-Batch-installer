@@ -31,6 +31,20 @@ When the project gets into a decent state I'll upload it to PSX-place
 
 ---
 
+# Why should I use HDLBinst instead of other programs?
+
+#### The purpose of this GUI is to combine the strengths of each program that serves this same purpose.
+
+So, i´ll going to list it´s strengths compared to other programs:
+
+Winhiip  | HDL Batch Installer
+--------------- | -----
+Limited to 255 games                            | No limitations (according to uLaunchELF source code: ~`1400` games ) 
+Abandonded project                              | Project on active development (Even if this GUI Get´s abandonned, you can update HDLDump
+Can´t read 1tb/2tb HDDs                         | Up to 2tb HDDs are supported
+Only supports DVD5 ISO´s                        | Supports both DVD5/DVD9 ISO´s, BIN Images, Nero Images, .iml files and global images
+Games without Support for HDD-OSD or PS2BBN     | Games are compatible with HDD-OSD and PS2BBN (if miniOPL Is provided, aka: `boot.kelf`)
+Incompatible with uLaunchELF formatted HDDs     | Compatible with uLaunchELF HDD´s (uLe 4.43a 41e4ebe or [4.43x_isr](https://github.com/israpps/wLaunchELF_ISR) are recomended)
 
 # Game Name Database:
 
