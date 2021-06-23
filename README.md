@@ -37,14 +37,24 @@ When the project gets into a decent state I'll upload it to PSX-place
 
 So, i´ll going to list it´s strengths compared to other programs:
 
-Winhiip  | HDL Batch Installer
---------------- | -----
+__Winhiip__  | __HDL Batch Installer__
+--------------- | ------------
 Limited to 255 games                            | No limitations (according to uLaunchELF source code: ~`1400` games ) 
 Abandonded project                              | Project on active development (Even if this GUI Get´s abandonned, you can update HDLDump
 Can´t read 1tb/2tb HDDs                         | Up to 2tb HDDs are supported
 Only supports DVD5 ISO´s                        | Supports both DVD5/DVD9 ISO´s, BIN Images, Nero Images, .iml files and global images
 Games without Support for HDD-OSD or PS2BBN     | Games are compatible with HDD-OSD and PS2BBN (if miniOPL Is provided, aka: `boot.kelf`)
 Incompatible with uLaunchELF formatted HDDs     | Compatible with uLaunchELF HDD´s (uLe 4.43a 41e4ebe or [4.43x_isr](https://github.com/israpps/wLaunchELF_ISR) are recomended)
+Randomly corrupts HDD (or it's MBR program)     | 
+Filename used as game title                     | original game title automatically assigned from internal database
+
+__HDL Dump Helper GUI__ | __HDL Batch Installer__
+------------------- | --------------------
+Uses older hdldump      | uses latest hdldump _(automatically updated during release creation)_
+needs Java 32bits       | it's written on C++, so no dependencies are needed
+Installs games 1 by 1   | capable of selecting multiple Games, from different paths before installing
+HDD must be connected before launching the program | Capable of scanning new HDDs without restarting program
+User must enter game title manually for every game | Original game title assigned from internal database
 
 # Game Name Database:
 
