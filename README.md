@@ -40,7 +40,7 @@ So, i´ll going to list it´s strengths compared to other programs:
 __Winhiip__  | __HDL Batch Installer__
 --------------- | ------------
 Limited to __255 games__                            | No limitations (according to uLaunchELF source code: __~`1400` games__ ) 
-__Abandonded__ project                              | Project on __active development__ (Even if this GUI Get´s abandonned, you can update HDLDump
+__Abandoned__ project                               | Project on __active development__ (Even if this GUI Get´s abandoned, you can update HDLDump
 Can´t read 1tb/2tb HDDs                             | Up to 2tb HDDs are supported
 Only supports DVD5 ISO´s                            | Supports both _DVD5/DVD9_ ISO´s, BIN Images, Nero Images, .iml files and global images
 Games without Support for HDD-OSD or PS2BBN         | Games are compatible with HDD-OSD and PS2BBN (if miniOPL Is provided, aka: `boot.kelf`)
