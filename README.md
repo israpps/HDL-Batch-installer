@@ -39,22 +39,25 @@ So, i´ll going to list it´s strengths compared to other programs:
 
 __Winhiip__  | __HDL Batch Installer__
 --------------- | ------------
-Limited to 255 games                            | No limitations (according to uLaunchELF source code: ~`1400` games ) 
-Abandonded project                              | Project on active development (Even if this GUI Get´s abandonned, you can update HDLDump
-Can´t read 1tb/2tb HDDs                         | Up to 2tb HDDs are supported
-Only supports DVD5 ISO´s                        | Supports both DVD5/DVD9 ISO´s, BIN Images, Nero Images, .iml files and global images
-Games without Support for HDD-OSD or PS2BBN     | Games are compatible with HDD-OSD and PS2BBN (if miniOPL Is provided, aka: `boot.kelf`)
-Incompatible with uLaunchELF formatted HDDs     | Compatible with uLaunchELF HDD´s (uLe 4.43a 41e4ebe or [4.43x_isr](https://github.com/israpps/wLaunchELF_ISR) are recomended)
-Randomly corrupts HDD (or it's MBR program)     | 
-Filename used as game title                     | original game title automatically assigned from internal database
-
+Limited to __255 games__                            | No limitations (according to uLaunchELF source code: __~`1400` games__ ) 
+__Abandonded__ project                              | Project on __active development__ (Even if this GUI Get´s abandonned, you can update HDLDump
+Can´t read 1tb/2tb HDDs                             | Up to 2tb HDDs are supported
+Only supports DVD5 ISO´s                            | Supports both _DVD5/DVD9_ ISO´s, BIN Images, Nero Images, .iml files and global images
+Games without Support for HDD-OSD or PS2BBN         | Games are compatible with HDD-OSD and PS2BBN (if miniOPL Is provided, aka: `boot.kelf`)
+__Incompatible__ with uLaunchELF formatted HDDs     | __Compatible__ with uLaunchELF HDD´s (uLe 4.43a 41e4ebe or [4.43x_isr](https://github.com/israpps/wLaunchELF_ISR) are recomended)
+Randomly corrupts HDD (or it's MBR program)         | 
+__Filename used as game title__                     | original game title __automatically assigned__ from internal database
+__Can't hide__ games __from HDD-OSD/PS2BBN__        | Capable of hiding games from HDD-OSD/PS2BBN
+***
 __HDL Dump Helper GUI__ | __HDL Batch Installer__
 ------------------- | --------------------
-Uses older hdldump      | uses latest hdldump _(automatically updated during release creation)_
-needs Java 32bits       | it's written on C++, so no dependencies are needed
-Installs games 1 by 1   | capable of selecting multiple Games, from different paths before installing
-HDD must be connected before launching the program | Capable of scanning new HDDs without restarting program
-User must enter game title manually for every game | Original game title assigned from internal database
+Uses __older hdldump__                             | uses __latest hdldump__ _(automatically updated during release creation)_
+__needs Java 32bits__                                 | it's written on C++, so __no dependencies are needed__
+Installs games __1 by 1__                              | capable of selecting __multiple Games__, from different paths before installing
+HDD must be connected before launching the program | Capable of scanning new HDDs __without restarting program__
+User must enter game title __manually for every game__ | __Original game title automatically assigned__ from internal database
+__Can't hide games__ from HDD-OSD/PS2BBN               | __Capable of hiding games__ from HDD-OSD/PS2BBN
+
 
 # Game Name Database:
 
