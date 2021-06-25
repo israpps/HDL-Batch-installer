@@ -1,3 +1,13 @@
+25 June 2021
+   [2.7.4 - Revision 6]
+
+     Change log:
+        -Added: Enhanced error handling when selecting HDD
+        -Removed: HDD Selection event
+        -Added: HDD Update event (this will reduce duplicated code)
+        -Added:  Game list update event (this will reduce duplicated code)
+        -Added: Game renaming Feature [BETA]
+
 22 June 2021
    [2.7.4 - Revision 3]
 
