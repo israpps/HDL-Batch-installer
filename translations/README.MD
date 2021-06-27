@@ -1,3 +1,5 @@
+For more info about translations (how to make them and implement them into the program) take a look at the wiki of this repo
+
 ## translation path names:
 ```
 LANGUAGE NAME  CODE    LANGUAGE FAMILY
