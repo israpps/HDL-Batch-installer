@@ -1,0 +1,14 @@
+name: github webhook system
+on:
+  push:
+    paths:
+      - 'translations/HDLBinst.pot'
+jobs:
+  message:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Discord Webhook Action
+      uses: tsickert/discord-webhook@v2.0.2
+      with:
+        webhook-url: ${{ secrets.TRANSLATORS_WEBHOOK }}
+        content: "@Translators, the translation template has been updated 1 minute ago"
