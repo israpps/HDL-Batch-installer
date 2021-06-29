@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-06-27 14:37-0300\n"
+"POT-Creation-Date: 2021-06-28 21:36-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -103,7 +103,7 @@ msgstr ""
 msgid "Debug Level"
 msgstr ""
 
-#: Config.cpp:86
+#: Config.cpp:87
 msgid "Default DMA:"
 msgstr ""
 
@@ -167,7 +167,7 @@ msgstr ""
 msgid "HUN7ER | Salamander | My sister | Jtrex | Torres Kadher"
 msgstr ""
 
-#: Config.cpp:68 Config.cpp:189
+#: Config.cpp:68 Config.cpp:190
 msgid "Hide Games from HDD-OSD"
 msgstr ""
 
@@ -203,7 +203,11 @@ msgstr ""
 msgid "Internal"
 msgstr ""
 
-#: Config.cpp:81
+#: Config.cpp:80
+msgid "Italiano"
+msgstr ""
+
+#: Config.cpp:82
 msgid "Language"
 msgstr ""
 
@@ -267,7 +271,7 @@ msgstr ""
 msgid "Rename game"
 msgstr ""
 
-#: HDL_Batch_installerMain.cpp:961
+#: HDL_Batch_installerMain.cpp:960
 msgid "Rename game2"
 msgstr ""
 
@@ -339,7 +343,7 @@ msgstr ""
 msgid "The Testers:"
 msgstr ""
 
-#: HDL_Batch_installerMain.cpp:1039
+#: HDL_Batch_installerMain.cpp:1038
 msgid "This HDD has no PS2 Games inside"
 msgstr ""
 
@@ -359,7 +363,7 @@ msgstr ""
 msgid "Use Database"
 msgstr ""
 
-#: Config.cpp:189
+#: Config.cpp:190
 msgid ""
 "When this box is checked the program will Use a different partition prefix \n"
 " this means that, games installed this way will have a '+p.' prefix instead "
