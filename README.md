@@ -84,10 +84,4 @@ END_OF_DATABASE
 ```
 the file must be named `gamename.DB`, and it must remain with the Program
 
-an example of a simple databse with 3 games:
-```bash
-SLUS_201.47;Aliens vs Predator - Extinction
-SLPM_551.98;Naxat Soft Reachmania Vol.1 - CR Galaxy Angel [Naxat Best]
-XSPL_670.01;Wonder Zone
-END_OF_DATABASE
-```
+a [copy of the internal database](https://github.com/israpps/HDL-Batch-installer/blob/main/Database/gamename.csv) is provided at this repo, (thanks to VTSTech and everyone that contributed to the game title list from PSX-Place)
