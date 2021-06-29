@@ -111,3 +111,13 @@ jobs:
             HDLBInst*.7z
             Translation-template.7z
 
+
+  Beta-tester_webhook:
+    needs: Repack_and_Release
+    runs-on: ubuntu-latest
+    steps:
+    - name: Discord Webhook Action
+      uses: tsickert/discord-webhook@v2.0.2
+      with:
+        webhook-url: ${{ secrets.TESTERS_WEBHOOK }}
+        content: "<@Testers> , HDL Batch Installer has been updated some minutes ago"
