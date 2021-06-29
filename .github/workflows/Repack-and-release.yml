@@ -8,7 +8,7 @@ on:
       - 'Release**'
       - '.github/workflows/*.yml'
 
-#  schedule:
+#  schedule: 
 #   - cron: "0 15 * * 5,2"
 jobs:
   check-binaries:
@@ -39,6 +39,12 @@ jobs:
       run: |
         cd Release
         wget https://github.com/israpps/hdl-dump/releases/download/hdlinst/HDL.EXE -O $PWD/HDL.EXE
+    
+    - name: Repack translation templates
+      run: |
+         DATEE=`date '+[%Y-%m-%d]'`
+         mv translations HDLBinst-Translation-$DATEE
+         7z a -t7z -r Translation-template.7z HDLBinst-Translation-*/*
 
     - name: Repack as latest build
       if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
@@ -81,6 +87,7 @@ jobs:
         name: HDL-INST
         path: |
              HDLBInst*.7z
+             Translation-template.7z
 
     - name: Create pre-release
       if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
@@ -91,6 +98,7 @@ jobs:
         title: "Latest Version"
         files: |
               HDLBInst*.7z
+              Translation-template.7z
 
     - name: Create tagged release
       if: startsWith(github.ref, 'refs/heads/V')
@@ -101,3 +109,5 @@ jobs:
         automatic_release_tag: ${{ steps.extract_branch.outputs.branch }}
         files: |
             HDLBInst*.7z
+            Translation-template.7z
+
