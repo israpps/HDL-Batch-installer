@@ -1,5 +1,6 @@
 name: github webhook system
 on:
+  workflow_dispatch:
   push:
     paths:
       - 'translations/HDLBinst.pot'
