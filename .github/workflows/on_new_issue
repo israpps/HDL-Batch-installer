@@ -1,0 +1,13 @@
+name: handle new issue
+on:
+  issues:
+    types: opened
+    jobs:
+  message:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Discord Webhook Action
+      uses: tsickert/discord-webhook@v2.0.2
+      with:
+        webhook-url: ${{ secrets.ISSUE_WEBHOOKK }}
+        content: "<@&859525500393357353>, An issue was Opened on github \\n https://github.com/israpps/HDL-Batch-installer/issues"
