@@ -12,4 +12,4 @@ jobs:
       uses: tsickert/discord-webhook@v2.0.2
       with:
         webhook-url: ${{ secrets.TRANSLATORS_WEBHOOK }}
-        content: "<@&859525897656729611>, The translation template has been updated"
+        content: "<@&859525897656729611>, The translation template has been updated \n as always, you can download it from github or using the automatic download batch file pinned on <#859593073466015765> "
