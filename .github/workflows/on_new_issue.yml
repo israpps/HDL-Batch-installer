@@ -2,7 +2,8 @@ name: handle new issue
 on:
   issues:
     types: opened
-    jobs:
+    
+jobs:
   message:
     runs-on: ubuntu-latest
     steps:
