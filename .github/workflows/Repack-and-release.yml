@@ -75,7 +75,7 @@ jobs:
         7z a -t7z -r HDLBInst\[$REF\].7z HDLBInst*/*
 
     - name: Get Branch name if making tagged release
-      if: startsWith(github.ref, 'refs/heads/V')
+      if: startsWith(github.ref, 'refs/heads/v')
       shell: bash
       run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
       id: extract_branch
@@ -101,7 +101,7 @@ jobs:
               Translation-template.7z
 
     - name: Create tagged release
-      if: startsWith(github.ref, 'refs/heads/V')
+      if: startsWith(github.ref, 'refs/heads/v')
       uses: marvinpinto/action-automatic-releases@latest
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
@@ -116,8 +116,29 @@ jobs:
     needs: Repack_and_Release
     runs-on: ubuntu-latest
     steps:
-    - name: Discord Webhook Action
+
+    - name: Discord Webhook, Latest release
+      if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
       uses: tsickert/discord-webhook@v2.0.2
       with:
         webhook-url: ${{ secrets.TESTERS_WEBHOOK }}
         content: "<@&859572447761793034> & <@&859615291477590046> , HDL Batch Installer has been updated some minutes ago \\n as always, you can download the latest version from here:\\n https://github.com/israpps/HDL-Batch-installer/releases/tag/Latest "
+
+    - uses: actions/checkout@v2
+    - name: Set env
+      if: startsWith(github.ref, 'refs/heads/v')
+      run: echo "RELEASE_VERSION=${GITHUB_REF#refs/*/}" >> $GITHUB_ENV
+
+    - name: Test
+      if: startsWith(github.ref, 'refs/heads/v')
+       run: |
+         echo $RELEASE_VERSION
+         echo ${{ env.RELEASE_VERSION }}
+
+      - name: Discord Webhook, tagged release
+        if: startsWith(github.ref, 'refs/heads/v')
+        uses: tsickert/discord-webhook@v2.0.2
+        with:
+          webhook-url: ${{ secrets.TESTERS_WEBHOOK }}
+          content: "Hey everyone! **HDL Batch installer**  **${{ env.RELEASE_VERSION }}** has been released! \\n - \\n <@&859615291477590046> ,"
+
