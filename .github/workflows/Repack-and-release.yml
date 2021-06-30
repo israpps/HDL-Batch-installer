@@ -120,4 +120,4 @@ jobs:
       uses: tsickert/discord-webhook@v2.0.2
       with:
         webhook-url: ${{ secrets.TESTERS_WEBHOOK }}
-        content: "<@&859572447761793034> , HDL Batch Installer has been updated some minutes ago \\n as always, you can download the latest version from here:\\n https://github.com/israpps/HDL-Batch-installer/releases/tag/Latest "
+        content: "<@&859572447761793034> & <@&859615291477590046> , HDL Batch Installer has been updated some minutes ago \\n as always, you can download the latest version from here:\\n https://github.com/israpps/HDL-Batch-installer/releases/tag/Latest "
