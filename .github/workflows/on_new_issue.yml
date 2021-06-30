@@ -11,5 +11,5 @@ jobs:
     - name: Discord Webhook Action
       uses: tsickert/discord-webhook@v2.0.2
       with:
-        webhook-url: ${{ secrets.ISSUE_WEBHOOKK }}
+        webhook-url: ${{ secrets.ISSUE_WEBHOOK }}
         content: "<@&859525500393357353>, A new issue was Opened on github"
