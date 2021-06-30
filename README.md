@@ -33,7 +33,7 @@ When the project gets into a decent state I'll upload it to PSX-place
 
 # Why should I use HDLBinst instead of other programs?
 
-#### The purpose of this GUI is to combine the strengths of each program that serves this same purpose.
+ __The idea behind this GUI is to combine the strengths of each program that serves this same purpose.__
 
 So, i´ll going to list it´s strengths compared to other programs:
 
