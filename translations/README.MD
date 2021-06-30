@@ -1,5 +1,17 @@
 For more info about translations (how to make them and implement them into the program) take a look at the wiki of this repo
 
+### Currently supported languages:
++ English - [@israpps](https://github.com/israpps)
++ Spanish - [@israpps](https://github.com/israpps)
++ Italian - [@FabioGaigher](https://github.com/FabioGaigher)
+
+
+
+
+
+
+
+
 ## translation path names:
 ```
 LANGUAGE NAME  CODE    LANGUAGE FAMILY
