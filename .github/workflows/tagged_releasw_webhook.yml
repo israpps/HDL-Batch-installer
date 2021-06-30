@@ -22,5 +22,5 @@ jobs:
         uses: tsickert/discord-webhook@v2.0.2
         with:
           webhook-url: ${{ secrets.TESTERS_WEBHOOK }}
-          content: "Hey <@everyone>! **HDL Batch installer**  **${{ env.RELEASE_VERSION }}** has been released! \\n - \\n \\n **Download:** \\n https://github.com/israpps/HDL-Batch-installer/releases/tag/${{ env.RELEASE_VERSION }} "
+          content: "Hey @everyone! **HDL Batch installer**  **${{ env.RELEASE_VERSION }}** has been released! \\n - \\n \\n **Download:** \\n https://github.com/israpps/HDL-Batch-installer/releases/tag/${{ env.RELEASE_VERSION }} "
 
