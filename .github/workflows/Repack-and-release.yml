@@ -135,10 +135,10 @@ jobs:
         echo $RELEASE_VERSION
         echo ${{ env.RELEASE_VERSION }}
 
-      - name: Discord Webhook, tagged release
-        if: startsWith(github.ref, 'refs/heads/v')
-        uses: tsickert/discord-webhook@v2.0.2
-        with:
-          webhook-url: ${{ secrets.TESTERS_WEBHOOK }}
-          content: "Hey everyone! **HDL Batch installer**  **${{ env.RELEASE_VERSION }}** has been released! \\n - \\n <@&859615291477590046> ,"
+    - name: Discord Webhook, tagged release
+      if: startsWith(github.ref, 'refs/heads/v')
+      uses: tsickert/discord-webhook@v2.0.2
+      with:
+        webhook-url: ${{ secrets.TESTERS_WEBHOOK }}
+        content: "Hey everyone! **HDL Batch installer**  **${{ env.RELEASE_VERSION }}** has been released! \\n - \\n <@&859615291477590046> ,"
 
