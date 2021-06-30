@@ -131,9 +131,9 @@ jobs:
 
     - name: Test
       if: startsWith(github.ref, 'refs/heads/v')
-       run: |
-         echo $RELEASE_VERSION
-         echo ${{ env.RELEASE_VERSION }}
+      run: |
+        echo $RELEASE_VERSION
+        echo ${{ env.RELEASE_VERSION }}
 
       - name: Discord Webhook, tagged release
         if: startsWith(github.ref, 'refs/heads/v')
