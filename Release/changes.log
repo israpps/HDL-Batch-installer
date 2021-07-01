@@ -1,3 +1,11 @@
+30 June 2021
+   [2.7.6 - Revision 1]
+
+     Change log:
+        -Changed: Installation command string color from blue to bright white to improve readability, since it provides important info while debugging the installation process
+        -Enhanced: Debug output to consola (reduce duplicated code)
+        -Updated: Credits tab, re-organized elements and added "Translator section"
+
 29 June 2021
    [2.7.6 - Revision 0]
 
