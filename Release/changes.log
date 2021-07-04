@@ -1,3 +1,10 @@
+04 July 2021
+   [2.7.6 - Revision 3]
+
+     Change log:
+        -Updated: Installation Procedure
+        -Updated: Missing language file warning (now it shows you the path where the program expects it to be)
+
 02 July 2021
    [2.7.6 - Revision 2]
 
