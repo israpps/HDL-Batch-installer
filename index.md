@@ -5,7 +5,9 @@
 
 
 <details>
-  <summary> <h1> Why should I use HDLBinst instead of other programs? </h1> </summary>
+  <summary> <h3> Why should I use HDLBinst instead of other programs? </h3> </summary>
+  
+  
  __The idea behind this GUI is to combine the strengths of each program that serves this same purpose.__
 
 So, i´ll going to list it´s strengths compared to other programs:
