@@ -1,1 +1,8 @@
+title: HDL Batch Installer
+description: HDLBInst is a GUI for HDL-dump
+show_downloads: true
+google_analytics:
 theme: jekyll-theme-slate
+github:
+      zip_url: https://github.com/israpps/HDL-Batch-installer/releases
+      discord_url: https://discord.gg/wczxvrkZk6
