@@ -55,8 +55,8 @@ jobs:
         echo `date`>>commit.sys
         cd ..
         DATEE=`date '+[%Y-%m-%d]'`
-        mv Release HDLBInst$DATEE
-        7z a -t7z -r HDLBInst\[$SCH\].7z HDLBInst*/*
+        mv Release HDLBInst\[$SCH\]
+        7z a -t7z -r HDLBInst\[$DATEE\].7z HDLBInst*/*
         ls -R
 
 
@@ -65,12 +65,14 @@ jobs:
       run: |
         REF=${GITHUB_REF##*/}
         SCH=${GITHUB_SHA::7}
+        DATEE=`date '+[%Y-%m-%d]'`
+        
         cd Release
         echo commit $SCH>commit.sys
         echo tagged release $REF>>commit.sys
         echo `date`>>commit.sys
         cd ..
-        mv Release 'HDLBInst[$REF]'
+        mv Release 'HDLBInst[$REF]-$DATEE'
         7z a -t7z -r HDLBInst\[$REF\].7z HDLBInst*/*
 
     - name: Get Branch name if making tagged release
