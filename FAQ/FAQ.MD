@@ -32,3 +32,7 @@
 > after installing them, load to the list all you game mods and uncheck the "Use database" checkbox under the game list
 
 </details>
+
+
+
+##### [Go back](./)
