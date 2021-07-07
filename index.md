@@ -24,7 +24,7 @@
 >
 > when the program can't find the Game Title on the Database (or the Database is disabled) the name of the ISO file is assigned as the title Instead (without the extension)
 >
-> #### If you find a Game ID that isn´t registered in our database Open a new [__Database Update Request__](https://github.com/israpps/HDL-Batch-installer/issues/new?assignees=&labels=Database+issue&template=database-update-request.md&title=Database+update+Request)
+> If you find a Game ID that isn´t registered in our database Open a new [__Database Update Request__](https://github.com/israpps/HDL-Batch-installer/issues/new?assignees=&labels=Database+issue&template=database-update-request.md&title=Database+update+Request)
 
   <details>
     <summary>Create Custom Database: </summary>
