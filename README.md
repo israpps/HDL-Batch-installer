@@ -11,6 +11,8 @@
 
 #### A GUI for [HDL Dump](https://github.com/israpps/hdl-dump).
 
+#### Learn more [here](https://israpps.github.io/HDL-Batch-installer/)
+
  Made by Matias Israelson (AKA:El_isra)
 
 > Originally this was a personal project to practice C++ & give a try to wxWidgets...
