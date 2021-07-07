@@ -1,5 +1,6 @@
 title: HDL Batch Installer
 description: A GUI for HDL-dump
+markdown: GFM
 show_downloads: true
 google_analytics:
 theme: jekyll-theme-slate
