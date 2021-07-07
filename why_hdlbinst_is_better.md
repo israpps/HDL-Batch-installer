@@ -63,7 +63,7 @@ i´ll list it´s strengths compared to other programs:
   <tr>
     <td style="color:Tomato;">Randomly corrupts HDD (or it's MBR program)</td>
     <td style="color:MediumSeaGreen;"> </td>
-    <td style="color:MediumSeaGreen;"> </td>
+    <td style="color:Tomato;">game uninstall feature is unstable</td>
   </tr>
   <tr>
     <td style="color:Tomato;">Filename used as game title</td>
