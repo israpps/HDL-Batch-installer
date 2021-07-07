@@ -23,7 +23,7 @@
 ***
 
 <details>
-  <summary> <b> I've installed a PS2 game mod (ie: PES2020), but the program assigned the original game title (ie: PES2014) </b> </summary>
+  <summary> <b> I've installed a PS2 game mod (e.g: PES2020), but the program assigned the original game title (e.g: PES2014) </b> </summary>
 
 > this program assings the game title according to the game ID, so there's no direct solution for that!
 >
