@@ -25,7 +25,7 @@ body:
       label: Game ID
       description: Provide the game ID! if you don´t know it open the game and provide the text inside the file called `system.cnf`
       placeholder: SLUS_123.45
-      value: ""
+      value: "SLUS_123.45"
     validations:
       required: true
 
