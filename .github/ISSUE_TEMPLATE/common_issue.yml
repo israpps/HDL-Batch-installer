@@ -36,7 +36,7 @@ body:
     attributes:
       label: Program version
       description: Provide the version number (Press F1 to see it!)
-      placeholder: version 2.7.6 [beta] ; revision 3 ; build date: 04-07-2021
+      placeholder: "version 2.7.6 [beta] ; revision 3 ; build date: 04-07-2021"
     validations:
       required: false
  # - type: textarea
