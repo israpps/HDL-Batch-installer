@@ -8,9 +8,9 @@ assignees: ''
 ---
 
 ## provide the following information:
-__Game ID__:
-__Game name__: 
-__MD5 checksum__:
++ __Game ID__:
++ __Game name__: 
++ __MD5 checksum__:
 
 ### answer the following questions:
 
