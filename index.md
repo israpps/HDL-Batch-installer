@@ -35,3 +35,9 @@ a [copy of the internal database](https://github.com/israpps/HDL-Batch-installer
     
   </details>
 </details>
+
+
+
+
+
+## [FAQ:](./FAQ/FAQ.html)
