@@ -1,5 +1,6 @@
 # Frecuently Asked Questions
 
+***
 
 <details>
   <summary> <b> Wich Program should I use to load my games after installing them? </b> </summary>
@@ -7,6 +8,8 @@
 > You should use [latest stable OPL Release](https://github.com/ps2homebrew/Open-PS2-Loader/releases/latest)
 
 </details>
+
+***
 
 <details>
   <summary> <b> How can I transfer cover art, themes, configs, cheats and others from my PC? </b> </summary>
@@ -16,6 +19,8 @@
 > A windows script made by me & @GDX
 
 </details>
+
+***
 
 <details>
   <summary> <b> I've installed a PS2 game mod (ie: PES2020), but the program assigned the original game title (ie: PES2014) </b> </summary>
