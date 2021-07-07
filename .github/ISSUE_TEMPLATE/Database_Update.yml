@@ -29,12 +29,14 @@ body:
     validations:
       required: true
 
-  - type: textarea
+  - type: input
     id: checksum
     attributes:
       label: game MD5 Checksum
-      description: Please copy and paste the game MD5 checksum (if the game is in CD format you must get the checksum for the `.bin` file
-      
+      description: Please copy and paste the game MD5 checksum (if the game is in CD format you must get the checksum for the `.bin` file)
+    validations:
+      required: true
+
   - type: checkboxes
     id: terms
     attributes:
@@ -42,3 +44,12 @@ body:
       description: check if necesary
       options:
         - label: I am using the [Latest version](https://github.com/israpps/HDL-Batch-installer/releases/)
+
+  - type: input
+    id: source
+    attributes:
+      label: Game source
+      description: Provide the website URL from where you got the game
+      placeholder: https://m.emuparadise.me/
+    validations:
+      required: false
