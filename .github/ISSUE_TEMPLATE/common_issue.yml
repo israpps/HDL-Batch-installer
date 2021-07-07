@@ -1,0 +1,56 @@
+name: Issue report
+description: Report a bug/unexpected behaviour
+title: "[bug]: "
+labels: [bug]
+assignees:
+  - israpps
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Something isn't working as expected? Please provide the following data:
+        
+      
+  - type: textarea
+    id: explanation
+    attributes:
+      label: Issue
+      description: explain to us what happened!
+      placeholder: the problem was...
+      value: "the problem was"
+    validations:
+      required: true
+
+  - type: textarea
+    id: explanation_expected
+    attributes:
+      label: expected behaviour
+      description: explain to us what you expected to happen!
+      placeholder: I expected...
+      value: "I expected..."
+    validations:
+      required: false
+
+  - type: input
+    id: version
+    attributes:
+      label: Program version
+      description: Provide the version number (Press F1 to see it!)
+      placeholder: version 2.7.6 [beta] ; revision 3 ; build date: 04-07-2021
+    validations:
+      required: false
+ # - type: textarea
+ #   id: logs
+ #   attributes:
+ #     label: Relevant log output
+ #     description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
+ #     render: shell
+      
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: other checks
+      description: check if necesary
+      options:
+        - label: I am using the [Latest version](https://github.com/israpps/HDL-Batch-installer/releases/)
+
