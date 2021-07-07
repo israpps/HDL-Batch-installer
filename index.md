@@ -6,8 +6,8 @@
 
 <details>
   <summary> <b> Why should I use HDLBinst instead of other programs? </b> </summary>
-the purpose of this GUI is
-[find out here](./why_hdlbinst_is_better.md).
+<b> The idea behind this GUI consists on combining the strengths of each program that serves this same purpose. </b> <br>
+
 <a href="./why_hdlbinst_is_better.md">Learn more here</a>
 
 </details>
