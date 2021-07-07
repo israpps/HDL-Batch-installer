@@ -28,17 +28,10 @@
 
   <details>
     <summary>Create Custom Database: </summary>
-
-the sintax of the Database entry is:
-```Bash
-GAME_ID;GAMENAME
-```
-and the file must end with the line:
-```
-END_OF_DATABASE
-```
-the file should be named `gamename.DB`, and it must remain with the Program
+    
+the file should be named `gamename.DB`, it must remain with the Program
 
 a [copy of the internal database](https://github.com/israpps/HDL-Batch-installer/blob/main/Database/gamename.csv) is provided at this repo, (thanks to VTSTech and everyone that contributed to the game title list from PSX-Place)
+    
   </details>
 </details>
