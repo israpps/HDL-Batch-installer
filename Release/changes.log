@@ -1,3 +1,10 @@
+07 July 2021
+   [2.7.7 - Revision 0]
+
+     Change log:
+        -Added: initialization flag to keep the GUI on top
+        -Updated: Replace custom process redirection with wxwidgets standar process redirection (this affects installation and game rename)
+
 04 July 2021
    [2.7.6 - Revision 3]
 
