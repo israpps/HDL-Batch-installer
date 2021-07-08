@@ -33,6 +33,7 @@
 
 </details>
 
+## You couldn't find your question?  Try [here](https://github.com/israpps/HDL-Batch-installer/discussions)
 
 
 ##### [Go back](https://israpps.github.io/HDL-Batch-installer)
