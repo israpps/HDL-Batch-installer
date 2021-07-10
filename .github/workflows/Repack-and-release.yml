@@ -51,8 +51,10 @@ jobs:
         echo Packing Nightly Build
         SCH=${GITHUB_SHA::7}
         cd Release
+        cd Common
         echo commit $SCH>commit.sys
         echo `date`>>commit.sys
+        cd ..
         cd ..
         DATEE=`date '+[%Y-%m-%d]'`
         mv Release HDLBInst\[$SCH\]
