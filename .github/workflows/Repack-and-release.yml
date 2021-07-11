@@ -117,14 +117,23 @@ jobs:
             Translation-template.7z
 
 
-#  Beta-tester_webhook:
-#    needs: Repack_and_Release
-#    runs-on: ubuntu-latest
-#    steps:
-#
-#    - name: Discord Webhook, Latest release
-#      if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
-#      uses: tsickert/discord-webhook@v2.0.2
-#      with:
-#        webhook-url: ${{ secrets.TESTERS_WEBHOOK }}
-#        content: "<@&859572447761793034> & <@&859615291477590046> , HDL Batch Installer has been updated some minutes ago\\n according to changelog: **${{ steps.version.outputs.string }}** \\n as always, you can download the latest version from here:\\n https://github.com/israpps/HDL-Batch-installer/releases/tag/Latest "
+  discord_webhooks:
+    needs: Repack_and_Release
+    runs-on: ubuntu-latest
+    steps:
+
+    - name: Discord Webhook, Latest release
+      if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
+      uses: tsickert/discord-webhook@v2.0.2
+      with:
+        webhook-url: ${{ secrets.TESTERS_WEBHOOK }}
+        content: "<@&859572447761793034> & <@&859615291477590046> , HDL Batch Installer has been updated some minutes ago\\n according to changelog: **[${{ steps.version.outputs.string }}]** \\n as always, you can download the latest version from here:\\n https://github.com/israpps/HDL-Batch-installer/releases/tag/Latest \\n or <#863913236457062421>"
+        
+    - name: Upload release to discord backup
+      if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
+      uses: sinshutu/upload-to-discord@master
+      env:
+        DISCORD_WEBHOOK: ${{ secrets.BACKUP_WEBHOOK }}
+      with:
+        args: HDLBInst*.7z
+        

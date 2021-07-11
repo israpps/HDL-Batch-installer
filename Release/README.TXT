@@ -1,6 +1,9 @@
 official github:
 	https://github.com/israpps/HDL-Batch-installer
 
+HDL Batch Installer wiki:
+	https://israpps.github.io/HDL-Batch-installer/
+
 Official PSX-place thread:
         https://www.psx-place.com/resources/hdl-batch-installer.1173/
 

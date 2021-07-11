@@ -1,26 +1,34 @@
+11 July 2021
+   [v2.7.7 - Revision 1]
+
+     Change log:
+        -Updated: Installation dialog will automatically close itself upon Installation loop end (thanks fabio gaigher)
+        -Added: PFSShell interface for both formatting and partition creation [ALFA] (currently blocked for users)
+        -Added: HDL Dump Update system
+
 07 July 2021
-   [v2.7.7 - Revision 0]
+   [2.7.7 - Revision 0]
 
      Change log:
         -Added: initialization flag to keep the GUI on top
         -Updated: Replace custom process redirection with wxwidgets standar process redirection (this affects installation and game rename)
 
 04 July 2021
-   [v2.7.6 - Revision 3]
+   [2.7.6 - Revision 3]
 
      Change log:
         -Updated: Installation Procedure
         -Updated: Missing language file warning (now it shows you the path where the program expects it to be)
 
 02 July 2021
-   [v2.7.6 - Revision 2]
+   [2.7.6 - Revision 2]
 
      Change log:
         -Added: MiniOPL Update trough wget
         -Updated: Credits menú layout (thanks FabioGaigher)
 
 30 June 2021
-   [v2.7.6 - Revision 1]
+   [2.7.6 - Revision 1]
 
      Change log:
         -Changed: Installation command string color from blue to bright white to improve readability, since it provides important info while debugging the installation process
@@ -28,20 +36,20 @@
         -Updated: Credits tab, re-organized elements and added "Translator section"
 
 29 June 2021
-   [v2.7.6 - Revision 0]
+   [2.7.6 - Revision 0]
 
      Change log:
         -Fixed: Language loading on startup
 
 27 June 2021
-   [v2.7.5 - Revision 4]
+   [2.7.5 - Revision 4]
 
      Change log:
         -Updated: PS2 HDD's Detection
         -Updated: Spanish Translation
 
 27 June 2021
-   [v2.7.5 - Revision 2]
+   [2.7.5 - Revision 2]
 
      Change log:
         -Added: Memory de-allocation for game rename dialog
@@ -57,7 +65,7 @@
         -Added: Game renaming Feature [BETA]
 
 22 June 2021
-   [v2.7.4 - Revision 3]
+   [2.7.4 - Revision 3]
 
      Change log:
         -Cleaned: Settings dialog startup
@@ -69,13 +77,13 @@
 	-Removed: Modify header wizard code (currently unused)
 
 22 June 2021
-   [v2.7.4 - Revision 2]
+   [2.7.4 - Revision 2]
 
      Change log:
         -Cleaned: initialization process and translation file loading
 
 22 June 2021
-   [v2.7.4 - Revision 1]
+   [2.7.4 - Revision 1]
 
      Change log:
 	-Added: The changelog system that made the file you're reading now
