@@ -36,12 +36,12 @@ jobs:
 
     - name: get version from changelog
       shell: bash
-      run: echo "##[set-output name=version;]$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//')"
+      run: echo ::set-env name=VERSION::$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//')
       id: string
       
     - name: get version from changelog as release tag
       shell: bash
-      run: echo "##[set-output name=version;]$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//' | sed -r 's/\s+//g' | sed 's/Revision/rev/')"
+      run: echo ::set-env name=VERSION_TAG::$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//' | sed -r 's/\s+//g' | sed 's/Revision/rev/')
       id: tag
 
     - name: update HDL.EXE
@@ -66,7 +66,7 @@ jobs:
         cd ..
         cd ..
         DATEE=`date '+[%Y-%m-%d]'`
-        mv Release HDLBInst\[${{ steps.version.outputs.string }}\]
+        mv Release HDLBInst\[${{ env.VERSION }}\]
         7z a -t7z -r HDLBInst\[$DATEE\].7z HDLBInst*/*
         ls -R
 
@@ -82,7 +82,7 @@ jobs:
         echo tagged release $REF>>commit.sys
         echo `date`>>commit.sys
         cd ..
-        mv Release 'HDLBInst[${{ steps.version.outputs.string }}]-$DATEE'
+        mv Release 'HDLBInst[${{ env.VERSION }}]-$DATEE'
         7z a -t7z -r HDLBInst\[$REF\].7z HDLBInst*/*
 
     - name: Upload artifacts
@@ -100,7 +100,7 @@ jobs:
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         automatic_release_tag: "Latest"
-        title: "${{ steps.version.outputs.string }}"
+        title: "${{ env.VERSION }}"
         files: |
               HDLBInst*.7z
               Translation-template.7z
@@ -111,7 +111,8 @@ jobs:
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         prerelease: false
-        automatic_release_tag: ${{ steps.version.outputs.tag }}
+        automatic_release_tag: ${{ env.VERSION_TAG }}
+        title: "${{ env.VERSION }}"
         files: |
             HDLBInst*.7z
             Translation-template.7z
