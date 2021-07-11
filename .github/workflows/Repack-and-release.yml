@@ -36,11 +36,11 @@ jobs:
 
     - name: get version from changelog
       shell: bash
-      run: echo "::set-output name=string::$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//')"
+      run: echo "::set-output name=string::$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//' | awk '{$1=$1;print}')"
       id: version
     - name: get version from changelog as release tag
       shell: bash
-      run: echo "::set-output name=version_tag::$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//' | sed -r 's/\s+//g' | sed 's/Revision/rev/')"
+      run: echo "::set-output name=version_tag::$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//' | sed -r 's/\s+//g' | sed 's/Revision/rev/' | awk '{$1=$1;print}')"
       id: tag
         
     - name: update HDL.EXE
@@ -65,7 +65,7 @@ jobs:
         cd ..
         cd ..
         DATEE=`date '+[%Y-%m-%d]'`
-        mv Release HDLBInst\[${{ steps.version.outputs.string }}\]
+        mv Release "HDLBInst[${{ steps.version.outputs.string }}]"
         7z a -t7z -r HDLBInst\[$DATEE\].7z HDLBInst*/*
         ls -R
 
