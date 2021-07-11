@@ -34,6 +34,16 @@ jobs:
     - name: checkout code for release
       uses: actions/checkout@v1
 
+    - name: get version from changelog
+      shell: bash
+      run: echo "##[set-output name=version;]$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//')"
+      id: string
+      
+    - name: get version from changelog as release tag
+      shell: bash
+      run: echo "##[set-output name=version;]$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//' | sed -r 's/\s+//g' | sed 's/Revision/rev/')"
+      id: tag
+
     - name: update HDL.EXE
       run: |
         cd Release
@@ -48,7 +58,6 @@ jobs:
     - name: Repack as latest build
       if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
       run: |
-        echo Packing Nightly Build
         SCH=${GITHUB_SHA::7}
         cd Release
         cd Common
@@ -57,15 +66,14 @@ jobs:
         cd ..
         cd ..
         DATEE=`date '+[%Y-%m-%d]'`
-        mv Release HDLBInst\[$SCH\]
+        mv Release HDLBInst\[${{ steps.version.outputs.string }}\]
         7z a -t7z -r HDLBInst\[$DATEE\].7z HDLBInst*/*
         ls -R
 
 
     - name: Repack as tagged version
-      if: startsWith(github.ref, 'refs/heads/V')
+      if: startsWith(github.ref, 'refs/heads/v')
       run: |
-        REF=${GITHUB_REF##*/}
         SCH=${GITHUB_SHA::7}
         DATEE=`date '+[%Y-%m-%d]'`
         
@@ -74,14 +82,8 @@ jobs:
         echo tagged release $REF>>commit.sys
         echo `date`>>commit.sys
         cd ..
-        mv Release 'HDLBInst[$REF]-$DATEE'
+        mv Release 'HDLBInst[${{ steps.version.outputs.string }}]-$DATEE'
         7z a -t7z -r HDLBInst\[$REF\].7z HDLBInst*/*
-
-    - name: Get Branch name if making tagged release
-      if: startsWith(github.ref, 'refs/heads/v')
-      shell: bash
-      run: echo "##[set-output name=branch;]$(echo ${GITHUB_REF#refs/heads/})"
-      id: extract_branch
 
     - name: Upload artifacts
       if: ${{ success() }}
@@ -98,7 +100,7 @@ jobs:
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         automatic_release_tag: "Latest"
-        title: "Latest Version"
+        title: "${{ steps.version.outputs.string }}"
         files: |
               HDLBInst*.7z
               Translation-template.7z
@@ -109,20 +111,20 @@ jobs:
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         prerelease: false
-        automatic_release_tag: ${{ steps.extract_branch.outputs.branch }}
+        automatic_release_tag: ${{ steps.version.outputs.tag }}
         files: |
             HDLBInst*.7z
             Translation-template.7z
 
 
-  Beta-tester_webhook:
-    needs: Repack_and_Release
-    runs-on: ubuntu-latest
-    steps:
-
-    - name: Discord Webhook, Latest release
-      if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
-      uses: tsickert/discord-webhook@v2.0.2
-      with:
-        webhook-url: ${{ secrets.TESTERS_WEBHOOK }}
-        content: "<@&859572447761793034> & <@&859615291477590046> , HDL Batch Installer has been updated some minutes ago \\n as always, you can download the latest version from here:\\n https://github.com/israpps/HDL-Batch-installer/releases/tag/Latest "
+#  Beta-tester_webhook:
+#    needs: Repack_and_Release
+#    runs-on: ubuntu-latest
+#    steps:
+#
+#    - name: Discord Webhook, Latest release
+#      if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
+#      uses: tsickert/discord-webhook@v2.0.2
+#      with:
+#        webhook-url: ${{ secrets.TESTERS_WEBHOOK }}
+#        content: "<@&859572447761793034> & <@&859615291477590046> , HDL Batch Installer has been updated some minutes ago \\n as always, you can download the latest version from here:\\n https://github.com/israpps/HDL-Batch-installer/releases/tag/Latest "
