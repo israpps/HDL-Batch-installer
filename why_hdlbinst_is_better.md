@@ -17,8 +17,8 @@ i´ll list it´s strengths compared to other programs:
   </tr>  
   <tr>
     <td style="color:Tomato;">has it's own installation system (old)</td>
-    <td style="color:MediumSeaGreen;">uses latest HDL Dump</td>
-    <td style="color:Tomato;">uses an older version of HDL Dump</td>
+    <td style="color:MediumSeaGreen;">uses latest HDL-Dump</td>
+    <td style="color:Tomato;">uses an older version of HDL-Dump</td>
   </tr>
   <tr>
     <td style="color:Tomato;">Can´t read 1tb and 2tb HDDs</td>
