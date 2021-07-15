@@ -4,6 +4,7 @@ For more info about translations (how to make them and implement them into the p
 + English - [@israpps](https://github.com/israpps)
 + Spanish - [@israpps](https://github.com/israpps)
 + Italian - [@FabioGaigher](https://github.com/FabioGaigher)
++ Portuguese (br) - [hardlevel](https://www.youtube.com/user/hardlevelbr)
 
 
 
