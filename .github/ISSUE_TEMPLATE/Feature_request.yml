@@ -1,0 +1,44 @@
+name: Feature request
+description: Ask/propose a new Feature
+title: "[FR]: "
+labels: [Feature Request]
+assignees:
+  - israpps
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for collaborating with our project! Please provide the following data:
+      
+  - type: textarea
+    id: explanation
+    attributes:
+      label: Explanation
+      description: What do you have in mind?
+      placeholder: Could you add...
+      value: "Could you add..."
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: fature related
+      description: this Feature request is related to:
+      options:
+        - label: game Installation
+        - label: Title Database
+        - label: ART Downloader
+        - label: Game management
+        - label: HDD management
+        - label: Others...
+        
+
+  - type: checkboxes
+    id: other_checks
+    attributes:
+      label: other checks
+      description: check if necesary
+      options:
+        - label: I've checked if such feature exists on [Latest version](https://github.com/israpps/HDL-Batch-installer/releases/)
+        - label: This Feature requires an update of WxWidgets
