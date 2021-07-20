@@ -1,3 +1,12 @@
+20 July 2021
+   [v2.8.0 - Revision 0]
+
+     Change log:
+        -Added: ART Download manager (direct from web archive, this feature is intended as an "emergency alternative" in case OPL Manager server is down)
+        -Added: Minor front-end changes to HDD Browse tab
+        -Removed: Unused code & front-end elements
+		-Removed: Unused Translation Macro's
+
 15 July 2021
    [v2.7.7 - Revision 2]
 

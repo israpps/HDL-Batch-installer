@@ -59,6 +59,7 @@ jobs:
       if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
       run: |
         SCH=${GITHUB_SHA::7}
+        REF=${{ steps.tag.outputs.version_tag }}
         cd Release
         cd Common
         echo commit $SCH>commit.sys
@@ -67,7 +68,7 @@ jobs:
         cd ..
         DATEE=`date '+[%Y-%m-%d]'`
         mv Release "HDLBInst[${{ steps.version.outputs.string }}]"
-        7z a -t7z -r HDLBInst\[$DATEE\].7z HDLBInst*/*
+        7z a -t7z -r HDLBInst$DATEE-$REF.7z HDLBInst*/*
         ls -R
 
 
@@ -75,6 +76,7 @@ jobs:
       if: startsWith(github.ref, 'refs/heads/v')
       run: |
         SCH=${GITHUB_SHA::7}
+        REF=${{ steps.tag.outputs.version_tag }}
         DATEE=`date '+[%Y-%m-%d]'`
         
         cd Release
@@ -131,7 +133,12 @@ jobs:
       run: echo "::set-output name=string::$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//' | awk '{$1=$1;print}')"
       id: version
 
-    - name: Download 1.966 artifact
+    - name: get version from changelog as release tag
+      shell: bash
+      run: echo "::set-output name=version_tag::$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//' | sed -r 's/\s+//g' | sed 's/Revision/rev/' | awk '{$1=$1;print}')"
+      id: tag
+
+    - name: Download artifact
       uses: actions/download-artifact@v1
       with:
         name: HDL-INST
