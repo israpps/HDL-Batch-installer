@@ -1,4 +1,16 @@
 20 July 2021
+   [v2.8.2 - Revision 1]
+
+     Change log:
+        -Added: Checkbox to mark every ART type in 1 click
+        -Fixed: weird bug on event handler for download button
+        -New: When Only one PS2 HDD is found that HDD Is automatically selected
+        -Added: Partition table display feature
+		-Updated: HDD selection event
+		-Updated: Program initialization
+		-Fixed: Bug on language selector
+
+20 July 2021
    [v2.8.0 - Revision 0]
 
      Change log:
