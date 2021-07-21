@@ -1,4 +1,12 @@
 20 July 2021
+   [v2.8.2 - Revision 3]
+
+     Change log:
+        -Added: CFG Download for games
+        -Added: CHT Download from Widescreen hacks archive
+        -Updated: Download manager (more efficiency)
+
+20 July 2021
    [v2.8.2 - Revision 1]
 
      Change log:
@@ -6,9 +14,9 @@
         -Fixed: weird bug on event handler for download button
         -New: When Only one PS2 HDD is found that HDD Is automatically selected
         -Added: Partition table display feature
-		-Updated: HDD selection event
-		-Updated: Program initialization
-		-Fixed: Bug on language selector
+	-Updated: HDD selection event
+	-Updated: Program initialization
+	-Fixed: Bug on language selector
 
 20 July 2021
    [v2.8.0 - Revision 0]
@@ -17,7 +25,7 @@
         -Added: ART Download manager (direct from web archive, this feature is intended as an "emergency alternative" in case OPL Manager server is down)
         -Added: Minor front-end changes to HDD Browse tab
         -Removed: Unused code & front-end elements
-		-Removed: Unused Translation Macro's
+	-Removed: Unused Translation Macro's
 
 15 July 2021
    [v2.7.7 - Revision 2]

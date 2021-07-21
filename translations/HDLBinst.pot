@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-07-20 17:57-0300\n"
+"POT-Creation-Date: 2021-07-20 23:04-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,14 +29,6 @@ msgstr ""
 msgid "?"
 msgstr ""
 
-#: ArtMan.cpp:222
-msgid "ART Download finished!"
-msgstr ""
-
-#: ArtMan.cpp:59
-msgid "ART Manager"
-msgstr ""
-
 #: HDL_Batch_installerMain.cpp:244
 msgid "About"
 msgstr ""
@@ -51,7 +43,7 @@ msgid ""
 "    For contributing with some Ideas"
 msgstr ""
 
-#: ArtMan.cpp:65
+#: ArtMan.cpp:70
 msgid "BG"
 msgstr ""
 
@@ -63,11 +55,19 @@ msgstr ""
 msgid "C:\\"
 msgstr ""
 
-#: ArtMan.cpp:67
+#: ArtMan.cpp:99
+msgid "CFG"
+msgstr ""
+
+#: ArtMan.cpp:104
+msgid "CHT"
+msgstr ""
+
+#: ArtMan.cpp:72
 msgid "COV"
 msgstr ""
 
-#: ArtMan.cpp:69
+#: ArtMan.cpp:74
 msgid "COV2"
 msgstr ""
 
@@ -125,16 +125,24 @@ msgstr ""
 msgid "Default DMA:"
 msgstr ""
 
-#: ArtMan.cpp:63
+#: ArtMan.cpp:68
 msgid "Downlad"
-msgstr ""
-
-#: HDL_Batch_installerMain.cpp:203
-msgid "Download ART"
 msgstr ""
 
 #: Component_error.cpp:42
 msgid "Download the program again"
+msgstr ""
+
+#: HDL_Batch_installerMain.cpp:203
+msgid "Downloads "
+msgstr ""
+
+#: ArtMan.cpp:238
+msgid "Downloads finished!"
+msgstr ""
+
+#: ArtMan.cpp:65
+msgid "Downloads manager"
 msgstr ""
 
 #: Config.cpp:78
@@ -147,10 +155,6 @@ msgstr ""
 
 #: HDL_Batch_installerMain.cpp:199
 msgid "Exctract Game"
-msgstr ""
-
-#: ArtMan.cpp:81
-msgid "Exit"
 msgstr ""
 
 #: Config.cpp:59
@@ -205,7 +209,7 @@ msgstr ""
 msgid "Hide Games from HDD-OSD"
 msgstr ""
 
-#: ArtMan.cpp:71
+#: ArtMan.cpp:76
 msgid "ICO"
 msgstr ""
 
@@ -213,7 +217,7 @@ msgstr ""
 msgid "ID"
 msgstr ""
 
-#: ArtMan.cpp:64
+#: ArtMan.cpp:69
 msgid "Images"
 msgstr ""
 
@@ -245,11 +249,11 @@ msgstr ""
 msgid "Italiano"
 msgstr ""
 
-#: ArtMan.cpp:73
+#: ArtMan.cpp:78
 msgid "LAB"
 msgstr ""
 
-#: ArtMan.cpp:75
+#: ArtMan.cpp:80
 msgid "LGO"
 msgstr ""
 
@@ -297,6 +301,10 @@ msgstr ""
 msgid "Official Github"
 msgstr ""
 
+#: ArtMan.cpp:98
+msgid "Others"
+msgstr ""
+
 #: HDL_Batch_installerMain.cpp:468
 msgid "PS2 Games"
 msgstr ""
@@ -335,11 +343,11 @@ msgid ""
 "     (wich inspired me to make this GUI)"
 msgstr ""
 
-#: ArtMan.cpp:77
+#: ArtMan.cpp:82
 msgid "SCR"
 msgstr ""
 
-#: ArtMan.cpp:79
+#: ArtMan.cpp:84
 msgid "SCR2"
 msgstr ""
 
@@ -453,6 +461,10 @@ msgid ""
 " this means that, games installed this way will have a '+p.' prefix instead "
 "of the original 'PP.' prefix\n"
 " hiding them from HDD-OSD and PS2BBN"
+msgstr ""
+
+#: ArtMan.cpp:106
+msgid "Widescreen hacks for OPL"
 msgstr ""
 
 #: HDL_Batch_installerMain.cpp:767
