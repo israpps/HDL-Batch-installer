@@ -53,7 +53,7 @@ jobs:
       run: |
          DATEE=`date '+[%Y-%m-%d]'`
          mv translations HDLBinst-Translation-$DATEE
-         7z a -t7z -r Translation-template.7z HDLBinst-Translation-*/*
+         7z a -t7z -r Translation-template.7z HDLBinst-Translation-*/*.pot
 
     - name: Repack as latest build
       if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
