@@ -59,9 +59,16 @@ jobs:
 
     - name: Compile translation catalogs
       run: |
-         msgfmt ./translations/catalogs/pt_BR.po -o ./Release/Lang/pt_BR/HDLBinst.mo
-         msgfmt ./translations/catalogs/es.po -o ./Release/Lang/es/HDLBinst.mo
-         msgfmt ./translations/catalogs/it_IT.po -o ./Release/Lang/it/HDLBinst.mo
+         cd translations
+         cd catalogs
+         msgfmt pt_BR.po -o pt_BR.mo
+         msgfmt es.po -o es.mo
+         msgfmt it_IT.po -o it_IT.mo
+         cd ..
+         cd ..
+         cp translations/catalogs/pt_BR.mo Release/Lang/pt_BR/HDLBinst.mo
+         cp translations/catalogs/es.mo Release/Lang/es/HDLBinst.mo
+         cp translations/catalogs/it_IT.mo Release/Lang/it/HDLBinst.mo
 
     - name: Repack as latest build
       if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
