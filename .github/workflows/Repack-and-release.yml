@@ -27,12 +27,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
+
+    - name: checkout code for release
+      uses: actions/checkout@v1
+
     - name: Install dependencies
       run: |
         sudo apt-get install gettext p7zip
 
-    - name: checkout code for release
-      uses: actions/checkout@v1
 
     - name: get version from changelog
       shell: bash
@@ -57,9 +59,9 @@ jobs:
 
     - name: Compile translation catalogs
       run: |
-         msgfmt translations/catalogs/pt_BR.po -o Release/Lang/pt_BR/HDLBinst.mo
-         msgfmt translations/catalogs/es.po -o Release/Lang/es/HDLBinst.mo
-         msgfmt translations/catalogs/it_IT.po -o Release/Lang/it/HDLBinst.mo
+         msgfmt ./translations/catalogs/pt_BR.po -o ./Release/Lang/pt_BR/HDLBinst.mo
+         msgfmt ./translations/catalogs/es.po -o ./Release/Lang/es/HDLBinst.mo
+         msgfmt ./translations/catalogs/it_IT.po -o ./Release/Lang/it/HDLBinst.mo
 
     - name: Repack as latest build
       if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
