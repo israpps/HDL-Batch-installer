@@ -27,9 +27,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-   # - name: Install dependencies
-   #   run: |
-   #     apk add build-base git zip
+    - name: Install dependencies
+      run: |
+        apk add gettext p7zip
 
     - name: checkout code for release
       uses: actions/checkout@v1
