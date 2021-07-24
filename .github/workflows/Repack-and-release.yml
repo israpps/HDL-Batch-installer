@@ -27,12 +27,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-   # - name: Install dependencies
-   #   run: |
-   #     apk add build-base git zip
 
     - name: checkout code for release
       uses: actions/checkout@v1
+
+    - name: Install dependencies
+      run: |
+        sudo apt-get install gettext p7zip
+
 
     - name: get version from changelog
       shell: bash
@@ -44,12 +46,26 @@ jobs:
       run: echo "::set-output name=version_tag::$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//' | sed -r 's/\s+//g' | sed 's/Revision/rev/' | awk '{$1=$1;print}')"
       id: tag
         
-    - name: update HDL.EXE
+    - name: Download Latest HDL-Dump
       run: |
         cd Release
         wget https://github.com/israpps/hdl-dump/releases/download/hdlinst/HDL.EXE -O $PWD/HDL.EXE
     
-    - name: Repack translation templates
+
+    - name: Compile translation catalogs
+      run: |
+         cd translations
+         cd catalogs
+         msgfmt pt_BR.po -o pt_BR.mo
+         msgfmt es.po -o es.mo
+         msgfmt it_IT.po -o it_IT.mo
+         cd ..
+         cd ..
+         cp translations/catalogs/pt_BR.mo Release/Lang/pt_BR/HDLBinst.mo
+         cp translations/catalogs/es.mo Release/Lang/es/HDLBinst.mo
+         cp translations/catalogs/it_IT.mo Release/Lang/it/HDLBinst.mo
+
+    - name: Create translation template package
       run: |
          DATEE=`date '+[%Y-%m-%d]'`
          mv translations HDLBinst-Translation-$DATEE
@@ -96,7 +112,7 @@ jobs:
              HDLBInst*.7z
              Translation-template.7z
 
-    - name: Create pre-release
+    - name: Deploy pre-release
       if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
       uses: marvinpinto/action-automatic-releases@latest
       with:
@@ -107,7 +123,7 @@ jobs:
               HDLBInst*.7z
               Translation-template.7z
 
-    - name: Create tagged release
+    - name: Deploy tagged release
       if: startsWith(github.ref, 'refs/heads/v')
       uses: marvinpinto/action-automatic-releases@latest
       with:
