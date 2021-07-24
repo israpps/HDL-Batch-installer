@@ -51,11 +51,6 @@ jobs:
         cd Release
         wget https://github.com/israpps/hdl-dump/releases/download/hdlinst/HDL.EXE -O $PWD/HDL.EXE
     
-    - name: Create translation template package
-      run: |
-         DATEE=`date '+[%Y-%m-%d]'`
-         mv translations HDLBinst-Translation-$DATEE
-         7z a -t7z -r Translation-template.7z HDLBinst-Translation-*/*.pot
 
     - name: Compile translation catalogs
       run: |
@@ -69,6 +64,12 @@ jobs:
          cp translations/catalogs/pt_BR.mo Release/Lang/pt_BR/HDLBinst.mo
          cp translations/catalogs/es.mo Release/Lang/es/HDLBinst.mo
          cp translations/catalogs/it_IT.mo Release/Lang/it/HDLBinst.mo
+
+    - name: Create translation template package
+      run: |
+         DATEE=`date '+[%Y-%m-%d]'`
+         mv translations HDLBinst-Translation-$DATEE
+         7z a -t7z -r Translation-template.7z HDLBinst-Translation-*/*.pot
 
     - name: Repack as latest build
       if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
