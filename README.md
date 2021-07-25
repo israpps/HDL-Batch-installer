@@ -29,8 +29,10 @@ When the project gets into a decent state I'll upload it to PSX-place
 - [x] Automatically assign the original Game Title before Installation
 - [X] Inject MiniOPL into the game partition (to launch the Game From HDD-OSD)
 - [X] Inject MBR.KELF into the HDD
-- [ ] Modify Partitions Header (custom title & icon and more)
 - [x] Edit Game Title
+- [ ] Massive KELF injection to every installed game
+- [ ] Modify Partitions Header (custom title & icon and more)
+
 
 ---
 
