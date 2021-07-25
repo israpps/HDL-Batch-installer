@@ -1,3 +1,15 @@
+25 July 2021
+   [v2.9.0 - Revision 0]
+
+     Change log:
+        -Updated: Install loop
+        -New: Massive game header injection.
+        -New: when using mass header injection files that can be recognized by hdl-dump will be erased to avoid issues | only boot.kelf and icon files will be allowed
+        -Fixed: Bug on HDD Update event, sometimes, certain features wheren't beeing re-activated after hdd update
+        -Cleaned: Download manager Source code
+        -Updated: Source code to remove unnecesary variables
+        -Fixed: Minor issues on program startup
+
 22 July 2021
    [v2.8.2 - Revision 4]
 
