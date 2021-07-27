@@ -6,6 +6,7 @@
 ![project status](https://img.shields.io/badge/Project%20status-Active-00cc22)
 
 ![os](https://img.shields.io/badge/Windows-x64-green)
+![os](https://img.shields.io/badge/Windows-x86-green)
 
 [![GitHub release (by tag)](https://img.shields.io/github/downloads/israpps/HDL-Batch-installer/Latest/total?label=Downloads%20%5BLatest%5D)](https://github.com/israpps/HDL-Batch-installer/releases)
 
