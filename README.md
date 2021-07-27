@@ -3,10 +3,10 @@
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![wxWidgets version](https://img.shields.io/badge/wxWidgets-3.0.5-blue)](https://www.wxwidgets.org/downloads/#v3.0.5)
+![project status](https://img.shields.io/badge/Project%20status-Active-00cc22)
+
 ![os](https://img.shields.io/badge/Windows-x64-green)
 
-![project status](https://img.shields.io/badge/Project%20status-Active-00cc22)
-[![Release HDL Batch Installer](https://github.com/israpps/HDL-Batch-installer/actions/workflows/Repack-and-release.yml/badge.svg)](https://github.com/israpps/HDL-Batch-installer/actions/workflows/Repack-and-release.yml)
 [![GitHub release (by tag)](https://img.shields.io/github/downloads/israpps/HDL-Batch-installer/Latest/total?label=Downloads%20%5BLatest%5D)](https://github.com/israpps/HDL-Batch-installer/releases)
 
 #### A GUI for [HDL Dump](https://github.com/israpps/hdl-dump).
