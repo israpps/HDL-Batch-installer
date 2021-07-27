@@ -6,6 +6,7 @@ on:
   push:
     paths:
       - 'Release**'
+      - 'Release32**'
 
 #  schedule: 
 #   - cron: "0 15 * * 5,2"
@@ -19,7 +20,7 @@ jobs:
       - name: "Check file existence"
         uses: andstor/file-existence-action@v1
         with:
-          files: "Release/HDL-Batch-installer.exe, Release/HDL.EXE, Release/Common/config.INI"
+          files: "Release/HDL-Batch-installer.exe, Release32/HDL-Batch-installer.exe, Release/HDL.EXE, Release/Common/config.INI"
           allow_failure: "true"
 
   Repack_and_Release:
@@ -71,8 +72,7 @@ jobs:
          mv translations HDLBinst-Translation-$DATEE
          7z a -t7z -r Translation-template.7z HDLBinst-Translation-*/*.pot
 
-    - name: Repack as latest build
-      if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
+    - name: Repack latest x64 build
       run: |
         SCH=${GITHUB_SHA::7}
         REF=${{ steps.tag.outputs.version_tag }}
@@ -80,28 +80,26 @@ jobs:
         cd Common
         echo commit $SCH>commit.sys
         echo `date`>>commit.sys
+        echo pkgid $REF >>commit.sys
         cd ..
         cd ..
-        DATEE=`date '+[%Y-%m-%d]'`
-        mv Release "HDLBInst[${{ steps.version.outputs.string }}]"
-        7z a -t7z -r HDLBInst$DATEE-$REF.7z HDLBInst*/*
-        ls -R
+        cp -r Release "HDLBInst[${{ steps.version.outputs.string }}-x64]"
+        7z a -t7z -r HDLBInst-x64-$REF.7z HDLBInst*x64*/*
 
-
-    - name: Repack as tagged version
-      if: startsWith(github.ref, 'refs/heads/v')
+    - name: Repack latest x86 build
       run: |
         SCH=${GITHUB_SHA::7}
         REF=${{ steps.tag.outputs.version_tag }}
-        DATEE=`date '+[%Y-%m-%d]'`
-        
         cd Release
-        echo commit $SCH>commit.sys
-        echo tagged release $REF>>commit.sys
-        echo `date`>>commit.sys
+        cd Common
+        echo 32bits build >>commit.sys
         cd ..
-        mv Release 'HDLBInst[${{ steps.version.outputs.string }}]-$DATEE'
-        7z a -t7z -r HDLBInst\[$REF\].7z HDLBInst*/*
+        cd ..
+        rm Release/HDL-Batch-installer.exe
+        cp Release32/HDL-Batch-installer.exe Release/HDL-Batch-installer.exe
+        mv Release "HDLBInst[${{ steps.version.outputs.string }}-x86]"
+        7z a -t7z -r HDLBInst-x86-$REF.7z HDLBInst*x86*/*
+
 
     - name: Upload artifacts
       if: ${{ success() }}
@@ -122,18 +120,6 @@ jobs:
         files: |
               HDLBInst*.7z
               Translation-template.7z
-
-    - name: Deploy tagged release
-      if: startsWith(github.ref, 'refs/heads/v')
-      uses: marvinpinto/action-automatic-releases@latest
-      with:
-        repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        prerelease: false
-        automatic_release_tag: ${{ steps.tag.outputs.version_tag }}
-        title: "${{ steps.version.outputs.string }}"
-        files: |
-            HDLBInst*.7z
-            Translation-template.7z
 
 
   discord_webhooks:
