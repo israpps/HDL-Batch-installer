@@ -3,7 +3,7 @@ name: Update HDL dump
 on:
   push:
   repository_dispatch:
-    types: [Component_update]
+    types: [HDL_Dump_Updated]
 
 jobs:
   rewrite-jsom:
