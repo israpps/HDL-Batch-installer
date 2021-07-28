@@ -1,3 +1,17 @@
+27 July 2021
+   [v3.0.0 - Revision 0]
+
+     Change log:
+        -Source code reformatted: 
+        -New: 32 bits build ( changes to both wxwidgets and HDLBinst  source code )
+        -New: Credits tab will specify if program was built as 32 or 64 bits
+
+26 July 2021
+   [v2.9.0 - Revision 1]
+
+     Change log:
+        -Updated: Wildcard pattern order on game search dialog
+
 25 July 2021
    [v2.9.0 - Revision 0]
 
