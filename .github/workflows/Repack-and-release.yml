@@ -44,12 +44,7 @@ jobs:
       shell: bash
       run: echo "::set-output name=version_tag::$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//' | sed -r 's/\s+//g' | sed 's/Revision/rev/' | awk '{$1=$1;print}')"
       id: tag
-        
-    - name: Download Latest HDL-Dump
-      run: |
-        cd Release
-        wget https://github.com/israpps/hdl-dump/releases/download/hdlinst/HDL.EXE -O $PWD/HDL.EXE
-    
+            
 
     - name: Compile translation catalogs
       run: |
