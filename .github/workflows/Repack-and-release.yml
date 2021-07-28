@@ -1,8 +1,6 @@
 name: Release HDL Batch Installer
 on:
   workflow_dispatch:
-  repository_dispatch:
-    types: [HDL_Dump_Updated]
   push:
     paths:
       - 'Release**'
