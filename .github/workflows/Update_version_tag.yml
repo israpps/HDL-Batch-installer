@@ -1,4 +1,4 @@
-name: Release HDL Batch Installer
+name: Update version tag
 on:
   workflow_dispatch:
   push:
