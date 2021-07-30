@@ -1,0 +1,38 @@
+name: Release HDL Batch Installer
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'Release**'
+      - 'Release32**'
+
+jobs:
+  update-tag:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+#    - name: Get short SHA
+#      id: slug
+#      run: echo "::set-output name=sha8::$(echo ${GITHUB_SHA} | cut -c1-8)"
+
+    - name: get version from changelog
+      shell: bash
+      run: echo "::set-output name=string::$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//' | awk '{$1=$1;print}')"
+      id: version
+      
+#    - name: get version from changelog as release tag
+#      shell: bash
+#      run: echo "::set-output name=version_tag::$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//' | sed -r 's/\s+//g' | sed 's/Revision/rev/' | awk '{$1=$1;print}')"
+#      id: tag
+
+    - name: rewrite version tag
+      run: |
+        cd svr
+        echo "${{ steps.version.outputs.string }}">VERSION
+
+    - uses: EndBug/add-and-commit@v7
+      with:
+        default_author: github_actions
+        message: 'Update svr/VERSION'
