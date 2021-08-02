@@ -10,7 +10,7 @@
 ![os](https://img.shields.io/badge/Windows-x86-green)
 
 [![GitHub release (by tag)](https://img.shields.io/github/downloads/israpps/HDL-Batch-installer/Latest/total?label=Downloads%20%5BLatest%5D)](https://github.com/israpps/HDL-Batch-installer/releases)
-
+[![Discord](https://img.shields.io/discord/859508044340920370?label=HDLBinst%20server&logo=discord&logoColor=white)](https://discord.gg/wczxvrkZk6)
 
 #### A GUI for [HDL Dump](https://github.com/israpps/hdl-dump).
 
