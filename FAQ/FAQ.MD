@@ -33,6 +33,24 @@
 
 </details>
 
+***
+
+<details>
+  <summary> <b> My game was marked as invalid game</b> </summary>
+
+> There are a lot of things that can cause such issue:
+
+<p>
+
+1. Your file isn't in a supported format
+2. Your file is in a supported format, but something is going on...
+3. File name is too long. (Make sure that the images has less than 60 chars)
+
+<p/>
+</details>
+
+***
+
 ## You couldn't find your question?  Try [here](https://github.com/israpps/HDL-Batch-installer/discussions)
 
 
