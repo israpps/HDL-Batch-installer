@@ -1,3 +1,20 @@
+19 August 2021
+   [v3.0.0 - Revision 2]
+
+     Change log:
+        -Enhanced: Installation command formatting
+        -Added: A better alternative for real-time output redirection on installation command (text update is more fluid)
+        -Added: Gamecount handler on game loading (if invalid game count is 0 the message won't say "discarded 0 invalid files")
+        -New: Colorize partition table depending on partition type
+
+19 August 2021
+   [v3.0.0 - Revision 1]
+
+     Change log:
+        -Updated: Configurations handling
+        -Updated: ART Downloader archive (before: OPLM Backup 2021/01 | now: 2021/07)
+        -New: HDD Search button will be "focused" on program startup
+
 27 July 2021
    [v3.0.0 - Revision 0]
 
