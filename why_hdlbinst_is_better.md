@@ -12,8 +12,8 @@ i´ll list it´s strengths compared to other programs:
   </tr>
   <tr>
     <td style="color:Tomato;">Limited to <b>255 games</b></td>
-    <td style="color:MediumSeaGreen;">Limited to uLaunchELF partition limit (according to source code: ~1400 games)</td>
-    <td style="color:MediumSeaGreen;">Limited to uLaunchELF partition limit (according to source code: ~1400 games)</td>
+    <td style="color:MediumSeaGreen;">Limited to uLaunchELF partition limit (Acording to <a href="https://github.com/israpps/wLaunchELF_ISR/blob/e4e01be7a601e84ca2aa98a31cc2ef46017204f6/launchelf.h#L90">source code</a>: ~1400 games)</td> 
+    <td style="color:MediumSeaGreen;">Limited to uLaunchELF partition limit (Acording to <a href="https://github.com/israpps/wLaunchELF_ISR/blob/e4e01be7a601e84ca2aa98a31cc2ef46017204f6/launchelf.h#L90">source code</a>: ~1400 games)</td>
   </tr>  
   <tr>
     <td style="color:Tomato;">has it's own installation system (old)</td>
