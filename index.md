@@ -6,38 +6,48 @@
 
 <details>
   <summary> <b> Why should I use HDLBinst instead of other programs? </b> </summary>
+  <p>
+ The idea behind this GUI consists on combining the strengths of each program that serves this same purpose.
 
-> The idea behind this GUI consists on combining the strengths of each program that serves this same purpose.
->
-> [Learn more here](./why_hdlbinst_is_better.html)
-
+ [Learn more here](./why_hdlbinst_is_better.html)
+  </p>
 </details>
+
+----
 
 <details>
   <summary>Game Name Database </summary>
+  <p>
+  
+ Just like HDL Batch, this GUI will automatically search the Game Title for the PS2 ISO you're about to Install.
 
-> Just like HDL Batch, this GUI will automatically search the Game Title for the PS2 ISO you're about to Install.
->
-> the program has an Internal Database with `14346` Game Titles!
->
-> however, you can use an external database Instead.
->
-> when the program can't find the Game Title on the Database (or the Database is disabled) the name of the ISO file is assigned as the title Instead (without the extension)
+ the program has an Internal Database with `14346` Game Titles!
 
-> If you find a Game ID that isn´t registered in our database Open a new [__Database Update Request__](https://github.com/israpps/HDL-Batch-installer/issues/new?assignees=&labels=Database+issue&template=database-update-request.md&title=Database+update+Request)
+ however, you can use an external database Instead.
 
+ when the program can't find the Game Title on the Database (or the Database is disabled) the name of the ISO file is assigned as the title Instead (without the extension)
+
+ If you find a Game ID that isn´t registered in our database Open a new [__Database Update Request__](https://github.com/israpps/HDL-Batch-installer/issues/new?assignees=&labels=Database+issue&template=database-update-request.md&title=Database+update+Request)
+  </p>
   <details>
     <summary>Create Custom Database: </summary>
-    
+    <p>    
+      
 the file should be named `gamename.DB`, it must remain with the Program
 
 a [copy of the internal database](https://github.com/israpps/HDL-Batch-installer/blob/main/Database/gamename.csv) is provided at this repo, (thanks to VTSTech and everyone that contributed to the game title list from PSX-Place)
-    
+    </p>    
   </details>
 </details>
 
+-----
 
-
-
+<details>
+  <summary> <b> How can I use a custom OSD icon for my games? </b> </summary>
+    <p>
+      
+Take the desired custom icon and place it on the program folder (where `boot.kelf` resides) and name it as `list.ico`
+    </p>    
+  </details>
 
 ## [FAQ:](./FAQ/FAQ.html)
