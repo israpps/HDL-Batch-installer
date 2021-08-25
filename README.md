@@ -21,7 +21,6 @@
 > Originally this was a personal project to practice C++ & give a try to wxWidgets...
 >
 > But at the end I decided to share it here on github.
-When the project gets into a decent state I'll upload it to PSX-place
 
 ### Currently implemented features (unchecked elements are WIP)
 
