@@ -68,7 +68,6 @@ jobs:
     - name: Trim changes of latest version
       run: |
         cd Release
-        cat changes.log
         sed -n '/Change log/,/^$/{/^$/q; p}' changes.log > ../latest_changes.log
         sed -n '/Change log/,/^$/{/^$/q; p}' changes.log 
         cd ..
@@ -112,6 +111,7 @@ jobs:
         path: |
              HDLBInst*.7z
              Translation-template.7z
+             latest_changes.log
 
     - name: Deploy pre-release
       if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
