@@ -69,6 +69,7 @@ jobs:
       run: |
         sed -n '/PATTERN/,/^$/{/./p}' Release/changes.log >latest_changes.log
         sed -i 's/^[[:blank:]]*//g' latest_changes.log
+        cat latest_changes.log
 
     - name: Repack latest x64 build
       run: |
