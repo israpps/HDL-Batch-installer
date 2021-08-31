@@ -67,7 +67,7 @@ jobs:
 
     - name: Trim changes of latest version
       run: |
-        sed -n '/PATTERN/,/^$/{/./p}' Release/changes.log >latest_changes.log
+        sed -n '/*Change log*/,/^$/{/./p}' Release/changes.log >latest_changes.log
         sed -i 's/^[[:blank:]]*//g' latest_changes.log
         cat latest_changes.log
 
@@ -111,11 +111,11 @@ jobs:
 
     - name: Deploy pre-release
       if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
-      uses: marvinpinto/action-automatic-releases@latest
+      uses: softprops/action-gh-release@v1
       with:
-        repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        automatic_release_tag: "Latest"
-        title: "${{ steps.version.outputs.string }}"
+        body_path: "latest_changes.log"
+        tag_name: "Latest"
+        name: "${{ steps.version.outputs.string }}"
         files: |
               HDLBInst*.7z
               Translation-template.7z
