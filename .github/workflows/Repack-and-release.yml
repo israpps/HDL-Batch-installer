@@ -67,8 +67,12 @@ jobs:
 
     - name: Trim changes of latest version
       run: |
-        sed -n '/*Change log*/,/^$/{/./p}' Release/changes.log >latest_changes.log
-        sed -i 's/^[[:blank:]]*//g' latest_changes.log
+        cd Release
+        cat changes.log
+        sed -n '/Change log/,/^$/{/^$/q; p}' changes.log > ../latest_changes.log
+        sed -n '/Change log/,/^$/{/^$/q; p}' changes.log 
+        cd ..
+        sed 's/^[[:blank:]]*//g' latest_changes.log > latest_changes.log
         cat latest_changes.log
 
     - name: Repack latest x64 build
