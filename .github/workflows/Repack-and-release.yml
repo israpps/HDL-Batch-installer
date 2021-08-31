@@ -116,6 +116,7 @@ jobs:
       if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
       uses: softprops/action-gh-release@v1
       with:
+        fail_on_unmatched_files: true
         body_path: latest_changes.log
         tag_name: "Latest"
         prerelease: true
