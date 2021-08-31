@@ -125,8 +125,6 @@ jobs:
         files: |
              HDLBInst*.7z
              Translation-template.7z
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
   discord_webhooks:
     needs: Repack_and_Release
