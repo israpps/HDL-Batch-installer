@@ -65,6 +65,11 @@ jobs:
          mv translations HDLBinst-Translation-$DATEE
          7z a -t7z -r Translation-template.7z HDLBinst-Translation-*/*.pot
 
+    - name: Trim changes of latest version
+      run: |
+        sed -n '/PATTERN/,/^$/{/./p}' Release/changes.log >latest_changes.log
+        sed -i 's/^[[:blank:]]*//g' latest_changes.log
+
     - name: Repack latest x64 build
       run: |
         SCH=${GITHUB_SHA::7}
