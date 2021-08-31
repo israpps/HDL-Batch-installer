@@ -72,7 +72,7 @@ jobs:
         sed -n '/Change log/,/^$/{/^$/q; p}' changes.log >> ../latest_changes.log
         cd ..
         sed -i 's/^[[:blank:]]*//g' latest_changes.log
-        echo "```" > latest_changes.log
+        echo "```" >> latest_changes.log
         cat latest_changes.log
 
     - name: Repack latest x64 build
