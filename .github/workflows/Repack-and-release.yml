@@ -119,6 +119,8 @@ jobs:
       with:
         body_path: "latest_changes.log"
         tag_name: "Latest"
+        prerelease: true
+        draft: false
         name: "${{ steps.version.outputs.string }}"
         files: |
               HDLBInst*.7z
