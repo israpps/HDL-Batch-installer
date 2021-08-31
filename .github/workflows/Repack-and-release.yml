@@ -117,14 +117,14 @@ jobs:
       if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
       uses: softprops/action-gh-release@v1
       with:
-        body_path: "latest_changes.log"
+        body_path: latest_changes.log
         tag_name: "Latest"
         prerelease: true
         draft: false
         name: "${{ steps.version.outputs.string }}"
         files: |
-              HDLBInst*.7z
-              Translation-template.7z
+             HDLBInst*.7z
+             Translation-template.7z
 
 
   discord_webhooks:
