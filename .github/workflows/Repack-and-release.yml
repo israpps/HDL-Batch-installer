@@ -65,14 +65,6 @@ jobs:
          mv translations HDLBinst-Translation-$DATEE
          7z a -t7z -r Translation-template.7z HDLBinst-Translation-*/*.pot
 
-    - name: Trim changes of latest version
-      run: |
-        cd Release
-        sed -n '/Change log/,/^$/{/^$/q; p}' changes.log >> ../latest_changes.log
-        cd ..
-        sed -i 's/^[[:blank:]]*//g' latest_changes.log
-        cat latest_changes.log
-
     - name: Repack latest x64 build
       run: |
         SCH=${GITHUB_SHA::7}
@@ -110,21 +102,18 @@ jobs:
         path: |
              HDLBInst*.7z
              Translation-template.7z
-             latest_changes.log
 
     - name: Deploy pre-release
       if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
-      uses: softprops/action-gh-release@v1
+      uses: marvinpinto/action-automatic-releases@latest
       with:
-        fail_on_unmatched_files: true
-        body_path: latest_changes.log
-        tag_name: "Latest"
-        prerelease: true
-        draft: false
-        name: "${{ steps.version.outputs.string }}"
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "Latest"
+        title: "${{ steps.version.outputs.string }}"
         files: |
-             HDLBInst*.7z
-             Translation-template.7z
+              HDLBInst*.7z
+              Translation-template.7z
+
 
   discord_webhooks:
     needs: Repack_and_Release
