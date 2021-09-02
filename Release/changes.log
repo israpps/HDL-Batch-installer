@@ -1,3 +1,18 @@
+02 September 2021
+   [v3.0.2 - Revision 0]
+
+     Change log:
+        -Header Injection: Added aborting if both KELF and icons are missing
+        -Header Injection: Added size controls for KELF
+        -Translation: Added support for Wxwidgets standard locale catalog (catalogs for currently supported languages will be bundled from now on)
+
+27 August 2021
+   [v3.0.0 - Revision 3]
+
+     Change log:
+        -New: External database lines that start with '#' will be skipped
+        -Enhanced: Internal game title database parsing system 
+
 19 August 2021
    [v3.0.0 - Revision 2]
 
