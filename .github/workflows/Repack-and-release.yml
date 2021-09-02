@@ -114,6 +114,18 @@ jobs:
               HDLBInst*.7z
               Translation-template.7z
 
+    - name: Deploy draft
+      if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
+      uses: marvinpinto/action-automatic-releases@latest
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "${{ steps.version.outputs.tag }}"
+        title: "${{ steps.version.outputs.string }}"
+        draft: true
+        files: |
+              HDLBInst*.7z
+              Translation-template.7z
+
 
   discord_webhooks:
     needs: Repack_and_Release
