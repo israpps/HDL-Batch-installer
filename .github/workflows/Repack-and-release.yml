@@ -103,17 +103,6 @@ jobs:
              HDLBInst*.7z
              Translation-template.7z
 
-    - name: Deploy pre-release
-      if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
-      uses: marvinpinto/action-automatic-releases@latest
-      with:
-        repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        automatic_release_tag: "Latest"
-        title: "${{ steps.version.outputs.string }}"
-        files: |
-              HDLBInst*.7z
-              Translation-template.7z
-
     - name: draft
       uses: marvinpinto/action-automatic-releases@latest
       with:
@@ -125,6 +114,16 @@ jobs:
               HDLBInst*.7z
               Translation-template.7z
 
+    - name: Deploy pre-release
+      if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
+      uses: marvinpinto/action-automatic-releases@latest
+      with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        automatic_release_tag: "Latest"
+        title: "${{ steps.version.outputs.string }}"
+        files: |
+              HDLBInst*.7z
+              Translation-template.7z
 
   discord_webhooks:
     needs: Repack_and_Release
