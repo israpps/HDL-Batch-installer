@@ -119,7 +119,7 @@ jobs:
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         draft: true
-        automatic_release_tag: "${{ steps.version.outputs.tag }}"
+        automatic_release_tag: "${{ steps.tag.outputs.version_tag }}"
         title: "${{ steps.version.outputs.string }}"
         files: |
               HDLBInst*.7z
