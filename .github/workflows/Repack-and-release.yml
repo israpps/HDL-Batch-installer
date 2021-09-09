@@ -108,7 +108,7 @@ jobs:
              Translation-template.7z
 
     - name: draft pre-release
-      if: (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main') &&  !contains("${{steps.tag.outputs.version_tag}}",'-rel') 
+      if: (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main') &&  !endsWith("${{steps.tag.outputs.version_tag}}",'-rel') 
       uses: marvinpinto/action-automatic-releases@latest
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
@@ -120,7 +120,7 @@ jobs:
               Translation-template.7z
               
     - name: release
-      if: (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main') && (  contains("${{steps.tag.outputs.version_tag}}",'-rel') )
+      if: (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main') && (  endsWith("${{steps.tag.outputs.version_tag}}",'-rel') )
       uses: marvinpinto/action-automatic-releases@latest
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
@@ -169,14 +169,14 @@ jobs:
         name: HDL-INST
         
     - name: Discord Webhook, Latest release
-      if: github.event_name == 'push' && !contains("${{steps.tag.outputs.version_tag}}",'-rel')
+      if: github.event_name == 'push' && !endsWith("${{steps.tag.outputs.version_tag}}",'-rel')
       uses: tsickert/discord-webhook@v2.0.2
       with:
         webhook-url: ${{ secrets.TESTERS_WEBHOOK }}
         content: "<@&859572447761793034> & <@&859615291477590046> , HDL Batch Installer has been updated some minutes ago\\n according to changelog: **[${{ steps.version.outputs.string }}]** \\n as always, you can download the latest version from here:\\n https://github.com/israpps/HDL-Batch-installer/releases/tag/Latest \\n or <#863913236457062421>"
  
     - name: Discord Webhook, Stable Release
-      if: github.event_name == 'push' && contains("${{steps.tag.outputs.version_tag}}",'-rel')
+      if: github.event_name == 'push' && endsWith("${{steps.tag.outputs.version_tag}}",'-rel')
       uses: tsickert/discord-webhook@v2.0.2
       with:
         webhook-url: ${{ secrets.TESTERS_WEBHOOK }}
