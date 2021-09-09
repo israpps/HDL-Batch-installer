@@ -1,3 +1,13 @@
+09 September 2021
+   [v3.0.3 - Release]
+
+     Change log:
+        -Program startup: Added command line arguments support (arguments will be documented on github and batch file provided with the program
+        -GUI: the GUI won't stay on top of other programs anymore (however, such behavior can be re-enabled by passing a command line argument)
+        -Console: Added a console text redirection, when the specific command line argumment is provided, every text output that takes place after translation loading will be redirected into text files located on the 'logs' folder
+        -Program calls: Replaced custom process redirection from the last two places where it was being used, now that module was completely removed...
+        -Game list: Added compatibility to properly (i hope so) list games installed by outdated software
+
 02 September 2021
    [v3.0.2 - Revision 0]
 

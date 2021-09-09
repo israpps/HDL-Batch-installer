@@ -103,7 +103,8 @@ jobs:
              HDLBInst*.7z
              Translation-template.7z
 
-    - name: draft
+    - name: draft pre-release
+      if: (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main') && ( !contains(${{steps.tag.outputs.version_tag}},-rel) )
       uses: marvinpinto/action-automatic-releases@latest
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
@@ -113,11 +114,25 @@ jobs:
         files: |
               HDLBInst*.7z
               Translation-template.7z
-
-    - name: Deploy pre-release
-      if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
+              
+    - name: release
+      if: (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main') && (  contains(${{steps.tag.outputs.version_tag}},-rel) )
       uses: marvinpinto/action-automatic-releases@latest
       with:
+        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+        draft: false
+        automatic_release_tag: "${{ steps.tag.outputs.version_tag }}"
+        title: "${{ steps.version.outputs.string }}"
+        prerelease: false
+        files: |
+              HDLBInst*.7z
+              Translation-template.7z
+
+    - name: Deploy pre-release
+      if: (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main')
+      uses: marvinpinto/action-automatic-releases@latest
+      with:
+        prerelease: true
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
         automatic_release_tag: "Latest"
         title: "${{ steps.version.outputs.string }}"
