@@ -176,7 +176,7 @@ jobs:
     - name: Discord Webhook, Latest release
       if: |
         github.event_name == 'push' && 
-        !endsWith(${steps.tag.outputs.version_tag},'-rel')
+        !endsWith(${{steps.tag.outputs.version_tag}},'-rel')
       uses: tsickert/discord-webhook@v2.0.2
       with:
         webhook-url: ${{ secrets.TESTERS_WEBHOOK }}
@@ -185,7 +185,7 @@ jobs:
     - name: Discord Webhook, Stable Release
       if: |
         github.event_name == 'push' &&
-        endsWith(${steps.tag.outputs.version_tag},'-rel')
+        endsWith(${{steps.tag.outputs.version_tag}},'-rel')
       uses: tsickert/discord-webhook@v2.0.2
       with:
         webhook-url: ${{ secrets.TESTERS_WEBHOOK }}
