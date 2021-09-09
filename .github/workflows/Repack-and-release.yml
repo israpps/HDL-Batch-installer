@@ -45,6 +45,10 @@ jobs:
       run: echo "::set-output name=version_tag::$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//' | sed -r 's/\s+//g' | sed 's/Revision/rev/' | sed 's/Release/rel/'| awk '{$1=$1;print}')"
       id: tag
             
+    - name: Download Latest HDL-Dump
+      run: |
+        cd Release
+        wget https://github.com/israpps/hdl-dump/releases/download/hdlinst/HDL.EXE -O $PWD/HDL.EXE
 
     - name: Compile translation catalogs
       run: |
@@ -172,7 +176,7 @@ jobs:
         content: "<@&859572447761793034> & <@&859615291477590046> , HDL Batch Installer has been updated some minutes ago\\n according to changelog: **[${{ steps.version.outputs.string }}]** \\n as always, you can download the latest version from here:\\n https://github.com/israpps/HDL-Batch-installer/releases/tag/Latest \\n or <#863913236457062421>"
  
     - name: Discord Webhook, Stable Release
-      if: contains("${{steps.tag.outputs.version_tag}}",'-rel')
+      if: github.event_name == 'push' && contains("${{steps.tag.outputs.version_tag}}",'-rel')
       uses: tsickert/discord-webhook@v2.0.2
       with:
         webhook-url: ${{ secrets.TESTERS_WEBHOOK }}
