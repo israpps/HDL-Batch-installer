@@ -5,6 +5,7 @@ on:
     paths:
       - 'Release**'
       - 'Release32**'
+      - 'translations/catalogs/*.po'
 
 #  schedule: 
 #   - cron: "0 15 * * 5,2"
