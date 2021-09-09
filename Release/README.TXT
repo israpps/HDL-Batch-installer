@@ -13,4 +13,4 @@ Contact me:
 		https://www.psx-place.com/members/el_isra.59064/
 	
 	Oficial PS2 Scene Discord:
-		https://discord.gg/jke69mRCYd
+		https://discord.gg/jke69mRCYd 

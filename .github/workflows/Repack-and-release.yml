@@ -104,7 +104,7 @@ jobs:
              Translation-template.7z
 
     - name: draft pre-release
-      if: (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main') && ( !contains(${{steps.tag.outputs.version_tag}},-rel) )
+      if: (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main') &&  !contains("${{steps.tag.outputs.version_tag}}",'-rel') 
       uses: marvinpinto/action-automatic-releases@latest
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
@@ -116,7 +116,7 @@ jobs:
               Translation-template.7z
               
     - name: release
-      if: (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main') && (  contains(${{steps.tag.outputs.version_tag}},-rel) )
+      if: (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main') && (  contains("${{steps.tag.outputs.version_tag}}",'-rel') )
       uses: marvinpinto/action-automatic-releases@latest
       with:
         repo_token: "${{ secrets.GITHUB_TOKEN }}"
@@ -153,7 +153,7 @@ jobs:
       shell: bash
       run: echo "::set-output name=string::$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//' | awk '{$1=$1;print}')"
       id: version
-
+      
     - name: get version from changelog as release tag
       shell: bash
       run: echo "::set-output name=version_tag::$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//' | sed -r 's/\s+//g' | sed 's/Revision/rev/' | awk '{$1=$1;print}')"
@@ -165,11 +165,18 @@ jobs:
         name: HDL-INST
         
     - name: Discord Webhook, Latest release
-      if: github.event_name == 'push'
+      if: github.event_name == 'push' && !contains("${{steps.tag.outputs.version_tag}}",'-rel')
       uses: tsickert/discord-webhook@v2.0.2
       with:
         webhook-url: ${{ secrets.TESTERS_WEBHOOK }}
         content: "<@&859572447761793034> & <@&859615291477590046> , HDL Batch Installer has been updated some minutes ago\\n according to changelog: **[${{ steps.version.outputs.string }}]** \\n as always, you can download the latest version from here:\\n https://github.com/israpps/HDL-Batch-installer/releases/tag/Latest \\n or <#863913236457062421>"
+ 
+    - name: Discord Webhook, Stable Release
+      if: contains("${{steps.tag.outputs.version_tag}}",'-rel')
+      uses: tsickert/discord-webhook@v2.0.2
+      with:
+        webhook-url: ${{ secrets.TESTERS_WEBHOOK }}
+        content: "@everyone, A new release of HDL Batch Installer has been uploaded some minutes ago\\n according to changelog: **[${{ steps.version.outputs.string }}]** \\n as always, download from here:\\n https://github.com/israpps/HDL-Batch-installer/releases/tag/${{ steps.tag.outputs.version_tag }} \\n or <#863913236457062421>"
         
     - name: Discord Webhook, Latest release
       if: github.event_name == 'repository_dispatch'
