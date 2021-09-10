@@ -51,6 +51,15 @@
 
 ***
 
+<details>
+  <summary> <b> How can I use a custom OSD icon for my games? </b> </summary>
+    <p>
+      
+Take the desired custom icon and place it on the program folder (where `boot.kelf` resides) and name it as `list.ico`
+    </p>    
+  </details>
+
+***
 ## You couldn't find your question?  Try [here](https://github.com/israpps/HDL-Batch-installer/discussions)
 
 
