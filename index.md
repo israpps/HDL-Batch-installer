@@ -16,7 +16,7 @@
 ----
 
 <details>
-  <summary>Game Name Database </summary>
+  <summary> <b> Game Name Database </b></summary>
   <p>
   
  Just like HDL Batch, this GUI will automatically search the Game Title for the PS2 ISO you're about to Install.
@@ -42,5 +42,17 @@ a [copy of the internal database](https://github.com/israpps/HDL-Batch-installer
 
 -----
 
+<details>
+  <summary> <b> Command line arguments </b></summary>
+  <p>
+  
+`--stay-on-top`	forces the GUI to stay on top of every program
+
+`--redirect-text` redirects log messages from console into two text files found inside `log` folder
+
+  </p>    
+</details>
+
+-----
 
 ## [FAQ:](./FAQ/FAQ.html)
