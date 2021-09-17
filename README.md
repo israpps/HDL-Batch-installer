@@ -3,7 +3,7 @@
 
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
 [![wxWidgets version](https://img.shields.io/badge/wxWidgets-3.0.5-blue)](https://www.wxwidgets.org/downloads/#v3.0.5)
-![project status](https://img.shields.io/badge/Project%20status-Halted-ff0000)
+![project status](https://img.shields.io/badge/Project%20status-Active-00cc22)
 [![HdlDump hash](https://img.shields.io/endpoint?url=https%3A%2F%2Fraw.githubusercontent.com%2Fisrapps%2Fhdl-dump%2Fmaster%2Fendpoints%2FHDLBinst1.JSON)](https://github.com/israpps/hdl-dump)
 
 ![os](https://img.shields.io/badge/Windows-x64-green)
