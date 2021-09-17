@@ -6,9 +6,8 @@ on:
       - 'Release**'
       - 'Release32**'
       - 'translations/catalogs/*.po'
-
-#  schedule: 
-#   - cron: "0 15 * * 5,2"
+  repository_dispatch:
+    types: [HDL_Dump_Updated_]
 jobs:
   check-binaries:
     runs-on: ubuntu-latest
@@ -50,6 +49,9 @@ jobs:
       run: |
         cd Release
         wget https://github.com/israpps/hdl-dump/releases/download/hdlinst/HDL.EXE -O $PWD/HDL.EXE
+    - name: Bundle extra files before building packages
+      run: |
+        cp LICENSE Release/LICENSE.TXT
 
     - name: Compile translation catalogs
       run: |
@@ -107,19 +109,7 @@ jobs:
         path: |
              HDLBInst*.7z
              Translation-template.7z
-              
-    - name: Deploy tagged pre-release
-      if: (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main')
-      uses: marvinpinto/action-automatic-releases@latest
-      with:
-        prerelease: true
-        repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        automatic_release_tag: "${{ steps.tag.outputs.version_tag }}"
-        title: "${{ steps.version.outputs.string }}"
-        files: |
-              HDLBInst*.7z
-              Translation-template.7z
-              
+
     - name: Deploy pre-release
       if: (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main')
       uses: marvinpinto/action-automatic-releases@latest
@@ -169,8 +159,8 @@ jobs:
       with:
         webhook-url: ${{ secrets.TESTERS_WEBHOOK }}
         content: "<@&859572447761793034> & <@&859615291477590046> , HDL Batch Installer **[${{ steps.version.outputs.string }}]** Has been **re-released** because **HDL Dump was updated** some minutes ago \\n as always, you can download the latest version from here:\\n https://github.com/israpps/HDL-Batch-installer/releases/tag/Latest \\n or <#863913236457062421>"
-        
-        
+
+
     - name: Upload release to discord backup
       uses: sinshutu/upload-to-discord@master
       env:

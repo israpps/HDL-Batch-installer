@@ -1,3 +1,22 @@
+﻿17 September 2021
+   [v3.0.4 - Revision 1]
+
+     Change log:
+        -New: Context menu for Installation list
+        -Installation list: Added "Remove from list" Option to context menu
+        -Installation list: Added "Open File location" Option to context menu
+        -Game extraction: Added newline character before console message "extracting game [%s]". it was erasing the elapsed time written by previous extraction (because of trailing /r left by hdldump)
+        -Browse tab: Migrated the "Download", "Rename" and "extract" buttons into a new context menu (right click on installed game list)
+        -Download manager: Fixed ART download
+
+13 September 2021
+   [v3.0.4 - Revision 0]
+
+     Change log:
+        -Installation command: Added warning message for error 110 (partition with such name exists)
+        -Installation command: Added warning message and installation loop break for error 106 (not enough espace on HDD)
+        -command line argumment: added a new commmand argumment that will force highest possible debug level (some sort of '--verbose' shit)
+
 09 September 2021
    [v3.0.3 - Release]
 

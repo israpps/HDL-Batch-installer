@@ -22,3 +22,12 @@ jobs:
       with:
         default_author: github_actions
         message: 'Update HDL dump to israpps/hdl-dump@${{ github.event.client_payload.sha }}'
+
+    - name: trigger israpps auto-update system
+      if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
+      uses: peter-evans/repository-dispatch@v1
+      with:
+          token: ${{ secrets.IUS }}
+          repository: israpps/HDL-Batch-installer
+          event-type: HDL_Dump_Updated_
+          client-payload: '{"sha": "${{ github.sha }}"}'
