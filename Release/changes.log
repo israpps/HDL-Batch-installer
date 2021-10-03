@@ -1,4 +1,19 @@
-﻿17 September 2021
+02 October 2021
+   [v3.0.5 - Revision 4]
+
+     Change log:
+        -GUI: Fixed Graphical issues on installed game list (Code::Blocks editor showed the wxItemList inside the frame, but the real program had the list outside frame, wich caused graphical issues when casting context menus
+        -Installed game context menu: GUI manifest didn't save properly, leaving the context menu for rename game detached from it's event handler... event has been succesfully re-attached (and maniffest was rewritten)
+
+02 October 2021
+   [v3.0.4 - Revision 4]
+
+     Change log:
+        -Data types: Revert some stupid shit that i did before public release (when I knew almost nothing about wxString containers)
+        -Header Injection: Reversed KELF size check. (before: CMD.EXE did the dirty job | now: standard C++ is doing the dirty job)
+        -Game title: Fixed filename obtainment if file extension is longer than 4 char('.???')
+
+17 September 2021
    [v3.0.4 - Revision 1]
 
      Change log:
