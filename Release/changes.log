@@ -1,3 +1,10 @@
+14 October 2021
+   [v3.1.0 - Revision 0]
+
+     Change log:
+        -GUI: Re-sized main frame and re-organized layout on install and browse tabs
+        -Installed game list: re-implement legacy data parsing (pre v3.0.4 - Revision 4) and maintain latest data parsing | latest style ensures compatibility with Winhiip, while legacy style ensured support for HDLGI, the usage on one or another will be determined by the presence of DMA mode (wich was absent on APA headers made by winhiip)
+
 02 October 2021
    [v3.0.5 - Revision 4]
 
