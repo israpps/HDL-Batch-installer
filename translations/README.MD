@@ -5,7 +5,7 @@ For more info about translations (how to make them and implement them into the p
 + Spanish - [@israpps](https://github.com/israpps)
 + Italian - [@FabioGaigher](https://github.com/FabioGaigher)
 + Portuguese (br) - [hardlevel](https://www.youtube.com/user/hardlevelbr)
-+ Polish - [a youkai of Love](https://github.com/Haker120)
++ Polish - [haker120 (aka: a youkai of Love)](https://github.com/Haker120)
 
 
 
