@@ -5,7 +5,7 @@ on:
     paths:
       - 'Release**'
       - 'Release32**'
-      - 'translations/catalogs/*.po'
+      - 'translations/**'
   repository_dispatch:
     types: [HDL_Dump_Updated_]
 jobs:
@@ -55,16 +55,10 @@ jobs:
 
     - name: Compile translation catalogs
       run: |
-         cd translations
-         cd catalogs
-         msgfmt pt_BR.po -o pt_BR.mo
-         msgfmt es.po -o es.mo
-         msgfmt it_IT.po -o it_IT.mo
-         cd ..
-         cd ..
-         cp translations/catalogs/pt_BR.mo Release/Lang/pt_BR/HDLBinst.mo
-         cp translations/catalogs/es.mo Release/Lang/es/HDLBinst.mo
-         cp translations/catalogs/it_IT.mo Release/Lang/it/HDLBinst.mo
+        cd translations
+        cd catalogs
+        chmod +x ./build_catalogs.sh
+        ./build_catalogs.sh
 
     - name: Create translation template package
       run: |
