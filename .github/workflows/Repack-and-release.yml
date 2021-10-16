@@ -55,6 +55,8 @@ jobs:
 
     - name: Compile translation catalogs
       run: |
+        cd translations
+        cd catalogs
         ./build_catalogs.sh
 
     - name: Create translation template package
