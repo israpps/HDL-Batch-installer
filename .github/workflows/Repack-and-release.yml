@@ -32,7 +32,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        sudo apt-get install gettext p7zip git
+        sudo apt-get install gettext p7zip
 
 
     - name: get version from changelog
@@ -57,7 +57,7 @@ jobs:
       run: |
         cd translations
         cd catalogs
-        git update-index --chmod=+x ./build_catalogs.sh
+        chmod +x ./build_catalogs.sh
         ./build_catalogs.sh
 
     - name: Create translation template package
