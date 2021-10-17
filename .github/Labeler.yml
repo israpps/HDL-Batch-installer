@@ -1,0 +1,23 @@
+  Translation template:
+    - '**.pot'
+  
+  Translation catalog:
+    - '**.po'
+  
+  OPL Launcher:
+    - '**.kelf'
+
+  x64:
+    - 'Release/HDL-Batch-installer.exe'
+
+  x86:
+    - 'Release32/HDL-Batch-installer.exe'
+
+  HDL-Dump:
+    - 'Release/HDL.EXE'
+
+  Database:
+    - 'Database/gamename.csv'
+
+  Standard catalogs:
+    - 'Release/Lang/*/wxstd.mo'
