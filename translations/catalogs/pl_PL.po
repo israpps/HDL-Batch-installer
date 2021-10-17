@@ -132,7 +132,7 @@ msgstr "Domyślne DMA:"
 
 #: ArtMan.cpp:64
 msgid "Downlad"
-msgstr "Pobieranie"
+msgstr "Pobierz"
 
 #: HDL_Batch_installerMain.cpp:282
 msgid "Download assets"
