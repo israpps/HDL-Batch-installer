@@ -1,4 +1,11 @@
 18 October 2021
+   [v3.1.1 - Revision 1]
+
+     Change log:
+        -Database: Removed every (') from database (it was causing issues)
+        -GUI: Re-attach event handler for game info context menu
+
+18 October 2021
    [v3.1.1 - Revision 0]
 
      Change log:
