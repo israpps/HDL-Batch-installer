@@ -1,3 +1,13 @@
+18 October 2021
+   [v3.1.1 - Revision 0]
+
+     Change log:
+        -Settings menu: Fixed bug related to settings writing (issue report #7 )
+        -Settings menu: Enforce data writing before closing settings menu
+        -New: Added MBR recovery feature
+        -MBR recovery: Add warning if recovered KELF size is 0 
+        -GUI: Fixed some typos on localized strings (thanks haker120)
+
 15 October 2021
    [v3.1.0 - Revision 1]
 
