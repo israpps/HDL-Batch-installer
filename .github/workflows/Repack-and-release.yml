@@ -14,7 +14,6 @@ on:
 jobs:
 
   Repack_and_Release:
-    needs: check-binaries
     runs-on: ubuntu-latest
     steps:
 
@@ -58,7 +57,7 @@ jobs:
         cd ..
         sed -i 's/^[[:blank:]]*//g' latest_changes.log
         sed -i 's/-/- /' latest_changes.log
-        sed -i 's/Change log:/## Latest changes:\n/' 
+        sed -i 's/Change log:/## Latest changes:\n/' latest_changes.log
         cat latest_changes.log
 
     - name: Compile translation catalogs
@@ -116,7 +115,6 @@ jobs:
       uses: softprops/action-gh-release@v1
       if: (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main')
       with:
-        body_path: ${{ github.workspace }}-CHANGELOG.txt
         token: "${{ secrets.GITHUB_TOKEN }}"
         fail_on_unmatched_files: true
         files: |
