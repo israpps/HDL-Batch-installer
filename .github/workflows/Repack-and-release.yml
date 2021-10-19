@@ -58,6 +58,7 @@ jobs:
         cd ..
         sed -i 's/^[[:blank:]]*//g' latest_changes.log
         sed -i 's/-/- /' latest_changes.log
+        sed -i 's/Change log:/## Latest changes:\n/' 
         cat latest_changes.log
 
     - name: Compile translation catalogs
