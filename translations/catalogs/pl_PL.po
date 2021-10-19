@@ -669,3 +669,8 @@ msgstr "ostrzeżenie"
 msgid "work in progress"
 msgstr "praca w toku (WIP)"
 
+#~ msgid "Downlad"
+#~ msgstr "Pobierz"
+
+#~ msgid "Local HDD"
+#~ msgstr "Lokalny HDD"
