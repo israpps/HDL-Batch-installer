@@ -40,7 +40,7 @@ jobs:
 
     - name: get version from changelog
       shell: bash
-      run: echo "::set-output name=string::$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//' | awk '{$1=$1;print}') | sed 's/-/- /'"
+      run: echo "::set-output name=string::$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//' | awk '{$1=$1;print}')"
       id: version
       
     - name: get version from changelog as release tag
@@ -63,6 +63,7 @@ jobs:
         sed -n '/Change log/,/^$/{/^$/q; p}' changes.log >> ../latest_changes.log
         cd ..
         sed -i 's/^[[:blank:]]*//g' latest_changes.log
+        sed -i 's/-/- /' latest_changes.log
         cat latest_changes.log
 
     - name: Compile translation catalogs
