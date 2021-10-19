@@ -1,10 +1,10 @@
-  Translation-template:
+  Translation template:
     - '**.pot'
   
-  Translation-catalog:
+  Translation catalog:
     - '**.po'
   
-  OPL-Launcher:
+  OPL Launcher:
     - '**.kelf'
 
   x64:
@@ -13,11 +13,17 @@
   x86:
     - 'Release32/HDL-Batch-installer.exe'
 
-  HDL-Dump:
+  HDL Dump:
     - 'Release/HDL.EXE'
 
   Database:
     - 'Database/gamename.csv'
 
-  Standard-catalogs:
+  Standard catalogs:
     - 'Release/Lang/*/wxstd.mo'
+
+  workflows:
+    - '.github/workflows/*.yml'
+
+  labeler:
+    - '.github/labeler.yml'

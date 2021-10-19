@@ -1,34 +1,30 @@
 name: Release HDL Batch Installer
 on:
+
   workflow_dispatch:
   push:
     paths:
       - 'Release**'
       - 'Release32**'
       - 'translations/**'
+
   repository_dispatch:
     types: [HDL_Dump_Updated_]
-jobs:
-  check-binaries:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v1
 
-      - name: "Check file existence"
-        uses: andstor/file-existence-action@v1
-        with:
-          files: "Release/HDL-Batch-installer.exe, Release32/HDL-Batch-installer.exe, Release/HDL.EXE, Release/Common/config.INI"
-          allow_failure: "true"
+jobs:
 
   Repack_and_Release:
-    needs: check-binaries
     runs-on: ubuntu-latest
     steps:
-
 
     - name: checkout code for release
       uses: actions/checkout@v1
+
+    - name: "Check file existence"
+      uses: andstor/file-existence-action@v1
+      with:
+        files: "Release/HDL-Batch-installer.exe, Release32/HDL-Batch-installer.exe, Release/HDL.EXE, Release/boot.kelf, Release/Common/config.INI"
+        allow_failure: "true"
 
     - name: Install dependencies
       run: |
@@ -49,9 +45,20 @@ jobs:
       run: |
         cd Release
         wget https://github.com/israpps/hdl-dump/releases/download/hdlinst/HDL.EXE -O $PWD/HDL.EXE
+
     - name: Bundle extra files before building packages
       run: |
         cp LICENSE Release/LICENSE.TXT
+
+    - name: Trim changes of latest version
+      run: |
+        cd Release
+        sed -n '/Change log/,/^$/{/^$/q; p}' changes.log >> ../latest_changes.log
+        cd ..
+        sed -i 's/^[[:blank:]]*//g' latest_changes.log
+        sed -i 's/-/- /' latest_changes.log
+        sed -i 's/Change log:/## Latest changes:\n/' latest_changes.log
+        cat latest_changes.log
 
     - name: Compile translation catalogs
       run: |
@@ -105,16 +112,30 @@ jobs:
              Translation-template.7z
 
     - name: Deploy pre-release
+      uses: softprops/action-gh-release@v1
       if: (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main')
-      uses: marvinpinto/action-automatic-releases@latest
       with:
-        prerelease: true
-        repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        automatic_release_tag: "Latest"
-        title: "${{ steps.version.outputs.string }}"
+        token: "${{ secrets.GITHUB_TOKEN }}"
+        fail_on_unmatched_files: true
         files: |
-              HDLBInst*.7z
-              Translation-template.7z
+             HDLBInst*x64*.7z
+             HDLBInst*x86*.7z
+             Translation-template.7z
+        name: "${{ steps.version.outputs.string }}"
+        tag_name: "Latest"
+        body_path: 'latest_changes.log'
+
+#    - name: Deploy pre-release (legacy)
+#      if: (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main')
+#      uses: marvinpinto/action-automatic-releases@latest
+#      with:
+#        prerelease: true
+#        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+#        automatic_release_tag: "Latest"
+#        title: "${{ steps.version.outputs.string }}"
+#        files: |
+#              HDLBInst*.7z
+#              Translation-template.7z
 
   discord_webhooks:
     needs: Repack_and_Release
