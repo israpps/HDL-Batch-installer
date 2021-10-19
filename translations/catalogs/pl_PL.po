@@ -668,3 +668,4 @@ msgstr "ostrzeżenie"
 #: HDL_Batch_installerMain.cpp:829
 msgid "work in progress"
 msgstr "praca w toku (WIP)"
+
