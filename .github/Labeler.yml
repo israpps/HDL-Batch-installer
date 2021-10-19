@@ -1,10 +1,10 @@
-  Translation template:
+  Translation-template:
     - '**.pot'
   
-  Translation catalog:
+  Translation-catalog:
     - '**.po'
   
-  OPL Launcher:
+  OPL-Launcher:
     - '**.kelf'
 
   x64:
@@ -19,5 +19,5 @@
   Database:
     - 'Database/gamename.csv'
 
-  Standard catalogs:
+  Standard-catalogs:
     - 'Release/Lang/*/wxstd.mo'
