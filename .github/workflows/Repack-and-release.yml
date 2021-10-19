@@ -1,13 +1,16 @@
 name: Release HDL Batch Installer
 on:
+
   workflow_dispatch:
   push:
     paths:
       - 'Release**'
       - 'Release32**'
       - 'translations/**'
+
   repository_dispatch:
     types: [HDL_Dump_Updated_]
+
 jobs:
   check-binaries:
     runs-on: ubuntu-latest
@@ -37,7 +40,7 @@ jobs:
 
     - name: get version from changelog
       shell: bash
-      run: echo "::set-output name=string::$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//' | awk '{$1=$1;print}')"
+      run: echo "::set-output name=string::$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//' | awk '{$1=$1;print}') | sed 's/-/- /'"
       id: version
       
     - name: get version from changelog as release tag
