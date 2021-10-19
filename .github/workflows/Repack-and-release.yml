@@ -12,26 +12,20 @@ on:
     types: [HDL_Dump_Updated_]
 
 jobs:
-  check-binaries:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v1
-
-      - name: "Check file existence"
-        uses: andstor/file-existence-action@v1
-        with:
-          files: "Release/HDL-Batch-installer.exe, Release32/HDL-Batch-installer.exe, Release/HDL.EXE, Release/Common/config.INI"
-          allow_failure: "true"
 
   Repack_and_Release:
     needs: check-binaries
     runs-on: ubuntu-latest
     steps:
 
-
     - name: checkout code for release
       uses: actions/checkout@v1
+
+    - name: "Check file existence"
+      uses: andstor/file-existence-action@v1
+      with:
+        files: "Release/HDL-Batch-installer.exe, Release32/HDL-Batch-installer.exe, Release/HDL.EXE, Release/boot.kelf, Release/Common/config.INI"
+        allow_failure: "true"
 
     - name: Install dependencies
       run: |
@@ -118,16 +112,31 @@ jobs:
              Translation-template.7z
 
     - name: Deploy pre-release
+      uses: softprops/action-gh-release@v1
       if: (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main')
-      uses: marvinpinto/action-automatic-releases@latest
       with:
-        prerelease: true
-        repo_token: "${{ secrets.GITHUB_TOKEN }}"
-        automatic_release_tag: "Latest"
-        title: "${{ steps.version.outputs.string }}"
+        body_path: ${{ github.workspace }}-CHANGELOG.txt
+        token: "${{ secrets.GITHUB_TOKEN }}"
+        fail_on_unmatched_files: true
         files: |
-              HDLBInst*.7z
-              Translation-template.7z
+             HDLBInst*x64*.7z
+             HDLBInst*x86*.7z
+             Translation-template.7z
+        name: "${{ steps.version.outputs.string }}"
+        tag_name: "Latest"
+        body_path: 'latest_changes.log'
+
+#    - name: Deploy pre-release (legacy)
+#      if: (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main')
+#      uses: marvinpinto/action-automatic-releases@latest
+#      with:
+#        prerelease: true
+#        repo_token: "${{ secrets.GITHUB_TOKEN }}"
+#        automatic_release_tag: "Latest"
+#        title: "${{ steps.version.outputs.string }}"
+#        files: |
+#              HDLBInst*.7z
+#              Translation-template.7z
 
   discord_webhooks:
     needs: Repack_and_Release
