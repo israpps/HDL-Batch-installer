@@ -76,12 +76,12 @@ jobs:
     - name: convert \n to \r\n
       run: |
         cd Release
-        sed -i 's/\n/\r\n/' changes.log
-        sed -i 's/\n/\r\n/' README.TXT
-        sed -i 's/\n/\r\n/' LICENSE.TXT
-        sed -i 's/\n/\r\n/' HDL-Batch-installer.BAT
+        unix2dos changes.log
+        unix2dos README.TXT
+        unix2dos LICENSE.TXT
+        unix2dos HDL-Batch-installer.BAT
         cd Common
-        sed -i 's/\n/\r\n/' config.INI
+        unix2dos config.INI
         
     - name: Repack latest x64 build
       run: |
