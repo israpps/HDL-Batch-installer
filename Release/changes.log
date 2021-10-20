@@ -4,6 +4,8 @@
      Change log:
         -Database: Removed every (') from database (it was causing issues)
         -GUI: Re-attach event handler for game info context menu
+	-Locale: Updated Italian and Polish translation catalogs
+	-Release Workflow: Convert text-based files to dos format
 
 18 October 2021
    [v3.1.1 - Revision 0]
