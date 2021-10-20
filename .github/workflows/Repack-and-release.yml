@@ -28,7 +28,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        sudo apt-get install gettext p7zip
+        sudo apt-get install gettext p7zip dos2unix
 
 
     - name: get version from changelog
@@ -73,6 +73,16 @@ jobs:
          mv translations HDLBinst-Translation-$DATEE
          7z a -t7z -r Translation-template.7z HDLBinst-Translation-*/*.pot
 
+    - name: convert \n to \r\n
+      run: |
+        cd Release
+        unix2dos changes.log
+        unix2dos README.TXT
+        unix2dos LICENSE.TXT
+        unix2dos HDL-Batch-installer.BAT
+        cd Common
+        unix2dos config.INI
+        
     - name: Repack latest x64 build
       run: |
         SCH=${GITHUB_SHA::7}
@@ -124,6 +134,7 @@ jobs:
         name: "${{ steps.version.outputs.string }}"
         tag_name: "Latest"
         body_path: 'latest_changes.log'
+        prerelease: false
 
 #    - name: Deploy pre-release (legacy)
 #      if: (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main')
