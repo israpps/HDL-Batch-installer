@@ -33,9 +33,11 @@ __If this software was useful, please consider giving it a star here on GitHub, 
 - [x] Install multiple Games at once
 - [x] Extract multiple Games at once
 - [x] Automatically assign the original Game Title before Installation
-- [X] Inject MiniOPL into the game partition (to launch the Game From HDD-OSD)
-- [X] Inject MBR.KELF into the HDD
-- [x] Edit Game Title
+- [X] Inject MBR.KELF into the HDD _(broken on HDL-Dump side)_
+- [x] Rename Game
+- [x] View game information
+- [x] Extract MBR program from HDD
+- [x] Download Artwork, Widescreen Cheats and Game settings for OPL
 - [x] Massive `KELF` and icon injection to every installed game
 - [ ] Modify Partitions Header (custom title & icon and more)
 
