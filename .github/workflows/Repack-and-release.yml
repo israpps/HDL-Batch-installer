@@ -28,7 +28,7 @@ jobs:
 
     - name: Install dependencies
       run: |
-        sudo apt-get install gettext p7zip
+        sudo apt-get install gettext p7zip dos2unix
 
 
     - name: get version from changelog
