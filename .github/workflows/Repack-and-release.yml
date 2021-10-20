@@ -75,6 +75,7 @@ jobs:
 
     - name: convert \n to \r\n
       run: |
+        cd Release
         sed -i 's/\n/\r\n/' changes.log
         sed -i 's/\n/\r\n/' README.TXT
         sed -i 's/\n/\r\n/' LICENSE.TXT
