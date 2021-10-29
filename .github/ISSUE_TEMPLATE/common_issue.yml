@@ -52,5 +52,5 @@ body:
       label: other checks
       description: check if necesary
       options:
-        - label: I am using the [Latest version](https://github.com/israpps/HDL-Batch-installer/releases/)
+        - label: I tested the [Latest version](https://github.com/israpps/HDL-Batch-installer/releases/)
 
