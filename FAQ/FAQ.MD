@@ -62,6 +62,20 @@ Note: starting with `v3.1.3 - revision 0` make sure you disabled custom icon loa
   </details>
 
 ***
+
+<details>
+  <summary> <b>Could you add network support?</b> </summary>
+    <p>
+      
+The old hdl server has been broken for years.
+OPL replaced internal HDL Server with NBD Server (by @bignaux), the advantage of NBD server is that there's no need to change anything on my program to make it compatible
+
+Just setup NBD server and the program should recognize the HDD 
+      
+    </p>    
+  </details>
+
+***
 ## You couldn't find your question?  Try [here](https://github.com/israpps/HDL-Batch-installer/discussions)
 
 
