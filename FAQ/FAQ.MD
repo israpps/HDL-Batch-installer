@@ -56,6 +56,8 @@
     <p>
       
 Take the desired custom icon and place it on the program folder (where `boot.kelf` resides) and name it as `list.ico`
+      
+Note: starting with `v3.1.3 - revision 0` make sure you disabled custom icon loader, otherwise, your icon will be deleted
     </p>    
   </details>
 
