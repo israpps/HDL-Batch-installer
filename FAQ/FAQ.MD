@@ -6,6 +6,8 @@
   <summary> <b> Wich Program should I use to load my games after installing them? </b> </summary>
 
 > You should use [latest stable OPL Release](https://github.com/ps2homebrew/Open-PS2-Loader/releases/latest)
+  
+__Note:__ There was a regression on OPL 1.1.0 regarding internal HDD, you can still give it a try... however, [OPL v1.0.0](https://github.com/ps2homebrew/Open-PS2-Loader/releases/tag/v1.0.0) is recommended for stability
 
 </details>
 
