@@ -87,8 +87,6 @@ SLPM_667.88=GTA_SAR.ico
 SLUS_209.46=GTA_SAR.ico
 ```
     
- [Learn more here](./why_hdlbinst_is_better.html)
-    
   </p>
 </details>
 
