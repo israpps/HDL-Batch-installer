@@ -7,3 +7,6 @@ Release/MBR.KELF
 Release/Downloads/*
 Release/Extracted_MBR/*
 Release/gamename.DB
+Release/Common/ICNS/*.ico
+Release/Common/Icons.INI
+Release/Common/_ICN.7z
