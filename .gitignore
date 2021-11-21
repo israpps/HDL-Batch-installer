@@ -5,4 +5,5 @@ Release/Common/.wget-hsts
 Release/ART/*
 Release/MBR.KELF
 Release/Downloads/*
+Release/Extracted_MBR/*
 Release/gamename.DB
