@@ -1,3 +1,9 @@
+22 November 2021
+   [v3.1.3 - Revision 1]
+
+     Change log:
+        -OPL Launcher injection : Due to the new custom icon loader, `list.ico` will be deleted when KELF injection routine is called
+
 16 November 2021
    [v3.1.3 - Revision 0]
 
