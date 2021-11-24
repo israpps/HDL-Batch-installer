@@ -58,8 +58,11 @@ jobs:
         sed -i 's/^[[:blank:]]*//g' latest_changes.log
         sed -i 's/-/- /' latest_changes.log
         sed -i 's/Change log:/## Latest changes:\n/' latest_changes.log
+        echo "****">>latest_changes.log
+        echo "See Full changelog [__Here__](https://github.com/israpps/HDL-Batch-installer/blob/Latest/Release/changes.log)">>latest_changes.log
+        echo "----------------CHANGELOG----------------"
         cat latest_changes.log
-
+        echo "----------------CHANGELOG----------------"
     - name: Compile translation catalogs
       run: |
         cd translations
