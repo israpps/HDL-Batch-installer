@@ -23,7 +23,7 @@
 > But at the end I decided to share it here on github.
 
 
-__If this software was useful, please consider giving it a star here on GitHub, a rating on PSX-place or a [donation](https://www.paypal.com/paypalme/ElisraPS2)__
+__If this software was useful, please consider giving it a star here on GitHub, a rating on PSX-place or a donation via [PayPal](https://www.paypal.com/paypalme/ElisraPS2) or brave browser tips__
 
 
 ### Currently implemented features (unchecked elements are WIP)
