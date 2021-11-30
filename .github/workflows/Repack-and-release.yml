@@ -38,7 +38,7 @@ jobs:
       
     - name: get version from changelog as release tag
       shell: bash
-      run: echo "::set-output name=version_tag::$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//' | sed -r 's/\s+//g' | sed 's/Revision/rev/' | sed 's/Release/rel/'| awk '{$1=$1;print}')"
+      run: echo "::set-output name=version_tag::$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//' | sed -r 's/\s+//g' | sed 's/Aniversary/aniv/' | sed 's/Revision/rev/' | sed 's/Release/rel/'| awk '{$1=$1;print}')"
       id: tag
             
     - name: Download Latest HDL-Dump
