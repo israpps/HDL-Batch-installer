@@ -73,6 +73,8 @@ The old hdl server has been broken for years.
 OPL replaced internal HDL Server with NBD Server (by @bignaux), the advantage of NBD server is that there's no need to change anything on my program to make it compatible
 
 Just setup NBD server and the program should recognize the HDD 
+      
+if you don´t know how to do it, take a look at the [__OPL readme__](https://github.com/ps2homebrew/Open-PS2-Loader#introduction)
     </p>    
   </details>
 
