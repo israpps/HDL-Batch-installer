@@ -46,9 +46,11 @@ a [copy of the internal database](https://github.com/israpps/HDL-Batch-installer
   <summary> <b> Command line arguments </b></summary>
   <p>
   
-`--stay-on-top`	forces the GUI to stay on top of every program
+`--stay-on-top`	forces the GUI to stay on top of every program.
 
-`--redirect-text` redirects log messages from console into two text files found inside `log` folder
+`--redirect-text` redirects log messages from console into two text files found inside `log` folder.
+
+`--force-max-debug` Program will behave as if highest debug level was selected, independently of the value written on the config file.
 
   </p>    
 </details>
@@ -74,7 +76,7 @@ GTA San andreas
 *Provide icon file* (example name: `GTA_SAR.ico`)
 
 and a list of the ELF ID's like this one
-```
+```ini
 SCES_515.41=GTA_SAR.ico
 SCES_525.41=GTA_SAR.ico
 SCES_529.27=GTA_SAR.ico
