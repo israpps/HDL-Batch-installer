@@ -79,7 +79,7 @@ if you don´t know how to do it, take a look at the [__OPL readme__](https://git
   </details>
 
 ***
-## You couldn't find your question?  Try [here](https://github.com/israpps/HDL-Batch-installer/discussions)
+## You couldn't find your question?  Try [here](https://github.com/israpps/HDL-Batch-installer/discussions) or [Here](https://github.com/israpps/HDL-Batch-installer/issues) or in our [Discord Server](https://discord.gg/wczxvrkZk6)
 
 
 ##### [Go back](https://israpps.github.io/HDL-Batch-installer)
