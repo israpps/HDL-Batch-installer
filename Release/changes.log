@@ -1,3 +1,19 @@
+31 December 2021
+   [v3.2.1 - Revision 0]
+
+     Change log:
+        -Installation: Enhanced installation process, now the cancel feature is actually worth using, since install queue won't be flushed after install loop ends
+        -__NEW__:: Added a menu that reports wich games weren't installed and why, this will show up after install loop ends
+        -Minor internal changes: A few fixes...
+
+20 December 2021
+   [v3.2.0 - Revision 0]
+
+     Change log:
+        -GUI: Minor fixes on frame sizers
+        -__NEW__: Added support for PFSFUSE by alex parrado
+        -PFSFUSE: Added OPL files automated transfer
+
 22 November 2021
    [v3.1.3 - Revision 1]
 
