@@ -39,6 +39,8 @@ __If this software was useful, please consider giving it a star here on GitHub, 
 - [x] Extract MBR program from HDD
 - [x] Download Artwork, Widescreen Cheats and Game settings for OPL
 - [x] Massive `KELF` and icon injection to every installed game
+- [x] Mount __any PFS Partition__ as if it was a windows supported storage device
+- [x] Automatically transfer Downloaded files to mounted partition with 1 click (use only on OPL data partition) 
 - [ ] Modify Partitions Header (custom title & icon and more)
 
 
