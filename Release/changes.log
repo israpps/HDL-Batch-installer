@@ -1,3 +1,13 @@
+07 January 2022
+   [v3.2.1 - Revision 1]
+
+     Change log:
+        -initialization: Added missing memory cleanups
+        -Installation Feature: Added the posibility to send information when program installs a game that isn't registered on the database
+        -__Game title database__: __Added 398 new titles__
+        -Config menu: The config dialog will reflect the current values of config file
+        -Menu: Layout changes and some sizers added into remaining tabs
+
 31 December 2021
    [v3.2.1 - Revision 0]
 
@@ -61,7 +71,7 @@
         -Settings menu: Fixed bug related to settings writing (issue report #7 )
         -Settings menu: Enforce data writing before closing settings menu
         -New: Added MBR recovery feature
-        -MBR recovery: Add warning if recovered KELF size is 0 
+        -MBR recovery: Add warning if recovered KELF size is 0
         -GUI: Fixed some typos on localized strings (thanks haker120)
 
 15 October 2021
@@ -134,7 +144,7 @@
 
      Change log:
         -New: External database lines that start with '#' will be skipped
-        -Enhanced: Internal game title database parsing system 
+        -Enhanced: Internal game title database parsing system
 
 19 August 2021
    [v3.0.0 - Revision 2]
@@ -157,7 +167,7 @@
    [v3.0.0 - Revision 0]
 
      Change log:
-        -Source code reformatted: 
+        -Source code reformatted:
         -New: 32 bits build ( changes to both wxwidgets and HDLBinst  source code )
         -New: Credits tab will specify if program was built as 32 or 64 bits
 
