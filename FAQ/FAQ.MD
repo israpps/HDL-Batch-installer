@@ -16,9 +16,13 @@ __Note:__ There was a regression on OPL 1.1.0 regarding internal HDD, you can st
 <details>
   <summary> <b> How can I transfer cover art, themes, configs, cheats and others from my PC? </b> </summary>
 
-> I'm thinking about adding such feature, but... on the meantime you can take a look at [**HDD PFS Batch-Kit Manager**](https://github.com/israpps/PS2-HDD-Art-Batcher/releases)
->
-> A windows script made by me & @GDX
+ <p>
+
+   You can use the PFSFUSE wizard that was recently implemented, you can find it on the manage HDD tab by the name "Mount Partition", this feature can mount a PFS partition as if it was a windows compatible storage device.
+   
+   Then you can tranfer your files to the desired partition, also, the program has a transfer Feature if you want to transfer ART and cheats downloaded by the program itself
+
+</p>
 
 </details>
 
