@@ -1,4 +1,4 @@
-AEIA_000.01;YOAKE MAE YORI RURIIRO NA - BRIGHTER THAN DAWNING BLUE [LIMITED EDITION]
+AEIA_000.01;Yoake mae yori ruriiro na - brighter than dawning blue [limited edition]
 ALCH_000.01;Katakamuna - Ushinawareta Ingaritsu [DX Pack]
 ALCH_000.02;Baldr Force EXE [Mega Box]
 ALCH_000.03;Chocolat - Maid Cafe Curio [Deluxe Edition]
@@ -2840,6 +2840,7 @@ SCES_536.68;Micro Machines v4
 SCES_536.69;Buzz! The Music Quiz
 SCES_536.76;WWE SmackDown! vs RAW 2006
 SCES_536.77;WWE SmackDown! vs RAW 2006
+SCES_536.80;World Rally Championship: Rally Evolved
 SCES_536.82;James Pond - Codename Robocod
 SCES_536.86;NHL Hockey 2K6
 SCES_536.88;Urban Reign
@@ -3420,7 +3421,7 @@ SCES_555.66;SingStar Miliki
 SCES_555.67;SingStar - The Wiggles
 SCES_555.68;SingStar Svenska stjärnor
 SCES_555.70;SingStar Chartbreaker
-SCES_555.71;GHOSTBUSTERS - THE VIDEO GAME
+SCES_555.71;Ghostbusters
 SCES_555.73;MotorStorm Arctic Edge
 SCES_555.91;Street Cricket Champions
 SCES_555.94;SingStar Vasco
@@ -3441,7 +3442,7 @@ SCES_563.62;SingStar Hottest Hits
 SCES_609.71;Kingdom Hearts II - Final Mix +
 SCES_820.34;Xenosaga II - Jenseits von Gut und Bose
 SCES_820.35;Xenosaga Episode II - Jenseits von Gut und Böse (Disc 2)
-SCKA_100.01;Gangcheol Gigap Sadan - Online Battlefield
+SCKA_100.01;Gangcheol Gigap Sadan - Online Battlefield (Korea)
 SCKA_100.05;EyeToy - Edukids
 SCKA_100.06;Come on Baby
 SCKA_100.07;EyeToy - Tales
@@ -3456,7 +3457,7 @@ SCKA_200.02;Time Crisis II
 SCKA_200.03;War of the Monsters - Kaijuu Daigekisen
 SCKA_200.04;Sly Cooper and the Thievius Raccoonus
 SCKA_200.05;Lets Bravo Music
-SCKA_200.06;Argus no Senshi
+SCKA_200.06;Argus-ui Jeonsa (Korea)
 SCKA_200.07;SOCOM - U.S. Navy SEALs
 SCKA_200.08;Tales of Destiny 2
 SCKA_200.09;R-Type Final
@@ -3466,13 +3467,13 @@ SCKA_200.12;Ark the Lad - jeongryeongui Hwanghon
 SCKA_200.14;Dark Claud 2
 SCKA_200.15;Time Crisis 3
 SCKA_200.16;Soul Calibur 2
-SCKA_200.17;EyeToy - Play
+SCKA_200.17;EyeToy - Play (Korea)
 SCKA_200.18;The Getaway
 SCKA_200.19;Siren
 SCKA_200.20;SOCOM II - U.S. Navy SEALs
 SCKA_200.22;Gran Turismo 4 Prologue
 SCKA_200.23;Fatal Frame 2
-SCKA_200.24;EyeToy - Groove
+SCKA_200.24;EyeToy - Groove (Korea)
 SCKA_200.25;Katamari Damacy
 SCKA_200.26;Gungrave O.D.
 SCKA_200.27;Ghost in the Shell - Stand Alone Complex
@@ -3483,9 +3484,6 @@ SCKA_200.32;Syphon Filter - The Omega Virus
 SCKA_200.33;Smash Court Professional Tournament 2 [Limited Edition]
 SCKA_200.34;Time Crisis 3 [BigHits Series]
 SCKA_200.35;Hot Shots Golf 3 [BigHits Series]
-SCKA_200.36;EyeToy - Monkey Mania
-SCKA_200.36;EyeToy - Monkey Mania
-SCKA_200.36;Saru Eye Toy Oosawagi: Wakki Waki Game Tenkomori!!
 SCKA_200.36;Saru Eye Toy Oosawagi: Wakki Waki Game Tenkomori!!
 SCKA_200.37;Ratchet & Clank 3
 SCKA_200.38;Time Crisis - Crisis Zone
@@ -3505,7 +3503,7 @@ SCKA_200.53;SOCOM II - U.S. Navy SEALs [BigHits Series]
 SCKA_200.54;Tales of Destiny 2 [BigHits Series]
 SCKA_200.55;Mystic Nights
 SCKA_200.56;LuluRara - Powered by Zillerner [with USB microphone]
-SCKA_200.57;MINNA NO GOLF 4 - EVERYBODYS GOLF
+SCKA_200.57;Everybody's Golf 4 (Korea)
 SCKA_200.58;Bumpy Trot
 SCKA_200.59;Soul Calibur III
 SCKA_200.60;Ratchet - Deadlocked
@@ -3515,7 +3513,7 @@ SCKA_200.63;Sly 3 - Honor Among Thieves
 SCKA_200.64;SOCOM 3 - U.S. Navy SEALs
 SCKA_200.65;URBAN REIGN
 SCKA_200.68;DISNEYS PIXAR - CARS
-SCKA_200.69;Siren 2
+SCKA_200.69;Forbidden Siren 2
 SCKA_200.70;Ace Combat Zero - The Belkan War
 SCKA_200.71;MLB 06 - The Show
 SCKA_200.72;LuluRara 2 [with USB microphone]
@@ -3528,8 +3526,8 @@ SCKA_200.84;MONSTER HOUSE
 SCKA_200.85;MINNA NO TENNIS - EVERYBODYS TENNIS
 SCKA_200.86;Shin Onimusha - Dawn of Dreams [Disc 1]
 SCKA_200.87;Shin Onimusha - Dawn of Dreams [Disc 2]
-SCKA_200.88;!unknown!
-SCKA_200.89;Resident Evil 4
+SCKA_200.88;Everybody Tennis (Korea)
+SCKA_200.89;Biohazard 4 (Korea)
 SCKA_200.90;GOD HAND
 SCKA_200.92;K-1 World Grand Prix 2006
 SCKA_200.95;Okami [English Version]
@@ -3542,7 +3540,6 @@ SCKA_201.01;Seiken Densetsu 4 [Dawn of Mana]
 SCKA_201.04;Genji (BigHit Series)
 SCKA_201.06;Wanda to Kyozou (Big Hit version)
 SCKA_201.07;Odin Sphere
-SCKA_201.09;PERSONA 3 FES [INDEPENDENT STARTING VERSION]
 SCKA_201.09;Persona 3 - Fes [Independent Starting Version]
 SCKA_201.14;Obscure II - The Aftermath
 SCKA_201.15;CYBER TROOPERS - VIRTUAL-ON MARZ
@@ -3872,13 +3869,13 @@ SCPS_560.06;Tekken 4
 SCPS_560.07;Minna no Golf 3
 SCPS_560.08;Fatal Frame
 SCPS_560.09;Smash Court Pro Tournament
-SCPS_560.10;DOWNHILL RACER
+SCPS_560.10;Downhill Racer (Korea)
 SCPS_560.11;U - Underwater Unit
 SCPS_560.12;Disaster Report
 SCPS_560.13;This is Football 2003
 SCPS_560.14;Gungrave
 SCPS_560.15;Ninja Assault
-SCPS_560.16;The Extreme Racing - Axel Impact
+SCPS_560.16;Axel Impact - The Extreme Racing (Korea)
 SCPS_720.01;Gran Turismo 3 - A-spec [Mega Hits!]
 SCPS_720.02;Minna no Golf 3 [Mega Hits!]
 SCUS_103.80;LEGO BATMAN - THE VIDEOGAME [LIMITED EDITION BUNDLE]
@@ -4264,6 +4261,7 @@ SCUS_976.22;SingStar 80s [with Microphone]
 SCUS_976.23;Secret Agent Clank
 SCUS_976.25;NBA 09 - The Inside
 SCUS_976.26;SingStar 90s
+SCUS_976.27;Singstar Pop - Volume 2
 SCUS_976.33;Buzz! The Hollywood Quiz [Game Only]
 SCUS_976.34;Buzz! Jr. RoboJam [Game Only]
 SCUS_976.36;SingStar 90s [Game Only]
@@ -5102,8 +5100,8 @@ SLES_512.08;Rocky
 SLES_512.09;Haven - Call of the King
 SLES_512.13;!unknown!
 SLES_512.14;18 Wheeler - American Pro Trucker
-SLES_512.15;Harry Potter og Mysteriekammeret
-SLES_512.16;Harry Potter ja Salaisuuksien Kammio
+SLES_512.15;Harry Potter and the Chamber of Secrets
+SLES_512.16;Harry Potter and the Chamber of Secrets
 SLES_512.17;Harry Potter och hemligheternas kammare
 SLES_512.18;Harry Potter en de Geheime Kamer
 SLES_512.19;Harry Potter and the Chamber of Secrets
@@ -5506,6 +5504,7 @@ SLES_519.56;Bionicle - The Game
 SLES_519.57;Terminator 3 - Rise of the Machines
 SLES_519.58;Whiplash
 SLES_519.59;Football Generation
+SLES_519.60;Disney-Pixar: Finding Nemo
 SLES_519.63;FIFA 2004
 SLES_519.64;FIFA 2004
 SLES_519.66;Bombastic
@@ -5699,7 +5698,7 @@ SLES_523.69;Empires of Atlantis
 SLES_523.70;Mouse Police, The
 SLES_523.71;Animal Soccer World
 SLES_523.72;Spider-Man 2
-SLES_523.73;CHAMPIONS OF NORRATH
+SLES_523.73;Champions of Norrath: Realms of EverQuest
 SLES_523.74;Fight Night 2004
 SLES_523.78;Euro Rally Champion
 SLES_523.79;Shrek 2
@@ -6394,6 +6393,7 @@ SLES_534.96;Spongebob Squarepants - Lights, Camera, PANTS!
 SLES_534.97;Nickelodeon SpongeBob Schwammkopf - Film ab!
 SLES_534.98;Nickelodeon Bob Esponja - ¡Luces, Cámara, Esponja!
 SLES_534.99;Nickelodeon SpongeBob Squarepants - Licht uit, Camera aan!
+SLES_535.00;Nickelodeon Svampbob Fyrkant: Tystnad, Tagning, Tvaettsvamp
 SLES_535.01;Star Wars - Battlefront II
 SLES_535.02;Star Wars - Battlefront II
 SLES_535.03;Star Wars - Battlefront II [German]
@@ -7176,6 +7176,7 @@ SLES_547.82;ObsCure II
 SLES_547.84;Xyanide - Resurrection
 SLES_547.86;Heracles Chariot Racing
 SLES_547.88;Aqua Teen Hunger Force Zombie Ninja Pro-Am
+SLES_547.89;Beta Bloc
 SLES_547.90;Art of Fighting Anthology
 SLES_547.92;WWC - World Wrestling Championship
 SLES_547.93;WWE SmackDown vs Raw 2008
@@ -7317,6 +7318,7 @@ SLES_550.02;Need for Speed ProStreet
 SLES_550.03;Need for Speed - ProStreet
 SLES_550.04;Need for Speed - ProStreet
 SLES_550.05;Need for Speed - ProStreet
+SLES_550.06;Need for Speed: ProStreet
 SLES_550.07;Boogie
 SLES_550.08;Riding Star 3
 SLES_550.10;Thrillville - Fuori dai Binari
@@ -7691,11 +7693,13 @@ SLES_820.50;Metal Gear Solid 3 - (Disc 3) Existence
 SLES_820.51;Metal Gear Solid 3 - (Disc 3) Existence
 SLES_820.52;Metal Gear Solid 3 - (Disc 3) Existence
 SLES_820.53;Metal Gear Solid 3 - (Disc 3) Existence
-SLKA_150.02;SPACE RAIDERS
+SLKA_150.01;Barbarian
+SLKA_150.02;Space raiders
 SLKA_150.03;Shikigami no Shiro II
-SLKA_150.04;Strikers 1945 I & II + Gunbird [Premium Package Shooting Collection] [Disc 1]
-SLKA_150.05;Strikers 1945 I & II + Gunbird [Premium Package Shooting Collection] [Disc 2]
-SLKA_150.07;Growlanser II - The Sense of Justice
+SLKA_150.04;Gunbird [Premium Package Shooting Collection] [Disc 1]
+SLKA_150.05;Gunbird [Premium Package Shooting Collection] [Disc 2]
+SLKA_150.06;Knight Rider: The Game
+SLKA_150.07;Growlanser II: The Sense of Justice
 SLKA_150.08;Choro Q HG 2
 SLKA_150.09;Takahashi Meijin no Adventure Island
 SLKA_150.11;XII Stag
@@ -7704,7 +7708,7 @@ SLKA_150.15;ICHIGEKI SACCHUU!! HOIHOI-SAN
 SLKA_150.16;Harry Potter - Quidditch World Cup
 SLKA_150.18;Gundam Seed
 SLKA_150.20;Aliens vs. Predator - Extinction
-SLKA_150.21;Growlanser II - The Dual Darkness
+SLKA_150.21;Growlanser III - The Dual Darkness (Korea)
 SLKA_150.22;Speed Kings
 SLKA_150.23;Assault Suits Valken
 SLKA_150.25;Space Invaders 25th Anniversary
@@ -7729,13 +7733,15 @@ SLKA_150.58;Terra Defence Force 2, the
 SLKA_250.01;SILENT HILL 2
 SLKA_250.02;Energy Airforce
 SLKA_250.03;Herdy Gerdy
-SLKA_250.04;007 - NIGHTFIRE
+SLKA_250.04;James Bond 007: Nightfire
 SLKA_250.06;Twin Caliber
-SLKA_250.07;SPY FICTION
+SLKA_250.07;Spy Fiction
 SLKA_250.08;San Goku Shi Senki 2
+SLKA_250.09;Geomho 2 (Korea)
 SLKA_250.10;Breath of Fire - Dragon Quarter
-SLKA_250.11;REIGN OF FIRE
-SLKA_250.12;DEVIL MAY CRY 2 [2 DISCS]
+SLKA_250.11;Reign of fire
+SLKA_250.12;Devil May Cry 2 (Korea) (Disc 1) (Dante)
+SLKA_250.13;Devil May Cry 2 (Korea) (Disc 2) (Lucia)
 SLKA_250.14;Evolution Snowboarding
 SLKA_250.15;Evolution Skateboarding
 SLKA_250.18;Sphinx and the Cursed Mummy
@@ -7743,9 +7749,6 @@ SLKA_250.20;TIMESPLITTERS 2
 SLKA_250.21;Shinobi
 SLKA_250.24;Disneys Stitch - Experiment 626
 SLKA_250.25;Winning Eleven 6 International
-SLKA_250.25;Winning Eleven 6 International
-SLKA_250.25;World Soccer Winning Eleven 6 International
-SLKA_250.25;World Soccer Winning Eleven 6 International
 SLKA_250.26;Chaos Legion
 SLKA_250.27;NBA Street Vol.2
 SLKA_250.28;MISSION IMPOSSIBLE - OPERATION SURMA
@@ -7763,16 +7766,16 @@ SLKA_250.42;Tamamayu Monogatari 2
 SLKA_250.43;Virtua Fighter 4 - Evolution
 SLKA_250.44;Robotech - Battlecry
 SLKA_250.45;The King of Fighters 2000
-SLKA_250.46;DRAGON BALL Z - BUDOKAI
-SLKA_250.47;SHIN COMBAT CHORO Q
+SLKA_250.46;Dragon Ball Z (Korea)
+SLKA_250.47;Shin combat choro q
 SLKA_250.48;Disgaea - Hour of Darkness
 SLKA_250.49;Metal Slug 3
 SLKA_250.50;Dynasty Warriors 3
-SLKA_250.51;Clock Tower 3
+SLKA_250.51;Clock Tower 3 (Korea)
 SLKA_250.52;Air Ranger 2 - Rescue Helicopter
 SLKA_250.53;Def Jam - Vendetta
 SLKA_250.54;Gran Prix Challenge
-SLKA_250.55;Hitman - Silent Assasin
+SLKA_250.55;Hitman 2: Silent Assassin
 SLKA_250.56;Disney-Pixars Finding Nemo
 SLKA_250.57;All-Star Baseball 2004
 SLKA_250.59;Pride FC -Fighting Championships
@@ -7785,30 +7788,27 @@ SLKA_250.65;SILENT HILL 3
 SLKA_250.66;Zone of the Enders - The 2nd Runner
 SLKA_250.67;Unlimited Saga
 SLKA_250.70;Guilty Gear XX #Reload - The Midnight Carnival
-SLKA_250.71;TANTEI JINGUJI SABURO - INNOCENT BLACK
-SLKA_250.71;TANTEI JINGUJI SABURO - INNOCENT BLACK
-SLKA_250.71;TANTEI JINGUJI SABURO - INNOCENT BLACK [BIG HIT]
-SLKA_250.71;TANTEI JINGUJI SABURO - INNOCENT BLACK [BIG HIT]
-SLKA_250.72;MAXIMO VS ARMY OF ZIN
-SLKA_250.73;Lara Croft - Tomb Raider - The Angel of Darkness
+SLKA_250.71;Tantei Jinguuji Saburo: Innocent Black
+SLKA_250.72;Maximo vs army of zin
+SLKA_250.73;Lara Croft Tomb Raider: The Angel of Darkness
 SLKA_250.76;Shin Megami Tensei III - Nocturne
 SLKA_250.77;Culdicept II - Expansion
-SLKA_250.78;RAYMAN 3 - HOODLUM HAVOC
+SLKA_250.78;Rayman 3: Hoodlum Havoc
 SLKA_250.80;.hack//Part 1 - Infection
 SLKA_250.81;SD Gundam G Generation Neo
 SLKA_250.82;Castlevania - Lament of Innocence
 SLKA_250.84;Shutokou Battle 01
 SLKA_250.85;Dynasty Warriors 3 - Xtreme Legends
 SLKA_250.86;NBA Live 2004
-SLKA_250.87;Fifa 2004
-SLKA_250.90;STARSKY & HUTCH
+SLKA_250.87;FIFA Soccer 2004 (Korea)
+SLKA_250.90;Starsky & hutch
 SLKA_250.91;Hanjuku Hero vs 3D
 SLKA_250.92;ONIMUSHA BURAIDEN
-SLKA_250.93;ONIMUSHA 3
-SLKA_250.95;Madden NFL 2004
-SLKA_250.98;THE LORD OF THE RINGS - THE RETURN OF THE KING
-SLKA_250.99;The Urbz - Sims in the City
-SLKA_251.02;Batman - Rise of Sin Tzu
+SLKA_250.93;Gwimuja 3 (Korea)
+SLKA_250.95;Madden nfl 2004
+SLKA_250.98;The lord of the rings - the return of the king
+SLKA_250.99;The urbz - sims in the city
+SLKA_251.02;Batman - rise of sin tzu
 SLKA_251.03;Neon Genesis Evangelion 2
 SLKA_251.05;XIII
 SLKA_251.07;CROUCHING TIGEER, HIDDEN DRAGON
@@ -7820,18 +7820,16 @@ SLKA_251.15;Rockman X7
 SLKA_251.16;WWE Smackdown! Here Comes the Pain 
 SLKA_251.17;World Soccer Winning Eleven 7 International
 SLKA_251.18;SSX 3
-SLKA_251.18;SSX 3
-SLKA_251.18;SSX 3
-SLKA_251.18;SSX 3
 SLKA_251.20;Prince of Persia - The Sands of Time
 SLKA_251.21;Vexx
 SLKA_251.22;SONIC HEROES
+SLKA_251.23;Taisho Mononoke Ibunroku
 SLKA_251.25;SNK vs Capcom - Chaos
 SLKA_251.28;San Goku Shi IX
-SLKA_251.29;007 - EVERYTHING OR NOTHING
+SLKA_251.29;James Bond 007: Everything or Nothing
 SLKA_251.30;Bloody Roar 4
 SLKA_251.31;Juuouki - Project Altered Beast
-SLKA_251.32;Mobile Suit Gundam - Encounters in Space
+SLKA_251.32;Gidong Jeonsa Gundam - Haehu-ui Uju (Korea)
 SLKA_251.33;AirForce Delta Strike
 SLKA_251.34;NBA Street v3
 SLKA_251.35;KUNOICHI
@@ -7850,7 +7848,7 @@ SLKA_251.52;Hajime no Ippo All-Stars
 SLKA_251.53;Winning Eleven 10 - Liveware Edition
 SLKA_251.54;SEVEN SAMURAI 20XX
 SLKA_251.55;Crimson Sea 2
-SLKA_251.59;Astro Boy
+SLKA_251.59;Astro Boy Atom (Korea)
 SLKA_251.60;Shin Megami Tensei III - Nocturne Maniax
 SLKA_251.61;AQUA KIDS
 SLKA_251.65;Mobile Suit Gundam - Seed Destiny - Rengou vs Z.A.F.T. II Plus
@@ -7861,9 +7859,6 @@ SLKA_251.70;SD Gundam G Generation Seed
 SLKA_251.71;KUON
 SLKA_251.72;Harry Potter and the Prisoner of Azkaban
 SLKA_251.73;Rainbow Six 3 - Raven Shield
-SLKA_251.73;Rainbow Six 3 - Raven Shield
-SLKA_251.73;TOM CLANCYS RAINBOW SIX 3
-SLKA_251.73;TOM CLANCYS RAINBOW SIX 3
 SLKA_251.74;.hack//Part 4 - Quarantine
 SLKA_251.75;Transformers
 SLKA_251.76;Pump It Up - Exceed
@@ -7883,15 +7878,12 @@ SLKA_252.00;SSX 3 [BigHits Series]
 SLKA_252.01;Armored Core - Nexus [Evolution Disc]
 SLKA_252.02;Armored Core - Nexus [Revolution Disc]
 SLKA_252.03;Winning Eleven 8
-SLKA_252.03;Winning Eleven 8
-SLKA_252.03;World Soccer Winning Eleven 8
-SLKA_252.03;World Soccer Winning Eleven 8
 SLKA_252.04;Showdown - Legends of Wrestling
 SLKA_252.05;DragonBall Z 3
 SLKA_252.06;Burnout 3 - Takedown
 SLKA_252.07;Sakura Taisen V - Episode 0 - Samurai Girl of Wild
 SLKA_252.08;From TV Animation - One Piece - Round the Land!
-SLKA_252.09;Fifa 2005
+SLKA_252.09;FIFA Soccer 2005 (Korea)
 SLKA_252.10;Summer Heat - Beach Volleyball
 SLKA_252.11;The King of Fighters - Maximum Impact
 SLKA_252.13;Berserk
@@ -7901,7 +7893,7 @@ SLKA_252.16;Gitaroo-Man [BigHits Series]
 SLKA_252.17;Shinging Tears
 SLKA_252.18;Hitman - Contracts
 SLKA_252.19;Monster Hunter G
-SLKA_252.20;Viewtiful Joe - A new hope
+SLKA_252.20;Viewtiful Joe - A New Hope (Korea)
 SLKA_252.21;Busin 0 - Wizardry Alternative Neo
 SLKA_252.22;Rockman X8
 SLKA_252.23;K-League Winning Eleven 8 - Asia Championship
@@ -7934,9 +7926,6 @@ SLKA_252.59;Swords of Destiny
 SLKA_252.60;!unknown!
 SLKA_252.61;Tsukiyo ni Saraba
 SLKA_252.62;Winning Eleven 8 International
-SLKA_252.62;Winning Eleven 8 International
-SLKA_252.62;World Soccer Winning Eleven 8 - International
-SLKA_252.62;World Soccer Winning Eleven 8 - International
 SLKA_252.63;NANO BREAKER
 SLKA_252.64;Full Spectrum Warrior
 SLKA_252.65;Devil May Cry 3
@@ -7954,13 +7943,13 @@ SLKA_252.79;Hello Kitty - Rescue Mission
 SLKA_252.80;Ryu ga Gotoku 2 [Disc 1]
 SLKA_252.81;Ryu ga Gotoku 2 [Disc 2]
 SLKA_252.82;MX vs. ATV Unleashed
-SLKA_252.83;JUICED
+SLKA_252.83;Juiced
 SLKA_252.84;Sakura Taisen 3
 SLKA_252.87;Metal Slug 4&5
 SLKA_252.89;Shin Sangoku Musou 4
 SLKA_252.90;Super Monkey Ball Deluxe
 SLKA_252.91;Chains of Power
-SLKA_252.92;Batman Begins
+SLKA_252.92;Batman Begins (Korea)
 SLKA_252.96;Inuyasha - Feudal Combat
 SLKA_252.97;Taito Memories - Joukan [Special Package]
 SLKA_252.98;Winning Eleven 9
@@ -7979,16 +7968,14 @@ SLKA_253.14;!unknown!
 SLKA_253.15;NBA Live 06
 SLKA_253.16;Disney-Pixars Mr. Incredible - Kyouteki Underminer Toujou
 SLKA_253.17;Jin Samgung Mussang 3 [PlayStation 2 Big Hit Series]
-SLKA_253.18;THE CHRONICLES OF NARNIA - THE LION, THE WITCH AND THE WARDROBE
-SLKA_253.18;THE CHRONICLES OF NARNIA - THE LION, THE WITCH AND THE WARDROBE
-SLKA_253.18;WWE SmackDown vs. RAW 2006
-SLKA_253.18;WWE SmackDown vs. RAW 2006
+SLKA_253.18;The chronicles of narnia - the lion, the witch and the wardrobe
+SLKA_253.18;Wwe smackdown vs. raw 2006
 SLKA_253.19;Spongebob SquarePants - Lights, Camera, Pants!
 SLKA_253.20;Ikusa Gami
 SLKA_253.21;K.League - Winning Eleven 9 - Asia Championship
 SLKA_253.22;Guilty Gear XX - Slash
 SLKA_253.23;SSX On Tour
-SLKA_253.27;HARRY POTTER AND THE GOBLET OF FIRE
+SLKA_253.27;Harry Potter and the Goblet of Fire (Korea)
 SLKA_253.28;Castlevania - Curse of Darkness
 SLKA_253.29;Shin Sangoku Musou 4 - Moushouden
 SLKA_253.30;BATTLEFIELD 2 - MODERN COMBAT
@@ -8005,9 +7992,6 @@ SLKA_253.42;Ryu ga Gotoku
 SLKA_253.45;DISNEYS CHICKEN LITTLE
 SLKA_253.48;PRINCE OF PERSIA - THE TWO THRONES
 SLKA_253.49;Jacked
-SLKA_253.49;Jacked
-SLKA_253.49;YS THE ARK OF NAPISHTIM [WITH GUIDE BOOK]
-SLKA_253.49;YS THE ARK OF NAPISHTIM [WITH GUIDE BOOK]
 SLKA_253.51;ONE PIECE - PIRATES CARNIVAL
 SLKA_253.52;Full Metal Alchemist - Dream Carnival
 SLKA_253.53;Metal Gear Solid 3 - (Disc 1) Subsistence
@@ -8015,9 +7999,10 @@ SLKA_253.54;Metal Gear Solid 3 - (Disc 2) Persistence
 SLKA_253.55;Metal Gear Solid 3 - (Disc 3) Existence
 SLKA_253.58;Sonic Riders
 SLKA_253.59;Winning Eleven 9 - Liveware Edition
-SLKA_253.60;SAMURAI CHAMPLOO
-SLKA_253.61;Keroro Gunsou - Mero Mero Battle Royale Z
+SLKA_253.60;Samurai champloo
+SLKA_253.61;Gaeguri Jungsa Keroro - Bulkkottwineun Battle Royal Z (Korea)
 SLKA_253.62;SEGA RALLY 2006
+SLKA_253.63;Guitar Hero III: Legends of Rock
 SLKA_253.64;Mobile Suit Gundam - Climax U.C.
 SLKA_253.65;WWE SmackDown vs. Raw 2008
 SLKA_253.66;Naruto - Konoha Spirits
@@ -8179,6 +8164,7 @@ SLPM_551.14;Mana Khemia 2 - Ochita Gakuen to Renkinjutsushi Tachi [Gust Best Pri
 SLPM_551.15;Dokapon Kingdom [Sting the Best]
 SLPM_551.17;BeatMania IIDX 15 - DJ Troopers
 SLPM_551.18;Galaxy Angel II - Eigou Kaiki no Koku
+SLPM_551.19;Galaxy Angel II: Eigou Kaiki no Toki [Disc 2]
 SLPM_551.20;Fukakutei Sekai no Tantei Shinshi - Akugyou Futaasa no Jiken File [Limited Edition]
 SLPM_551.21;Fukakutei Sekai no Tantei Shinshi - Akugyou Futaasa no Jiken File
 SLPM_551.22;Gundam Musou 2
@@ -8272,6 +8258,7 @@ SLPM_552.18;Sengoku Hime - Senran ni Mau Otometachi [Limited Edition]
 SLPM_552.19;Osouji Sentai Clean Keeper H [Limited Edition]
 SLPM_552.20;Osouji Sentai Clean Keeper H
 SLPM_552.21;BeatMania IIDX 16 - Empress + Premium Best
+SLPM_552.22;Beatmania II DX 16 - Empress + [Disc 2] [Premium Best Disc]
 SLPM_552.23;NadePro!! Kisama no Seiyuu Yatte Miro!
 SLPM_552.24;Sengoku Basara X [Best Price]
 SLPM_552.25;Sengoku Hime - Senran ni Mau Otometachi
@@ -8579,6 +8566,7 @@ SLPM_621.58;Virtua Fighter 4
 SLPM_621.59;World Soccer Winning Eleven 6
 SLPM_621.60;Simple 2000 Series Vol.4 - The Double Mahjong Puzzle
 SLPM_621.61;Generation of Chaos - Next [Limited Edition]
+SLPM_621.62;Shin Sangoku Musou (Ch)
 SLPM_621.64;Generation of Chaos - Next
 SLPM_621.65;Shikigami no Shiro [Limited Edition]
 SLPM_621.68;Disney Golf Classics
@@ -9159,14 +9147,14 @@ SLPM_627.84;KAO NO NAI TSUKI - SELECT STORY
 SLPM_627.85;Saikyo Shogi Gekisashi Special [Mycom Best]
 SLPM_629.20;Hossi Furu
 SLPM_640.73;Mahou Sensei Negima! 1-Jikanme ~Okochama Sensei wa Mahoutsukai!~ [Konami the Best]
-SLPM_645.01;SHIN SANGOKU MUSOU
+SLPM_645.01;Jin Samguk Mussang (Korea)
 SLPM_645.02;Winback
 SLPM_645.04;Maximo
 SLPM_645.07;WAVE RALLY
 SLPM_645.09;Crash Bandicoot - Return of the Demon King
 SLPM_645.10;International Superstar Soccer 2
 SLPM_645.12;Super Puzzle Bobble
-SLPM_645.13;CRASH BANDICOOT - RETURN OF THE DEMON KING
+SLPM_645.13;Crash Bandicoot - Mawangui Buwhal (Korea)
 SLPM_645.17;FREEKSTYLE
 SLPM_645.19;Woody Woodpecker - Escape from Buzz Buzzard Park
 SLPM_645.21;Raging Bless - Gouma Mokushiroku
@@ -10919,9 +10907,7 @@ SLPM_668.75;Jikkyou Powerful Pro Major League 2
 SLPM_668.76;Izumo 2 [GN Software Best]
 SLPM_668.77;Summer## [GN Software Best]
 SLPM_668.78;Dokapon Kingdom
-SLPM_668.79;STARTRAIN - YOUR PAST MAKES YOUR FUTURE [LIMITED EDITION]
 SLPM_668.79;StarTRain - Your Past Makes Your Future [Limited Edition]
-SLPM_668.80;STARTRAIN - YOUR PAST MAKES YOUR FUTURE
 SLPM_668.80;StarTRain - Your Past Makes Your Future
 SLPM_668.81;TOCA Race Driver 3 - Ultimate Racing Simulator
 SLPM_668.82;Hakarena Heart [Limited Edition]
@@ -11050,39 +11036,41 @@ SLPM_670.13;God of War II - The End Begins
 SLPM_670.14;Sengoku Musou 2 Mushouden
 SLPM_670.15;School Days LxH
 SLPM_670.17;God of War II - Shuuen No Jokyoku [Best Price]
-SLPM_675.02;DEVIL MAY CRY
+SLPM_675.02;Devil May Cry (Korea)
+SLPM_675.03;FIFA Football 2002 (Korea)
 SLPM_675.04;SSX Tricky
-SLPM_675.05;007 - Agent under fire
+SLPM_675.05;007 - Agent Under Fire (Korea)
 SLPM_675.07;Onimusha Wsrlords
 SLPM_675.08;Gitaroo Man
-SLPM_675.12; 2002 FIFA World Cup Korea Japan
+SLPM_675.12;2002 FIFA World Cup (Korea)
 SLPM_675.13;Final Fantasy X International
-SLPM_675.14;KESSEN
-SLPM_675.15;Metal Gear Solid 2 - Sons of Liberty
-SLPM_675.16;LEGACY OF KAIN - SOUL REAVER 2
+SLPM_675.14;Gyeoljeon (Korea)
+SLPM_675.15;Metal Gear Solid 2: Sons of Liberty
+SLPM_675.16;Legacy of kain - soul reaver 2
 SLPM_675.17;Capcom vs SNK 2
-SLPM_675.18;ONIMUSHA 2
+SLPM_675.18;Onimusha 2
 SLPM_675.19;Rayman Revolution
 SLPM_675.20;Disneys Tarzan Untamed
-SLPM_675.21;E.O.E. - EVE OF EXTINCTION
+SLPM_675.21;E.O.E - Eve of Extinction (Korea)
 SLPM_675.22;San Goku Shi Senki
-SLPM_675.23;SHIN SANGOKU MUSOU 2
+SLPM_675.23;Jin Samguk Mussang 2 (Korea)
 SLPM_675.24;Armored Core 3
 SLPM_675.26;Ghost Vibration
 SLPM_675.27;Need for Speed - Hot Pursuit 2
 SLPM_675.28;Hajime no Ippo - Victorious Boxers [Championship Edition]
-SLPM_675.29;Gun Survivor 3 - Dino Crisi
+SLPM_675.29;Gun Survivor 3 - Dino Crisis (Korea)
 SLPM_675.30;NHL 2003
 SLPM_675.31;Kessen II
 SLPM_675.33;Men in Black II - Alien Escape
 SLPM_675.35;Memories Off
-SLPM_675.36;Houshinengi 2
+SLPM_675.36;Bongsin Yeonui 2 (Korea)
 SLPM_675.37;Fifa 2003
 SLPM_675.38;Sidewinder F
 SLPM_675.40;Auto Modellista
 SLPM_675.41;NBA Live 2003
 SLPM_675.45;Project Minerva
 SLPM_675.46;Lord of the Rings - The Two Towers
+SLPM_675.50;Jin Samguk Mussang 2 - Maengjangjeon (Korea)
 SLPM_675.52;Tomak - Save the Earth Again [Complete Edition]
 SLPM_679.00;Sakura Taisen 3 - Paris wa Moeteiru ka (Limited Edition)
 SLPM_679.06;Sakura Taisen 3 - Paris wa Moeteiru ka
@@ -11151,6 +11139,7 @@ SLPM_742.29;BioHazard 4 [PlayStation 2 The Best]
 SLPM_742.30;Devil May Cry [PlayStation 2 The Best]
 SLPM_742.31;Kessen III [PlayStation 2 The Best]
 SLPM_742.32;Shin Onimusha - Dawn of Dreams [PlayStation 2 The Best]
+SLPM_742.33;Shin Onimusha: Dawn of Dreams (Disc 2)
 SLPM_742.34;Ryu Ga Gotoku [PlayStation 2 The Best]
 SLPM_742.35;Sengoku Musou [PlayStation 2 The Best]
 SLPM_742.36;Shin Sangoku Musou 4 [PlayStation 2 The Best]
@@ -13287,7 +13276,7 @@ SLUS_206.39;Def Jam - Vendetta
 SLUS_206.40;Saturday Night Speedway
 SLUS_206.41;IndyCar Series
 SLUS_206.42;Auto Modellista
-SLUS_206.43;D,Namco Transmission Demo Disc v1.03 [Soul Calibur II Pack-In]
+SLUS_206.43;Soul Calibur II
 SLUS_206.44;Armored Core - Silent Line
 SLUS_206.45;Time Crisis 3 [with Guncon]
 SLUS_206.46;Mark Davis Pro Bass Challenge
@@ -14083,6 +14072,7 @@ SLUS_214.76;Madden NFL 07
 SLUS_214.77;Madden NFL 07 [Hall of Fame Edition]
 SLUS_214.78;Pirates - Legend of the Black Buccaneer
 SLUS_214.79;Reservoir Dogs
+SLUS_214.80;.hack G.U. Vol. 1: Rebirths - Terminal Disc
 SLUS_214.81;NCAA March Madness 07
 SLUS_214.82;NFL Street 3
 SLUS_214.83;Tiger Woods PGA Tour 07
@@ -14426,7 +14416,7 @@ SLUS_218.74;Jelly Belly - Ballistic Beans
 SLUS_218.75;M&Ms Adventure
 SLUS_218.76;Rock Band - Track Pack - Classic Rock
 SLUS_218.77;Tiger Woods PGA Tour 10
-SLUS_218.78;Ice Age - Dawn of the Dinosaurs
+SLUS_218.78;Ice Age 3 - Dawn of the Dinosaurs
 SLUS_218.79;Marvel - Ultimate Alliance 2
 SLUS_218.80;X-Men Origins - Wolverine
 SLUS_218.81;Transformers - Revenge of the Fallen
