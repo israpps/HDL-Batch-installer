@@ -1,3 +1,17 @@
+21 February 2022
+   [v3.3.0 - Revision 0]
+
+     Change log:
+        -Files download: Added switch to perform fast ART Download (debug output will be distorted during download)
+        -MBR.KELF Injection: latest HDL-Dump changed the MBR injection command name, updated internal calls to support the new name
+        -Game title database: Sync internal DB with public one
+        -Dokan Manager: Enforce data writing on unmount command
+        -__NEW__: Add support for NBD Server (Client bundled on program)
+        -NBD Client: Added default IP setting to settings handler
+        -New: Added dialog to manage the NBD client driver
+        -game installation command: Normalize string to UTF-8 before executing
+        -Dokan Manager: If the dokan enviroment variable can't be found the interface won't appear
+
 07 January 2022
    [v3.2.1 - Revision 1]
 
