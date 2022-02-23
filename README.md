@@ -33,7 +33,7 @@ __If this software was useful, please consider giving it a star here on GitHub, 
 - [x] Install multiple Games at once
 - [x] Extract multiple Games at once
 - [x] Automatically assign the original Game Title before Installation
-- [X] Inject MBR.KELF into the HDD _(broken on HDL-Dump side)_
+- [X] Inject MBR.KELF into the HDD
 - [x] Rename Game
 - [x] View game information
 - [x] Extract MBR program from HDD
