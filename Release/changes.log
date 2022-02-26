@@ -1,3 +1,10 @@
+25 February 2022
+   [v3.3.0 - Revision 1]
+
+     Change log:
+        -Program Frame: the HDD Management tab had a widget ID that wasn't contiguous to the last one (cause there was an old tab that was removed) causing segmentation fault on frame construction
+        -Program Frame Constructor: Refactored a few things...
+
 21 February 2022
    [v3.3.0 - Revision 0]
 
