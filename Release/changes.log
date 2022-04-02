@@ -9,6 +9,7 @@
         -Data processing: Adapt partition name obtainment to work with the commits I made into mainstream HDL-Dump (now OPL launcher injection will work on ALL games)
         -installed game list: Added manual OPL Launcher Injection
         -general code: refactors and commented code cleanup
+        -download cleanup: updated script
 
 25 February 2022
    [v3.3.0 - Revision 1]
