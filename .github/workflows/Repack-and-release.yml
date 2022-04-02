@@ -46,9 +46,9 @@ jobs:
         cd Release
         wget https://github.com/israpps/hdl-dump/releases/download/hdlinst/HDL.EXE -O $PWD/HDL.EXE
 
-    - name: Bundle extra files before building packages
-      run: |
-        cp LICENSE Release/LICENSE.TXT
+#    - name: Bundle extra files before building packages
+#      run: |
+#        cp LICENSE Release/LICENSE.TXT
 
     - name: Trim changes of latest version
       run: |
