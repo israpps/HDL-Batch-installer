@@ -1,3 +1,15 @@
+01 April 2022
+   [v3.3.1 - Revision 0]
+
+     Change log:
+        -Program Init: updated conditions for icon package download and extraction
+        -Data collecting: Fix issue in wich users that agreed with data collection stopped sending data after updating package
+        -Installation loop: updated logic to be a little less error prone
+        -Installation system: Remove trailing whitespaces at the end of title before installing
+        -Data processing: Adapt partition name obtainment to work with the commits I made into mainstream HDL-Dump (now OPL launcher injection will work on ALL games)
+        -installed game list: Added manual OPL Launcher Injection
+        -general code: refactors and commented code cleanup
+
 25 February 2022
    [v3.3.0 - Revision 1]
 
