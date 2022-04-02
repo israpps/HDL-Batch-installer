@@ -81,7 +81,6 @@ jobs:
         cd Release
         unix2dos changes.log
         unix2dos README.TXT
-        unix2dos LICENSE.TXT
         unix2dos HDL-Batch-installer.BAT
         cd Common
         unix2dos config.INI
