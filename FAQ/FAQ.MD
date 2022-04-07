@@ -83,6 +83,22 @@ if you don´t know how to do it, take a look at the [__OPL readme__](https://git
   </details>
 
 ***
+
+<details>
+  <summary> <b>This program is marked as malware by my antivirus</b> </summary>
+    <p>
+      
+        Probably your Antivirus is complaining about the WNDB drivers
+
+        You can safely use this software, there is no harm.
+
+        If you still have doubts... simply avoid the WNBD related features
+      
+    </p>    
+  </details>
+
+***
+
 ## You couldn't find your question?  Try [here](https://github.com/israpps/HDL-Batch-installer/discussions) or [Here](https://github.com/israpps/HDL-Batch-installer/issues) or in our [Discord Server](https://discord.gg/wczxvrkZk6)
 
 
