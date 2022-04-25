@@ -1,3 +1,12 @@
+24 April 2022
+   [v3.3.2 - Revision 0]
+
+     Change log:
+        -Dokan Manager: Fixed bug when transferring ART to non '+' Prefixed partitions when OPL folder is not present
+        -Data management: Fixed bug when selecting drives numerated larger than 9, fixes issue #29
+        -Argumment passing: Fixed --stay-on-top argumment
+        -Package: Updated hdl-dump that can read up to 25 HDD's instead of 16, fixes issue #28
+
 01 April 2022
    [v3.3.1 - Revision 0]
 
