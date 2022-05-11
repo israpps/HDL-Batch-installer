@@ -1,3 +1,11 @@
+11 May 2022
+   [v3.3.3 - Revision 0]
+
+     Change log:
+        -UI: Added horizontal rules to install queue and installed game list
+        -Icon package: add more icons by @Flygsand 
+        -installed games: Added Feature to manually load custom icon into installed game (mark several games to perform in batch mode)
+
 24 April 2022
    [v3.3.2 - Revision 0]
 
