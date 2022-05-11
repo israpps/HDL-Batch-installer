@@ -42,3 +42,4 @@ body:
       options:
         - label: I've checked if such feature exists on [Latest version](https://github.com/israpps/HDL-Batch-installer/releases/)
         - label: This Feature requires an update of WxWidgets
+        - label: "Needs an update of [HDL Dump](https://github.com/ps2homebrew/hdl-dump)"
