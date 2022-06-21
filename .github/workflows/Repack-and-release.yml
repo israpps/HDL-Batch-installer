@@ -142,6 +142,7 @@ jobs:
              HDLBInst*x64*.7z
              HDLBInst*x86*.7z
              Translation-template.7z
+             NBD.zip
         name: "${{ steps.version.outputs.string }}"
         tag_name: "Latest"
         body_path: 'latest_changes.log'
