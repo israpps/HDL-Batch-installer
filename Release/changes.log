@@ -1,3 +1,13 @@
+20 June 2022
+   [v3.3.4 - Revision 0]
+
+     Change log:
+        -Data reporting: Added MD5 hash file to report string
+        -Install list: Added new feature to context menu that allows calculating md5 hash of a game from the list, wich is displayed on dialog and program log
+        -WNBD client: Removed custom wnbd driver files, download of such files will be available as a separate release asset soon (this is done because wnbd driver is not windows signed, therefore, it's recognized as malware)
+        -Game file selector: Added support to load .zso files, however, an HDLDump update to support the installation of zso is still needed
+        -Game file selector: Now the description of each option can be localized
+
 11 May 2022
    [v3.3.3 - Revision 0]
 
