@@ -1,0 +1,31 @@
+Loading lang ID [0]
+init arguments detected...
+GUI will stay on top...
+welcome to HDL Batch Installer [v3.0.3 - Revision 0]
+$ Config File Loaded!
+database mode=0
+debug level=5
+MiniOPL=1
+OSD_Hide=0
+Default_iso_path=C:\
+Default DMA Mode=*u4
+	hdd0: 305242 MB
+	hdd1: 29596 MB, formatted Playstation 2 HDD
+selected hdd1:
+total[29568]
+used [640]
+hdd1:
+hdl_toc ---------
+type     size flags           dma startup      name
+DVD   27680KB               0 *u4 SLPM_666.75  Kingdom Hearts II - Final Mix +
+DVD   27680KB               0 *u4 SLUS_208.75  Predator - Concrete Jungle
+DVD   26080KB               0 *u4 SLES_552.04  Crash - Mind Over Mutant
+DVD   26080KB               0 *u4 SLES_555.79  Bakugan Battle Brawlers
+total 29568MB, used 640MB, available 28928MB
+hdl_toc ---------
+Downloading...
+             [SLES_555.79]
+             [SLES_552.04]
+             [SLUS_208.75]
+             [SLPM_666.75]
+Download finished!

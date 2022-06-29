@@ -1,7 +1,5 @@
-
 Release/info.sys
 Release/Extracted_MBR/*
-Release/Common/.wget-hsts
 Release/ART/*
 Release/MBR.KELF
 Release/Downloads/*
@@ -12,3 +10,15 @@ Release/Common/Icons.INI
 Release/Common/_ICN.7z
 Release/Common/commit.sys
 Release/Common/tinmft.sys
+
+**.res
+**.o
+HDL-Batch-installer-SRC/_bin/Debug/Downloads/**
+HDL-Batch-installer-SRC/_bin/**.*
+HDL-Batch-installer-SRC/_bin/Debug/gamename.DB
+HDL-Batch-installer-SRC/_bin/*/Common/ICNS/*.ico
+HDL-Batch-installer-SRC/_bin/Debug/Common/Icons.INI
+HDL-Batch-installer-SRC/_bin/Debug/Common/config.INI.bak
+HDL-Batch-installer-SRC/_obj/**
+**Thumbs.db
+**.wget-hsts

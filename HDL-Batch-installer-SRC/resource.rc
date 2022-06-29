@@ -1,0 +1,31 @@
+#include "version.h"
+#include "wx/msw/wx.rc"
+
+HDL_BATCH_ICON  ICON MOVEABLE PURE LOADONCALL DISCARDABLE "gfx/main.ico"
+MAIN_BANNER 	RCDATA                                    "gfx/BOOT_SPLASH.png"
+//MAIN_BANNER 	RCDATA                                    "gfx/BOOT_SPLASH_1YEAR.png"
+
+1 VERSIONINFO
+FILEVERSION RC_FILEVERSION
+FILETYPE VFT_APP
+{
+  BLOCK "StringFileInfo"
+	 {
+		 BLOCK "040904E4"
+		 {
+			 VALUE "CompanyName", "Matías Israelson (AKA: El_isra)"
+			 VALUE "FileVersion", RC_FILEVERSION_STRING
+			 VALUE "FileDescription", "HDL Batch Installer"
+			 VALUE "InternalName", "HDLinst"
+			 VALUE "LegalCopyright", " "
+			 VALUE "LegalTrademarks", " "
+			 VALUE "OriginalFilename", "HDLBinst.EXE"
+			 VALUE "ProductName", "HDL Batch Installer"
+			 VALUE "ProductVersion", RC_FILEVERSION_STRING
+		 }
+	 }
+  BLOCK "VarFileInfo"
+	 {
+		 VALUE "Translation", 0x0409, 1252
+	 }
+}

@@ -105,6 +105,8 @@ jobs:
         echo pkgid $REF >>commit.sys
         cd ..
         cd ..
+        cp COPYING.* Release/
+        cp LICENSE Release/LICENSE
         cp -r Release "HDLBInst[${{ steps.version.outputs.string }}-x64]"
         7z a -t7z -r HDLBInst-x64-$REF.7z HDLBInst*x64*/*
 

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<wxsmith>
+	<object class="wxDialog" name="pfsshell_wizard">
+		<title>HDD Manager</title>
+		<extra_code>SetIcon( wxICON(HDL__BATCH__ICON));</extra_code>
+		<object class="wxButton" name="ID_BUTTON1" variable="Button1" member="yes">
+			<label>Label</label>
+			<pos>152,8</pos>
+			<handler function="OnButton1Click" entry="EVT_BUTTON" />
+		</object>
+		<object class="wxChoice" name="ID_CHOICE1" variable="Selected_hdd" member="yes">
+			<pos>8,8</pos>
+		</object>
+		<object class="wxButton" name="ID_BUTTON2" variable="Format_hdd" member="yes">
+			<label>Format</label>
+			<pos>8,88</pos>
+			<handler function="OnFormat_hddClick" entry="EVT_BUTTON" />
+		</object>
+		<object class="wxButton" name="ID_BUTTON3" variable="mkpart" member="yes">
+			<label>Create Partition</label>
+			<pos>8,160</pos>
+		</object>
+		<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="partition" member="yes">
+			<maxlength>32</maxlength>
+			<pos>120,160</pos>
+			<size>136,23</size>
+		</object>
+	</object>
+</wxsmith>

@@ -1,0 +1,5 @@
+1 24 manifest.bin
+/**
+ *Embedded windows manifest to automatically request Administrative priviledges
+ *Needed to save the user the job of executing as edmin manually, since HDLDump write-features won't work without admin mode
+ */

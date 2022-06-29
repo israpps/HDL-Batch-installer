@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<wxsmith>
+	<object class="wxDialog" name="modify_header">
+		<title>Header Injection Wizard</title>
+		<centered>1</centered>
+		<size>587,344</size>
+		<font>
+			<size>8</size>
+		</font>
+		<id_arg>0</id_arg>
+		<object class="wxStaticText" name="ID_STATICTEXT1" variable="StaticText1" member="yes">
+			<label>system.cnf</label>
+			<pos>400,40</pos>
+			<help>Contains important information (mostly refered to partition startup</help>
+		</object>
+		<object class="wxStaticText" name="ID_STATICTEXT2" variable="StaticText2" member="yes">
+			<label>icon.sys</label>
+			<pos>400,72</pos>
+		</object>
+		<object class="wxStaticText" name="ID_STATICTEXT3" variable="StaticText3" member="yes">
+			<label>list.ico</label>
+			<pos>400,104</pos>
+			<help>Normal Icon file.&#x0A;this is the Icon that you&apos;ll see in the HDD-OSD</help>
+		</object>
+		<object class="wxStaticText" name="ID_STATICTEXT4" variable="StaticText4" member="yes">
+			<label>boot.kelf / boot.elf</label>
+			<pos>400,168</pos>
+		</object>
+		<object class="wxStaticText" name="ID_STATICTEXT5" variable="StaticText5" member="yes">
+			<label>del.ico</label>
+			<pos>400,136</pos>
+			<help>same as list.ico&#x0A;the only diference is that this Icon will be only shown when the user attemps to delete a partition from the HDD-OSD</help>
+		</object>
+		<object class="wxStaticText" name="ID_STATICTEXT6" variable="StaticText6" member="yes">
+			<label>boot.kirx</label>
+			<pos>400,200</pos>
+		</object>
+		<object class="wxStaticText" name="ID_STATICTEXT7" variable="StaticText7" member="yes">
+			<label>logo.raw</label>
+			<pos>400,232</pos>
+			<help>Custom Logo for specific DISKLOAD (AKA: MiniOPL) versions</help>
+		</object>
+		<object class="wxChoice" name="ID_CHOICE1" variable="selected_hdd" member="yes">
+			<pos>104,8</pos>
+			<size>112,22</size>
+			<tooltip>select hdd</tooltip>
+			<handler function="Onselected_hddSelect" entry="EVT_CHOICE" />
+		</object>
+		<object class="wxChoice" name="ID_CHOICE2" variable="selected_partition" member="yes">
+			<pos>24,40</pos>
+			<size>192,22</size>
+			<tooltip>select partition</tooltip>
+			<handler function="Onselected_partitionSelect" entry="EVT_CHOICE" />
+		</object>
+		<object class="wxButton" name="ID_BUTTON1" variable="system_cnf_help" member="yes">
+			<label>?</label>
+			<pos>368,40</pos>
+			<size>19,23</size>
+			<handler function="Onsystem_cnf_helpClick" entry="EVT_BUTTON" />
+		</object>
+		<object class="wxButton" name="ID_BUTTON2" variable="Button1" member="yes">
+			<label>?</label>
+			<pos>368,72</pos>
+			<size>19,23</size>
+			<handler function="OnButton1Click" entry="EVT_BUTTON" />
+		</object>
+		<object class="wxButton" name="ID_BUTTON3" variable="Button2" member="yes">
+			<label>?</label>
+			<pos>368,104</pos>
+			<size>19,23</size>
+			<handler function="OnButton2Click" entry="EVT_BUTTON" />
+		</object>
+		<object class="wxButton" name="ID_BUTTON4" variable="Button3" member="yes">
+			<label>?</label>
+			<pos>368,136</pos>
+			<size>19,23</size>
+			<handler function="OnButton3Click" entry="EVT_BUTTON" />
+		</object>
+		<object class="wxButton" name="ID_BUTTON5" variable="Button4" member="yes">
+			<label>Inject</label>
+			<pos>264,104</pos>
+		</object>
+		<object class="wxDirPickerCtrl" name="ID_DIRPICKERCTRL1" variable="DirPickerCtrl1" member="yes">
+			<message></message>
+			<pos>8,72</pos>
+			<size>328,23</size>
+			<handler function="OnDirPickerCtrl1DirChanged" entry="EVT_DIRPICKER_CHANGED" />
+		</object>
+		<object class="wxStaticText" name="ID_STATICTEXT8" variable="StaticText8" member="yes">
+			<label>Supported Files</label>
+			<pos>368,8</pos>
+		</object>
+		<object class="wxStaticLine" name="ID_STATICLINE1" variable="StaticLine1" member="yes">
+			<pos>352,0</pos>
+			<size>2,352</size>
+			<style>wxLI_VERTICAL</style>
+		</object>
+		<object class="wxButton" name="ID_BUTTON6" variable="Button5" member="yes">
+			<label>Search HDD</label>
+			<pos>8,8</pos>
+			<handler function="OnButton5Click" entry="EVT_BUTTON" />
+		</object>
+		<object class="wxStaticText" name="ID_STATICTEXT9" variable="StaticText9" member="yes">
+			<label>hdd</label>
+			<pos>224,16</pos>
+		</object>
+		<object class="wxStaticText" name="ID_STATICTEXT10" variable="StaticText10" member="yes">
+			<label>Partition</label>
+			<pos>224,40</pos>
+		</object>
+	</object>
+</wxsmith>

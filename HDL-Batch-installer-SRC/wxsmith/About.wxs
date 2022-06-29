@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<wxsmith>
+	<object class="wxDialog" name="About">
+		<title>HDL Batch Installer</title>
+		<size>400,389</size>
+		<font>
+			<size>8</size>
+		</font>
+		<extra_code>SetIcon( wxICON(HDL__BATCH__ICON));</extra_code>
+		<id_arg>0</id_arg>
+		<handler function="OnInit" entry="EVT_INIT_DIALOG" />
+		<handler function="OnPaint" entry="EVT_PAINT" />
+		<object class="wxStaticText" name="ID_STATICTEXT1" variable="StaticText1" member="yes">
+			<label>Get the Latest Version here:</label>
+			<pos>8,352</pos>
+			<size>176,15</size>
+		</object>
+		<object class="wxHyperlinkCtrl" name="ID_HYPERLINKCTRL1" variable="HyperlinkCtrl1" member="yes">
+			<label>Official Github</label>
+			<url>https://github.com/israpps/HDL-Batch-installer</url>
+			<hover_colour>#FF0000</hover_colour>
+			<visited_colour>#2807E0</visited_colour>
+			<pos>208,344</pos>
+			<size>184,14</size>
+		</object>
+		<object class="wxStaticText" name="ID_STATICTEXT2" variable="StaticText2" member="yes">
+			<label>Created by El__isra (AKA: Matias Israelson)</label>
+			<pos>0,8</pos>
+			<size>400,15</size>
+			<font>
+				<size>9</size>
+				<style>normal</style>
+				<weight>bold</weight>
+				<underlined>0</underlined>
+				<family>swiss</family>
+				<face>Arial</face>
+			</font>
+			<style>wxALIGN_CENTRE</style>
+		</object>
+		<object class="wxStaticText" name="ID_STATICTEXT3" variable="StaticText3" member="yes">
+			<label>Special thanks to:</label>
+			<pos>8,40</pos>
+			<size>376,15</size>
+		</object>
+		<object class="wxStaticText" name="ID_STATICTEXT5" variable="StaticText5" member="yes">
+			<label>Rs1n: For the Creation of HDL Batch&#x0A;     (that project inspired me to make this GUI)</label>
+			<pos>8,208</pos>
+			<size>384,32</size>
+		</object>
+		<object class="wxStaticText" name="ID_STATICTEXT8" variable="StaticText8" member="yes">
+			<label>The Testers:&#x0A;&#x0A;     HUN7ER | Salamander | My sister | Jtrex | Torres Kadher</label>
+			<pos>8,72</pos>
+			<size>376,56</size>
+		</object>
+		<object class="wxStaticText" name="ID_STATICTEXT10" variable="StaticText10" member="yes">
+			<label>Alex Parrado:&#x0A;    For contributing with some Ideas</label>
+			<pos>8,248</pos>
+			<size>384,29</size>
+		</object>
+		<object class="wxStaticLine" name="ID_STATICLINE1" variable="StaticLine1" member="yes">
+			<pos>0,64</pos>
+			<size>392,2</size>
+		</object>
+		<object class="wxStaticLine" name="ID_STATICLINE2" variable="StaticLine2" member="yes">
+			<pos>8,136</pos>
+			<size>384,2</size>
+		</object>
+		<object class="wxStaticLine" name="ID_STATICLINE3" variable="StaticLine3" member="yes">
+			<pos>8,336</pos>
+			<size>384,2</size>
+		</object>
+		<object class="wxStaticText" name="ID_STATICTEXT4" variable="StaticText4" member="yes">
+			<label>SpaceCoyote:&#x0A;   He made the default icon that get&apos;s injected into HDD-OSD</label>
+			<pos>8,288</pos>
+			<size>376,37</size>
+		</object>
+		<object class="wxHyperlinkCtrl" name="ID_HYPERLINKCTRL2" variable="HyperlinkCtrl2" member="yes">
+			<label>PSX-Place Thread</label>
+			<url>https://www.psx-place.com/resources/hdl-batch-installer.1173/</url>
+			<pos>208,368</pos>
+			<size>184,14</size>
+		</object>
+		<object class="wxStaticLine" name="ID_STATICLINE4" variable="StaticLine4" member="yes">
+			<pos>8,200</pos>
+			<size>384,2</size>
+		</object>
+		<object class="wxStaticText" name="ID_STATICTEXT11" variable="StaticText11" member="yes">
+			<label>Translators:&#x0A;&#x0A;     Fabio Gaigher | HardLevel | Haker120 (a youkai of love)</label>
+			<pos>8,144</pos>
+			<size>376,56</size>
+		</object>
+	</object>
+</wxsmith>

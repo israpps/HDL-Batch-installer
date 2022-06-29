@@ -1,0 +1,72 @@
+﻿<?xml version='1.0' encoding='utf-8' standalone='yes'?>
+<instrumentationManifest
+    xmlns="http://schemas.microsoft.com/win/2004/08/events"
+    xmlns:win="http://manifests.microsoft.com/win/2004/08/windows/events"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://schemas.microsoft.com/win/2004/08/events eventman.xsd">
+    <instrumentation>
+        <events>
+            <provider
+                guid="{FFACC4E7-C115-4FE2-9D3C-80FAE73BAB91}"
+                messageFileName="%WINDIR%\System32\drivers\wnbd.sys"
+                name="WNBD"
+                resourceFileName="%WINDIR%\System32\drivers\wnbd.sys"
+                symbol="WNBD">
+                <channels>
+                    <importChannel
+                        chid="SYSTEM"
+                        name="System"/>
+                </channels>
+                <templates>
+                    <template tid="tid_load_template">
+                        <data name="FunctionName"
+                              inType="win:AnsiString"
+                              outType="xs:string"/>
+                        <data name="LineNumber"
+                              inType="win:UInt32"
+                              outType="xs:unsignedInt"/>
+                        <data name="Message"
+                              inType="win:AnsiString"
+                              outType="xs:string"/>
+                    </template>
+                </templates>
+                <events>
+                    <event
+                        channel="SYSTEM"
+                        level="win:Error"
+                        message="$(string.ErrorEvent.EventMessage)"
+                        opcode="win:Info"
+                        symbol="ErrorEvent"
+                        template="tid_load_template"
+                        value="1"/>
+                    <event
+                        channel="SYSTEM"
+                        level="win:Warning"
+                        message="$(string.WarningEvent.EventMessage)"
+                        opcode="win:Info"
+                        symbol="WarningEvent"
+                        template="tid_load_template"
+                        value="2"/>
+                    <event
+                        channel="SYSTEM"
+                        level="win:Informational"
+                        message="$(string.InformationalEvent.EventMessage)"
+                        opcode="win:Start"
+                        symbol="InformationalEvent"
+                        template="tid_load_template"
+                        value="3"/>
+                </events>
+            </provider>
+        </events>
+    </instrumentation>
+    <localization xmlns="http://schemas.microsoft.com/win/2004/08/events">
+        <resources culture="en-US">
+            <stringTable>
+                <string id="ErrorEvent.EventMessage" value="%1:%2 %3"/>
+                <string id="WarningEvent.EventMessage" value="%1:%2 %3"/>
+                <string id="InformationalEvent.EventMessage" value="%1:%2 %3"/>
+            </stringTable>
+        </resources>
+    </localization>
+</instrumentationManifest>

@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="HDL-Batch-installer" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Option show_notes="0">
+			<notes>
+				<![CDATA[Terminar buscador de HASH
+implementar switch para buscar HASH en tabla interna o redirigir a redump.org
+
+]]>
+			</notes>
+		</Option>
+		<Build>
+			<Target title="Debug">
+				<Option platforms="Windows;Unix;" />
+				<Option output="_bin/Debug/HDL-Batch-installer" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="_bin/Debug/" />
+				<Option object_output="_obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option use_console_runner="0" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-m64" />
+					<Add option="-pipe" />
+					<Add option="-mthreads" />
+					<Add option="-D__GNUWIN32__" />
+					<Add option="-D__WXMSW__" />
+					<Add option="-DwxUSE_UNICODE" />
+					<Add option="-DBITS=64" />
+					<Add directory="$(#wx)/lib/gcc_lib/mswu" />
+					<Add directory="$(#wx)/include" />
+					<Add directory="include" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory="$(#wx)/lib/gcc_lib/mswu" />
+					<Add directory="$(#wx)/include" />
+				</ResourceCompiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-static-libstdc++" />
+					<Add option="-static-libgcc" />
+					<Add option="-static" />
+					<Add option="-m64" />
+					<Add option="-mthreads" />
+					<Add library="libwxmsw30u.a" />
+					<Add library="libwxpng.a" />
+					<Add library="libwxjpeg.a" />
+					<Add library="libwxtiff.a" />
+					<Add library="libwxzlib.a" />
+					<Add library="libkernel32.a" />
+					<Add library="libuser32.a" />
+					<Add library="libgdi32.a" />
+					<Add library="libwinspool.a" />
+					<Add library="libcomdlg32.a" />
+					<Add library="libadvapi32.a" />
+					<Add library="libshell32.a" />
+					<Add library="libole32.a" />
+					<Add library="liboleaut32.a" />
+					<Add library="libuuid.a" />
+					<Add library="libcomctl32.a" />
+					<Add library="libwsock32.a" />
+					<Add library="libodbc32.a" />
+					<Add directory="$(#wx)/lib/gcc_lib" />
+				</Linker>
+			</Target>
+			<Target title="DEBUG">
+				<Option platforms="Windows;Unix;" />
+				<Option output="_bin/DEBUG_/HDL-Batch-installer" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="_bin/DEBUG_/" />
+				<Option object_output="_obj/DEBUG_/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option use_console_runner="0" />
+				<Option parameters="--force-max-debug --stay-on-top" />
+				<Option projectLinkerOptionsRelation="2" />
+				<Compiler>
+					<Add option="-m64" />
+					<Add option="-g" />
+					<Add option="-pipe" />
+					<Add option="-mthreads" />
+					<Add option="-D__GNUWIN32__" />
+					<Add option="-D__WXMSW__" />
+					<Add option="-DwxUSE_UNICODE" />
+					<Add option="-DBITS=64" />
+					<Add directory="D:/wxWidgets-3.0.5-static/lib/gcc_lib/mswu" />
+					<Add directory="wxwidgets/lib/gcc_lib/mswu" />
+					<Add directory="D:/wxWidgets-3.0.5-static/include" />
+					<Add directory="include" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory="D:/wxWidgets-3.0.5-static/lib/gcc_lib/mswu" />
+					<Add directory="wxwidgets/lib/gcc_lib/mswu" />
+					<Add directory="D:/wxWidgets-3.0.5-static/include" />
+				</ResourceCompiler>
+				<Linker>
+					<Add option="-static-libstdc++" />
+					<Add option="-static-libgcc" />
+					<Add option="-static" />
+					<Add option="-m64" />
+					<Add option="-mthreads" />
+					<Add library="libwxmsw30u.a" />
+					<Add library="libwxpng.a" />
+					<Add library="libwxjpeg.a" />
+					<Add library="libwxtiff.a" />
+					<Add library="libwxzlib.a" />
+					<Add library="libkernel32.a" />
+					<Add library="libuser32.a" />
+					<Add library="libgdi32.a" />
+					<Add library="libwinspool.a" />
+					<Add library="libcomdlg32.a" />
+					<Add library="libadvapi32.a" />
+					<Add library="libshell32.a" />
+					<Add library="libole32.a" />
+					<Add library="liboleaut32.a" />
+					<Add library="libuuid.a" />
+					<Add library="libcomctl32.a" />
+					<Add library="libwsock32.a" />
+					<Add library="libodbc32.a" />
+					<Add directory="D:/wxWidgets-3.0.5-static/lib/gcc_lib" />
+					<Add directory="wxwidgets/lib/gcc_lib" />
+				</Linker>
+			</Target>
+			<Target title="32-bits">
+				<Option platforms="Windows;Unix;" />
+				<Option output="_bin/32-bits/HDL-Batch-installer" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="_bin/32-bits/" />
+				<Option object_output="_obj/32-bits/" />
+				<Option type="1" />
+				<Option compiler="gnu_gcc_compiler_tdm-32bits" />
+				<Option use_console_runner="0" />
+				<Option projectCompilerOptionsRelation="1" />
+				<Option projectLinkerOptionsRelation="1" />
+				<Option projectResourceIncludeDirsRelation="1" />
+				<Option projectLibDirsRelation="1" />
+				<Compiler>
+					<Add option="-O" />
+					<Add option="-Wall" />
+					<Add option="-m32" />
+					<Add option="-pipe" />
+					<Add option="-mthreads" />
+					<Add option="-D__GNUWIN32__" />
+					<Add option="-D__WXMSW__" />
+					<Add option="-DwxUSE_UNICODE" />
+					<Add option="-DBITS=32" />
+					<Add directory="$(#wx32)/include" />
+					<Add directory="$(#wx32)/lib/gcc_lib/mswu" />
+					<Add directory="include" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory="$(#wx32)/include" />
+					<Add directory="$(#wx32)/lib/gcc_lib/mswu" />
+				</ResourceCompiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-static-libstdc++" />
+					<Add option="-static-libgcc" />
+					<Add option="-static" />
+					<Add option="-m32" />
+					<Add option="-mthreads" />
+					<Add library="libwxmsw30u.a" />
+					<Add library="libwxpng.a" />
+					<Add library="libwxjpeg.a" />
+					<Add library="libwxtiff.a" />
+					<Add library="libwxzlib.a" />
+					<Add library="libkernel32.a" />
+					<Add library="libuser32.a" />
+					<Add library="libgdi32.a" />
+					<Add library="libwinspool.a" />
+					<Add library="libcomdlg32.a" />
+					<Add library="libadvapi32.a" />
+					<Add library="libshell32.a" />
+					<Add library="libole32.a" />
+					<Add library="liboleaut32.a" />
+					<Add library="libuuid.a" />
+					<Add library="libcomctl32.a" />
+					<Add library="libwsock32.a" />
+					<Add library="libodbc32.a" />
+					<Add library="libwxregexu.a" />
+					<Add directory="$(#wx32)/lib/gcc_lib" />
+				</Linker>
+			</Target>
+			<Target title="32-bits-wx3.1.5">
+				<Option platforms="Windows;Unix;" />
+				<Option output="_bin/32-bits/HDL-Batch-installer" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="_bin/32-bits/" />
+				<Option object_output="_obj/32-bits/" />
+				<Option type="1" />
+				<Option compiler="gnu_gcc_compiler_tdm-32bits" />
+				<Option use_console_runner="0" />
+				<Option projectCompilerOptionsRelation="1" />
+				<Option projectLinkerOptionsRelation="1" />
+				<Option projectIncludeDirsRelation="1" />
+				<Option projectResourceIncludeDirsRelation="1" />
+				<Option projectLibDirsRelation="1" />
+				<Compiler>
+					<Add option="-O" />
+					<Add option="-Wall" />
+					<Add option="-m32" />
+					<Add option="-pipe" />
+					<Add option="-mthreads" />
+					<Add option="-D__GNUWIN32__" />
+					<Add option="-D__WXMSW__" />
+					<Add option="-DwxUSE_UNICODE" />
+					<Add option="-DBITS=32" />
+					<Add directory="$(#wx32)/include" />
+					<Add directory="$(#wx32)/lib/gcc_lib/mswu" />
+					<Add directory="include" />
+				</Compiler>
+				<ResourceCompiler>
+					<Add directory="$(#wx32)/include" />
+					<Add directory="$(#wx32)/lib/gcc_lib/mswu" />
+				</ResourceCompiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-static-libstdc++" />
+					<Add option="-static-libgcc" />
+					<Add option="-static" />
+					<Add option="-m32" />
+					<Add option="-mthreads" />
+					<Add library="libwxmsw30u.a" />
+					<Add library="libwxpng.a" />
+					<Add library="libwxjpeg.a" />
+					<Add library="libwxtiff.a" />
+					<Add library="libwxzlib.a" />
+					<Add library="libkernel32.a" />
+					<Add library="libuser32.a" />
+					<Add library="libgdi32.a" />
+					<Add library="libwinspool.a" />
+					<Add library="libcomdlg32.a" />
+					<Add library="libadvapi32.a" />
+					<Add library="libshell32.a" />
+					<Add library="libole32.a" />
+					<Add library="liboleaut32.a" />
+					<Add library="libuuid.a" />
+					<Add library="libcomctl32.a" />
+					<Add library="libwsock32.a" />
+					<Add library="libodbc32.a" />
+					<Add directory="$(#wx32)/lib/gcc_lib" />
+				</Linker>
+			</Target>
+		</Build>
+		<VirtualTargets>
+			<Add alias="Releasers" targets="Debug;32-bits;" />
+		</VirtualTargets>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add directory="../include" />
+		</Compiler>
+		<Linker>
+			<Add option="-static-libstdc++" />
+			<Add option="-static-libgcc" />
+			<Add option="-static" />
+			<Add option="-mthreads" />
+			<Add library="libwxregexu.a" />
+		</Linker>
+		<Unit filename="../.gitattributes" />
+		<Unit filename="../.github/workflows/Repack-and-release.yml" />
+		<Unit filename="../.gitignore" />
+		<Unit filename="../README.md" />
+		<Unit filename="../include/file_t.h" />
+		<Unit filename="../include/wxMD5" />
+		<Unit filename="About.cpp" />
+		<Unit filename="About.h" />
+		<Unit filename="ArtMan.cpp" />
+		<Unit filename="ArtMan.h" />
+		<Unit filename="Component_error.cpp" />
+		<Unit filename="Component_error.h" />
+		<Unit filename="Config.cpp" />
+		<Unit filename="Config.h" />
+		<Unit filename="DokanMan.cpp" />
+		<Unit filename="DokanMan.h" />
+		<Unit filename="HDL_Batch_installerApp.cpp" />
+		<Unit filename="HDL_Batch_installerApp.h" />
+		<Unit filename="HDL_Batch_installerMain.cpp" />
+		<Unit filename="HDL_Batch_installerMain.h" />
+		<Unit filename="MD5Man.cpp" />
+		<Unit filename="NDBMan.cpp" />
+		<Unit filename="NDBMan.h" />
+		<Unit filename="Post_Install_Report.cpp" />
+		<Unit filename="Post_Install_Report.h" />
+		<Unit filename="_bin/Debug/Common/commit.sys" />
+		<Unit filename="_bin/Debug/Common/config.INI" />
+		<Unit filename="_bin/Debug/README.TXT" />
+		<Unit filename="_bin/Debug/changes.log" />
+		<Unit filename="common.cpp" />
+		<Unit filename="crude_call.h" />
+		<Unit filename="flags.h" />
+		<Unit filename="gamename/database.cpp" />
+		<Unit filename="gamename/database.h" />
+		<Unit filename="gamename/parser.cpp" />
+		<Unit filename="gamename/parser.h" />
+		<Unit filename="hdl-dump-recodes.cpp" />
+		<Unit filename="hdl-dump-recodes.h" />
+		<Unit filename="include/MD5Man.h" />
+		<Unit filename="include/locale_table.h" />
+		<Unit filename="include/macro-vault.h" />
+		<Unit filename="manifest.bin" />
+		<Unit filename="manifest.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
+		<Unit filename="resource.rc">
+			<Option compilerVar="WINDRES" />
+		</Unit>
+		<Unit filename="version.h" />
+		<Unit filename="wxsmith/About.wxs" />
+		<Unit filename="wxsmith/ArtMan.wxs" />
+		<Unit filename="wxsmith/Component_error.wxs" />
+		<Unit filename="wxsmith/Config.wxs" />
+		<Unit filename="wxsmith/DokanMan.wxs" />
+		<Unit filename="wxsmith/HDL_Batch_installerframe.wxs" />
+		<Unit filename="wxsmith/NDBMan.wxs" />
+		<Unit filename="wxsmith/Post_Install_Report.wxs" />
+		<Unit filename="wxsmith/pfsshell_wizard.wxs" />
+		<Extensions>
+			<AutoVersioning>
+				<Scheme minor_max="90" build_max="0" rev_max="0" rev_rand_max="10" build_times_to_increment_minor="400" />
+				<Settings autoincrement="0" date_declarations="1" use_define="0" update_manifest="0" do_auto_increment="0" ask_to_increment="0" language="C++" svn="0" svn_directory="" header_path="version.h" />
+				<Changes_Log show_changes_editor="0" app_title="[v%M.%m.%b - Revision %r]" changeslog_path="_bin\Debug\changes.log" />
+				<Code header_guard="VERSION_H" namespace="AutoVersion" prefix="" />
+			</AutoVersioning>
+			<lib_finder disable_auto="1" />
+			<wxsmith version="1">
+				<gui name="wxWidgets" src="HDL_Batch_installerApp.cpp" main="HDL_Batch_installerFrame" init_handlers="necessary" language="CPP" />
+				<resources>
+					<wxFrame wxs="wxsmith/HDL_Batch_installerframe.wxs" src="HDL_Batch_installerMain.cpp" hdr="HDL_Batch_installerMain.h" fwddecl="0" i18n="1" name="HDL_Batch_installerFrame" language="CPP" />
+					<wxDialog wxs="wxsmith/About.wxs" src="About.cpp" hdr="About.h" fwddecl="0" i18n="1" name="About" language="CPP" />
+					<wxDialog wxs="wxsmith/Config.wxs" src="Config.cpp" hdr="Config.h" fwddecl="0" i18n="1" name="Config" language="CPP" />
+					<wxDialog wxs="wxsmith/Component_error.wxs" src="Component_error.cpp" hdr="Component_error.h" fwddecl="0" i18n="1" name="Component_error" language="CPP" />
+					<wxDialog wxs="wxsmith/modify_header.wxs" src="modify_header.cpp" hdr="modify_header.h" fwddecl="0" i18n="1" name="modify_header" language="CPP" />
+					<wxDialog wxs="wxsmith/pfsshell_wizard.wxs" src="pfsshell_wizard.cpp" hdr="pfsshell_wizard.h" fwddecl="0" i18n="1" name="pfsshell_wizard" language="CPP" />
+					<wxDialog wxs="wxsmith/ArtMan.wxs" src="ArtMan.cpp" hdr="ArtMan.h" fwddecl="0" i18n="1" name="ArtMan" language="CPP" />
+					<wxDialog wxs="wxsmith/GameMan.wxs" src="GameMan.cpp" hdr="GameMan.h" fwddecl="0" i18n="1" name="GameMan" language="CPP" />
+					<wxDialog wxs="wxsmith/DokanMan.wxs" src="DokanMan.cpp" hdr="DokanMan.h" fwddecl="0" i18n="1" name="DokanMan" language="CPP" />
+					<wxDialog wxs="wxsmith/Post_Install_Report.wxs" src="Post_Install_Report.cpp" hdr="Post_Install_Report.h" fwddecl="0" i18n="1" name="Post_Install_Report" language="CPP" />
+					<wxDialog wxs="wxsmith/NDBMan.wxs" src="NDBMan.cpp" hdr="NDBMan.h" fwddecl="0" i18n="1" name="NDBMan" language="CPP" />
+					<wxDialog wxs="wxsmith/Partitions_displayer.wxs" src="Partitions_displayer.cpp" hdr="Partitions_displayer.h" fwddecl="0" i18n="1" name="Partitions_displayer" language="CPP" />
+				</resources>
+			</wxsmith>
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>
