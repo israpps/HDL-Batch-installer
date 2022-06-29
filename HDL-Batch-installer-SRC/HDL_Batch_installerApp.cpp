@@ -197,12 +197,6 @@ bool HDL_Batch_installerApp::OnInit()
     }
     if (first_time)
     {
-        if(wxMessageBox(_("HDL Batch Installer Has a game title database holding almost 15000 game titles (asociated to their respective ID's)\n\nThis program is capable of collecting information regarding every game that you install that isn't registered on the database\n\n Do you wish to collaborate with our database allowing the program to report unregistered games?\nWe will not collect personal information, only game ID's"),"",wxICON_INFORMATION|wxYES_NO)==wxYES)
-        {
-            std::cout <<"> Activating data sharing...\n";
-            main_config->Write("Installation/inform_unknown_ID",true);
-            main_config->Flush();
-        }
         wxFile A("Common\\tinmft.sys",wxFile::write);
         A.Write("What are you looking for?\n");
         A.Close();

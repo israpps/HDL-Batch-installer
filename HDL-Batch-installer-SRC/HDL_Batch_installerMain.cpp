@@ -769,7 +769,6 @@ void HDL_Batch_installerFrame::OninstallClick(wxCommandEvent& event)
     while (game_list__->GetItemCount() > 0)
     {
         command1.clear();
-        bool entry_found = false;
         if (install_progress->WasCancelled()) break;
         int current_index = (original_item_count - game_list__->GetItemCount());
         strr = game_list__->GetItemText(0,0);
@@ -809,13 +808,14 @@ void HDL_Batch_installerFrame::OninstallClick(wxCommandEvent& event)
             title = strr.substr(strr.find_last_of("\\") + 1); //use Filename instead
             title = title.substr(0, title.find_last_of('.') ); //cut extension
             if (CFG::DBENABLE)
-                entry_found = true;
         }
-        while (title.EndsWith(' ')) title.RemoveLast(1); //clean trailing whitespaces
+        while (title.EndsWith(' '))
+            title.RemoveLast(1); //clean trailing whitespaces
         int DD = dma_choice->GetSelection();
         ///           hdl_dump    !disctype!   !hdlhdd!      "!title!"         "!filename!"  !gameid!       *u4             -hide
         //command1 = "HDL.EXE " + inject_mode + hddd + " \"" + title + "\" \"" + strr + "\" " + ELF + " " + DMA_TABLE[DD] + HIDE_SWITCH;
-        if ( CFG::LOAD_CUSTOM_ICONS ) Load_custom_icon(ELF);
+        if (CFG::LOAD_CUSTOM_ICONS)
+            Load_custom_icon(ELF);
         command1.Printf("HDL.EXE %s %s \"%s\" \"%s\" %s %s %s",
                         inject_mode, hddd, title, strr, ELF, DMA_TABLE[DD], HIDE_SWITCH);
         COLOR(0f )std::cout << "---\n"
@@ -859,13 +859,6 @@ void HDL_Batch_installerFrame::OninstallClick(wxCommandEvent& event)
                 _reason.Add("Unhandled error...");
             }
         }
-//      if  ELF not found &curl is available         &                DB is internal      &          user allows this
-        if (entry_found && wxFileExists("Common/NETMAN/curl.exe") && (CFG::DBMODE == DB_INTERNAL) && CFG::SHARE_DATA)
-        {
-            std::cout << ELF<<" not registered in database\n";
-            command1.Replace('\"',"|");
-            wxExecute(wxString::Format("Common/NETMAN/curl.exe -H \"Content-Type: application/json\" -d \"{\\\"username\\\": \\\"%s\\\", \\\"content\\\":\\\"%s\\\"}\" %s", versionTAG, "**"+ELF+"**"+'-'+title+"@MD5->**"+MD5digest_file(std::string(strr.mb_str()))+"**", "https://discord.com/api/webhooks/925480439131570176/z6sfiEZf2bHrHUHxU_E_mygr7tiCJVbX8_ddOKZc1EhXYyz7OHQ1KwkaV1DhGYiP0XpK" ));
-        }
         game_list__->DeleteItem(0);
     }/// /////////////////////////////////MAIN INSTALL LOOP///////////////////////////////// ///
     COLOR(08) std::cout << endl << "> installation process finished.\n";
@@ -874,9 +867,9 @@ void HDL_Batch_installerFrame::OninstallClick(wxCommandEvent& event)
     ///
     if (report_counter != 0)
     {
-        Post_Install_Report* a = new Post_Install_Report(this,_filepath,_reason,_ELF,_media);
-        a->ShowModal();
-        delete a;
+        Post_Install_Report* REPORT = new Post_Install_Report(this,_filepath,_reason,_ELF,_media);
+        REPORT->ShowModal();
+        delete REPORT;
     }
     std::cout << "> Updating HDD information...\n";
     Update_hdd_data();
