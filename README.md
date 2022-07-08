@@ -45,4 +45,15 @@ __If this software was useful, please consider giving it a star here on GitHub, 
 
 ---
 
+## compilation
 
+HDL Batch Installer was built based on wxWidgets 3.0.5 stable release, built as a win32 Monolithic unicode-enabled static library, it uses Code::blocks wxwidgets project build system, to manage the UI elements and their declaration/implementation automatically, saving precious time.
+
+Eventually, i'll upgrade into the latest stable release 3.2.0, wich I hope doesn´t break anything :D
+
+
+### cross compilation
+
+ Currently the project is windows only, in order to make it cross platform, it will not only require to port parts of the code (wich sould not be too hard, since i tried to stick to wxWidgets as much as i could), but also the replacement of certain parts of the code (ie: PFSFuse manager UI)
+
+Since no one was interested on colaborating with this project so far, i don´t expect this to happen soon... or any time...
