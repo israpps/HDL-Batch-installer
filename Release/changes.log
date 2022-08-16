@@ -8,6 +8,7 @@
         -Game file selector: Added support to load .zso files, however, an HDLDump update to support the installation of zso is still needed
         -Game file selector: Now the description of each option can be localized
         -Webhooks: Webhooks are disconnected due to some trolling after source disclosure, the code related to it will be removed afterwards
+        -Icon loader: added more icons, by @LeonamMiiller
 
 11 May 2022
    [v3.3.3 - Revision 0]
