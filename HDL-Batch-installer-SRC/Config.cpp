@@ -232,16 +232,17 @@ void Config::SaveSettings()
     if (gndb_intern->GetValue())
         CFGT.DataBase_Mode              = DB_INTERNAL;
     else CFGT.DataBase_Mode = DB_EXTERNAL;
-    CFGT.MiniOPL                    = miniopl_warning->GetValue();
-    CFGT.Language                   = language_choice->GetSelection();
-    CFGT.Default_dma                = default_dma->GetSelection();
-    CFGT.OSD_Hide                   = osd_hide_settings->GetValue();
-    CFGT.check_updates              = check_updates->GetValue();
-    CFGT.custom_icons               = CUSTOM_ICONS->GetValue();
-    CFGT.collect_onkown_games_ID    = DATA_COLLECTION->GetValue();
-    CFGT.FUSE.default_OPLPART       = OPLPART->GetValue();
-    CFGT.FUSE.mountpoint            = MountPoint->GetString(MountPoint->GetSelection());
-    CFGT.NBD_IP                     = NBDIP->GetValue();
+    CFGT.MiniOPL                    	= miniopl_warning->GetValue();
+    CFGT.Language                   	= language_choice->GetSelection();
+    CFGT.Default_dma                	= default_dma->GetSelection();
+    CFGT.OSD_Hide                   	= osd_hide_settings->GetValue();
+    CFGT.check_updates              	= check_updates->GetValue();
+    CFGT.custom_icons               	= CUSTOM_ICONS->GetValue();
+    CFGT.collect_onkown_games_ID    	= DATA_COLLECTION->GetValue();
+    CFGT.FUSE.default_OPLPART       	= OPLPART->GetValue();
+    CFGT.FUSE.mountpoint            	= MountPoint->GetString(MountPoint->GetSelection());
+    CFGT.NBD_IP                     	= NBDIP->GetValue();
+
     //main_config->Write("Init/Debug_level", CFGT.debug_level);                   std::cout <<"debug_level=" << CFGT.debug_level<<std::endl;
     main_config->Write("Game_search/Default_iso_path", CFGT.Default_iso_path);
     std::cout <<"Default_iso_path="<<CFGT.Default_iso_path<<std::endl;
@@ -267,7 +268,6 @@ void Config::SaveSettings()
     std::cout <<"FUSE_default_mountpoint="<<CFGT.FUSE.mountpoint<<std::endl;
     main_config->Write("NBD/Default_IP",CFGT.NBD_IP);
     std::cout <<"Default_IP="<<CFGT.NBD_IP<<std::endl;
-
 
     std::cout << "> flushing settings handler and forcing file writing\n";
     main_config->Flush();//force data writing

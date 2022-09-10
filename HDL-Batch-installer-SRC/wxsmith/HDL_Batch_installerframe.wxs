@@ -506,6 +506,12 @@
 					<help>Quit the application</help>
 					<handler function="OnQuit" entry="EVT_MENU" />
 				</object>
+				<object class="wxMenuItem" name="ID_MENUITEM13" variable="COPYHDD" member="yes">
+					<label>Massive game transfer</label>
+					<help>Transfer all games installed on currently selected HDD into another one</help>
+					<enabled>0</enabled>
+					<handler function="OnCOPYHDDSelected" entry="EVT_MENU" />
+				</object>
 			</object>
 			<object class="wxMenu" variable="Menu3" member="no">
 				<label>Config</label>
@@ -578,12 +584,16 @@
 		</object>
 		<object class="wxMenu" variable="Browser_menu" member="yes">
 			<object class="wxMenuItem" name="ID_MENUITEM5" variable="MenuItem10" member="yes">
-				<label>Extract Game</label>
+				<label>Extract Game(s)</label>
 				<handler function="OnExtractInstalledGameRequest" entry="EVT_MENU" />
 			</object>
 			<object class="wxMenuItem" name="ID_MENUITEM7" variable="MenuItem12" member="yes">
 				<label>Download assets</label>
 				<handler function="OnInstalledGameAssetsDownloadRequest" entry="EVT_MENU" />
+			</object>
+			<object class="wxMenuItem" name="ID_MENUITEM14" variable="MenuItem18" member="yes">
+				<label>Transfer game(s) to another PS2 HDD</label>
+				<handler function="OnSelectiveGameMigration" entry="EVT_MENU" />
 			</object>
 			<object class="separator" />
 			<object class="wxMenuItem" name="ID_MENUITEM6" variable="MenuItem11" member="yes">

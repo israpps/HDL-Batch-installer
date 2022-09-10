@@ -14,11 +14,15 @@
 #include "ArtMan.h"
 #include "DokanMan.h"
 #include "Post_Install_Report.h"
+#include "CopyHDD.h"
 #include "NDBMan.h"
-//
+
+
+#include <wx/stopwatch.h>
 
 #include "gamename/parser.h" //includes both database & parser function
 #include "MD5Man.h"
+
 using namespace std;
 bool first_init = false;
 
@@ -37,9 +41,11 @@ wxString    mountpoint;
 wxString    default_OPLPART;
 wxString    NBD_IP;
 bool        SHARE_DATA;
+bool        DISPATCH_SYSTEM_NOTIFICATIONS;
 //    bool        UPDATE_AVAILABLE = false;
 //    bool        UPDATE_WARNINGS;
 }
+bool CAN_COPY_HDD;
 wxString versionTAG;
 //wxString gserverTAG;
 //Default path for game search event
@@ -115,6 +121,7 @@ const long HDL_Batch_installerFrame::ID_PANEL3 = wxNewId();
 const long HDL_Batch_installerFrame::ID_NOTEBOOK1 = wxNewId();
 const long HDL_Batch_installerFrame::ID_PANEL5 = wxNewId();
 const long HDL_Batch_installerFrame::idMenuQuit = wxNewId();
+const long HDL_Batch_installerFrame::ID_MENUITEM13 = wxNewId();
 const long HDL_Batch_installerFrame::SETTINGS = wxNewId();
 const long HDL_Batch_installerFrame::idMenuAbout = wxNewId();
 const long HDL_Batch_installerFrame::UPDT = wxNewId();
@@ -126,9 +133,9 @@ const long HDL_Batch_installerFrame::ID_MENUITEM10 = wxNewId();
 const long HDL_Batch_installerFrame::ID_PROGRESSDIALOG1 = wxNewId();
 const long HDL_Batch_installerFrame::ID_MENUITEM3 = wxNewId();
 const long HDL_Batch_installerFrame::ID_MENUITEM4 = wxNewId();
-const long HDL_Batch_installerFrame::ID_MENUITEM13 = wxNewId();
 const long HDL_Batch_installerFrame::ID_MENUITEM5 = wxNewId();
 const long HDL_Batch_installerFrame::ID_MENUITEM7 = wxNewId();
+const long HDL_Batch_installerFrame::ID_MENUITEM14 = wxNewId();
 const long HDL_Batch_installerFrame::ID_MENUITEM6 = wxNewId();
 const long HDL_Batch_installerFrame::ID_MENUITEM11 = wxNewId();
 const long HDL_Batch_installerFrame::ID_MENUITEM12 = wxNewId();
@@ -387,6 +394,9 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     Menu1 = new wxMenu();
     MenuItem1 = new wxMenuItem(Menu1, idMenuQuit, _("Quit\tAlt-F4"), _("Quit the application"), wxITEM_NORMAL);
     Menu1->Append(MenuItem1);
+    COPYHDD = new wxMenuItem(Menu1, ID_MENUITEM13, _("Massive game transfer"), _("Transfer all games installed on currently selected HDD into another one"), wxITEM_NORMAL);
+    Menu1->Append(COPYHDD);
+    COPYHDD->Enable(false);
     MenuBar1->Append(Menu1, _("&File"));
     Menu3 = new wxMenu();
     MenuItem3 = new wxMenuItem(Menu3, SETTINGS, _("Settings\tF2"), _("configure program"), wxITEM_NORMAL);
@@ -417,12 +427,12 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     about_2_install_menu.Append(MenuItem8);
     MenuItem9 = new wxMenuItem((&about_2_install_menu), ID_MENUITEM4, _("Remove from List"), wxEmptyString, wxITEM_NORMAL);
     about_2_install_menu.Append(MenuItem9);
-    MenuItem18 = new wxMenuItem((&about_2_install_menu), ID_MENUITEM13, _("Calculate MD5 hash"), wxEmptyString, wxITEM_NORMAL);
-    about_2_install_menu.Append(MenuItem18);
-    MenuItem10 = new wxMenuItem((&Browser_menu), ID_MENUITEM5, _("Extract Game"), wxEmptyString, wxITEM_NORMAL);
+    MenuItem10 = new wxMenuItem((&Browser_menu), ID_MENUITEM5, _("Extract Game(s)"), wxEmptyString, wxITEM_NORMAL);
     Browser_menu.Append(MenuItem10);
     MenuItem12 = new wxMenuItem((&Browser_menu), ID_MENUITEM7, _("Download assets"), wxEmptyString, wxITEM_NORMAL);
     Browser_menu.Append(MenuItem12);
+    MenuItem18 = new wxMenuItem((&Browser_menu), ID_MENUITEM14, _("Transfer game(s) to another PS2 HDD"), wxEmptyString, wxITEM_NORMAL);
+    Browser_menu.Append(MenuItem18);
     Browser_menu.AppendSeparator();
     MenuItem11 = new wxMenuItem((&Browser_menu), ID_MENUITEM6, _("Rename"), wxEmptyString, wxITEM_NORMAL);
     Browser_menu.Append(MenuItem11);
@@ -464,6 +474,7 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     Connect(ID_BUTTON16,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnButton4Click1);
     Connect(ID_NOTEBOOK1,wxEVT_COMMAND_NOTEBOOK_PAGE_CHANGED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnNotebook1PageChanged);
     Connect(idMenuQuit,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnQuit);
+    Connect(ID_MENUITEM13,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnCOPYHDDSelected);
     Connect(SETTINGS,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnSettings);
     Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnAbout);
     Connect(UPDT,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnUpdateRequest);
@@ -474,9 +485,9 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     Connect(ID_MENUITEM10,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnIconsPackageRequest);
     Connect(ID_MENUITEM3,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnItemListShowRequest);
     Connect(ID_MENUITEM4,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::RemoveISOfromList);
-    Connect(ID_MENUITEM13,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnMD5HashRequest);
     Connect(ID_MENUITEM5,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnExtractInstalledGameRequest);
     Connect(ID_MENUITEM7,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnInstalledGameAssetsDownloadRequest);
+    Connect(ID_MENUITEM14,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnSelectiveGameMigration);
     Connect(ID_MENUITEM6,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnInstalledGameRenameRequest);
     Connect(ID_MENUITEM11,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnManualInjectionRequest);
     Connect(ID_MENUITEM12,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnLoadCustomIcon2InstalledGameRequest);
@@ -725,6 +736,12 @@ void HDL_Batch_installerFrame::OnButton1Click(wxCommandEvent& event)
         selected_hdd->SetSelection(0);
         Update_hdd_data();
     }
+    if (HDDCount > 1)
+    {
+        CAN_COPY_HDD = true;
+        COPYHDD->Enable();
+    }
+    COPYHDD->Enable();
 }
 
 void HDL_Batch_installerFrame::OnListCtrl1BeginDrag1(wxListEvent& event) {}
@@ -766,8 +783,11 @@ void HDL_Batch_installerFrame::OninstallClick(wxCommandEvent& event)
 //                   _DBA,
                   ;
 
+    wxStopWatch* CLOCK = new wxStopWatch();
+    long ELAPSED_TIME= -1;
     while (game_list__->GetItemCount() > 0)
     {
+        CLOCK->Start(0);
         command1.clear();
         if (install_progress->WasCancelled()) break;
         int current_index = (original_item_count - game_list__->GetItemCount());
@@ -807,7 +827,6 @@ void HDL_Batch_installerFrame::OninstallClick(wxCommandEvent& event)
         {
             title = strr.substr(strr.find_last_of("\\") + 1); //use Filename instead
             title = title.substr(0, title.find_last_of('.') ); //cut extension
-            if (CFG::DBENABLE)
         }
         while (title.EndsWith(' '))
             title.RemoveLast(1); //clean trailing whitespaces
@@ -830,9 +849,11 @@ void HDL_Batch_installerFrame::OninstallClick(wxCommandEvent& event)
                             << command1 <<"\n";
         COLOR(0d)
         installation_retcode = wxExecute(command1.ToUTF8(),wxEXEC_SYNC);
+        ELAPSED_TIME = CLOCK->Time();
         COLOR(08)
         //if (CFG::DEBUG_LEVEL > 5 || (CTOR_FLAGS & FORCE_HIGH_DEBUG_LEVEL) )
         cout << "\n>returned value [" << installation_retcode <<"]\n";
+        std::cout << ">Elapsed time "<<ELAPSED_TIME<<"(ms)\n";
         COLOR(07)
 
         if (installation_retcode != 0)
@@ -860,9 +881,12 @@ void HDL_Batch_installerFrame::OninstallClick(wxCommandEvent& event)
             }
         }
         game_list__->DeleteItem(0);
+
     }/// /////////////////////////////////MAIN INSTALL LOOP///////////////////////////////// ///
     COLOR(08) std::cout << endl << "> installation process finished.\n";
     delete install_progress;
+    CLOCK->Pause();
+    delete CLOCK;
     COLOR(07)
     ///
     if (report_counter != 0)
@@ -880,7 +904,11 @@ void HDL_Batch_installerFrame::OninstallClick(wxCommandEvent& event)
         wxRemoveFile(HDL_CACHE);
     }
     if (wxFileExists(EXEC_PATH + "list.ico"))
+    {
+        COLOR(08) cout << "> erasing \"list.ico\" \n";
+        COLOR(07)
         wxRemoveFile(EXEC_PATH + "list.ico");
+    }
     wxEndBusyCursor();
     wxBell();
 }
@@ -1963,4 +1991,47 @@ void HDL_Batch_installerFrame::OnMD5HashRequest(wxCommandEvent& event)
     std::cout << "\tCollected hash: ["<<HASH<<"]\n";
     wxEndBusyCursor();
     wxMessageBox(HASH, _("Collected hash:"),wxICON_INFORMATION);
+}
+
+void HDL_Batch_installerFrame::OnCOPYHDDSelected(wxCommandEvent& event)
+{
+    if (selected_hdd->GetCount() < 2)
+    {
+        wxMessageBox(_("You need at least two PlayStation 2 formatted HDDs to use this operation!"),"", wxICON_WARNING);
+        return;
+    }
+    wxArrayString HDDS;
+    for (size_t x=0; x < selected_hdd->GetCount(); x++)
+        HDDS.Add(selected_hdd->GetString(x));
+
+    CopyHDD* HDDCOPYER = new CopyHDD(this, HDDS, -1, wxEmptyString);
+
+    HDDCOPYER->ShowModal();
+    delete HDDCOPYER;
+}
+
+void HDL_Batch_installerFrame::OnSelectiveGameMigration(wxCommandEvent& event)
+{
+    if (selected_hdd->GetCount() < 2)
+    {
+        wxMessageBox(_("You need at least two PlayStation 2 formatted HDDs to use this operation!"),"", wxICON_WARNING);
+        return;
+    }
+
+    wxString FLAGS;
+    long itemIndex = -1;
+
+    while ((itemIndex = Installed_game_list->GetNextItem(itemIndex, wxLIST_NEXT_ALL, wxLIST_STATE_DONTCARE)) != wxNOT_FOUND)
+    {
+        FLAGS.append( (Installed_game_list->GetItemState(itemIndex, wxLIST_STATE_SELECTED)) ? "y":"n");
+    }
+    std::cout <<"The command string is: ["<<FLAGS<<"]\n";
+    wxArrayString HDDS;
+    for (size_t x=0; x < selected_hdd->GetCount(); x++)
+        HDDS.Add(selected_hdd->GetString(x));
+
+    CopyHDD* HDDCOPYER = new CopyHDD(this, HDDS, selected_hdd->GetSelection(), FLAGS);
+
+    HDDCOPYER->ShowModal();
+    delete HDDCOPYER;
 }

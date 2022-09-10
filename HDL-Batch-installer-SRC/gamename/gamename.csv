@@ -264,6 +264,7 @@ PBPX_955.23;Gran Turismo 4 - Prologue
 PBPX_955.24;Gran Turismo 4 - Prologue
 PBPX_956.01;Gran Turismo 4
 PCPX_963.01;I.Q Remix+ - Intelligent Qube
+PCPX_963.03;6-gatsu Hatsubai Title Promotion Disc (Aconcagua - Boku no Natsuyasumi - TVDJ)
 PCPX_963.04;Scandal [Demo/Movie disc]
 PCPX_963.05;PrePre Plus 004 - 2000 June [Disc 2]
 PCPX_963.06;Bikkuri Mouse
@@ -665,6 +666,7 @@ SCED_507.50;Official PlayStation 2 Magazine Demo 28
 SCED_507.61;Sega Demo
 SCED_507.68;WipEout Fusion
 SCED_507.80;Official PlayStation 2 Magazine [Germany Special Edition 1]
+SCED_507.81;Destruction Derby Arenas [Beta]
 SCED_507.83;Best Games Ever 6
 SCED_507.84;PlayStation 2 Greatest Hits - Vol 5
 SCED_507.85;PlayStation 2 Special Edition - Sports Games
@@ -920,6 +922,7 @@ SCED_531.68;Official PlayStation 2 Magazine Demo 65
 SCED_531.69;Official PlayStation 2 Magazine Demo 66
 SCED_531.70;Official PlayStation 2 Magazine Demo 67
 SCED_531.71;Official PlayStation 2 Magazine Demo 68
+SCED_531.75;Official PlayStation 2 Magazine Demo 40
 SCED_531.76;Magazine Ufficiale PlayStation 2 Demo 03/2005
 SCED_531.77;EyeToy Special Demo
 SCED_532.06;Official PlayStation 2 Magazine Demo 58
@@ -934,6 +937,7 @@ SCED_532.14;Official PlayStation 2 Magazine Germany 2005/12
 SCED_532.15;Official PlayStation 2 Magazine Germany 2005/13
 SCED_532.16;Official PlayStation 2 Magazine Demo 68
 SCED_532.17;Official PlayStation 2 Magazine Germany 2006/02
+SCED_532.25;Official PlayStation 2 Magazine Demo 58
 SCED_532.28;Official PlayStation 2 Magazine Demo 57
 SCED_532.88;Official PlayStation 2 Magazine Demo 58
 SCED_532.89;Official PlayStation 2 Magazine Demo 59
@@ -3407,7 +3411,11 @@ SCES_543.64;Curious George
 SCES_543.66;David Douillet Judo
 SCES_543.68;RTL Ski Jumping 2007
 SCES_543.70;Alpine Ski Racing
+SCES_543.71;SingStar Pop Hits
+SCES_543.72;SingStar Pop Hits - 40 Principales
+SCES_543.73;SingStar Pop Hits
 SCES_543.74;RTL Wintergames 2007
+SCES_543.75;SingStar Pop Hits
 SCES_543.76;Barnyard
 SCES_543.81;Dr. Dolittle
 SCES_543.82;Jumanji
@@ -3768,6 +3776,7 @@ SCKA_200.88;Everybody Tennis (Korea)
 SCKA_200.89;Biohazard 4 (Korea)
 SCKA_200.90;GOD HAND
 SCKA_200.92;K-1 World Grand Prix 2006
+SCKA_200.93;Ratatouille
 SCKA_200.95;Okami [English Version]
 SCKA_200.96;Barnyard
 SCKA_200.97;Super Robot Wars Original Generations
@@ -4143,6 +4152,8 @@ SCPS_888.88;God of War II
 SCUA_975.30;ESA Foundation Compilatin Set
 SCUS_103.80;LEGO BATMAN - THE VIDEOGAME [LIMITED EDITION BUNDLE]
 SCUS_210.52;Disney/Pixar Monsters, Inc.
+SCUS_212.95;Tony Hawk's American Wasteland Collector's Edition
+SCUS_214.94;Need for Speed - Carbon Collector's Edition
 SCUS_280.28;EverQuest: Online Adventures
 SCUS_901.74;Disney/Pixar Toy Story 3
 SCUS_911.29;OKAGE SHADOW KING
@@ -4671,7 +4682,7 @@ SLED_513.80;Zone of the Enders: The 2nd Runner
 SLED_514.72;Tom Clancys Splinter Cell
 SLED_516.51;Starsky and Hutch
 SLED_516.76;Warhammer 40,000: Fire Warrior
-SLED_518.32 Sphinx and the Cursed Mummy
+SLED_518.32;Sphinx and the Cursed Mummy
 SLED_519.01;Soulcalibur II
 SLED_519.02;True Crime: Streets of LA
 SLED_519.21;Final Fantasy X-2
@@ -5313,6 +5324,7 @@ SLES_509.22;Terminator, The - Dawn of Fate
 SLES_509.27;Commandos 2 - Men of Courage
 SLES_509.28;SOCOM - U.S. Navy SEALs [Beta & Full Release]
 SLES_509.30;Dino Stalker
+SLES_509.32;Smash Court Tennis - Pro Tournament
 SLES_509.33;eJay Clubworld
 SLES_509.34;World Rally Championship II Extreme
 SLES_509.35;Circus Maximus - Chariot Wars
@@ -7977,6 +7989,7 @@ SLES_554.09;TT Superbikes Legends
 SLES_554.11;Winter Sports 2009: The Next Challeng
 SLES_554.15;Disney Think Fast
 SLES_554.18;Tube Mania
+SLES_554.21;Buzz! Brain of Switzerland
 SLES_554.28;Bolt
 SLES_554.29;Disney Bolt
 SLES_554.30;Disney Bolt
@@ -7991,6 +8004,7 @@ SLES_554.48;Indiana Jones and the Staff of Kings
 SLES_554.50;PES 2009 - Pro Evolution Soccer
 SLES_554.51;Rock Band 2
 SLES_554.52;Shaun White Snowboarding
+SLES_554.53;SingStar Queen
 SLES_554.57;AC/DC LIVE - Rock Band Track Pack
 SLES_554.58;Rock Band - Song Pack 2
 SLES_554.59;Jelly Belly - Ballistic Beans
@@ -8015,6 +8029,7 @@ SLES_554.92;SBK-09 Superbike World Championship
 SLES_554.93;Marvel - Ultimate Alliance 2
 SLES_554.94;X-Men Origins - Wolverine
 SLES_554.95;X-Men Origins - Wolverine
+SLES_554.96;Secret Agent Clank
 SLES_554.99;Disney G-Force
 SLES_555.00;Disney G-Force
 SLES_555.02;Disney G-Force (Rusia)
@@ -8268,6 +8283,7 @@ SLKA_251.07;CROUCHING TIGEER, HIDDEN DRAGON
 SLKA_251.08;Eve - Burst Error Plus
 SLKA_251.09;SHIRACHUU TANKENBU
 SLKA_251.10;NBA Live 2005
+SLKA_251.11;King of Fighters 2001, The
 SLKA_251.12;King of Fighters 2001, The
 SLKA_251.15;Rockman X7
 SLKA_251.16;WWE Smackdown! Here Comes the Pain
@@ -8438,6 +8454,7 @@ SLKA_253.28;Castlevania - Curse of Darkness
 SLKA_253.29;Shin Sangoku Musou 4 - Moushouden
 SLKA_253.30;BATTLEFIELD 2 - MODERN COMBAT
 SLKA_253.31;Marc Eckos Getting Up - Contents Under Pressure
+SLKA_253.32;Marc Ecko's Getting Up - Contents Under Pressure
 SLKA_253.33;Metal Slug Complete
 SLKA_253.34;Need for Speed - Most Wanted
 SLKA_253.35;SHADOW THE HEDGEHOG
@@ -8473,6 +8490,7 @@ SLKA_253.73;FIGHT NIGHT ROUND 3
 SLKA_253.74;FIFA Street 2
 SLKA_253.75;Transformers - The Game
 SLKA_253.77;OutRun 2006 - Coast 2 Coast
+SLKA_253.78;FIFA world cup 2006
 SLKA_253.79;Sengoku Musou 2
 SLKA_253.80;Winback 2 - Project Poseidon
 SLKA_253.81;Winning Eleven 10
@@ -8533,6 +8551,8 @@ SLPE_552.78;007 Yu Wens Love
 SLPE_553.27;Monopoly
 SLPM_021.65;Shikigami no Shiro
 SLPM_094.46;Ookami [PlayStation 2 the Best]
+SLPM_203.91;Saiyuki Gunlock
+SLPM_204.36;Sakigake!! Otokojuku
 SLPM_250.19;Galerian Ash
 SLPM_250.26;Legaia 2
 SLPM_250.28;Mission Impossible
@@ -15166,6 +15186,7 @@ SLUS_217.79;Eternal Poison
 SLUS_217.80;Ferrari Challenge
 SLUS_217.81;Guitar Hero - World Tour
 SLUS_217.82;Shin Megami Tensei - Persona 4
+SLUS_217.82B;Shin Megami Tensei - Persona 4
 SLUS_217.83;Space Chimps
 SLUS_217.85;LEGO Batman
 SLUS_217.86;Summer Athletics - The Ultimate Challenge
@@ -15490,6 +15511,7 @@ SLUS_291.31;Project Snowblind [Public Beta Vol.1.0]
 SLUS_291.32;S.L.A.I. - Steel Lancer Arena International - Phantom Crash [Public Beta Vol.1.0]
 SLUS_291.33;Namco Transmission v2
 SLUS_291.34;Namco Transmission Demo Disc Vol.2
+SLUS_291.35;NCAA March Madness 2005 [Demo]
 SLUS_291.37;Mercenaries [Demo]
 SLUS_291.38;Punisher [Demo]
 SLUS_291.39;Shadow of Rome [Demo]
@@ -15548,8 +15570,12 @@ SLUS_503.50;Disneys Tarzan Freeride
 SLUS_530.24;Altered Beast
 SLUS_554.42;Tomb Raider - Underworld
 SLUS_666.66;Beats of Rage
+SLUS_804.21;Resident Evil 2 [Demo]
+SLUS_900.09;Resident Evil 2 [Trade Demo]
 SLUS_970.15;Fantavision
+SLUS_971.33;Getaway, The
 SLUS_974.05;ATV Off-Road Fury 3
+SLUS_976.57;MLB 11 - The Show
 SLUS_999.99;Mortal Kombat Anthology
 SRP2_002.01;Wand of Fortune Twin Pack
 SRP2_003.01;S.Y.K Twin Pack
@@ -15700,6 +15726,8 @@ ULKS_254.70;Zone of the Enders - The 2nd Runner [BigHits Series]
 ULKS_254.71;Metal Gear Solid 2 - Sons of Liberty (Big Hit Series)
 ULKS_254.72;Metal Gear Solid 3 - Snake Eater (Big Hit Series)
 VUGJ_100.01;Ice Age 2 - The Meltdown [with DVD]
+VW067-J1;Crash Bandicoot 4 - Sakuretsu! Majin Power!
+VW067-J2;Crash Bandicoot 4 - Sakuretsu! Majin Power! [PlayStation 2 The Best]
 WLFD_008.10;Will O Wisp - Easter no Kiseki [Twin Pack]
 XSPL_654.84;Wordimagesoundplay
 XSPL_670.01;Wonder Zone

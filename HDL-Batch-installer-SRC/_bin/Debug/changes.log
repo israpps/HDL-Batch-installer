@@ -1,3 +1,11 @@
+10 September 2022
+   [v3.4.0 - Revision 0]
+
+     Change log:
+        -New Feature: Massive game transfer. copy all games from one HDD to another, or cherry pick from installed game list
+        -Installation loop: Added clock to keep on log the elapsed milisecconds that each install took
+        -General: Some Refactorization and code formatting
+
 20 June 2022
    [v3.3.4 - Revision 0]
 

@@ -257,7 +257,7 @@ void ArtMan::OndownloadClick(wxCommandEvent& event)
             COLOR(07)
         }
         if (FAST->IsChecked())
-        	wxMilliSleep(3900);
+            wxMilliSleep(3900);
     }
     cleanup();
     wxEndBusyCursor();

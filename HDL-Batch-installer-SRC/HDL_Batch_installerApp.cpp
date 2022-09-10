@@ -32,7 +32,7 @@ bool HDL_Batch_installerApp::OnInit()
     HDLBINST_APPDATA = wxString::Format("%s\\HDLBInst",Get_env("appdata"));
     std::cout <<"HDLBINST_APPDATA ["<< HDLBINST_APPDATA <<"]\n";
     if (!wxDirExists(HDLBINST_APPDATA))
-    	wxMkDir(HDLBINST_APPDATA);
+        wxMkDir(HDLBINST_APPDATA);
     if (!wxFileExists("Common\\tinmft.sys"))
     {
         first_time=true;

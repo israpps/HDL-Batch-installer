@@ -130,6 +130,8 @@ private:
     void OnManualInjectionRequest(wxCommandEvent& event);
     void OnLoadCustomIcon2InstalledGameRequest(wxCommandEvent& event);
     void OnMD5HashRequest(wxCommandEvent& event);
+    void OnCOPYHDDSelected(wxCommandEvent& event);
+    void OnSelectiveGameMigration(wxCommandEvent& event);
     //*)
     void OnGoToFileLocationRequest(wxFileName victim);
     void OnTakeOutFromTheListRequest(wxListCtrl* ListCtrl, long itemIndex);
@@ -169,6 +171,7 @@ private:
     static const long ID_NOTEBOOK1;
     static const long ID_PANEL5;
     static const long idMenuQuit;
+    static const long ID_MENUITEM13;
     static const long SETTINGS;
     static const long idMenuAbout;
     static const long UPDT;
@@ -180,9 +183,9 @@ private:
     static const long ID_PROGRESSDIALOG1;
     static const long ID_MENUITEM3;
     static const long ID_MENUITEM4;
-    static const long ID_MENUITEM13;
     static const long ID_MENUITEM5;
     static const long ID_MENUITEM7;
+    static const long ID_MENUITEM14;
     static const long ID_MENUITEM6;
     static const long ID_MENUITEM11;
     static const long ID_MENUITEM12;
@@ -217,6 +220,7 @@ private:
     wxMenu Browser_menu;
     wxMenu about_2_install_menu;
     wxMenu* Menu4;
+    wxMenuItem* COPYHDD;
     wxMenuItem* MenuItem10;
     wxMenuItem* MenuItem11;
     wxMenuItem* MenuItem12;
