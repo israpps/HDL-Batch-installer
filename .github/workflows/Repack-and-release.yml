@@ -46,9 +46,9 @@ jobs:
         cd Release
         wget https://github.com/israpps/hdl-dump/releases/download/hdlinst/HDL.EXE -O $PWD/HDL.EXE
 
-#    - name: Bundle extra files before building packages
-#      run: |
-#        cp LICENSE Release/LICENSE.TXT
+    - name: unpack icons
+      run: |
+        7z x -oRelease/Common/ -pPDPA svr/_ICN.7z
 
     - name: Trim changes of latest version
       run: |
