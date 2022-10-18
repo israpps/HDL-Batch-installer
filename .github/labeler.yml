@@ -27,3 +27,6 @@
 
   labeler:
     - '.github/labeler.yml'
+
+  icons:
+    - 'svr/_ICN.7z'
