@@ -1,3 +1,9 @@
+27 October 2022
+   [v3.4.1 - Revision 0]
+
+     Change log:
+        -Removed: Console clock, it was interferring with install return code
+
 10 September 2022
    [v3.4.0 - Revision 0]
 

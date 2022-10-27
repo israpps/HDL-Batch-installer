@@ -18,8 +18,6 @@
 #include "NDBMan.h"
 
 
-#include <wx/stopwatch.h>
-
 #include "gamename/parser.h" //includes both database & parser function
 #include "MD5Man.h"
 
@@ -201,7 +199,6 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     FlexGridSizer1->AddGrowableCol(0);
     FlexGridSizer1->AddGrowableRow(0);
     FlexGridSizer2 = new wxFlexGridSizer(0, 1, 0, 0);
-    FlexGridSizer2->AddGrowableCol(0);
     BoxSizer1 = new wxBoxSizer(wxHORIZONTAL);
     FlexGridSizer10 = new wxFlexGridSizer(0, 3, 0, 0);
     Button1 = new wxButton(Panel5, ID_BUTTON2, _("Search ps2 HDD\'s"), wxDefaultPosition, wxSize(144,24), 0, wxDefaultValidator, _T("ID_BUTTON2"));
@@ -227,7 +224,6 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     FlexGridSizer2->Add(FlexGridSizer9, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     FlexGridSizer1->Add(FlexGridSizer2, 1, wxALL|wxEXPAND, 5);
     FlexGridSizer3 = new wxFlexGridSizer(0, 1, 0, 0);
-    FlexGridSizer3->AddGrowableCol(0);
     hdd_used_space = new wxTextCtrl(Panel5, ID_TEXTCTRL1, _("total:\?GB | Free:\?GB"), wxDefaultPosition, wxSize(400,23), wxTE_READONLY|wxTE_CENTRE, wxDefaultValidator, _T("ID_TEXTCTRL1"));
     FlexGridSizer3->Add(hdd_used_space, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
     Gauge1 = new wxGauge(Panel5, ID_GAUGE1, 100, wxDefaultPosition, wxSize(464,24), wxGA_SMOOTH, wxDefaultValidator, _T("ID_GAUGE1"));
@@ -269,9 +265,7 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     dma_choice = new wxChoice(Panel1, ID_CHOICE1, wxDefaultPosition, wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_CHOICE1"));
     dma_choice->Disable();
     for (int X=0 ; X <=7 ; X++)
-    {
-        dma_choice->Append(DMA_ALIAS[X]);
-    }
+    { dma_choice->Append(DMA_ALIAS[X]); }
     dma_choice->SetSelection(7);
     FlexGridSizer7->Add(dma_choice, 0, wxLEFT|wxRIGHT|wxEXPAND, 5);
     StaticLine2 = new wxStaticLine(Panel1, ID_STATICLINE2, wxDefaultPosition, wxSize(0,0), wxLI_HORIZONTAL, _T("ID_STATICLINE2"));
@@ -783,11 +777,9 @@ void HDL_Batch_installerFrame::OninstallClick(wxCommandEvent& event)
 //                   _DBA,
                   ;
 
-    wxStopWatch* CLOCK = new wxStopWatch();
     long ELAPSED_TIME= -1;
     while (game_list__->GetItemCount() > 0)
     {
-        CLOCK->Start(0);
         command1.clear();
         if (install_progress->WasCancelled()) break;
         int current_index = (original_item_count - game_list__->GetItemCount());
@@ -849,7 +841,6 @@ void HDL_Batch_installerFrame::OninstallClick(wxCommandEvent& event)
                             << command1 <<"\n";
         COLOR(0d)
         installation_retcode = wxExecute(command1.ToUTF8(),wxEXEC_SYNC);
-        ELAPSED_TIME = CLOCK->Time();
         COLOR(08)
         //if (CFG::DEBUG_LEVEL > 5 || (CTOR_FLAGS & FORCE_HIGH_DEBUG_LEVEL) )
         cout << "\n>returned value [" << installation_retcode <<"]\n";
@@ -885,8 +876,6 @@ void HDL_Batch_installerFrame::OninstallClick(wxCommandEvent& event)
     }/// /////////////////////////////////MAIN INSTALL LOOP///////////////////////////////// ///
     COLOR(08) std::cout << endl << "> installation process finished.\n";
     delete install_progress;
-    CLOCK->Pause();
-    delete CLOCK;
     COLOR(07)
     ///
     if (report_counter != 0)
