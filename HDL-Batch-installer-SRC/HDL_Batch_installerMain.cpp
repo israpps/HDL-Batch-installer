@@ -777,7 +777,6 @@ void HDL_Batch_installerFrame::OninstallClick(wxCommandEvent& event)
 //                   _DBA,
                   ;
 
-    long ELAPSED_TIME= -1;
     while (game_list__->GetItemCount() > 0)
     {
         command1.clear();
@@ -844,10 +843,9 @@ void HDL_Batch_installerFrame::OninstallClick(wxCommandEvent& event)
         COLOR(08)
         //if (CFG::DEBUG_LEVEL > 5 || (CTOR_FLAGS & FORCE_HIGH_DEBUG_LEVEL) )
         cout << "\n>returned value [" << installation_retcode <<"]\n";
-        std::cout << ">Elapsed time "<<ELAPSED_TIME<<"(ms)\n";
         COLOR(07)
 
-        if (installation_retcode != 0)
+        if (installation_retcode != 0 || installation_retcode != -1073741819)
         {
             report_counter++;
             _filepath.Add(strr);
@@ -1794,6 +1792,10 @@ void HDL_Batch_installerFrame::OnButton4Click(wxCommandEvent& event)
             }
         }
     }
+    if (pfs_partitions.GetCount() < 1)
+	{
+		wxMessageBox(_("You need at least one PFS partition to use this menu"), _("Could not find PFS Partitions"), wxICON_WARNING);
+	}
     wxEndBusyCursor();
     DokanMan* DOKAN_WIZARD = new DokanMan(this, pfs_partitions, winapi_device_token);
     DOKAN_WIZARD->ShowModal();

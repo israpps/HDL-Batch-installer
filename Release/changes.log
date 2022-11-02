@@ -1,3 +1,10 @@
+02 November 2022
+   [v3.4.1 - Revision 1]
+
+     Change log:
+        -Dokan Manager: Negate access to the menu if no PFS partitions are found
+        -Installation loop: Don't mark retcode `-1073741819` as an error, since it seems to be a coding issue in HDL-Dump
+
 27 October 2022
    [v3.4.1 - Revision 0]
 
