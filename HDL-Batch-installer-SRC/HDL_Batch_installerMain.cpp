@@ -1792,11 +1792,14 @@ void HDL_Batch_installerFrame::OnButton4Click(wxCommandEvent& event)
             }
         }
     }
+    wxEndBusyCursor();
+
     if (pfs_partitions.GetCount() < 1)
 	{
 		wxMessageBox(_("You need at least one PFS partition to use this menu"), _("Could not find PFS Partitions"), wxICON_WARNING);
+		return;
 	}
-    wxEndBusyCursor();
+
     DokanMan* DOKAN_WIZARD = new DokanMan(this, pfs_partitions, winapi_device_token);
     DOKAN_WIZARD->ShowModal();
     delete DOKAN_WIZARD;

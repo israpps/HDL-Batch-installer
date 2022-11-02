@@ -18666,9 +18666,9 @@
 	<wx/statline.h>
 	<wx/stattext.h>
 
-1659551330 c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\version.h
+1667363602 c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\version.h
 
-1656467691 source:c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\artman.cpp
+1662843629 source:c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\artman.cpp
 	"ArtMan.h"
 	<wx/intl.h>
 	<wx/string.h>
@@ -18707,7 +18707,7 @@
 	<wx/statline.h>
 	<wx/stattext.h>
 
-1662840401 source:c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\config.cpp
+1662843632 source:c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\config.cpp
 	"Config.h"
 	"include/locale_table.h"
 	<wx/font.h>
@@ -18761,10 +18761,10 @@
 	<wx/textctrl.h>
 	<wx/arrstr.h>
 
-1656467845 source:c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\gamename\database.cpp
+1667364243 source:c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\gamename\database.cpp
 	"database.h"
 
-1656467845 c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\gamename\database.h
+1667364243 c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\gamename\database.h
 	<string>
 
 1640806388 source:c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\gamename\parser.cpp
@@ -18780,7 +18780,7 @@
 
 1645836143 source:c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\hdl-dump-recodes.cpp
 
-1659551329 source:c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installerapp.cpp
+1662843631 source:c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installerapp.cpp
 	"HDL_Batch_installerApp.h"
 	"flags.h"
 	"HDL_Batch_installerMain.h"
@@ -18797,7 +18797,7 @@
 
 1639680891 c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\flags.h
 
-1662836058 c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installermain.h
+1666913505 c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installermain.h
 	"version.h"
 	<wx/button.h>
 	<wx/checkbox.h>
@@ -18897,7 +18897,7 @@
 	<wx/settings.h>
 	<wx/string.h>
 
-1662838812 source:c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\copyhdd.cpp
+1662843804 source:c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\copyhdd.cpp
 	"CopyHDD.h"
 	<wx/intl.h>
 	<wx/string.h>
@@ -18906,7 +18906,7 @@
 	<wx/msgdlg.h>
 	"include/macro-vault.h"
 
-1662841495 c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\copyhdd.h
+1662843630 c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\copyhdd.h
 	<wx/button.h>
 	<wx/choice.h>
 	<wx/dialog.h>
