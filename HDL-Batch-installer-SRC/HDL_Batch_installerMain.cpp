@@ -845,7 +845,7 @@ void HDL_Batch_installerFrame::OninstallClick(wxCommandEvent& event)
         cout << "\n>returned value [" << installation_retcode <<"]\n";
         COLOR(07)
 
-        if (installation_retcode != 0 || installation_retcode != -1073741819)
+        if (installation_retcode != 0 && installation_retcode != -1073741819)
         {
             report_counter++;
             _filepath.Add(strr);
