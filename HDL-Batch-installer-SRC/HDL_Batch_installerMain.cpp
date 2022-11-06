@@ -747,23 +747,29 @@ void HDL_Batch_installerFrame::OnParse_hdl_tocClick(wxCommandEvent& event)
 
 void HDL_Batch_installerFrame::OninstallClick(wxCommandEvent& event)
 {
-    wxBeginBusyCursor();
-    if ( (!wxFileExists(EXEC_PATH+"Common\\Icons.INI")) && (CFG::LOAD_CUSTOM_ICONS))
-    {
-        ask_2_download_icons();
-    }
+	int not_enough_space_count = 0;
     wxString messagebuffer, HIDE_SWITCH, strr, msg, command1;
     wxString hddd = selected_hdd->GetString(selected_hdd->GetSelection());
+    long original_item_count = game_list__->GetItemCount();
     long installation_retcode;
 
+    wxBeginBusyCursor();
+
     HIDE_SWITCH = (CFG::OSD_HIDE) ? " -hide" : "";
-    long original_item_count = game_list__->GetItemCount();
     if (original_item_count == 0)// IF gamelist is empty, get out
     {
         wxMessageBox(_("no games selected for installation"), error_caption,wxICON_EXCLAMATION);
         wxEndBusyCursor();
         return;
     }
+
+    if ( (!wxFileExists(EXEC_PATH+"Common\\Icons.INI")) && (CFG::LOAD_CUSTOM_ICONS))
+    {
+    	wxEndBusyCursor();
+        ask_2_download_icons();
+    	wxBeginBusyCursor();
+    }
+
     std::cout <<"game count: "<< original_item_count<<std::endl;
     cout << "> begining installation...\n";
     install_progress = new wxProgressDialog(_("Installing"), wxEmptyString, original_item_count, this, wxPD_APP_MODAL|wxPD_ELAPSED_TIME|wxPD_SMOOTH|wxPD_AUTO_HIDE);
@@ -854,22 +860,39 @@ void HDL_Batch_installerFrame::OninstallClick(wxCommandEvent& event)
             if( installation_retcode == 106)
             {
                 _reason.Add(_("There is not enough space on the HDD to install this game"));
+                not_enough_space_count++;
             }
-            if( installation_retcode == -1)
+            else if( installation_retcode == -2)
                 _reason.Add(_("HDL-Dump reported \"Out of memory\"."));
-            if( installation_retcode == 101)
+
+            else if( installation_retcode == 101)
                 _reason.Add(_("not a PlayStation 2 HDD."));
 
             else if ( installation_retcode == 110 )
-            {
-                _reason.Add(_("A game with this name is already installed"));
-            }
+            	_reason.Add(_("A game with this name is already installed"));
+
+            else if ( installation_retcode == 113 )
+            	_reason.Add(_("The game has a corrupt SYSTEM.CNF file"));
+
+            else if ( installation_retcode == 120 )
+            	_reason.Add(_("File could not be found (or accesed?)"));
+
+            else if ( installation_retcode == 121 )
+            	_reason.Add(_("CUE or IML have a missing linked file"));
+
+            else if ( installation_retcode == 133 )
+            	_reason.Add(_("bin/cue with multiple .bin files are not supported, combine them into a single bin"));
+
             else
-            {
-                _reason.Add("Unhandled error...");
-            }
+				_reason.Add("Unhandled error...");
         }
         game_list__->DeleteItem(0);
+
+		if (not_enough_space_count > 3)
+		{
+			wxMessageBox(_("Installation process aborted, HDD is running out of space"), warning_caption, wxICON_WARNING);
+			break;
+		}
 
     }/// /////////////////////////////////MAIN INSTALL LOOP///////////////////////////////// ///
     COLOR(08) std::cout << endl << "> installation process finished.\n";

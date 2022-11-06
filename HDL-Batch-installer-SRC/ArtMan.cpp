@@ -234,7 +234,7 @@ void ArtMan::OndownloadClick(wxCommandEvent& event)
         }
         if (cfg->GetValue())
         {
-            COLOR(0d(FAST->IsChecked()) ? 00 : 0d)
+            COLOR((FAST->IsChecked()) ? 00 : 0d)
             if (!wxDirExists("Downloads\\CFG"))
             {
                 wxMkdir("Downloads\\CFG");
@@ -257,7 +257,7 @@ void ArtMan::OndownloadClick(wxCommandEvent& event)
             COLOR(07)
         }
         if (FAST->IsChecked())
-            wxMilliSleep(3900);
+            wxMilliSleep(5000);
     }
     cleanup();
     wxEndBusyCursor();

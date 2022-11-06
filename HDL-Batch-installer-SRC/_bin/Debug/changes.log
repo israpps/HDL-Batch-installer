@@ -1,3 +1,13 @@
+06 November 2022
+   [v3.4.1 - Revision 2]
+
+     Change log:
+        -Installation: Installation queue will be aborted if the "not enough space on HDD" error arises more than 3 times
+        -ART Downloader: When using the "fast mode", the wait time between each game was increased from 3.9 secs to 5
+        -installation: Added more recognized error codes
+        -installation: Disable busy cursor when asking to download the icon package
+        -installation: reorganized pre-install steps, user will no longer be asked to download icons if the queue is empty
+
 02 November 2022
    [v3.4.1 - Revision 1]
 

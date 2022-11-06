@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-09-10 18:05-0300\n"
-"PO-Revision-Date: 2022-09-10 18:05-0300\n"
+"POT-Creation-Date: 2022-11-06 13:02-0300\n"
+"PO-Revision-Date: 2022-11-06 13:06-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: es\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#: HDL_Batch_installerMain.cpp:400
+#: HDL_Batch_installerMain.cpp:394
 msgid "&File"
 msgstr "&Archivo"
 
-#: HDL_Batch_installerMain.cpp:424
+#: HDL_Batch_installerMain.cpp:418
 msgid "*.KELF"
 msgstr "*.KELF"
 
@@ -34,15 +34,15 @@ msgstr "+OPL"
 msgid "---->"
 msgstr "---->"
 
-#: HDL_Batch_installerMain.cpp:305
+#: HDL_Batch_installerMain.cpp:299
 msgid "?"
 msgstr "?"
 
-#: HDL_Batch_installerMain.cpp:876
+#: HDL_Batch_installerMain.cpp:872
 msgid "A game with this name is already installed"
 msgstr "Un juego con este mismo nombre ya está instalada"
 
-#: HDL_Batch_installerMain.cpp:1648
+#: HDL_Batch_installerMain.cpp:1658
 msgid ""
 "A local database already exists.\n"
 "Downloading the database from the repository will delete the old one...\n"
@@ -54,11 +54,11 @@ msgstr ""
 "\n"
 "Continuar?"
 
-#: HDL_Batch_installerMain.cpp:412
+#: HDL_Batch_installerMain.cpp:406
 msgid "About"
 msgstr "Acerca de"
 
-#: HDL_Batch_installerMain.cpp:406
+#: HDL_Batch_installerMain.cpp:400
 msgid "About\tF1"
 msgstr "Acerca de\tF1"
 
@@ -70,7 +70,7 @@ msgstr ""
 "Alex Parrado:\n"
 "    Por contribuir con algunas ideas"
 
-#: HDL_Batch_installerMain.cpp:623
+#: HDL_Batch_installerMain.cpp:617
 msgid "All supported formats (*.ISO;*.CUE;*.NRG;*.GI;*.IML;*.ZSO)"
 msgstr "Todos los formatos soportados (*.ISO;*.CUE;*.NRG;*.GI;*.IML;*.ZSO)"
 
@@ -82,11 +82,11 @@ msgstr "Particiones Disponibles"
 msgid "BG"
 msgstr "BG"
 
-#: HDL_Batch_installerMain.cpp:386
+#: HDL_Batch_installerMain.cpp:380
 msgid "Browse"
 msgstr "Navegar"
 
-#: HDL_Batch_installerMain.cpp:625
+#: HDL_Batch_installerMain.cpp:619
 msgid "CDRWIN cuesheets (*.cue)"
 msgstr "Imágenes bin/cue (*.cue)"
 
@@ -106,7 +106,11 @@ msgstr "COV"
 msgid "COV2"
 msgstr "COV2"
 
-#: HDL_Batch_installerMain.cpp:1746
+#: HDL_Batch_installerMain.cpp:881
+msgid "CUE or IML have a missing linked file"
+msgstr "CUE o IML tienen un archivo vinculado faltante"
+
+#: HDL_Batch_installerMain.cpp:1756
 msgid ""
 "Can't find custom icons package\n"
 "\n"
@@ -115,7 +119,7 @@ msgstr ""
 "No se puede encontrar paquete de iconos personalizados.\n"
 "Descargar ahora?"
 
-#: HDL_Batch_installerMain.cpp:1768
+#: HDL_Batch_installerMain.cpp:1778
 #, c-format
 msgid ""
 "Can't find the enviroment variable \"%s\" used to locate the Dokan Library\n"
@@ -139,33 +143,37 @@ msgstr "Buscar Actualizaciones"
 msgid "Choose device letter to mount  partition"
 msgstr "Elegir letra para montar partición"
 
-#: HDL_Batch_installerMain.cpp:1475
+#: HDL_Batch_installerMain.cpp:1485
 msgid "Choose path to extract selected games"
 msgstr "Elegir ruta para extraer los juegos"
 
-#: HDL_Batch_installerMain.cpp:1042
+#: HDL_Batch_installerMain.cpp:1052
 msgid "Clear List??"
 msgstr "Limpiar lista??"
 
-#: HDL_Batch_installerMain.cpp:262
+#: HDL_Batch_installerMain.cpp:258
 msgid "Clear list"
 msgstr "Limpiar lista"
 
-#: HDL_Batch_installerMain.cpp:1993
+#: HDL_Batch_installerMain.cpp:2010
 msgid "Collected hash:"
 msgstr "Hash obtenido:"
 
-#: HDL_Batch_installerMain.cpp:404
+#: HDL_Batch_installerMain.cpp:398
 msgid "Config"
 msgstr "Configuraciones"
 
-#: HDL_Batch_installerMain.cpp:221
+#: HDL_Batch_installerMain.cpp:218
 msgid "Connect"
 msgstr "Conectar"
 
 #: Component_error.cpp:41
 msgid "Contact the developer"
 msgstr "Contacta al desarrollador"
+
+#: HDL_Batch_installerMain.cpp:1822
+msgid "Could not find PFS Partitions"
+msgstr "No se pudieron encontrar particiones PFS"
 
 #: HDL_Batch_installerApp.cpp:79
 #, c-format
@@ -222,7 +230,7 @@ msgstr ""
 "\n"
 "Esta función solo es útil para programas viejos como HDLoader o MiniOPL"
 
-#: HDL_Batch_installerMain.cpp:224
+#: HDL_Batch_installerMain.cpp:221
 msgid "Disconnect"
 msgstr "Desconectar"
 
@@ -234,11 +242,11 @@ msgstr "Administrador Dokan"
 msgid "Download"
 msgstr "Descargar"
 
-#: HDL_Batch_installerMain.cpp:420
+#: HDL_Batch_installerMain.cpp:414
 msgid "Download Icons Package"
 msgstr "Descargar paquete de iconos"
 
-#: HDL_Batch_installerMain.cpp:432
+#: HDL_Batch_installerMain.cpp:426
 msgid "Download assets"
 msgstr "Descargar archivos"
 
@@ -246,7 +254,7 @@ msgstr "Descargar archivos"
 msgid "Download the program again"
 msgstr "Descarga el programa nuevamente"
 
-#: HDL_Batch_installerMain.cpp:422
+#: HDL_Batch_installerMain.cpp:416
 msgid "Downloads"
 msgstr "Descargas"
 
@@ -266,7 +274,7 @@ msgstr "Código de Error"
 msgid "External"
 msgstr "Externa"
 
-#: HDL_Batch_installerMain.cpp:430
+#: HDL_Batch_installerMain.cpp:424
 msgid "Extract Game(s)"
 msgstr "Extraer Juego(s)"
 
@@ -282,19 +290,23 @@ msgstr "Descarga Rápida"
 msgid "File "
 msgstr "&Archivo"
 
+#: HDL_Batch_installerMain.cpp:878
+msgid "File could not be found (or accesed?)"
+msgstr "No se pudo encontrar el archivo (o acceder a el?)"
+
 #: DokanMan.cpp:100
 msgid "Free"
 msgstr "Libre"
 
-#: HDL_Batch_installerMain.cpp:250 HDL_Batch_installerMain.cpp:312
+#: HDL_Batch_installerMain.cpp:246 HDL_Batch_installerMain.cpp:306
 msgid "Game "
 msgstr "Juego"
 
-#: HDL_Batch_installerMain.cpp:1037
+#: HDL_Batch_installerMain.cpp:1047
 msgid "Game list is already empty"
 msgstr "La lista de juegos ya está limpia"
 
-#: HDL_Batch_installerMain.cpp:1581
+#: HDL_Batch_installerMain.cpp:1591
 msgid ""
 "Game related operations can be used by selecting games from the list and "
 "right clicking them..."
@@ -306,7 +318,7 @@ msgstr ""
 msgid "General"
 msgstr "General"
 
-#: HDL_Batch_installerMain.cpp:299
+#: HDL_Batch_installerMain.cpp:293
 msgid "Get List"
 msgstr "Obtener lista"
 
@@ -314,15 +326,15 @@ msgstr "Obtener lista"
 msgid "Get the Latest Version here:"
 msgstr "Conseguí la ultima version acá"
 
-#: HDL_Batch_installerMain.cpp:627
+#: HDL_Batch_installerMain.cpp:621
 msgid "Global images (*.gi)"
 msgstr "Imágenes Globales (*.gi) "
 
-#: HDL_Batch_installerMain.cpp:387
+#: HDL_Batch_installerMain.cpp:381
 msgid "HDD Management"
 msgstr "Administrar HDD"
 
-#: HDL_Batch_installerMain.cpp:347
+#: HDL_Batch_installerMain.cpp:341
 msgid "HDD Manager"
 msgstr "Administrar HDD"
 
@@ -330,11 +342,11 @@ msgstr "Administrar HDD"
 msgid "HDL Batch Installer"
 msgstr "HDL Batch Installer"
 
-#: HDL_Batch_installerMain.cpp:870
+#: HDL_Batch_installerMain.cpp:866
 msgid "HDL-Dump reported \"Out of memory\"."
 msgstr "HDL-Dump reportó \"Sin memoria suficiente\""
 
-#: HDL_Batch_installerMain.cpp:1428
+#: HDL_Batch_installerMain.cpp:1438
 msgid "Header Injection finished"
 msgstr "Injeccion finalizada"
 
@@ -346,15 +358,15 @@ msgstr "Ocultar Juego"
 msgid "ICO"
 msgstr "ICO"
 
-#: HDL_Batch_installerMain.cpp:319 Post_Install_Report.cpp:51
+#: HDL_Batch_installerMain.cpp:313 Post_Install_Report.cpp:51
 msgid "ID"
 msgstr "ID"
 
-#: HDL_Batch_installerMain.cpp:628
+#: HDL_Batch_installerMain.cpp:622
 msgid "IML files (*.iml)"
 msgstr "Archivos IMG (*.iml)"
 
-#: HDL_Batch_installerMain.cpp:624
+#: HDL_Batch_installerMain.cpp:618
 msgid "ISO 9660 (*.ISO)"
 msgstr "ISO 9660 (*.iso)"
 
@@ -362,33 +374,37 @@ msgstr "ISO 9660 (*.iso)"
 msgid "Images"
 msgstr "Imagenes"
 
-#: HDL_Batch_installerMain.cpp:444
+#: HDL_Batch_installerMain.cpp:438
 msgid "Information"
 msgstr "Información:"
 
-#: HDL_Batch_installerMain.cpp:670
+#: HDL_Batch_installerMain.cpp:664
 msgid "Information:"
 msgstr "Información:"
 
-#: HDL_Batch_installerMain.cpp:368
+#: HDL_Batch_installerMain.cpp:362
 msgid "Inject MBR"
 msgstr "Injectar MBR"
 
-#: HDL_Batch_installerMain.cpp:352 HDL_Batch_installerMain.cpp:439
+#: HDL_Batch_installerMain.cpp:346 HDL_Batch_installerMain.cpp:433
 msgid "Inject OPL Launcher"
 msgstr "Inyectar OPL Launcher"
 
-#: HDL_Batch_installerMain.cpp:1977
+#: HDL_Batch_installerMain.cpp:1994
 msgid "Injection Finished!"
 msgstr "Injeccion finalizada!"
 
-#: HDL_Batch_installerMain.cpp:280 HDL_Batch_installerMain.cpp:385
+#: HDL_Batch_installerMain.cpp:274 HDL_Batch_installerMain.cpp:379
 msgid "Install"
 msgstr "Instalar"
 
 #: Config.cpp:85
 msgid "Installation features"
 msgstr "Instalacion"
+
+#: HDL_Batch_installerMain.cpp:893
+msgid "Installation process aborted, HDD is running out of space"
+msgstr "Proceso de instalación abortado, el HDD se está quedando sin espacio"
 
 #: HDL_Batch_installerMain.cpp:775
 msgid "Installing"
@@ -398,7 +414,7 @@ msgstr "Instalando"
 msgid "Internal"
 msgstr "Interno"
 
-#: HDL_Batch_installerMain.cpp:1636
+#: HDL_Batch_installerMain.cpp:1646
 msgid ""
 "KELF size is 0 bytes!\n"
 "It seems that this HDD had no MBR program installed...\n"
@@ -422,15 +438,15 @@ msgstr "LGO"
 msgid "Language"
 msgstr "Lenguage"
 
-#: HDL_Batch_installerMain.cpp:441
+#: HDL_Batch_installerMain.cpp:435
 msgid "Load Custom Icon"
 msgstr "Cargador personalizado de Iconos"
 
-#: HDL_Batch_installerMain.cpp:659
+#: HDL_Batch_installerMain.cpp:653
 msgid "Loaded:"
 msgstr "Cargados:"
 
-#: HDL_Batch_installerMain.cpp:1631
+#: HDL_Batch_installerMain.cpp:1641
 msgid ""
 "MBR extraction failed!!\n"
 "\n"
@@ -440,19 +456,19 @@ msgstr ""
 "\n"
 "ver consola para mas información..."
 
-#: HDL_Batch_installerMain.cpp:424
+#: HDL_Batch_installerMain.cpp:418
 msgid "MBR.KELF"
 msgstr "MBR.KELF"
 
-#: HDL_Batch_installerMain.cpp:397
+#: HDL_Batch_installerMain.cpp:391
 msgid "Massive game transfer"
 msgstr "Transferencia masiva de Juegos"
 
-#: HDL_Batch_installerMain.cpp:333
+#: HDL_Batch_installerMain.cpp:327
 msgid "Media"
 msgstr "Media"
 
-#: HDL_Batch_installerMain.cpp:358
+#: HDL_Batch_installerMain.cpp:352
 msgid "Modify Header"
 msgstr "Modify Header"
 
@@ -460,7 +476,7 @@ msgstr "Modify Header"
 msgid "Mount "
 msgstr "Montar"
 
-#: HDL_Batch_installerMain.cpp:373
+#: HDL_Batch_installerMain.cpp:367
 msgid "Mount hdd Partition"
 msgstr "Montar partición."
 
@@ -472,7 +488,7 @@ msgstr "Punto de Montaje"
 msgid "NBD Default IP adress"
 msgstr "IP por defecto"
 
-#: HDL_Batch_installerMain.cpp:378
+#: HDL_Batch_installerMain.cpp:372
 msgid "NBD Driver manager"
 msgstr "Administrador driver NBD"
 
@@ -488,15 +504,15 @@ msgstr ""
 "NOTA: para instalar apropiadamente este driver debes iniciar Windows en modo "
 "seguro"
 
-#: HDL_Batch_installerMain.cpp:626
+#: HDL_Batch_installerMain.cpp:620
 msgid "Nero images (*.nrg)"
 msgstr "Imágenes de NERO (*.nrg)"
 
-#: HDL_Batch_installerMain.cpp:1713
+#: HDL_Batch_installerMain.cpp:1723
 msgid "No internet connection!"
 msgstr "¡Sin conexión a Internet!"
 
-#: HDL_Batch_installerMain.cpp:610
+#: HDL_Batch_installerMain.cpp:604
 msgid ""
 "OPL Launcher is missing.\n"
 " you must get a copy of MiniOPL from the GitHub repo and place it back with "
@@ -516,7 +532,7 @@ msgstr "Advertencias OPL Launcher"
 msgid "Official Github"
 msgstr "Github Oficial"
 
-#: HDL_Batch_installerMain.cpp:426
+#: HDL_Batch_installerMain.cpp:420
 msgid "Open File location"
 msgstr "Abrir ubicación de archivo"
 
@@ -532,7 +548,7 @@ msgstr "Otros"
 msgid "PFSFUSE"
 msgstr "PFSFUSE"
 
-#: HDL_Batch_installerMain.cpp:661
+#: HDL_Batch_installerMain.cpp:655
 msgid "PS2 Games"
 msgstr "Juegos PS2"
 
@@ -540,11 +556,11 @@ msgstr "Juegos PS2"
 msgid "PSX-Place Thread"
 msgstr "Hilo de PSX-Place"
 
-#: HDL_Batch_installerMain.cpp:395
+#: HDL_Batch_installerMain.cpp:389
 msgid "Quit\tAlt-F4"
 msgstr "Salir\tAlt-F4"
 
-#: HDL_Batch_installerMain.cpp:395
+#: HDL_Batch_installerMain.cpp:389
 msgid "Quit the application"
 msgstr "Salir del programa"
 
@@ -552,23 +568,23 @@ msgstr "Salir del programa"
 msgid "Reason"
 msgstr "Razón"
 
-#: HDL_Batch_installerMain.cpp:363
+#: HDL_Batch_installerMain.cpp:357
 msgid "Recover MBR"
 msgstr "Recuperar MBR"
 
-#: HDL_Batch_installerMain.cpp:428
+#: HDL_Batch_installerMain.cpp:422
 msgid "Remove from List"
 msgstr "Eliminar de la lista"
 
-#: HDL_Batch_installerMain.cpp:437
+#: HDL_Batch_installerMain.cpp:431
 msgid "Rename"
 msgstr "Renombrar"
 
-#: HDL_Batch_installerMain.cpp:410
+#: HDL_Batch_installerMain.cpp:404
 msgid "Report Issue"
 msgstr "Reportar error"
 
-#: HDL_Batch_installerMain.cpp:1613
+#: HDL_Batch_installerMain.cpp:1623
 #, c-format
 msgid "Report for [%s]"
 msgstr "Reporte para [%s]"
@@ -593,19 +609,19 @@ msgstr "SCR2"
 msgid "Save Settings"
 msgstr "Guardar cambios"
 
-#: HDL_Batch_installerMain.cpp:256
+#: HDL_Batch_installerMain.cpp:252
 msgid "Search Games"
 msgstr "Buscar Juegos"
 
-#: HDL_Batch_installerMain.cpp:424
+#: HDL_Batch_installerMain.cpp:418
 msgid "Search MBR.KELF"
 msgstr "Buscar MBR.KELF"
 
-#: HDL_Batch_installerMain.cpp:207
+#: HDL_Batch_installerMain.cpp:204
 msgid "Search ps2 HDD's"
 msgstr "Buscar HDDs de PS2"
 
-#: HDL_Batch_installerMain.cpp:619
+#: HDL_Batch_installerMain.cpp:613
 msgid "Select your PS2 games"
 msgstr "Seleccione juegos de PS2"
 
@@ -613,15 +629,15 @@ msgstr "Seleccione juegos de PS2"
 msgid "Settings"
 msgstr "Ajustes"
 
-#: HDL_Batch_installerMain.cpp:402
+#: HDL_Batch_installerMain.cpp:396
 msgid "Settings\tF2"
 msgstr "Ajustes\tF2"
 
-#: HDL_Batch_installerMain.cpp:302
+#: HDL_Batch_installerMain.cpp:296
 msgid "Show Partition table"
 msgstr "Mostrar tabla de particiones"
 
-#: HDL_Batch_installerMain.cpp:406
+#: HDL_Batch_installerMain.cpp:400
 msgid "Show version and credits"
 msgstr "Mostrar version y creditos"
 
@@ -671,15 +687,19 @@ msgstr ""
 "\n"
 "HUN7ER | Salamander | My sister | Jtrex | Torres Kadher"
 
-#: HDL_Batch_installerMain.cpp:1726
+#: HDL_Batch_installerMain.cpp:1736
 msgid "The download of the icons package failed!"
 msgstr "La descarga del paquete de iconos falló!"
 
-#: HDL_Batch_installerMain.cpp:1734
+#: HDL_Batch_installerMain.cpp:875
+msgid "The game has a corrupt SYSTEM.CNF file"
+msgstr "El juego tiene un archivo SYSTEM.CNF corrupto"
+
+#: HDL_Batch_installerMain.cpp:1744
 msgid "The package extraction failed!"
 msgstr "La extracción del paquete falló!"
 
-#: HDL_Batch_installerMain.cpp:1662
+#: HDL_Batch_installerMain.cpp:1672
 msgid ""
 "The program is currently configured to use it's internal database.\n"
 "Change it on the settings menu in order to use the database you just "
@@ -690,7 +710,7 @@ msgstr ""
 "Debe cambiar a la base de datos externa en la configuración para poder usar "
 "la base de datos actualizada que acaba de descargar."
 
-#: HDL_Batch_installerMain.cpp:867
+#: HDL_Batch_installerMain.cpp:862
 msgid "There is not enough space on the HDD to install this game"
 msgstr "No hay suficiente espacio en este HDD para instalar el juego"
 
@@ -711,11 +731,11 @@ msgstr ""
 "\n"
 "Ir a la pagina de descarga?"
 
-#: HDL_Batch_installerMain.cpp:1249
+#: HDL_Batch_installerMain.cpp:1259
 msgid "This HDD has no PS2 Games inside"
 msgstr "Este HDD no tiene juegos de ps2 dentro"
 
-#: HDL_Batch_installerMain.cpp:1833
+#: HDL_Batch_installerMain.cpp:1850
 msgid ""
 "This is the first time you try to use NBD Server\n"
 "Keep in mind that you must disconnect the server when you finish using the "
@@ -726,7 +746,7 @@ msgstr ""
 "Ten en mente que debes desconectar el servidor NBD tras terminar de usarlo"
 "\vDe lo contrario... Habrá riesgo de daño al HDD"
 
-#: HDL_Batch_installerMain.cpp:1760
+#: HDL_Batch_installerMain.cpp:1770
 msgid ""
 "This is the first time you use PFSFUSE\n"
 "\n"
@@ -744,7 +764,7 @@ msgstr ""
 msgid "This language is not supported by the system."
 msgstr "This language is not supported by the system."
 
-#: HDL_Batch_installerMain.cpp:354
+#: HDL_Batch_installerMain.cpp:348
 msgid ""
 "This will inject OPL Launcher (boot.kelf on program folder) into every PS2 "
 "game found on this HDD.\n"
@@ -758,7 +778,7 @@ msgstr ""
 msgid "Title Database"
 msgstr "Base de datos de titulos"
 
-#: HDL_Batch_installerMain.cpp:1156
+#: HDL_Batch_installerMain.cpp:1166
 msgid "Total: "
 msgstr "Total: "
 
@@ -770,11 +790,11 @@ msgstr "Transferencia Completa!"
 msgid "Transfer OPL files"
 msgstr "Transferir archivos OPL"
 
-#: HDL_Batch_installerMain.cpp:397
+#: HDL_Batch_installerMain.cpp:391
 msgid "Transfer all games installed on currently selected HDD into another one"
 msgstr "Transferir todos los juegos actualmente instalados en este HDD a otro"
 
-#: HDL_Batch_installerMain.cpp:434
+#: HDL_Batch_installerMain.cpp:428
 msgid "Transfer game(s) to another PS2 HDD"
 msgstr "Transferir juego(s) a otro HDD de PS2"
 
@@ -800,31 +820,31 @@ msgstr "DesInstalar"
 msgid "Unmount"
 msgstr "Desmontar"
 
-#: HDL_Batch_installerMain.cpp:416
+#: HDL_Batch_installerMain.cpp:410
 msgid "Update HDL-Dump"
 msgstr "Actualizar HDL Dump"
 
-#: HDL_Batch_installerMain.cpp:414
+#: HDL_Batch_installerMain.cpp:408
 msgid "Update OPL Launcher"
 msgstr "Actualizar OPL Launcher"
 
-#: HDL_Batch_installerMain.cpp:408
+#: HDL_Batch_installerMain.cpp:402
 msgid "Update Program"
 msgstr "Actualizar programa"
 
-#: HDL_Batch_installerMain.cpp:418
+#: HDL_Batch_installerMain.cpp:412
 msgid "Update game title database"
 msgstr "Actualizar base de datos de títulos de juegos"
 
-#: HDL_Batch_installerMain.cpp:286
+#: HDL_Batch_installerMain.cpp:280
 msgid "Use Database"
 msgstr "Usar base de datos"
 
-#: HDL_Batch_installerMain.cpp:217
+#: HDL_Batch_installerMain.cpp:214
 msgid "WNBD Server"
 msgstr "Servidor WNBD"
 
-#: HDL_Batch_installerMain.cpp:1335
+#: HDL_Batch_installerMain.cpp:1345
 msgid ""
 "Warning\n"
 "\tCan't find boot.kelf\n"
@@ -854,7 +874,7 @@ msgstr ""
 "También, el prefijo __. es necesario para correr los juegos vía OPL Launcher "
 "desde PS2BBN o el menú XMB de la PSX"
 
-#: HDL_Batch_installerMain.cpp:288
+#: HDL_Batch_installerMain.cpp:282
 msgid ""
 "When enabled, the program will try to automatically assign the original "
 "title for the games by searching the game ID on a database with more than "
@@ -882,30 +902,42 @@ msgstr "Hacks de pantalla panoramica para OPL"
 msgid "You can't transfer games from one HDD into the same HDD!"
 msgstr "No podes transferir juegos desde un HDD al mismo HDD!"
 
-#: HDL_Batch_installerMain.cpp:2000 HDL_Batch_installerMain.cpp:2017
+#: HDL_Batch_installerMain.cpp:1822
+msgid "You need at least one PFS partition to use this menu"
+msgstr "Necesitas al menos una partición PFS para usar este menú"
+
+#: HDL_Batch_installerMain.cpp:2017 HDL_Batch_installerMain.cpp:2034
 msgid ""
 "You need at least two PlayStation 2 formatted HDDs to use this operation!"
 msgstr ""
 "Necesitas al menos dos HDD formateados para PS2 para poder usar esta "
 "operación!"
 
-#: HDL_Batch_installerMain.cpp:1001
+#: HDL_Batch_installerMain.cpp:884
+msgid ""
+"bin/cue with multiple .bin files are not supported, combine them into a "
+"single bin"
+msgstr ""
+"archivos bin/cue con multiples .bin no son soportados. combínelos en un "
+"solo .bin"
+
+#: HDL_Batch_installerMain.cpp:1011
 msgid "can't Load MBR.KELF"
 msgstr "No se puede cargar MBR.KELF"
 
-#: HDL_Batch_installerMain.cpp:402
+#: HDL_Batch_installerMain.cpp:396
 msgid "configure program"
 msgstr "configurar programa"
 
-#: HDL_Batch_installerMain.cpp:666
+#: HDL_Batch_installerMain.cpp:660
 msgid "discarded"
 msgstr "Descartados"
 
-#: HDL_Batch_installerMain.cpp:72
+#: HDL_Batch_installerMain.cpp:70
 msgid "error"
 msgstr "error"
 
-#: HDL_Batch_installerMain.cpp:1348
+#: HDL_Batch_installerMain.cpp:1358
 msgid ""
 "file boot.kelf is too big!\n"
 "\n"
@@ -935,31 +967,31 @@ msgstr "https://www.psx-place.com/resources/hdl-batch-installer.1173/"
 msgid "install"
 msgstr "Instalar"
 
-#: HDL_Batch_installerMain.cpp:797
+#: HDL_Batch_installerMain.cpp:794
 msgid "installing: "
 msgstr "Instalando: "
 
-#: HDL_Batch_installerMain.cpp:668
+#: HDL_Batch_installerMain.cpp:662
 msgid "invalid ISO's"
 msgstr "ISO's invalidas"
 
-#: HDL_Batch_installerMain.cpp:629
+#: HDL_Batch_installerMain.cpp:623
 msgid "lz4 Compressed Image Files (*.zso)"
 msgstr "Imágenes comprimidas lz4 (*.zso)"
 
-#: HDL_Batch_installerMain.cpp:732
+#: HDL_Batch_installerMain.cpp:726
 msgid "no PS2 HDD's Found"
 msgstr "no se encontraron HDD's de PS2"
 
-#: HDL_Batch_installerMain.cpp:769
+#: HDL_Batch_installerMain.cpp:761
 msgid "no games selected for installation"
 msgstr "No se seleccionaron juegos para la instalación"
 
-#: HDL_Batch_installerMain.cpp:872
+#: HDL_Batch_installerMain.cpp:869
 msgid "not a PlayStation 2 HDD."
 msgstr "No es un disco duro de PS2"
 
-#: HDL_Batch_installerMain.cpp:326
+#: HDL_Batch_installerMain.cpp:320
 msgid "size (MB)"
 msgstr "Tamaño (MB)"
 
@@ -967,7 +999,7 @@ msgstr "Tamaño (MB)"
 msgid "total"
 msgstr "Total "
 
-#: HDL_Batch_installerMain.cpp:231
+#: HDL_Batch_installerMain.cpp:227
 msgid "total:?GB | Free:?GB"
 msgstr "total:? GB | Libre:? GB"
 
@@ -975,15 +1007,15 @@ msgstr "total:? GB | Libre:? GB"
 msgid "unknown"
 msgstr "desconocido"
 
-#: HDL_Batch_installerMain.cpp:1159
+#: HDL_Batch_installerMain.cpp:1169
 msgid "used: "
 msgstr "usado: "
 
-#: HDL_Batch_installerMain.cpp:73 HDL_Batch_installerMain.cpp:732
+#: HDL_Batch_installerMain.cpp:71 HDL_Batch_installerMain.cpp:726
 msgid "warning"
 msgstr " Advertencia"
 
-#: HDL_Batch_installerMain.cpp:1028
+#: HDL_Batch_installerMain.cpp:1038
 msgid "work in progress"
 msgstr "trabajo en curso"
 
