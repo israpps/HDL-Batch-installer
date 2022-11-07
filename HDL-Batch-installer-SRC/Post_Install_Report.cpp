@@ -33,17 +33,17 @@ Post_Install_Report::Post_Install_Report(wxWindow* parent, wxArrayString filepat
     list = new wxListCtrl(this, ID_LISTCTRL1, wxDefaultPosition, wxSize(667,204), wxLC_REPORT|wxLC_VRULES|wxLC_NO_SORT_HEADER|wxBORDER_SUNKEN|wxVSCROLL, wxDefaultValidator, _T("ID_LISTCTRL1"));
     enum listid
     {
-    FILE = 0,
-    ID,
-    MEDIA,
-    REASON,
+        FILE = 0,
+        ID,
+        MEDIA,
+        REASON,
     };
 
     wxListItem col0;
     col0.SetId(0);
     col0.SetText( _("File ") );
     col0.SetWidth(200);
-    list->InsertColumn(FILE , col0);
+    list->InsertColumn(FILE, col0);
 
     // Add second column
     wxListItem col1;

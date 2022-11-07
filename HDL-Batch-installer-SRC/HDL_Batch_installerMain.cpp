@@ -267,7 +267,9 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     dma_choice = new wxChoice(Panel1, ID_CHOICE1, wxDefaultPosition, wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_CHOICE1"));
     dma_choice->Disable();
     for (int X=0 ; X <=7 ; X++)
-    { dma_choice->Append(DMA_ALIAS[X]); }
+    {
+        dma_choice->Append(DMA_ALIAS[X]);
+    }
     dma_choice->SetSelection(7);
     FlexGridSizer7->Add(dma_choice, 0, wxLEFT|wxRIGHT|wxEXPAND, 5);
     StaticLine2 = new wxStaticLine(Panel1, ID_STATICLINE2, wxDefaultPosition, wxSize(0,0), wxLI_HORIZONTAL, _T("ID_STATICLINE2"));
@@ -749,7 +751,7 @@ void HDL_Batch_installerFrame::OnParse_hdl_tocClick(wxCommandEvent& event)
 
 void HDL_Batch_installerFrame::OninstallClick(wxCommandEvent& event)
 {
-	int not_enough_space_count = 0;
+    int not_enough_space_count = 0;
     wxString messagebuffer, HIDE_SWITCH, strr, msg, command1;
     wxString hddd = selected_hdd->GetString(selected_hdd->GetSelection());
     long original_item_count = game_list__->GetItemCount();
@@ -767,9 +769,9 @@ void HDL_Batch_installerFrame::OninstallClick(wxCommandEvent& event)
 
     if ( (!wxFileExists(EXEC_PATH+"Common\\Icons.INI")) && (CFG::LOAD_CUSTOM_ICONS))
     {
-    	wxEndBusyCursor();
+        wxEndBusyCursor();
         ask_2_download_icons();
-    	wxBeginBusyCursor();
+        wxBeginBusyCursor();
     }
 
     std::cout <<"game count: "<< original_item_count<<std::endl;
@@ -871,30 +873,30 @@ void HDL_Batch_installerFrame::OninstallClick(wxCommandEvent& event)
                 _reason.Add(_("not a PlayStation 2 HDD."));
 
             else if ( installation_retcode == 110 )
-            	_reason.Add(_("A game with this name is already installed"));
+                _reason.Add(_("A game with this name is already installed"));
 
             else if ( installation_retcode == 113 )
-            	_reason.Add(_("The game has a corrupt SYSTEM.CNF file"));
+                _reason.Add(_("The game has a corrupt SYSTEM.CNF file"));
 
             else if ( installation_retcode == 120 )
-            	_reason.Add(_("File could not be found (or accesed?)"));
+                _reason.Add(_("File could not be found (or accesed?)"));
 
             else if ( installation_retcode == 121 )
-            	_reason.Add(_("CUE or IML have a missing linked file"));
+                _reason.Add(_("CUE or IML have a missing linked file"));
 
             else if ( installation_retcode == 133 )
-            	_reason.Add(_("bin/cue with multiple .bin files are not supported, combine them into a single bin"));
+                _reason.Add(_("bin/cue with multiple .bin files are not supported, combine them into a single bin"));
 
             else
-				_reason.Add("Unhandled error...");
+                _reason.Add("Unhandled error...");
         }
         game_list__->DeleteItem(0);
 
-		if (not_enough_space_count > 3)
-		{
-			wxMessageBox(_("Installation process aborted, HDD is running out of space"), warning_caption, wxICON_WARNING);
-			break;
-		}
+        if (not_enough_space_count > 3)
+        {
+            wxMessageBox(_("Installation process aborted, HDD is running out of space"), warning_caption, wxICON_WARNING);
+            break;
+        }
 
     }/// /////////////////////////////////MAIN INSTALL LOOP///////////////////////////////// ///
     COLOR(08) std::cout << endl << "> installation process finished.\n";
@@ -1424,7 +1426,8 @@ void HDL_Batch_installerFrame::Onmass_header_injectionClick(wxCommandEvent& even
         }
     }
     wxProgressDialog* DLG = new wxProgressDialog(_("Injecting OPL Launcher to..."), wxEmptyString, partcount, this);
-    COLOR(08) cout <<"> writing headers...\n"; COLOR(07)
+    COLOR(08) cout <<"> writing headers...\n";
+    COLOR(07)
     //DLG->ShowModal();
     for (size_t x=0; x<partitions.GetCount(); x++)//traverse the list of partitions to inject
     {
@@ -1838,10 +1841,10 @@ void HDL_Batch_installerFrame::OnButton4Click(wxCommandEvent& event)
     wxEndBusyCursor();
 
     if (pfs_partitions.GetCount() < 1)
-	{
-		wxMessageBox(_("You need at least one PFS partition to use this menu"), _("Could not find PFS Partitions"), wxICON_WARNING);
-		return;
-	}
+    {
+        wxMessageBox(_("You need at least one PFS partition to use this menu"), _("Could not find PFS Partitions"), wxICON_WARNING);
+        return;
+    }
 
     DokanMan* DOKAN_WIZARD = new DokanMan(this, pfs_partitions, winapi_device_token);
     DOKAN_WIZARD->ShowModal();
