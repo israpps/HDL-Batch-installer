@@ -8,6 +8,7 @@
 #include <wx/arrstr.h>
 #include <iostream>
 #include <wx/msgdlg.h>
+#include <wx/progdlg.h>
 #include "include/macro-vault.h"
 
 //(*IdInit(CopyHDD)
@@ -90,10 +91,12 @@ void CopyHDD::OnTransferClick(wxCommandEvent& event)
                    Destination->GetString(Destination->GetSelection()),
                    INSTALL_LIST
                   );
-
+    wxProgressDialog* DLG = new wxProgressDialog(_("Transfering games..."), _("Please wait, this might take a while."));
+    DLG->Update(99);
     COLOR(0d)
     wxExecute(COMMAND, wxEXEC_SYNC);
     COLOR(07)
+    delete DLG;
     std::cout << "\nFinished!\n";
     wxMessageBox(_("Transfer Completed!"), "", wxICON_INFORMATION);
 }

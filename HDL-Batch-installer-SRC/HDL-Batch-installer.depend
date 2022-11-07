@@ -18666,14 +18666,14 @@
 	<wx/statline.h>
 	<wx/stattext.h>
 
-1667363602 c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\version.h
+1667749587 c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\version.h
 
-1662843629 source:c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\artman.cpp
+1667791956 source:c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\artman.cpp
 	"ArtMan.h"
 	<wx/intl.h>
 	<wx/string.h>
 
-1643686501 c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\artman.h
+1667791956 c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\artman.h
 	<wx/button.h>
 	<wx/checkbox.h>
 	<wx/dialog.h>
@@ -18695,19 +18695,19 @@
 1639680891 source:c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\common.cpp
 	<string>
 
-1639680889 source:c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\component_error.cpp
+1667791841 source:c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\component_error.cpp
 	"Component_error.h"
 	<wx/font.h>
 	<wx/intl.h>
 	<wx/string.h>
 
-1639680889 c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\component_error.h
+1667791709 c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\component_error.h
 	<wx/dialog.h>
 	<wx/hyperlink.h>
-	<wx/statline.h>
+	<wx/sizer.h>
 	<wx/stattext.h>
 
-1662843632 source:c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\config.cpp
+1667791447 source:c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\config.cpp
 	"Config.h"
 	"include/locale_table.h"
 	<wx/font.h>
@@ -18739,7 +18739,7 @@
 	<wx/debug.h>
 	<wx/defs.h>
 
-1656467763 source:c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\dokanman.cpp
+1667791051 source:c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\dokanman.cpp
 	"DokanMan.h"
 	<wx/filefn.h>
 	<wx/longlong.h>
@@ -18863,7 +18863,7 @@
 	<wx/sizer.h>
 	<wx/stattext.h>
 
-1656467712 source:c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\post_install_report.cpp
+1667791005 source:c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\post_install_report.cpp
 	"Post_Install_Report.h"
 	<iostream>
 	<wx/intl.h>
@@ -18897,13 +18897,14 @@
 	<wx/settings.h>
 	<wx/string.h>
 
-1662843804 source:c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\copyhdd.cpp
+1667791995 source:c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\copyhdd.cpp
 	"CopyHDD.h"
 	<wx/intl.h>
 	<wx/string.h>
 	<wx/arrstr.h>
 	<iostream>
 	<wx/msgdlg.h>
+	<wx/progdlg.h>
 	"include/macro-vault.h"
 
 1662843630 c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\copyhdd.h

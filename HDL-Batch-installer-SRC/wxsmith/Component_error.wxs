@@ -12,35 +12,52 @@
 		<pos_arg>1</pos_arg>
 		<size_arg>1</size_arg>
 		<handler function="OnInit" entry="EVT_INIT_DIALOG" />
-		<object class="wxStaticText" name="ID_STATICTEXT1" variable="StaticText1" member="yes">
-			<label>Some Core components are Missing.&#x0A;  Download the program again from the official github. &#x0A;    If the error persists:&#x0A;      Contact the Developer or open a new issue at github</label>
-			<pos>16,32</pos>
-			<size>368,80</size>
-			<style>wxALIGN_CENTRE</style>
-		</object>
-		<object class="wxHyperlinkCtrl" name="ID_HYPERLINKCTRL1" variable="HyperlinkCtrl1" member="yes">
-			<label>Official Github</label>
-			<url>https://github.com/israpps/HDL-Batch-installer</url>
-			<pos>16,128</pos>
-			<size>96,14</size>
-			<style>wxHL_CONTEXTMENU</style>
-			<handler function="OnHyperlinkCtrl1Click" entry="EVT_HYPERLINK" />
-		</object>
-		<object class="wxHyperlinkCtrl" name="ID_HYPERLINKCTRL2" variable="HyperlinkCtrl2" member="yes">
-			<label>Contact the developer</label>
-			<url>https://github.com/israpps</url>
-			<pos>16,152</pos>
-			<size>114,14</size>
-		</object>
-		<object class="wxHyperlinkCtrl" name="ID_HYPERLINKCTRL3" variable="HyperlinkCtrl3" member="yes">
-			<label>Download the program again</label>
-			<url>https://github.com/israpps/HDL-Batch-installer/releases</url>
-			<pos>16,176</pos>
-			<size>147,14</size>
-		</object>
-		<object class="wxStaticLine" name="ID_STATICLINE1" variable="StaticLine1" member="yes">
-			<pos>8,120</pos>
-			<size>376,2</size>
+		<object class="wxFlexGridSizer" variable="FlexGridSizer1" member="no">
+			<cols>1</cols>
+			<object class="sizeritem">
+				<object class="wxStaticText" name="ID_STATICTEXT1" variable="StaticText1" member="yes">
+					<label>Some Core components are Missing.&#x0A;Download the program again from the official github. &#x0A;&#x0A;If the error persists:&#x0A;Contact the Developer or open a new issue at github</label>
+					<font>
+						<size>12</size>
+						<style>normal</style>
+						<weight>normal</weight>
+						<underlined>0</underlined>
+						<family>swiss</family>
+						<face>Arial</face>
+					</font>
+					<style>wxALIGN_CENTRE</style>
+				</object>
+				<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<border>5</border>
+				<option>1</option>
+			</object>
+			<object class="sizeritem">
+				<object class="wxHyperlinkCtrl" name="ID_HYPERLINKCTRL1" variable="HyperlinkCtrl1" member="yes">
+					<label>Official Repository</label>
+					<url>https://github.com/israpps/HDL-Batch-installer</url>
+				</object>
+				<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<border>5</border>
+				<option>1</option>
+			</object>
+			<object class="sizeritem">
+				<object class="wxHyperlinkCtrl" name="ID_HYPERLINKCTRL2" variable="HyperlinkCtrl2" member="yes">
+					<label>Discord server</label>
+					<url>https://discord.gg/tc9G7zewvh</url>
+				</object>
+				<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<border>5</border>
+				<option>1</option>
+			</object>
+			<object class="sizeritem">
+				<object class="wxHyperlinkCtrl" name="ID_HYPERLINKCTRL3" variable="HyperlinkCtrl3" member="yes">
+					<label>Download Latest version</label>
+					<url>https://github.com/israpps/HDL-Batch-installer/releases/tag/Latest</url>
+				</object>
+				<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<border>5</border>
+				<option>1</option>
+			</object>
 		</object>
 	</object>
 </wxsmith>

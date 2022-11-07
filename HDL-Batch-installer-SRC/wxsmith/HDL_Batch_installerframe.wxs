@@ -25,8 +25,9 @@
 			<minsize>557,691</minsize>
 			<object class="wxFlexGridSizer" variable="FlexGridSizer1" member="no">
 				<cols>1</cols>
+				<rows>3</rows>
 				<growablecols>0</growablecols>
-				<growablerows>0</growablerows>
+				<growablerows>2</growablerows>
 				<object class="sizeritem">
 					<object class="wxFlexGridSizer" variable="FlexGridSizer2" member="no">
 						<cols>1</cols>
@@ -64,7 +65,7 @@
 									<option>1</option>
 								</object>
 							</object>
-							<flag>wxALL|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+							<flag>wxALL|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL</flag>
 							<border>5</border>
 							<option>1</option>
 						</object>
@@ -114,7 +115,7 @@
 							<option>1</option>
 						</object>
 					</object>
-					<flag>wxALL|wxEXPAND</flag>
+					<flag>wxTOP|wxLEFT|wxRIGHT|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL</flag>
 					<border>5</border>
 					<option>1</option>
 				</object>
@@ -144,7 +145,7 @@
 							<option>1</option>
 						</object>
 					</object>
-					<flag>wxALL|wxEXPAND</flag>
+					<flag>wxBOTTOM|wxLEFT|wxRIGHT|wxEXPAND</flag>
 					<border>5</border>
 					<option>1</option>
 				</object>
@@ -305,7 +306,7 @@
 										<object class="wxFlexGridSizer" variable="FlexGridSizer8" member="no">
 											<cols>1</cols>
 											<growablecols>0</growablecols>
-											<growablerows>0</growablerows>
+											<growablerows>1</growablerows>
 											<object class="sizeritem">
 												<object class="wxBoxSizer" variable="BoxSizer2" member="no">
 													<object class="sizeritem">
@@ -371,7 +372,6 @@
 															<object class="sizeritem">
 																<object class="wxButton" name="ID_BUTTON10" variable="Button2" member="yes">
 																	<label>HDD Manager</label>
-																	<size>104,23</size>
 																	<enabled>0</enabled>
 																	<handler function="OnButton2Click3" entry="EVT_BUTTON" />
 																</object>
@@ -403,7 +403,6 @@
 															<object class="sizeritem">
 																<object class="wxButton" name="ID_BUTTON6" variable="modify_header_event" member="yes">
 																	<label>Modify Header</label>
-																	<size>104,23</size>
 																	<enabled>0</enabled>
 																	<handler function="OnButton2Click" entry="EVT_BUTTON" />
 																</object>
@@ -419,7 +418,6 @@
 															<object class="sizeritem">
 																<object class="wxButton" name="ID_BUTTON9" variable="MBRExtractRequest" member="yes">
 																	<label>Recover MBR</label>
-																	<size>104,23</size>
 																	<enabled>0</enabled>
 																	<handler function="OnMBRExtractRequestClick" entry="EVT_BUTTON" />
 																</object>
@@ -435,7 +433,6 @@
 															<object class="sizeritem">
 																<object class="wxButton" name="ID_BUTTON5" variable="MBR_EVENT" member="yes">
 																	<label>Inject MBR</label>
-																	<size>104,23</size>
 																	<enabled>0</enabled>
 																	<handler function="OnMBR_EVENTClick" entry="EVT_BUTTON" />
 																</object>
@@ -451,7 +448,6 @@
 															<object class="sizeritem">
 																<object class="wxButton" name="ID_BUTTON11" variable="FUSE" member="yes">
 																	<label>Mount hdd Partition</label>
-																	<size>141,23</size>
 																	<enabled>0</enabled>
 																	<handler function="OnButton4Click" entry="EVT_BUTTON" />
 																</object>
@@ -479,7 +475,7 @@
 														<option>1</option>
 													</object>
 												</object>
-												<flag>wxALL|wxALIGN_LEFT|wxALIGN_TOP</flag>
+												<flag>wxALL|wxEXPAND</flag>
 												<border>5</border>
 												<option>1</option>
 											</object>
@@ -493,7 +489,7 @@
 					</object>
 					<flag>wxALL|wxEXPAND</flag>
 					<border>5</border>
-					<option>1</option>
+					<option>4</option>
 				</object>
 			</object>
 		</object>

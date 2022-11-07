@@ -1,3 +1,12 @@
+07 November 2022
+   [v3.4.1 - Revision 3]
+
+     Change log:
+        -UI: Added better rezizing and proportions to some UI elements
+        -OPL launcher injection: Added Progress gauge
+        -icon loader: Added Progress gauge
+        -Game dumper: Added Progress gauge
+
 06 November 2022
    [v3.4.1 - Revision 2]
 

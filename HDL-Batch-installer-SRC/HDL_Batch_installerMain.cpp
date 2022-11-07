@@ -195,10 +195,11 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     SetIcon( wxICON(HDL_BATCH_ICON));
     Panel5 = new wxPanel(this, ID_PANEL5, wxPoint(0,0), wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL5"));
     Panel5->SetMinSize(wxSize(557,691));
-    FlexGridSizer1 = new wxFlexGridSizer(0, 1, 0, 0);
+    FlexGridSizer1 = new wxFlexGridSizer(3, 1, 0, 0);
     FlexGridSizer1->AddGrowableCol(0);
-    FlexGridSizer1->AddGrowableRow(0);
+    FlexGridSizer1->AddGrowableRow(2);
     FlexGridSizer2 = new wxFlexGridSizer(0, 1, 0, 0);
+    FlexGridSizer2->AddGrowableCol(0);
     BoxSizer1 = new wxBoxSizer(wxHORIZONTAL);
     FlexGridSizer10 = new wxFlexGridSizer(0, 3, 0, 0);
     Button1 = new wxButton(Panel5, ID_BUTTON2, _("Search ps2 HDD\'s"), wxDefaultPosition, wxSize(144,24), 0, wxDefaultValidator, _T("ID_BUTTON2"));
@@ -208,7 +209,7 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     selected_hdd = new wxChoice(Panel5, ID_selected_hdd, wxDefaultPosition, wxSize(148,24), 0, 0, 0, wxDefaultValidator, _T("ID_selected_hdd"));
     FlexGridSizer10->Add(selected_hdd, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
     BoxSizer1->Add(FlexGridSizer10, 1, wxALL|wxEXPAND, 5);
-    FlexGridSizer2->Add(BoxSizer1, 1, wxALL|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    FlexGridSizer2->Add(BoxSizer1, 1, wxALL|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL, 5);
     FlexGridSizer9 = new wxFlexGridSizer(0, 3, 0, 0);
     FlexGridSizer9->AddGrowableRow(0);
     StaticBoxSizer1 = new wxStaticBoxSizer(wxHORIZONTAL, Panel5, _("WNBD Server"));
@@ -222,14 +223,15 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     StaticBoxSizer1->Add(NBDDisconnect, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     FlexGridSizer9->Add(StaticBoxSizer1, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     FlexGridSizer2->Add(FlexGridSizer9, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    FlexGridSizer1->Add(FlexGridSizer2, 1, wxALL|wxEXPAND, 5);
+    FlexGridSizer1->Add(FlexGridSizer2, 1, wxTOP|wxLEFT|wxRIGHT|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL, 5);
     FlexGridSizer3 = new wxFlexGridSizer(0, 1, 0, 0);
+    FlexGridSizer3->AddGrowableCol(0);
     hdd_used_space = new wxTextCtrl(Panel5, ID_TEXTCTRL1, _("total:\?GB | Free:\?GB"), wxDefaultPosition, wxSize(400,23), wxTE_READONLY|wxTE_CENTRE, wxDefaultValidator, _T("ID_TEXTCTRL1"));
     FlexGridSizer3->Add(hdd_used_space, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
     Gauge1 = new wxGauge(Panel5, ID_GAUGE1, 100, wxDefaultPosition, wxSize(464,24), wxGA_SMOOTH, wxDefaultValidator, _T("ID_GAUGE1"));
     FlexGridSizer3->Add(Gauge1, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
     FlexGridSizer3->Add(-1,-1,1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    FlexGridSizer1->Add(FlexGridSizer3, 1, wxALL|wxEXPAND, 5);
+    FlexGridSizer1->Add(FlexGridSizer3, 1, wxBOTTOM|wxLEFT|wxRIGHT|wxEXPAND, 5);
     FlexGridSizer4 = new wxFlexGridSizer(1, 3, 0, 0);
     FlexGridSizer4->AddGrowableCol(0);
     FlexGridSizer4->AddGrowableRow(0);
@@ -288,7 +290,7 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     Panel2 = new wxPanel(Notebook1, ID_PANEL2, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL2"));
     FlexGridSizer8 = new wxFlexGridSizer(0, 1, 0, 0);
     FlexGridSizer8->AddGrowableCol(0);
-    FlexGridSizer8->AddGrowableRow(0);
+    FlexGridSizer8->AddGrowableRow(1);
     BoxSizer2 = new wxBoxSizer(wxHORIZONTAL);
     Parse_hdl_toc = new wxButton(Panel2, ID_BUTTON3, _("Get List"), wxDefaultPosition, wxSize(80,23), 0, wxDefaultValidator, _T("ID_BUTTON3"));
     Parse_hdl_toc->Disable();
@@ -338,7 +340,7 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     FlexGridSizer5->AddGrowableRow(0);
     BoxSizer3 = new wxBoxSizer(wxVERTICAL);
     BoxSizer10 = new wxBoxSizer(wxHORIZONTAL);
-    Button2 = new wxButton(Panel3, ID_BUTTON10, _("HDD Manager"), wxDefaultPosition, wxSize(104,23), 0, wxDefaultValidator, _T("ID_BUTTON10"));
+    Button2 = new wxButton(Panel3, ID_BUTTON10, _("HDD Manager"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON10"));
     Button2->Disable();
     BoxSizer10->Add(Button2, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
     BoxSizer3->Add(BoxSizer10, 1, wxALL|wxEXPAND, 5);
@@ -349,22 +351,22 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     BoxSizer9->Add(mass_header_injection, 0, wxALIGN_CENTER_VERTICAL, 0);
     BoxSizer3->Add(BoxSizer9, 1, wxALL|wxEXPAND, 5);
     BoxSizer8 = new wxBoxSizer(wxHORIZONTAL);
-    modify_header_event = new wxButton(Panel3, ID_BUTTON6, _("Modify Header"), wxDefaultPosition, wxSize(104,23), 0, wxDefaultValidator, _T("ID_BUTTON6"));
+    modify_header_event = new wxButton(Panel3, ID_BUTTON6, _("Modify Header"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON6"));
     modify_header_event->Disable();
     BoxSizer8->Add(modify_header_event, 0, wxALIGN_CENTER_VERTICAL, 0);
     BoxSizer3->Add(BoxSizer8, 1, wxALL|wxEXPAND, 5);
     BoxSizer7 = new wxBoxSizer(wxHORIZONTAL);
-    MBRExtractRequest = new wxButton(Panel3, ID_BUTTON9, _("Recover MBR"), wxDefaultPosition, wxSize(104,23), 0, wxDefaultValidator, _T("ID_BUTTON9"));
+    MBRExtractRequest = new wxButton(Panel3, ID_BUTTON9, _("Recover MBR"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON9"));
     MBRExtractRequest->Disable();
     BoxSizer7->Add(MBRExtractRequest, 0, wxALIGN_CENTER_VERTICAL, 0);
     BoxSizer3->Add(BoxSizer7, 1, wxALL|wxEXPAND, 5);
     BoxSizer6 = new wxBoxSizer(wxHORIZONTAL);
-    MBR_EVENT = new wxButton(Panel3, ID_BUTTON5, _("Inject MBR"), wxDefaultPosition, wxSize(104,23), 0, wxDefaultValidator, _T("ID_BUTTON5"));
+    MBR_EVENT = new wxButton(Panel3, ID_BUTTON5, _("Inject MBR"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON5"));
     MBR_EVENT->Disable();
     BoxSizer6->Add(MBR_EVENT, 0, wxALIGN_CENTER_VERTICAL, 0);
     BoxSizer3->Add(BoxSizer6, 1, wxALL|wxEXPAND, 5);
     BoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
-    FUSE = new wxButton(Panel3, ID_BUTTON11, _("Mount hdd Partition"), wxDefaultPosition, wxSize(141,23), 0, wxDefaultValidator, _T("ID_BUTTON11"));
+    FUSE = new wxButton(Panel3, ID_BUTTON11, _("Mount hdd Partition"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON11"));
     FUSE->Disable();
     BoxSizer5->Add(FUSE, 0, wxALIGN_CENTER_VERTICAL, 0);
     BoxSizer3->Add(BoxSizer5, 1, wxALL|wxEXPAND, 5);
@@ -372,7 +374,7 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     Button4 = new wxButton(Panel3, ID_BUTTON16, _("NBD Driver manager"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON16"));
     BoxSizer4->Add(Button4, 1, wxALL|wxALIGN_CENTER_VERTICAL, 5);
     BoxSizer3->Add(BoxSizer4, 1, wxALL|wxEXPAND, 5);
-    FlexGridSizer5->Add(BoxSizer3, 1, wxALL|wxALIGN_LEFT|wxALIGN_TOP, 5);
+    FlexGridSizer5->Add(BoxSizer3, 1, wxALL|wxEXPAND, 5);
     Panel3->SetSizer(FlexGridSizer5);
     FlexGridSizer5->Fit(Panel3);
     FlexGridSizer5->SetSizeHints(Panel3);
@@ -380,7 +382,7 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     Notebook1->AddPage(Panel2, _("Browse"), false);
     Notebook1->AddPage(Panel3, _("HDD Management"), false);
     FlexGridSizer4->Add(Notebook1, 0, wxEXPAND, 0);
-    FlexGridSizer1->Add(FlexGridSizer4, 1, wxALL|wxEXPAND, 5);
+    FlexGridSizer1->Add(FlexGridSizer4, 4, wxALL|wxEXPAND, 5);
     Panel5->SetSizer(FlexGridSizer1);
     FlexGridSizer1->Fit(Panel5);
     FlexGridSizer1->SetSizeHints(Panel5);
@@ -1338,6 +1340,8 @@ void HDL_Batch_installerFrame::Onmass_header_injectionClick(wxCommandEvent& even
     wxString boot_kirx   = EXEC_PATH + "boot.kirx";
     wxString boot_elf    = EXEC_PATH + "boot.elf";
     wxString boot_kelf   = EXEC_PATH + "boot.kelf";
+    wxString partition, inject_header_cmd;
+    int partcount = 0;
 
     if(!wxFileExists(boot_kelf))
     {
@@ -1391,7 +1395,7 @@ void HDL_Batch_installerFrame::Onmass_header_injectionClick(wxCommandEvent& even
     wxString line,partname;
     wxString HDD = selected_hdd->GetString( selected_hdd->GetSelection() );
     wxArrayString output,partitions;
-    COLOR(08) cout << "Obtaining partition table...\n";
+    COLOR(08) cout << "> Obtaining partition table...\n";
     COLOR(07)
     wxExecute(command,output,wxEXEC_SYNC);
     for (size_t x=0; x<output.GetCount(); x++)//parse partition table looking for HDL Partitions (AKA: games)
@@ -1409,6 +1413,7 @@ void HDL_Batch_installerFrame::Onmass_header_injectionClick(wxCommandEvent& even
                            partname.RemoveLast(1);
                        }*/ // not needed now since I made a PR to hdl-dump that removes the whitespace filling from partition listing
             partitions.Add(partname);
+            partcount++;
         }
         else
         {
@@ -1418,11 +1423,13 @@ void HDL_Batch_installerFrame::Onmass_header_injectionClick(wxCommandEvent& even
             }
         }
     }
-    cout <<"> writing headers...\n";
-    wxString partition, inject_header_cmd;
-    for (size_t x=0; x<partitions.GetCount(); x++)//parse partition table looking for HDL Partitions (AKA: games)
+    wxProgressDialog* DLG = new wxProgressDialog(_("Injecting OPL Launcher to..."), wxEmptyString, partcount, this);
+    COLOR(08) cout <<"> writing headers...\n"; COLOR(07)
+    //DLG->ShowModal();
+    for (size_t x=0; x<partitions.GetCount(); x++)//traverse the list of partitions to inject
     {
         partition = partitions.Item(x);
+        DLG->Update(x, partition);
         cout << "\t[" <<partition <<"]\n";
         inject_header_cmd = "HDL.EXE modify_header " + HDD + " \"" + partition + "\"";
         if (CFG::DEBUG_LEVEL > 5 || (CTOR_FLAGS & FORCE_HIGH_DEBUG_LEVEL) )
@@ -1431,10 +1438,11 @@ void HDL_Batch_installerFrame::Onmass_header_injectionClick(wxCommandEvent& even
             cout << inject_header_cmd << endl;
         }
         COLOR(0d)
-        wxExecute(inject_header_cmd,wxEXEC_SYNC);
+        wxExecute(inject_header_cmd, wxEXEC_SYNC);
         COLOR(07)
     }
     wxEndBusyCursor();
+    delete DLG;
     wxMessageBox( _("Header Injection finished"),"",wxICON_INFORMATION );
 }
 
@@ -1479,12 +1487,21 @@ void HDL_Batch_installerFrame::RemoveISOfromList(wxCommandEvent& event)
 void HDL_Batch_installerFrame::OnExtractInstalledGameRequest(wxCommandEvent& event)
 {
     long itemIndex = -1;
+    int ripcount = 0, currrip=0;
+    while ((itemIndex = Installed_game_list->GetNextItem(itemIndex, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED)) != wxNOT_FOUND)
+        ripcount++;
+    itemIndex = -1;//reset index counter for the real iteration
+
     wxString game_title, game_title2,extraction_path, full_extraction_path;
     wxString hdd = selected_hdd->GetString(selected_hdd->GetSelection());
     wxString command;
+
     dump_folder = new wxDirDialog(this, _("Choose path to extract selected games"), wxEmptyString, wxDD_DEFAULT_STYLE, wxDefaultPosition, wxDefaultSize, _T("wxDirDialog"));
+
     if (dump_folder->ShowModal() == wxID_OK)
     {
+        wxProgressDialog* DLG = new wxProgressDialog(_("extracting game..."), "", ripcount);
+        DLG->ShowModal();
         extraction_path = dump_folder->GetPath();
         cout << std::string(extraction_path.mb_str()) <<"\n";
         while ((itemIndex = Installed_game_list->GetNextItem(itemIndex, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED)) != wxNOT_FOUND)
@@ -1493,7 +1510,8 @@ void HDL_Batch_installerFrame::OnExtractInstalledGameRequest(wxCommandEvent& eve
             game_title.clear();
             game_title = Installed_game_list->GetItemText(itemIndex);// Got the selected item index
             if (game_title[0]==' ') game_title = game_title.Mid(1);
-            cout <<"\nExtracting game ["<< std::string(game_title.mb_str()) <<"]\n";
+            DLG->Update(currrip++, game_title);
+            cout <<"\nExtracting game ["<< game_title <<"]\n";
             game_title2 = game_title;
             COLOR(08) cout << "> Filtering illegal characters...\n";
             ///Filter windows illegal characters for filename
@@ -1521,7 +1539,9 @@ void HDL_Batch_installerFrame::OnExtractInstalledGameRequest(wxCommandEvent& eve
             //crude_SystemCapture(command);
             COLOR(07)
         }
+        delete DLG;
     }
+
 }
 
 void HDL_Batch_installerFrame::OnInstalledGameRenameRequest(wxCommandEvent& event)
@@ -1909,12 +1929,17 @@ void HDL_Batch_installerFrame::OnManualInjectionRequest(wxCommandEvent& event)
     }
 
 
-    long itemIndex = -1;
+    long itemIndex = -1, retcode;
+    int prevcount = 0, x = 0;
     wxString title, command;
-    long retcode;
+    while ((itemIndex = Installed_game_list->GetNextItem(itemIndex, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED)) != wxNOT_FOUND)
+        prevcount++;
+    itemIndex = -1;//reset counter for the real iteration
+    wxProgressDialog* DLG = new wxProgressDialog(_("Injecting OPL Launcher to..."), wxEmptyString, prevcount);
     while ((itemIndex = Installed_game_list->GetNextItem(itemIndex, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED)) != wxNOT_FOUND)
     {
         title = Installed_game_list->GetItemText(itemIndex);
+        DLG->Update(x, title);
         command.clear();
         command.Printf("HDL.EXE modify_header %s \"%s\"", HDD, title);
         std::cout << "injecting ["<<title<<"]\n";
@@ -1923,7 +1948,9 @@ void HDL_Batch_installerFrame::OnManualInjectionRequest(wxCommandEvent& event)
         COLOR(07);
         if (CFG::DEBUG_LEVEL > 6 || (CTOR_FLAGS & FORCE_HIGH_DEBUG_LEVEL))
             std::cout << "injection result: "<<retcode<<"\n";
+        x++;
     }
+    delete DLG;
 }
 
 void HDL_Batch_installerFrame::OnLoadCustomIcon2InstalledGameRequest(wxCommandEvent& event)
@@ -1963,12 +1990,19 @@ void HDL_Batch_installerFrame::OnLoadCustomIcon2InstalledGameRequest(wxCommandEv
     }
 
 
-    long itemIndex = -1;
+    long itemIndex = -1, retcode;
+    int prevcount = 0, x = 0;
     wxString title, ELF, command;
-    long retcode;
+
+    while ((itemIndex = Installed_game_list->GetNextItem(itemIndex, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED)) != wxNOT_FOUND)
+        prevcount++;
+    itemIndex = -1;//reset counter for the real iteration
+    wxProgressDialog* DLG = new wxProgressDialog(_("Injecting custom icon to..."), wxEmptyString, prevcount);
+
     while ((itemIndex = Installed_game_list->GetNextItem(itemIndex, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED)) != wxNOT_FOUND)
     {
         title = Installed_game_list->GetItemText(itemIndex,0);
+        DLG->Update(x, title);
         ELF = Installed_game_list->GetItemText(itemIndex,1);
         if( wxFileExists(icon_icn)   )
         {
@@ -1985,7 +2019,9 @@ void HDL_Batch_installerFrame::OnLoadCustomIcon2InstalledGameRequest(wxCommandEv
             if (CFG::DEBUG_LEVEL > 6 || (CTOR_FLAGS & FORCE_HIGH_DEBUG_LEVEL))
                 std::cout << "injection result: "<<retcode<<"\n";
         }
+        x++;
     }
+    delete DLG;
     if( wxFileExists(icon_icn)   )
     {
         std::cout << "> Cleaning stray icon\n";

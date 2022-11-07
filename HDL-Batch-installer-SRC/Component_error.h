@@ -12,7 +12,7 @@
 //(*Headers(Component_error)
 #include <wx/dialog.h>
 #include <wx/hyperlink.h>
-#include <wx/statline.h>
+#include <wx/sizer.h>
 #include <wx/stattext.h>
 //*)
 
@@ -27,7 +27,6 @@ public:
     wxHyperlinkCtrl* HyperlinkCtrl1;
     wxHyperlinkCtrl* HyperlinkCtrl2;
     wxHyperlinkCtrl* HyperlinkCtrl3;
-    wxStaticLine* StaticLine1;
     wxStaticText* StaticText1;
     //*)
 
@@ -38,7 +37,6 @@ protected:
     static const long ID_HYPERLINKCTRL1;
     static const long ID_HYPERLINKCTRL2;
     static const long ID_HYPERLINKCTRL3;
-    static const long ID_STATICLINE1;
     //*)
 
 private:
