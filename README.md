@@ -40,6 +40,7 @@ __If this software was useful, please consider giving it a star here on GitHub, 
 - [x] Massive `KELF` and icon injection to every installed game
 - [x] Mount __any PFS Partition__ as if it was a windows supported storage device
 - [x] Automatically transfer Downloaded files to mounted partition with 1 click (use only on OPL data partition) 
+- [x] Batch game transfer between two ps2 HDDs
 - [ ] Modify Partitions Header (custom title & icon and more)
 
 
