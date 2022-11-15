@@ -39,6 +39,7 @@ public:
 
     //(*Declarations(Config)
     wxButton* Button1;
+    wxCheckBox* AllowExperimental;
     wxCheckBox* CUSTOM_ICONS;
     wxCheckBox* DATA_COLLECTION;
     wxCheckBox* check_updates;
@@ -65,8 +66,9 @@ protected:
     static const long ID_COMBOBOX1;
     static const long ID_CHECKBOX1;
     static const long ID_CHECKBOX2;
-    static const long ID_CHECKBOX5;
     static const long ID_CHECKBOX4;
+    static const long ID_CHECKBOX5;
+    static const long ID_CHECKBOX6;
     static const long ID_RADIOBUTTON1;
     static const long ID_RADIOBUTTON2;
     static const long ID_DIRPICKERCTRL1;
@@ -96,6 +98,7 @@ private:
     void Onlanguage_choiceSelect(wxCommandEvent& event);
     void OnNotebook1PageChanged(wxNotebookEvent& event);
     void OnSaveDataRequest(wxCommandEvent& event);
+    void OnCheckBox1Click(wxCommandEvent& event);
     //*)
     void SaveSettings(void);
     DECLARE_EVENT_TABLE()
@@ -127,6 +130,7 @@ struct config_t
     bool        check_updates;
     bool        custom_icons;
     bool        collect_onkown_games_ID;
+    bool        allow_experimental;
     fuse_t      FUSE;
     wxString    NBD_IP;
 };

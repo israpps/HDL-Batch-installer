@@ -22,8 +22,9 @@ const long Config::ID_CHECKBOX3 = wxNewId();
 const long Config::ID_COMBOBOX1 = wxNewId();
 const long Config::ID_CHECKBOX1 = wxNewId();
 const long Config::ID_CHECKBOX2 = wxNewId();
-const long Config::ID_CHECKBOX5 = wxNewId();
 const long Config::ID_CHECKBOX4 = wxNewId();
+const long Config::ID_CHECKBOX5 = wxNewId();
+const long Config::ID_CHECKBOX6 = wxNewId();
 const long Config::ID_RADIOBUTTON1 = wxNewId();
 const long Config::ID_RADIOBUTTON2 = wxNewId();
 const long Config::ID_DIRPICKERCTRL1 = wxNewId();
@@ -52,6 +53,7 @@ Config::Config(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& s
     wxFlexGridSizer* FlexGridSizer3;
     wxFlexGridSizer* FlexGridSizer4;
     wxFlexGridSizer* FlexGridSizer5;
+    wxGridSizer* GridSizer1;
     wxStaticBoxSizer* StaticBoxSizer1;
     wxStaticBoxSizer* StaticBoxSizer2;
     wxStaticBoxSizer* StaticBoxSizer3;
@@ -77,27 +79,32 @@ Config::Config(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& s
     StaticBoxSizer3 = new wxStaticBoxSizer(wxHORIZONTAL, Panel1, _("Language"));
     language_choice = new wxComboBox(Panel1, ID_COMBOBOX1, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_COMBOBOX1"));
     for (long long unsigned int x=0; x < WXSIZEOF(langNames) ; x++)
-        language_choice->Append(langNames[x]);
+    language_choice->Append(langNames[x]);
     language_choice->SetSelection(0);
     StaticBoxSizer3->Add(language_choice, 1, wxALL|wxEXPAND, 5);
     StaticBoxSizer2->Add(StaticBoxSizer3, 1, wxALL|wxEXPAND, 5);
     FlexGridSizer2->Add(StaticBoxSizer2, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     StaticBoxSizer1 = new wxStaticBoxSizer(wxVERTICAL, Panel1, _("Installation features"));
     FlexGridSizer4 = new wxFlexGridSizer(0, 2, 0, 0);
+    GridSizer1 = new wxGridSizer(0, 2, 0, 0);
     miniopl_warning = new wxCheckBox(Panel1, ID_CHECKBOX1, _("OPL Launcher warnings"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX1"));
     miniopl_warning->SetValue(true);
-    FlexGridSizer4->Add(miniopl_warning, 1, wxALL|wxEXPAND, 5);
+    GridSizer1->Add(miniopl_warning, 1, wxALL|wxALIGN_LEFT|wxALIGN_TOP, 5);
     osd_hide_settings = new wxCheckBox(Panel1, ID_CHECKBOX2, _("Hide game"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX2"));
     osd_hide_settings->SetValue(false);
     osd_hide_settings->SetToolTip(_("When enabled, the program will install games using __. as partition prefix instead of PP.\n\nThis will hide games from HDD-OSD.\n\nAlso, this alternative prefix is required to launch games via OPL Launcher from PSBBN and PSX XMB menu"));
-    FlexGridSizer4->Add(osd_hide_settings, 1, wxALL|wxEXPAND, 5);
+    GridSizer1->Add(osd_hide_settings, 1, wxALL|wxALIGN_LEFT|wxALIGN_TOP, 5);
+    CUSTOM_ICONS = new wxCheckBox(Panel1, ID_CHECKBOX4, _("Custom Icon Loader"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX4"));
+    CUSTOM_ICONS->SetValue(true);
+    GridSizer1->Add(CUSTOM_ICONS, 1, wxALL|wxALIGN_LEFT|wxALIGN_TOP, 5);
     DATA_COLLECTION = new wxCheckBox(Panel1, ID_CHECKBOX5, _("Data Collection"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX5"));
     DATA_COLLECTION->SetValue(false);
     DATA_COLLECTION->SetToolTip(_("When this Feature is enabled, the program will send information to it\'s creator every time it installs a game whose region code isn\'t registered in the database"));
-    FlexGridSizer4->Add(DATA_COLLECTION, 1, wxALL|wxALIGN_LEFT|wxALIGN_CENTER_VERTICAL, 5);
-    CUSTOM_ICONS = new wxCheckBox(Panel1, ID_CHECKBOX4, _("Custom Icon Loader"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX4"));
-    CUSTOM_ICONS->SetValue(true);
-    FlexGridSizer4->Add(CUSTOM_ICONS, 1, wxALL|wxEXPAND, 5);
+    GridSizer1->Add(DATA_COLLECTION, 1, wxALL|wxALIGN_LEFT|wxALIGN_TOP, 5);
+    AllowExperimental = new wxCheckBox(Panel1, ID_CHECKBOX6, _("Allow unstable/experimental features"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX6"));
+    AllowExperimental->SetValue(false);
+    GridSizer1->Add(AllowExperimental, 1, wxALL|wxALIGN_LEFT|wxALIGN_TOP, 5);
+    FlexGridSizer4->Add(GridSizer1, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     StaticBoxSizer4 = new wxStaticBoxSizer(wxHORIZONTAL, Panel1, _("Title Database"));
     gndb_intern = new wxRadioButton(Panel1, ID_RADIOBUTTON1, _("Internal"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_RADIOBUTTON1"));
     gndb_intern->SetValue(true);
@@ -113,9 +120,7 @@ Config::Config(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& s
     default_dma = new wxChoice(Panel1, ID_CHOICE1, wxDefaultPosition, wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_CHOICE1"));
     default_dma->SetToolTip(_("Determines wich DMA mode will be written to game APA Header.\n\nThis feature is only usable for outdated software like HDLoader or MiniOPL"));
     for (int X=0 ; X <=7 ; X++)
-    {
-        default_dma->Append(DMA_ALIAS[X]);
-    }
+    {default_dma->Append(DMA_ALIAS[X]);}
 
     default_dma->SetSelection(7);
     StaticBoxSizer6->Add(default_dma, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
@@ -130,9 +135,7 @@ Config::Config(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& s
     StaticBoxSizer7 = new wxStaticBoxSizer(wxHORIZONTAL, Panel2, _("Default HDD letter"));
     MountPoint = new wxChoice(Panel2, ID_CHOICE2, wxDefaultPosition, wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_CHOICE2"));
     for (int x=0; x<25; x++)
-    {
-        MountPoint->Append(mountpoints[x]);
-    }
+    {MountPoint->Append(mountpoints[x]);}
     MountPoint->SetSelection(22);
     StaticBoxSizer7->Add(MountPoint, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     FlexGridSizer3->Add(StaticBoxSizer7, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
@@ -165,6 +168,7 @@ Config::Config(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& s
     FlexGridSizer1->SetSizeHints(this);
     Center();
 
+    Connect(ID_CHECKBOX6,wxEVT_COMMAND_CHECKBOX_CLICKED,(wxObjectEventFunction)&Config::OnCheckBox1Click);
     Connect(ID_NOTEBOOK1,wxEVT_COMMAND_NOTEBOOK_PAGE_CHANGED,(wxObjectEventFunction)&Config::OnNotebook1PageChanged);
     Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&Config::OnSaveDataRequest);
     Connect(wxID_ANY,wxEVT_INIT_DIALOG,(wxObjectEventFunction)&Config::OnInit);
@@ -194,6 +198,7 @@ Config::Config(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& s
     main_config->Read("Installation/inform_unknown_ID", &CFGT.collect_onkown_games_ID, false);
     DATA_COLLECTION->SetValue(CFGT.collect_onkown_games_ID);
     main_config->Read("NBD/Default_IP",                 &CFGT.NBD_IP, "");
+    main_config->Read("FEATURES/allow_experimental",    &CFGT.allow_experimental, false);
     NBDIP->Clear();
     NBDIP->SetValue(CFGT.NBD_IP);
     delete main_config;
@@ -242,6 +247,7 @@ void Config::SaveSettings()
     CFGT.FUSE.default_OPLPART       	= OPLPART->GetValue();
     CFGT.FUSE.mountpoint            	= MountPoint->GetString(MountPoint->GetSelection());
     CFGT.NBD_IP                     	= NBDIP->GetValue();
+    CFGT.allow_experimental             = AllowExperimental->GetValue();
 
     //main_config->Write("Init/Debug_level", CFGT.debug_level);                   std::cout <<"debug_level=" << CFGT.debug_level<<std::endl;
     main_config->Write("Game_search/Default_iso_path", CFGT.Default_iso_path);
@@ -268,6 +274,8 @@ void Config::SaveSettings()
     std::cout <<"FUSE_default_mountpoint="<<CFGT.FUSE.mountpoint<<std::endl;
     main_config->Write("NBD/Default_IP",CFGT.NBD_IP);
     std::cout <<"Default_IP="<<CFGT.NBD_IP<<std::endl;
+    main_config->Write("FEATURES/allow_experimental",CFGT.allow_experimental);
+    std::cout <<"allow_experimental_features="<<CFGT.allow_experimental<<std::endl;
 
     std::cout << "> flushing settings handler and forcing file writing\n";
     main_config->Flush();//force data writing
@@ -296,3 +304,6 @@ void Config::OnSaveDataRequest(wxCommandEvent& event)
 {
     SaveSettings();
 }
+
+void Config::OnCheckBox1Click(wxCommandEvent& event)
+{}

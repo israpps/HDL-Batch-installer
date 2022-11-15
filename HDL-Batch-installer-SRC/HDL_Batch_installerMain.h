@@ -132,6 +132,8 @@ private:
     void OnMD5HashRequest(wxCommandEvent& event);
     void OnCOPYHDDSelected(wxCommandEvent& event);
     void OnSelectiveGameMigration(wxCommandEvent& event);
+    void OnGameDeletionRequest(wxCommandEvent& event);
+    void OnFrameResize(wxSizeEvent& event);
     //*)
     void OnGoToFileLocationRequest(wxFileName victim);
     void OnTakeOutFromTheListRequest(wxListCtrl* ListCtrl, long itemIndex);
@@ -190,6 +192,7 @@ private:
     static const long ID_MENUITEM11;
     static const long ID_MENUITEM12;
     static const long ID_MENUITEM8;
+    static const long DELETE_GAME_ID;
     static const long ID_PROGRESSDIALOG2;
     //*)
 
@@ -221,6 +224,7 @@ private:
     wxMenu about_2_install_menu;
     wxMenu* Menu4;
     wxMenuItem* COPYHDD;
+    wxMenuItem* DeleteGameMenuItem;
     wxMenuItem* MenuItem10;
     wxMenuItem* MenuItem11;
     wxMenuItem* MenuItem12;

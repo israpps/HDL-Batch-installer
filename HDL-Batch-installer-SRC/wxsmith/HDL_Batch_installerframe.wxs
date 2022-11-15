@@ -609,6 +609,11 @@
 				<label>Information</label>
 				<handler function="OnGameInfoRequest" entry="EVT_MENU" />
 			</object>
+			<object class="wxMenuItem" name="DELETE_GAME_ID" variable="DeleteGameMenuItem" member="yes">
+				<label>Delete game</label>
+				<enabled>0</enabled>
+				<handler function="OnGameDeletionRequest" entry="EVT_MENU" />
+			</object>
 		</object>
 		<object class="wxProgressDialog" name="ID_PROGRESSDIALOG2" variable="HashProgress" member="yes">
 			<title></title>

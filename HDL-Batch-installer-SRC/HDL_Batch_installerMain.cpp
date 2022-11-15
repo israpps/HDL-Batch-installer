@@ -40,6 +40,7 @@ wxString    default_OPLPART;
 wxString    NBD_IP;
 bool        SHARE_DATA;
 bool        DISPATCH_SYSTEM_NOTIFICATIONS;
+bool        ALLOW_EXPERIMENTAL;
 //    bool        UPDATE_AVAILABLE = false;
 //    bool        UPDATE_WARNINGS;
 }
@@ -138,6 +139,7 @@ const long HDL_Batch_installerFrame::ID_MENUITEM6 = wxNewId();
 const long HDL_Batch_installerFrame::ID_MENUITEM11 = wxNewId();
 const long HDL_Batch_installerFrame::ID_MENUITEM12 = wxNewId();
 const long HDL_Batch_installerFrame::ID_MENUITEM8 = wxNewId();
+const long HDL_Batch_installerFrame::DELETE_GAME_ID = wxNewId();
 const long HDL_Batch_installerFrame::ID_PROGRESSDIALOG2 = wxNewId();
 //*)
 
@@ -267,9 +269,7 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     dma_choice = new wxChoice(Panel1, ID_CHOICE1, wxDefaultPosition, wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_CHOICE1"));
     dma_choice->Disable();
     for (int X=0 ; X <=7 ; X++)
-    {
-        dma_choice->Append(DMA_ALIAS[X]);
-    }
+    { dma_choice->Append(DMA_ALIAS[X]); }
     dma_choice->SetSelection(7);
     FlexGridSizer7->Add(dma_choice, 0, wxLEFT|wxRIGHT|wxEXPAND, 5);
     StaticLine2 = new wxStaticLine(Panel1, ID_STATICLINE2, wxDefaultPosition, wxSize(0,0), wxLI_HORIZONTAL, _T("ID_STATICLINE2"));
@@ -441,6 +441,9 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     Browser_menu.AppendSeparator();
     MenuItem13 = new wxMenuItem((&Browser_menu), ID_MENUITEM8, _("Information"), wxEmptyString, wxITEM_NORMAL);
     Browser_menu.Append(MenuItem13);
+    DeleteGameMenuItem = new wxMenuItem((&Browser_menu), DELETE_GAME_ID, _("Delete game"), wxEmptyString, wxITEM_NORMAL);
+    Browser_menu.Append(DeleteGameMenuItem);
+    DeleteGameMenuItem->Enable(false);
     Center();
 
     Connect(ID_BUTTON2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnButton1Click);
@@ -490,6 +493,7 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     Connect(ID_MENUITEM11,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnManualInjectionRequest);
     Connect(ID_MENUITEM12,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnLoadCustomIcon2InstalledGameRequest);
     Connect(ID_MENUITEM8,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnGameInfoRequest);
+    Connect(DELETE_GAME_ID,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnGameDeletionRequest);
     Connect(wxID_ANY,wxEVT_CLOSE_WINDOW,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnClose);
     Connect(wxEVT_PAINT,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnPaint);
     //*)
@@ -967,6 +971,7 @@ void HDL_Batch_installerFrame::OnPaint(wxPaintEvent& event)
         main_config->Read("FUSE/opl_partition", &CFG::default_OPLPART, "+OPL");
         main_config->Read("Installation/inform_unknown_ID", &CFG::SHARE_DATA, false);
         main_config->Read("NBD/Default_IP", &CFG::NBD_IP, "");
+        main_config->Read("FEATURES/allow_experimental", &CFG::ALLOW_EXPERIMENTAL, false);
         NBD4IP->Clear();
         NBD4IP->SetValue(CFG::NBD_IP);
 //        main_config->Read("Init/Check_for_Updates",&CFG::UPDATE_WARNINGS,false);
@@ -1606,6 +1611,7 @@ void HDL_Batch_installerFrame::OnInstalledGameAssetsDownloadRequest(wxCommandEve
 
 void HDL_Batch_installerFrame::OnInstalled_game_listItemRClick1(wxListEvent& event)
 {
+    Browser_menu.Enable(DELETE_GAME_ID, CFG::ALLOW_EXPERIMENTAL);
     PopupMenu(&Browser_menu);
 }
 
@@ -2090,4 +2096,39 @@ void HDL_Batch_installerFrame::OnSelectiveGameMigration(wxCommandEvent& event)
 
     HDDCOPYER->ShowModal();
     delete HDDCOPYER;
+}
+
+void HDL_Batch_installerFrame::OnGameDeletionRequest(wxCommandEvent& event)
+{
+    if (wxMessageBox(_("This feature is unstable, untested and potentially dangerous.\n"
+                   "It has been confirmed that it corrupts the HDD format.\n"
+                   "Are you certain that you want to delete this game?"),
+                 _("IMPORTANT WARNING"),
+                 wxICON_WARNING|wxYES_NO|wxNO_DEFAULT, this) == wxNO)
+        return;
+
+    long itemIndex = -1, retcode;
+    wxString title, HDD;
+    if ( (itemIndex = Installed_game_list->GetNextItem(itemIndex, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED)) != wxNOT_FOUND)
+    {
+        HDD = selected_hdd->GetString(selected_hdd->GetSelection());
+        title = Installed_game_list->GetItemText(itemIndex);
+        retcode = wxExecute(wxString::Format("HDL.EXE delete %s \"%s\"", HDD, title), wxEXEC_SYNC);
+        std::cout << __func__<<": returned "<< retcode << "\n";
+        if (retcode != 0)
+        {
+            wxMessageBox(wxString::Format(_("Failed with error code %ld"), retcode),error_caption, wxICON_ERROR);
+        }
+        List_refresh_request();
+    }
+}
+
+void HDL_Batch_installerFrame::OnFrameResize(wxSizeEvent& event)
+{
+    /* // TODO: FIND A WAY TO MAKE THIS WORK WITHOUT FUCKING THE *sizer objects auto resizing
+    int listwidth = Installed_game_list->GetSize().x;
+    int listwidth2 = game_list__->GetSize().x;
+
+    Installed_game_list->SetColumnWidth(0, listwidth);
+    game_list__->SetColumnWidth(0, listwidth2); */
 }
