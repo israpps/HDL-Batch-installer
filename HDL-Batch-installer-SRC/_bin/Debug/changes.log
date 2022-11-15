@@ -1,4 +1,10 @@
 14 November 2022
+   [v3.4.2 - Revision 1]
+
+     Change log:
+        -Game extraction: Fixed progress dialog calling bug, wich caused the program to halt
+
+14 November 2022
    [v3.4.2 - Revision 0]
 
      Change log:

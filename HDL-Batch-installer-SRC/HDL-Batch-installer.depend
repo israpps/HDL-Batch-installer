@@ -18666,7 +18666,7 @@
 	<wx/statline.h>
 	<wx/stattext.h>
 
-1667795455 c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\version.h
+1668476860 c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\version.h
 
 1667791956 source:c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\artman.cpp
 	"ArtMan.h"
@@ -18761,10 +18761,10 @@
 	<wx/textctrl.h>
 	<wx/arrstr.h>
 
-1667795455 source:c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\gamename\database.cpp
+1668476874 source:c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\gamename\database.cpp
 	"database.h"
 
-1667364243 c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\gamename\database.h
+1668476874 c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\gamename\database.h
 	<string>
 
 1640806388 source:c:\users\usuario\documents\github\hdl-batch-installer\hdl-batch-installer-src\gamename\parser.cpp

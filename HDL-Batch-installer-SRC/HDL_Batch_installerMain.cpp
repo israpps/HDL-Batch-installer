@@ -1508,8 +1508,7 @@ void HDL_Batch_installerFrame::OnExtractInstalledGameRequest(wxCommandEvent& eve
 
     if (dump_folder->ShowModal() == wxID_OK)
     {
-        wxProgressDialog* DLG = new wxProgressDialog(_("extracting game..."), "", ripcount);
-        DLG->ShowModal();
+        wxProgressDialog* DLG = new wxProgressDialog(_("extracting game..."), "", ripcount, this);
         extraction_path = dump_folder->GetPath();
         cout << std::string(extraction_path.mb_str()) <<"\n";
         while ((itemIndex = Installed_game_list->GetNextItem(itemIndex, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED)) != wxNOT_FOUND)
@@ -1944,7 +1943,7 @@ void HDL_Batch_installerFrame::OnManualInjectionRequest(wxCommandEvent& event)
     while ((itemIndex = Installed_game_list->GetNextItem(itemIndex, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED)) != wxNOT_FOUND)
         prevcount++;
     itemIndex = -1;//reset counter for the real iteration
-    wxProgressDialog* DLG = new wxProgressDialog(_("Injecting OPL Launcher to..."), wxEmptyString, prevcount);
+    wxProgressDialog* DLG = new wxProgressDialog(_("Injecting OPL Launcher to..."), wxEmptyString, prevcount, this);
     while ((itemIndex = Installed_game_list->GetNextItem(itemIndex, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED)) != wxNOT_FOUND)
     {
         title = Installed_game_list->GetItemText(itemIndex);
@@ -2006,7 +2005,7 @@ void HDL_Batch_installerFrame::OnLoadCustomIcon2InstalledGameRequest(wxCommandEv
     while ((itemIndex = Installed_game_list->GetNextItem(itemIndex, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED)) != wxNOT_FOUND)
         prevcount++;
     itemIndex = -1;//reset counter for the real iteration
-    wxProgressDialog* DLG = new wxProgressDialog(_("Injecting custom icon to..."), wxEmptyString, prevcount);
+    wxProgressDialog* DLG = new wxProgressDialog(_("Injecting custom icon to..."), wxEmptyString, prevcount, this);
 
     while ((itemIndex = Installed_game_list->GetNextItem(itemIndex, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED)) != wxNOT_FOUND)
     {
