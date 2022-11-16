@@ -1466,11 +1466,9 @@ void HDL_Batch_installerFrame::onItemRightClick(wxListEvent& event)
     PopupMenu(&about_2_install_menu);
 }
 
-void HDL_Batch_installerFrame::OnGoToFileLocationRequest(wxFileName victim)
+void HDL_Batch_installerFrame::OnGoToFileLocationRequest(wxString victim)
 {
-    wxString command = "explorer.exe ";
-    command.append(victim.GetPath(wxPATH_GET_VOLUME|wxPATH_GET_SEPARATOR));
-    wxExecute(command);
+    wxExecute( wxString::Format("explorer.exe \"/select,%s\"", victim) );
 }
 
 void HDL_Batch_installerFrame::OnItemListShowRequest(wxCommandEvent& event)
