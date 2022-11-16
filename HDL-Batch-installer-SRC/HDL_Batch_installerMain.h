@@ -135,7 +135,7 @@ private:
     void OnGameDeletionRequest(wxCommandEvent& event);
     void OnFrameResize(wxSizeEvent& event);
     //*)
-    void OnGoToFileLocationRequest(wxFileName victim);
+    void OnGoToFileLocationRequest(wxString victim);
     void OnTakeOutFromTheListRequest(wxListCtrl* ListCtrl, long itemIndex);
 
     //(*Identifiers(HDL_Batch_installerFrame)
