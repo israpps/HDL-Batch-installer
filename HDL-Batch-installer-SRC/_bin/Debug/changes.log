@@ -3,6 +3,7 @@
 
      Change log:
         -Game extraction: Fixed progress dialog calling bug, wich caused the program to halt
+        -OPL Launcher: updated to latest version (removed debug colors!)
 
 14 November 2022
    [v3.4.2 - Revision 0]
