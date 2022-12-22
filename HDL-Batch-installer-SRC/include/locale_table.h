@@ -13,6 +13,7 @@ static const wxLanguage langIds[] =
     wxLANGUAGE_ITALIAN,
     wxLANGUAGE_PORTUGUESE_BRAZILIAN,
     wxLANGUAGE_POLISH,
+    wxLANGUAGE_KOREAN,
 };
 
 const wxString langNames[] =
@@ -23,6 +24,7 @@ const wxString langNames[] =
     "Italian",
     "Portuguese (br)",
     "Polish",
+    "Korean"
 };
 enum LANG_NUMS
 {
@@ -32,6 +34,7 @@ enum LANG_NUMS
     ITALIAN,
     PORTUGUESE_BR,
     POLISH,
+    KOREAN,
 
     TOTAL_COUNT
 };

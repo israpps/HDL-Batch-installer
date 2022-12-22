@@ -6,7 +6,7 @@ For more info about translations (how to make them and implement them into the p
 + Italian - [@FabioGaigher](https://github.com/FabioGaigher)
 + Portuguese (br) - [hardlevel](https://www.youtube.com/user/hardlevelbr) and [GMV](https://github.com/LupusEtFlos)
 + Polish - [haker120 (aka: a youkai of Love)](https://github.com/Haker120)
-
++ Korean - [DDinghoya](https://github.com/DDinghoya)
 
 
 
