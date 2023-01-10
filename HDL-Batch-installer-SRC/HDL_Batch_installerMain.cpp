@@ -17,7 +17,7 @@
 #include "CopyHDD.h"
 #include "NDBMan.h"
 
-
+#include "hdl-dump-recodes.h"
 #include "gamename/parser.h" //includes both database & parser function
 #include "MD5Man.h"
 
@@ -865,30 +865,30 @@ void HDL_Batch_installerFrame::OninstallClick(wxCommandEvent& event)
             _filepath.Add(strr);
             _ELF.Add(ELF);
             _media.Add(wxString::Format("%il",installation_retcode));
-            if( installation_retcode == 106)
+            if( installation_retcode == RET_NO_SPACE)
             {
                 _reason.Add(_("There is not enough space on the HDD to install this game"));
                 not_enough_space_count++;
             }
-            else if( installation_retcode == -2)
+            else if( installation_retcode == RET_NO_MEM)
                 _reason.Add(_("HDL-Dump reported \"Out of memory\"."));
 
-            else if( installation_retcode == 101)
+            else if( installation_retcode == RET_NOT_APA)
                 _reason.Add(_("not a PlayStation 2 HDD."));
 
-            else if ( installation_retcode == 110 )
+            else if ( installation_retcode == RET_PART_EXISTS)
                 _reason.Add(_("A game with this name is already installed"));
 
-            else if ( installation_retcode == 113 )
+            else if ( installation_retcode == RET_BAD_SYSCNF)
                 _reason.Add(_("The game has a corrupt SYSTEM.CNF file"));
 
-            else if ( installation_retcode == 120 )
+            else if ( installation_retcode == RET_FILE_NOT_FOUND)
                 _reason.Add(_("File could not be found (or accesed?)"));
 
-            else if ( installation_retcode == 121 )
+            else if ( installation_retcode == RET_BROKEN_LINK)
                 _reason.Add(_("CUE or IML have a missing linked file"));
 
-            else if ( installation_retcode == 133 )
+            else if ( installation_retcode == RET_MULTITRACK)
                 _reason.Add(_("bin/cue with multiple .bin files are not supported, combine them into a single bin"));
 
             else
@@ -1193,12 +1193,12 @@ void HDL_Batch_installerFrame::Update_hdd_data(void)
     {
         COLOR(0c)
         cerr << "ERROR ---\n";
-        for (size_t x = 0; x <= std_error.GetCount(); x++)
-        {
-            cerr << std::string(std_error.Item(x).mb_str()) << "\n";
-        }
+        for (size_t x = 0; x < std_error.GetCount(); x++)
+            cerr << std::string(std_error.Item(x)) << "\n";
         cerr << "---------"<<std::endl;
         COLOR(07)
+        if (toc_ret == RET_BAD_APA)
+            wxMessageBox(_("The HDD is corrupted or your hard drive connection has issues"), _("APA Partition is broken"), wxICON_ERROR);
     }
 }
 

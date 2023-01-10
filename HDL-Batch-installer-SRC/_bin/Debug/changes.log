@@ -1,3 +1,10 @@
+10 January 2023
+   [v3.4.2 - Revision 2]
+
+     Change log:
+        -HDD detection: Fixed out of bounds array acess on failed HDD accessing and added error message for APA_PARTITION_BROKEN
+        -hdl_dump retcodes: Added them all as macros for more sane error handling
+
 14 November 2022
    [v3.4.2 - Revision 1]
 
