@@ -1,3 +1,0 @@
-installed game list	sort games alphabetically
-HDD size report	Use `toc` command instead of `hdl_toc`, reducing the wait time in ~1.2secs
-HDD size report	add used space to report

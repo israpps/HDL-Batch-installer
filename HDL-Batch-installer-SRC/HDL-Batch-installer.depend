@@ -21869,7 +21869,7 @@
 	<iostream>
 	<fstream>
 
-1674957101 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\manifest.rc
+1674958358 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\manifest.rc
 
 1674915379 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\md5man.cpp
 	"MD5Man.h"
@@ -21887,7 +21887,7 @@
 	<wx/intl.h>
 	<wx/string.h>
 
-1674957502 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\resource.rc
+1674957635 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\resource.rc
 	"version.h"
 	"wx/msw/wx.rc"
 
