@@ -41,6 +41,7 @@ static const wxCmdLineEntryDesc g_cmdLineDesc [] =
         wxCMD_LINE_VAL_NONE, wxCMD_LINE_OPTION_HELP
     },
     { wxCMD_LINE_SWITCH, "sot", "stay-on-top", "forces the GUI to stay on top of every program"},
+    { wxCMD_LINE_SWITCH, "nup", "skip-update", "skips update checking"},
     { wxCMD_LINE_SWITCH, "rdl", "redirect-text", "redirects log messages from console into two text files found inside log/ folder"},
     { wxCMD_LINE_SWITCH, "fmd", "force-max-debug", "forces the debug level to it's max value"},
     { wxCMD_LINE_NONE }

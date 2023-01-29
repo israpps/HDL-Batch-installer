@@ -1,6 +1,7 @@
 #include "version.h"
 #include "wx/msw/wx.rc"
 
+ADMIN        RT_MANIFEST  "manifest.bin"
 HDL_BATCH_ICON  ICON MOVEABLE PURE LOADONCALL DISCARDABLE "gfx/main.ico"
 MAIN_BANNER 	RCDATA                                    "gfx/BOOT_SPLASH.png"
 //MAIN_BANNER 	RCDATA                                    "gfx/BOOT_SPLASH_1YEAR.png"

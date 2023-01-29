@@ -16,12 +16,13 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 		<Build>
 			<Target title="Debug">
 				<Option platforms="Windows;Unix;" />
-				<Option output="_bin/Debug/HDL-Batch-installer" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="_bin/Debug/" />
+				<Option output="_bin/playground/HDL-Batch-installer" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="_bin/playground/" />
 				<Option object_output="_obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Option use_console_runner="0" />
+				<Option parameters="--force-max-debug --stay-on-top --skip-update" />
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
 					<Add option="-O2" />
@@ -71,12 +72,12 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 			<Target title="DEBUG">
 				<Option platforms="Windows;Unix;" />
 				<Option output="_bin/DEBUG_/HDL-Batch-installer" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="_bin/DEBUG_/" />
+				<Option working_dir="_bin/playground/" />
 				<Option object_output="_obj/DEBUG_/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
 				<Option use_console_runner="0" />
-				<Option parameters="--force-max-debug --stay-on-top" />
+				<Option parameters="--force-max-debug --stay-on-top --skip-update" />
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
 					<Add option="-m64" />
@@ -127,12 +128,13 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 			</Target>
 			<Target title="32-bits">
 				<Option platforms="Windows;Unix;" />
-				<Option output="_bin/32-bits/HDL-Batch-installer" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="_bin/32-bits/" />
+				<Option output="_bin/playground/HDL-Batch-installer-x86" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="_bin/playground/" />
 				<Option object_output="_obj/32-bits/" />
 				<Option type="1" />
 				<Option compiler="gnu_gcc_compiler_tdm-32bits" />
 				<Option use_console_runner="0" />
+				<Option parameters="--force-max-debug --stay-on-top --skip-update" />
 				<Option projectCompilerOptionsRelation="1" />
 				<Option projectLinkerOptionsRelation="1" />
 				<Option projectResourceIncludeDirsRelation="1" />
@@ -187,7 +189,7 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 			<Target title="32-bits-wx3.1.5">
 				<Option platforms="Windows;Unix;" />
 				<Option output="_bin/32-bits/HDL-Batch-installer" prefix_auto="1" extension_auto="1" />
-				<Option working_dir="_bin/32-bits/" />
+				<Option working_dir="_bin/playground/" />
 				<Option object_output="_obj/32-bits/" />
 				<Option type="1" />
 				<Option compiler="gnu_gcc_compiler_tdm-32bits" />

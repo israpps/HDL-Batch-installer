@@ -125,7 +125,6 @@
 						<growablecols>0</growablecols>
 						<object class="sizeritem">
 							<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="hdd_used_space" member="yes">
-								<value>total:?GB | Free:?GB</value>
 								<size>400,23</size>
 								<style>wxTE_READONLY|wxTE_CENTRE</style>
 								<handler function="OnTextCtrl1Text" entry="EVT_TEXT" />
@@ -344,7 +343,7 @@
 													<size>509,378</size>
 													<bg>wxSYS_COLOUR_LISTBOX</bg>
 													<extra_code>wxListItem col0;&#x0A;col0.SetId(0);&#x0A;col0.SetText( __(&quot;Game &quot;) );&#x0A;col0.SetWidth(200);//180&#x0A;Installed__game__list-&gt;InsertColumn(0, col0);&#x0A;&#x0A;// Add second column&#x0A;wxListItem col1;&#x0A;col1.SetId(1);&#x0A;col1.SetText( __(&quot;ID&quot;) );&#x0A;col1.SetWidth(110);&#x0A;Installed__game__list-&gt;InsertColumn(1, col1);&#x0A;&#x0A;// Add third column&#x0A;wxListItem col2;&#x0A;col2.SetId(2);&#x0A;col2.SetText( __(&quot;size (MB)&quot;) );&#x0A;col2.SetWidth(90);&#x0A;Installed__game__list-&gt;InsertColumn(2, col2);&#x0A;&#x0A;// Add 4th column&#x0A;wxListItem col3;&#x0A;col3.SetId(3);&#x0A;col3.SetText( __(&quot;Media&quot;) );&#x0A;col3.SetWidth(50);&#x0A;Installed__game__list-&gt;InsertColumn(3, col3);</extra_code>
-													<style>wxLC_REPORT|wxLC_AUTOARRANGE|wxLC_HRULES|wxLC_VRULES|wxLC_NO_SORT_HEADER|wxBORDER_SUNKEN|wxVSCROLL</style>
+													<style>wxLC_REPORT|wxLC_AUTOARRANGE|wxLC_SORT_ASCENDING|wxLC_HRULES|wxLC_VRULES|wxLC_NO_SORT_HEADER|wxBORDER_SUNKEN|wxVSCROLL</style>
 													<handler function="OnListCtrl1BeginDrag1" entry="EVT_LIST_BEGIN_DRAG" />
 													<handler function="Selected_games" entry="EVT_LIST_ITEM_SELECTED" />
 													<handler function="UnSelected_games" entry="EVT_LIST_ITEM_DESELECTED" />

@@ -105,17 +105,28 @@ bool HDL_Batch_installerApp::OnInit()
                     std::cout << "argv[" << x <<"] = [" << fake_argv[x] << "]\n";
                 }
                 COLOR(0e)
-                std::cout << "Forcing high debug data...\n";
+                std::cout << " -- Forcing high debug data...\n";
                 COLOR(07)
             }
             if (fake_argv[x].IsSameAs("--stay-on-top") || fake_argv[x].IsSameAs("-sot"))
             {
-                std::cout << "GUI will stay on top...\n";
+                COLOR(0e)
+                std::cout << " -- GUI will stay on top...\n";
+                COLOR(07)
                 custom_styles |= wxSTAY_ON_TOP;
+            }
+            if (fake_argv[x].IsSameAs("--skip-update") || fake_argv[x].IsSameAs("-nup"))
+            {
+                COLOR(0e)
+                std::cout << " -- skipping updates...\n";
+                COLOR(07)
+                check_updates = false;
             }
             if (fake_argv[x].IsSameAs("--redirect-text") || fake_argv[x].IsSameAs("-rdl"))
             {
-                std::cout << "Redirecting text from console into log files...\n";
+                COLOR(0e)
+                std::cout << " -- Redirecting text from console into log files...\n";
+                COLOR(07)
                 scoped_flags |= REDIRECT_OUTPUT;
             }
         }

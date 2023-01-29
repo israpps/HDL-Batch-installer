@@ -155,8 +155,9 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     COLOR(0f)
     cout << "welcome to HDL Batch Installer [" << versionTAG <<"]\n";
     COLOR(07)
-
+#ifdef RELEASE
     Create(parent, wxID_ANY, "HDL Batch Installer | By Matias Israelson (El_isra)", wxDefaultPosition, wxDefaultSize, wxRESIZE_BORDER|Custom_Styles|wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX|wxMINIMIZE_BOX|wxCLIP_CHILDREN, _T("wxID_ANY"));
+#endif
     //(*Initialize(HDL_Batch_installerFrame)
     wxBoxSizer* BoxSizer10;
     wxBoxSizer* BoxSizer1;
@@ -187,7 +188,7 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     wxMenuItem* MenuItem3;
     wxStaticBoxSizer* StaticBoxSizer1;
 
-    //Create(parent, wxID_ANY, _("HDL Batch Installer"), wxDefaultPosition, wxDefaultSize, wxSTAY_ON_TOP|wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxMINIMIZE_BOX|wxCLIP_CHILDREN, _T("wxID_ANY"));
+    Create(parent, wxID_ANY, _("HDL Batch Installer"), wxDefaultPosition, wxDefaultSize, wxSTAY_ON_TOP|wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxMINIMIZE_BOX|wxCLIP_CHILDREN, _T("wxID_ANY"));
     SetClientSize(wxSize(537,651));
     Move(wxPoint(-1,-1));
     SetMinSize(wxSize(537,681));
@@ -228,7 +229,7 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     FlexGridSizer1->Add(FlexGridSizer2, 1, wxTOP|wxLEFT|wxRIGHT|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL, 5);
     FlexGridSizer3 = new wxFlexGridSizer(0, 1, 0, 0);
     FlexGridSizer3->AddGrowableCol(0);
-    hdd_used_space = new wxTextCtrl(Panel5, ID_TEXTCTRL1, _("total:\?GB | Free:\?GB"), wxDefaultPosition, wxSize(400,23), wxTE_READONLY|wxTE_CENTRE, wxDefaultValidator, _T("ID_TEXTCTRL1"));
+    hdd_used_space = new wxTextCtrl(Panel5, ID_TEXTCTRL1, wxEmptyString, wxDefaultPosition, wxSize(400,23), wxTE_READONLY|wxTE_CENTRE, wxDefaultValidator, _T("ID_TEXTCTRL1"));
     FlexGridSizer3->Add(hdd_used_space, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
     Gauge1 = new wxGauge(Panel5, ID_GAUGE1, 100, wxDefaultPosition, wxSize(464,24), wxGA_SMOOTH, wxDefaultValidator, _T("ID_GAUGE1"));
     FlexGridSizer3->Add(Gauge1, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
@@ -303,7 +304,7 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     Button3 = new wxButton(Panel2, ID_BUTTON8, _("\?"), wxDefaultPosition, wxSize(16,23), 0, wxDefaultValidator, _T("ID_BUTTON8"));
     BoxSizer2->Add(Button3, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
     FlexGridSizer8->Add(BoxSizer2, 1, wxALL|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL, 5);
-    Installed_game_list = new wxListCtrl(Panel2, ID_LISTCTRL2, wxDefaultPosition, wxSize(509,378), wxLC_REPORT|wxLC_AUTOARRANGE|wxLC_HRULES|wxLC_VRULES|wxLC_NO_SORT_HEADER|wxBORDER_SUNKEN|wxVSCROLL, wxDefaultValidator, _T("ID_LISTCTRL2"));
+    Installed_game_list = new wxListCtrl(Panel2, ID_LISTCTRL2, wxDefaultPosition, wxSize(509,378), wxLC_REPORT|wxLC_AUTOARRANGE|wxLC_SORT_ASCENDING|wxLC_HRULES|wxLC_VRULES|wxLC_NO_SORT_HEADER|wxBORDER_SUNKEN|wxVSCROLL, wxDefaultValidator, _T("ID_LISTCTRL2"));
     Installed_game_list->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOX));
     wxListItem col0;
     col0.SetId(0);
@@ -1134,59 +1135,52 @@ void HDL_Batch_installerFrame::Enable_HDD_dependant_objects(bool WTF_should_I_do
 void HDL_Batch_installerFrame::Update_hdd_data(void)
 {
     Enable_HDD_dependant_objects(false);///Temporarly disble just in case data parsing fails
-    ///MAKE SURE TO RE-ENABLE EVERYTHING THAT WAS DISABLEd HERE INSIDE THE 'if (toc_red == 0)' BLOCK
+    ///MAKE SURE TO RE-ENABLE EVERYTHING THAT WAS DISABLEd HERE INSIDE THE 'if (toc_ret == 0)' BLOCK
     wxString command;
     wxString label = selected_hdd->GetString(selected_hdd->GetSelection());
     cout << "selected "<< label <<endl;
-    //command = "HDL.EXE hdl_toc " + label;
-    command.Printf("HDL.EXE hdl_toc %s",label);
+    command.Printf("HDL.EXE toc %s",label);
     wxArrayString result,std_error;
-    //HDL.SystemCapture(command, ".", result, output_err, retcode,false);
     long toc_ret = wxExecute(command,result,std_error);
-    wxString line;
-    std::string size_total, size_used;
+    wxString line, TMP;
+    long int size_total, size_used, size_free;
     if (toc_ret == 0)
     {
         for(size_t x=0; x < result.GetCount(); x++) //Parse line-to-line :D
         {
             line = result.Item(x);
             if (CFG::DEBUG_LEVEL > 5 || (CTOR_FLAGS & FORCE_HIGH_DEBUG_LEVEL) )
-            {
-                cout << line <<endl;
-            }
+                cout << line <<"\n";
 
             if (line.find(", used") == NOT_FOUND)
-            {
                 continue;
-            }
             else
             {
-                size_total = line.SubString(6,line.find_first_of("MB") - 1);
-                size_used = line.SubString(line.find_first_of("used") + 5, line.find_first_of("MB",line.find_first_of(",")) - 1);
+                TMP =  line.SubString(line.find_first_of(":") + 2,line.find_first_of("MB") - 1);
+                TMP.ToLong(&size_total);
+                TMP.clear();
+                int A = line.find_first_of(",") + 8,
+                B = line.find_first_of("MB",A)-1;
+                TMP  = line.SubString(A, B);
+                TMP.ToLong(&size_used);
+                TMP.clear();
+                TMP  = line.SubString(line.find_last_of(":") + 2,line.find_last_of("MB") - 2);
+                TMP.ToLong(&size_free);
             }
         }
-        printf("total[%s]\n",size_total.c_str());
-        printf("used [%s]\n",size_used.c_str());
-
-        Gauge1->SetRange(std::stoi(size_total));
-        Gauge1->SetValue(std::stoi(size_used));
+        std::cout << "total ["<<size_total<<"]\n used["<<size_used<<"]\n free ["<<size_free<<"]\n";
+        Gauge1->SetRange(size_total);
+        Gauge1->SetValue(size_used);
 
         hdd_used_space->Clear();
-        hdd_used_space->AppendText(_("Total: "));
-        hdd_used_space->AppendText( std::to_string((std::stoi(size_total) / 1024)));
-        hdd_used_space->AppendText("Gb | ");
-        hdd_used_space->AppendText(_("used: "));
+        hdd_used_space->AppendText( wxString::Format(_("Total: %dGb | Used: %d%s | Free: %d%s"),
+                                                       (size_total / 1024),
+                                                       (size_used > 1024) ? (size_used / 1024) : size_used,
+                                                       (size_used > 1024) ? ("Gb") : "Mb",
+                                                       (size_free > 1024) ? (size_free / 1024) : size_free,
+                                                       (size_free > 1024) ? ("Gb") : "Mb"
+                                                       ));
 
-        if (std::stoi(size_used)<1024)
-        {
-            hdd_used_space->AppendText( std::to_string((std::stoi(size_used))));
-            hdd_used_space->AppendText("Mb");
-        }
-        else
-        {
-            hdd_used_space->AppendText( std::to_string((std::stoi(size_used) / 1024)));
-            hdd_used_space->AppendText("Gb");
-        }
         Enable_HDD_dependant_objects(true); //re-enable & clean installed game list
     }
     else
@@ -1213,17 +1207,15 @@ void HDL_Batch_installerFrame::List_refresh_request()
     wxString command = "HDL.EXE hdl_toc ";
     command.append(selected_hdd->GetString(selected_hdd->GetSelection()));
 
-    std::cout << selected_hdd->GetString(selected_hdd->GetSelection()) << std::endl;
+    std::cout << "listing games of "<< selected_hdd->GetString(selected_hdd->GetSelection()) << "\n\n";
 
     wxExecute(command,result);
-    COLOR(0f) cout << "hdl_toc ---------\n";
-    COLOR(07)
+
     for(size_t x = 0; x < result.GetCount(); x++)
     {
-        cout << result.Item(x) << endl;
+        cout << result.Item(x) << "\n";
     }
-    COLOR(0f) cout << "hdl_toc ---------\n";
-    COLOR(07)
+
     int media = MEDIA_DVD;
     std::string Gamename;
     long int gamesize;
@@ -1250,13 +1242,6 @@ void HDL_Batch_installerFrame::List_refresh_request()
             Gamename = line.substr( line.find_first_of(" ",line.find('*') + 4) +2 );
         }
         ///VALUE ASSINGMENT
-        if(CFG::DEBUG_LEVEL > 5 || (CTOR_FLAGS & FORCE_HIGH_DEBUG_LEVEL) )
-        {
-            std::cout   <<"Gamename: "  << Gamename << std::endl
-                        <<"ELF: "       << ELF      << std::endl
-                        <<"Gamesize: "  << gamesize << std::endl
-                        <<"Media: "     << media    << std::endl;
-        }
         long itemIndex = Installed_game_list->InsertItem(0, Gamename);// col. 1
         Installed_game_list->SetItem(itemIndex, 1, ELF); // col. 2
         Installed_game_list->SetItem(itemIndex, 2, wxString::Format(wxT("%i"),gamesize / 1024)); //col. 3
@@ -2128,4 +2113,11 @@ void HDL_Batch_installerFrame::OnFrameResize(wxSizeEvent& event)
 
     Installed_game_list->SetColumnWidth(0, listwidth);
     game_list__->SetColumnWidth(0, listwidth2); */
+}
+
+int wxCALLBACK hdlbinst_listctrl_compare(wxIntPtr item1, wxIntPtr item2, wxIntPtr WXUNUSED(sortData))
+{
+  if(item1<item2) return -1;
+  if(item1>item2) return 1;
+  return 0; // if both items are equal...
 }
