@@ -24894,3 +24894,13 @@
 	"version.h"
 	"wx/msw/wx.rc"
 
+1587560968 c:\wxwidgets-3.0.5\include\wx\volume.h
+	"wx/defs.h"
+	"wx/arrstr.h"
+	"wx/icon.h"
+	"wx/iconbndl.h"
+
+1587560968 c:\wxwidgets-3.0.5\include\wx\regex.h
+	"wx/defs.h"
+	"wx/string.h"
+

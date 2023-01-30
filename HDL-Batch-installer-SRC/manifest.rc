@@ -1,5 +1,6 @@
-
-1        RT_MANIFEST  "manifest.bin"
+//the following manifest is deprecated...
+//take a look at the new manifest files on ./manifest/*.bin
+//1        RT_MANIFEST  "manifest.bin"
 /**
  *Embedded windows manifest to automatically request Administrative priviledges
  *Needed to save the user the job of executing as edmin manually, since HDLDump write-features won't work without admin mode
