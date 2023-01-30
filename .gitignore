@@ -22,3 +22,6 @@ HDL-Batch-installer-SRC/_bin/Debug/Common/config.INI.bak
 HDL-Batch-installer-SRC/_obj/**
 **Thumbs.db
 **.wget-hsts
+HDL-Batch-installer-SRC/_bin/playground/Common/_ICN.7z
+HDL-Batch-installer-SRC/_bin/playground/Common/Icons.INI
+HDL-Batch-installer-SRC/_bin/playground/gamename.DB

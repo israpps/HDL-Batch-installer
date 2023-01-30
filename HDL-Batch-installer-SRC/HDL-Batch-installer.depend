@@ -24627,3 +24627,270 @@
 
 1627355558 c:\libs\wxwidgets-3.0.5-x86\lib\gcc_lib\mswu\wx\msw\rcdefs.h
 
+1671708606 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\about.cpp
+	"About.h"
+	<wx/font.h>
+	<wx/intl.h>
+	<wx/string.h>
+
+1671708606 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\about.h
+	"version.h"
+	<wx/dialog.h>
+	<wx/hyperlink.h>
+	<wx/statline.h>
+	<wx/stattext.h>
+
+1675085270 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\version.h
+
+1671708606 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\artman.cpp
+	"ArtMan.h"
+	<wx/intl.h>
+	<wx/string.h>
+
+1671708606 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\artman.h
+	<wx/button.h>
+	<wx/checkbox.h>
+	<wx/dialog.h>
+	<wx/statbox.h>
+	<wx/statline.h>
+	<wx/textctrl.h>
+	<wx/arrstr.h>
+	<iostream>
+	"include/macro-vault.h"
+	<wx/msgdlg.h>
+	<wx/filename.h>
+	<wx/file.h>
+
+1671708639 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\include\macro-vault.h
+	<windows.h>
+	<iostream>
+	<string>
+
+1671708638 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\common.cpp
+	<string>
+
+1671708606 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\component_error.cpp
+	"Component_error.h"
+	<wx/font.h>
+	<wx/intl.h>
+	<wx/string.h>
+
+1671708606 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\component_error.h
+	<wx/dialog.h>
+	<wx/hyperlink.h>
+	<wx/sizer.h>
+	<wx/stattext.h>
+
+1671722531 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\config.cpp
+	"Config.h"
+	"include/locale_table.h"
+	<wx/font.h>
+	<wx/intl.h>
+	<wx/string.h>
+
+1671708606 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\config.h
+	<wx/button.h>
+	<wx/checkbox.h>
+	<wx/choice.h>
+	<wx/combobox.h>
+	<wx/dialog.h>
+	<wx/filepicker.h>
+	<wx/notebook.h>
+	<wx/panel.h>
+	<wx/radiobut.h>
+	<wx/sizer.h>
+	<wx/textctrl.h>
+	<wx/msgdlg.h>
+	<string>
+	<wx/file.h>
+	<wx/fileconf.h>
+	<wx/app.h>
+	"include/macro-vault.h"
+
+1671722532 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\include\locale_table.h
+	<wx/string.h>
+	<wx/language.h>
+	<wx/debug.h>
+	<wx/defs.h>
+
+1671708606 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\copyhdd.cpp
+	"CopyHDD.h"
+	<wx/intl.h>
+	<wx/string.h>
+	<wx/arrstr.h>
+	<iostream>
+	<wx/msgdlg.h>
+	<wx/progdlg.h>
+	"include/macro-vault.h"
+
+1671708606 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\copyhdd.h
+	<wx/button.h>
+	<wx/choice.h>
+	<wx/dialog.h>
+	<wx/sizer.h>
+	<wx/stattext.h>
+
+1671708606 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\dokanman.cpp
+	"DokanMan.h"
+	<wx/filefn.h>
+	<wx/longlong.h>
+	<wx/volume.h>
+	<iostream>
+	"include/macro-vault.h"
+	<wx/dir.h>
+	<wx/fileconf.h>
+	<wx/intl.h>
+	<wx/string.h>
+
+1671708606 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\dokanman.h
+	<wx/button.h>
+	<wx/choice.h>
+	<wx/dialog.h>
+	<wx/gauge.h>
+	<wx/sizer.h>
+	<wx/stattext.h>
+	<wx/textctrl.h>
+	<wx/arrstr.h>
+
+1671708639 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\gamename\database.cpp
+	"database.h"
+
+1671708639 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\gamename\database.h
+	<string>
+
+1671708639 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\gamename\parser.cpp
+	"parser.h"
+
+1671708639 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\gamename\parser.h
+	<iostream>
+	<fstream>
+	<string>
+	<sstream>
+	"../include/macro-vault.h"
+	"database.h"
+
+1671708639 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\hdl-dump-recodes.cpp
+
+1671708610 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\md5man.cpp
+	"MD5Man.h"
+	<cstdio>
+	<vector>
+
+1671708639 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\include\md5man.h
+	<cstring>
+	<iostream>
+	<fstream>
+
+1671708610 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\ndbman.cpp
+	"NDBMan.h"
+	<wx/intl.h>
+	<wx/string.h>
+
+1671708610 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\ndbman.h
+	<wx/button.h>
+	<wx/dialog.h>
+	<wx/sizer.h>
+	<wx/stattext.h>
+
+1671708610 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\post_install_report.cpp
+	"Post_Install_Report.h"
+	<iostream>
+	<wx/intl.h>
+	<wx/string.h>
+
+1671708610 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\post_install_report.h
+	<wx/dialog.h>
+	<wx/listctrl.h>
+	<wx/sizer.h>
+	<wx/stattext.h>
+
+1675085263 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installerapp.cpp
+	"HDL_Batch_installerApp.h"
+	"flags.h"
+	"HDL_Batch_installerMain.h"
+	<wx/image.h>
+
+1675085263 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installerapp.h
+	<wx/splash.h>
+	<wx/filefn.h>
+	<wx/file.h>
+	<wx/app.h>
+	<wx/cmdline.h>
+	<iostream>
+	"version.h"
+
+1671708638 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\flags.h
+
+1675085263 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installermain.h
+	"version.h"
+	<wx/button.h>
+	<wx/checkbox.h>
+	<wx/choice.h>
+	<wx/filedlg.h>
+	<wx/frame.h>
+	<wx/gauge.h>
+	<wx/listctrl.h>
+	<wx/menu.h>
+	<wx/notebook.h>
+	<wx/panel.h>
+	<wx/progdlg.h>
+	<wx/sizer.h>
+	<wx/statline.h>
+	<wx/textctrl.h>
+	<wx/time.h>
+	<wx/regex.h>
+	<wx/config.h>
+	<wx/arrstr.h>
+	<wx/utils.h>
+	<wx/fileconf.h>
+	<fstream>
+	<wx/stdpaths.h>
+	<wx/filename.h>
+	<wx/fileconf.h>
+	<wx/process.h>
+	<wx/filefn.h>
+	<stdio.h>
+	<wx/app.h>
+	<wx/file.h>
+	<wx/msgdlg.h>
+	<wx/choicdlg.h>
+	<wx/dirdlg.h>
+	<wx/textdlg.h>
+	<wx/url.h>
+	<wx/window.h>
+	<wx/dir.h>
+	<stdlib.h>
+	"include/macro-vault.h"
+	"flags.h"
+	"include/locale_table.h"
+
+1587560968 d:\wxwidgets-3.0.5-static\include\wx\regex.h
+	"wx/defs.h"
+	"wx/string.h"
+
+1675085263 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installermain.cpp
+	"HDL_Batch_installerMain.h"
+	"About.h"
+	"Config.h"
+	"Component_error.h"
+	"ArtMan.h"
+	"DokanMan.h"
+	"Post_Install_Report.h"
+	"CopyHDD.h"
+	"NDBMan.h"
+	"hdl-dump-recodes.h"
+	"gamename/parser.h"
+	"MD5Man.h"
+	<wx/font.h>
+	<wx/intl.h>
+	<wx/settings.h>
+	<wx/string.h>
+
+1673363896 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\hdl-dump-recodes.h
+
+1675085270 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\manifest.rc
+
+1675091703 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\resource.rc
+	"version.h"
+	"wx/msw/wx.rc"
+

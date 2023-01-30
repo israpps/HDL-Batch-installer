@@ -1,5 +1,26 @@
 #include "version.h"
+#define wxUSE_NO_MANIFEST 1
 #include "wx/msw/wx.rc"
+
+//1        RT_MANIFEST  "manifest.bin"
+
+#ifdef WX_CPU_AMD64
+1 RT_MANIFEST "manifest/amd64.bin"
+#elif defined(WX_CPU_IA64)
+1 RT_MANIFEST "manifest/ia64.bin"
+#elif defined(WX_CPU_X86)
+1 RT_MANIFEST "manifest/wx.bin"
+#else
+
+//#include "wx/msw/amd64.manifest"
+// Notice that if the manifest is included, WX_CPU_XXX constant corresponding
+// to the architecture we're compiling for must be defined. This can be done
+// either manually in your make/project file or by configuring the resource
+// compiler paths to search in $(WXWIN)/lib/$(COMPILER_PREFIX)_lib/mswu[d]
+// directory for its include files, as wx/msw/rcdefs.h file in this directory
+// is generated during wxWidgets build and contains the correct definition.
+#error "One of WX_CPU_XXX constants must be defined. See comment above."
+#endif
 
 ADMIN        RT_MANIFEST  "manifest.bin"
 HDL_BATCH_ICON  ICON MOVEABLE PURE LOADONCALL DISCARDABLE "gfx/main.ico"
