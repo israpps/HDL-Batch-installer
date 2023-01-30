@@ -24730,7 +24730,7 @@
 	<wx/sizer.h>
 	<wx/stattext.h>
 
-1671708606 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\dokanman.cpp
+1675094471 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\dokanman.cpp
 	"DokanMan.h"
 	<wx/filefn.h>
 	<wx/longlong.h>
@@ -24739,6 +24739,7 @@
 	"include/macro-vault.h"
 	<wx/dir.h>
 	<wx/fileconf.h>
+	<wx/msgdlg.h>
 	<wx/intl.h>
 	<wx/string.h>
 
@@ -24868,7 +24869,7 @@
 	"wx/defs.h"
 	"wx/string.h"
 
-1675085263 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installermain.cpp
+1675094471 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installermain.cpp
 	"HDL_Batch_installerMain.h"
 	"About.h"
 	"Config.h"

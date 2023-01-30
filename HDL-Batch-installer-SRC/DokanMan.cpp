@@ -6,6 +6,7 @@
 #include "include/macro-vault.h"
 #include <wx/dir.h>
 #include <wx/fileconf.h>
+#include <wx/msgdlg.h>
 //(*InternalHeaders(DokanMan)
 #include <wx/intl.h>
 #include <wx/string.h>
@@ -13,6 +14,8 @@
 bool MOUNTSTATE;
 wxLongLong FREE_SPACE;
 wxLongLong TOTAL_SPACE;
+#define DOKAN_ENV "DokanLibrary1"
+#define DOKAN_ENV2 "DokanLibrary2"
 
 /*struct drive_t
 {
@@ -116,7 +119,7 @@ DokanMan::DokanMan(wxWindow* parent, wxArrayString PARTITIONS_, wxString HDD, wx
     BoxSizer2 = new wxBoxSizer(wxHORIZONTAL);
     Mount  = new wxButton(this, ID_BUTTON1, _("Mount "), wxDefaultPosition, wxSize(105,28), 0, wxDefaultValidator, _T("ID_BUTTON1"));
     Mount ->Disable();
-    BoxSizer2->Add(Mount, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    BoxSizer2->Add(Mount , 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     Unmount = new wxButton(this, ID_BUTTON2, _("Unmount"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON2"));
     Unmount->Disable();
     BoxSizer2->Add(Unmount, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
@@ -231,6 +234,7 @@ void DokanMan::OnDrive_selectorSelect(wxCommandEvent& event)
 
 void DokanMan::OnUnmountClick(wxCommandEvent& event)
 {
+    wxString DOKAN_ENV_TMP;
     if (wxDirExists(HDLBINST_APPDATA_2))
     {
         if (!wxFileExists(HDLBINST_APPDATA_2+"\\dokan_and_fuse.ini"))
@@ -245,10 +249,16 @@ void DokanMan::OnUnmountClick(wxCommandEvent& event)
     {
         wxMkDir(HDLBINST_APPDATA_2);
     }
+    if (!wxGetEnv(DOKAN_ENV, &DOKAN_ENV_TMP))
+        if (!wxGetEnv(DOKAN_ENV2, &DOKAN_ENV_TMP))
+        {
+            wxMessageBox(_("impossible to find dokan enviroment variables.\nunmount the drive manually by calling:\ndokanctl.exe /u {"+_("Mount point")+"}"), wxEmptyString, wxICON_ERROR);
+            return;
+        };
     std::cout <<"> Unmounting partition\n";
     wxString MOUNTPOINT = Drive_selector->GetString(Drive_selector->GetCurrentSelection());
 
-    wxString UNMOUNT_COMMAND = wxString::Format("%s\\dokanctl.exe /u %s",Get_env("DokanLibrary1"),MOUNTPOINT);
+    wxString UNMOUNT_COMMAND = wxString::Format("%s\\dokanctl.exe /u %s",DOKAN_ENV_TMP,MOUNTPOINT);
 
     wxExecute(UNMOUNT_COMMAND,wxEXEC_SYNC);
 

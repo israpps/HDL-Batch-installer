@@ -70,7 +70,8 @@ extern string DMA_ALIAS[8];
 const std::string MiniOPL_URL = "https://github.com/israpps/HDL-Batch-installer/raw/main/Release/boot.kelf";
 const wxString error_caption = _("error");
 const wxString warning_caption = _("warning");
-const wxString DOKAN_ENV = "DokanLibrary1";
+#define DOKAN_ENV "DokanLibrary1"
+#define DOKAN_ENV2 "DokanLibrary2"
 wxString HDLBINST_APPDATA;
 
 /*
@@ -1770,8 +1771,7 @@ void HDL_Batch_installerFrame::ask_2_download_icons(void)
 
 bool Dokan_is_installed(void)
 {
-    wxString DUMMY;
-    return wxGetEnv(DOKAN_ENV,&DUMMY);
+    return wxGetEnv(DOKAN_ENV, NULL) || wxGetEnv(DOKAN_ENV2, NULL);
 }
 
 void HDL_Batch_installerFrame::OnButton4Click(wxCommandEvent& event)
@@ -1786,7 +1786,7 @@ void HDL_Batch_installerFrame::OnButton4Click(wxCommandEvent& event)
     {
         if(
             wxMessageBox(
-                wxString::Format(_("Can't find the enviroment variable \"%s\" used to locate the Dokan Library\n\n It seems like Dokan was unproperly installed (or it isn't installed)\n\nGo to Dokan download website?"),DOKAN_ENV)
+                wxString::Format(_("Can't find the enviroment variables \"%s\" or \"%s\" used to locate the Dokan Library\n\n It seems like Dokan was unproperly installed (or it isn't installed)\n\nGo to Dokan download website?"),DOKAN_ENV, DOKAN_ENV2)
                 ,error_caption,
                 wxICON_ERROR|wxYES_NO
             )==wxYES) wxLaunchDefaultBrowser("https://github.com/dokan-dev/dokany/releases/tag/v1.5.1.1000");
