@@ -249,14 +249,14 @@ void DokanMan::OnUnmountClick(wxCommandEvent& event)
     {
         wxMkDir(HDLBINST_APPDATA_2);
     }
+    wxString MOUNTPOINT = Drive_selector->GetString(Drive_selector->GetCurrentSelection());
     if (!wxGetEnv(DOKAN_ENV, &DOKAN_ENV_TMP))
         if (!wxGetEnv(DOKAN_ENV2, &DOKAN_ENV_TMP))
         {
-            wxMessageBox(_("impossible to find dokan enviroment variables.\nunmount the drive manually by calling:\ndokanctl.exe /u {"+_("Mount point")+"}"), wxEmptyString, wxICON_ERROR);
+            wxMessageBox(_("impossible to find dokan enviroment variables.\nunmount the drive manually by calling:\n")+"dokanctl.exe /u "+MOUNTPOINT, wxEmptyString, wxICON_ERROR);
             return;
         };
     std::cout <<"> Unmounting partition\n";
-    wxString MOUNTPOINT = Drive_selector->GetString(Drive_selector->GetCurrentSelection());
 
     wxString UNMOUNT_COMMAND = wxString::Format("%s\\dokanctl.exe /u %s",DOKAN_ENV_TMP,MOUNTPOINT);
 
