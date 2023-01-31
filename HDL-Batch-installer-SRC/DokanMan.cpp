@@ -119,7 +119,7 @@ DokanMan::DokanMan(wxWindow* parent, wxArrayString PARTITIONS_, wxString HDD, wx
     BoxSizer2 = new wxBoxSizer(wxHORIZONTAL);
     Mount  = new wxButton(this, ID_BUTTON1, _("Mount "), wxDefaultPosition, wxSize(105,28), 0, wxDefaultValidator, _T("ID_BUTTON1"));
     Mount ->Disable();
-    BoxSizer2->Add(Mount , 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    BoxSizer2->Add(Mount, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     Unmount = new wxButton(this, ID_BUTTON2, _("Unmount"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON2"));
     Unmount->Disable();
     BoxSizer2->Add(Unmount, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);

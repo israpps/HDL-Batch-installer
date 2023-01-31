@@ -79,7 +79,7 @@ Config::Config(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& s
     StaticBoxSizer3 = new wxStaticBoxSizer(wxHORIZONTAL, Panel1, _("Language"));
     language_choice = new wxComboBox(Panel1, ID_COMBOBOX1, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_COMBOBOX1"));
     for (long long unsigned int x=0; x < WXSIZEOF(langNames) ; x++)
-    language_choice->Append(langNames[x]);
+        language_choice->Append(langNames[x]);
     language_choice->SetSelection(0);
     StaticBoxSizer3->Add(language_choice, 1, wxALL|wxEXPAND, 5);
     StaticBoxSizer2->Add(StaticBoxSizer3, 1, wxALL|wxEXPAND, 5);
@@ -120,7 +120,9 @@ Config::Config(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& s
     default_dma = new wxChoice(Panel1, ID_CHOICE1, wxDefaultPosition, wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_CHOICE1"));
     default_dma->SetToolTip(_("Determines wich DMA mode will be written to game APA Header.\n\nThis feature is only usable for outdated software like HDLoader or MiniOPL"));
     for (int X=0 ; X <=7 ; X++)
-    {default_dma->Append(DMA_ALIAS[X]);}
+    {
+        default_dma->Append(DMA_ALIAS[X]);
+    }
 
     default_dma->SetSelection(7);
     StaticBoxSizer6->Add(default_dma, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
@@ -135,7 +137,9 @@ Config::Config(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& s
     StaticBoxSizer7 = new wxStaticBoxSizer(wxHORIZONTAL, Panel2, _("Default HDD letter"));
     MountPoint = new wxChoice(Panel2, ID_CHOICE2, wxDefaultPosition, wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_CHOICE2"));
     for (int x=0; x<25; x++)
-    {MountPoint->Append(mountpoints[x]);}
+    {
+        MountPoint->Append(mountpoints[x]);
+    }
     MountPoint->SetSelection(22);
     StaticBoxSizer7->Add(MountPoint, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     FlexGridSizer3->Add(StaticBoxSizer7, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);

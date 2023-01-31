@@ -271,7 +271,9 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     dma_choice = new wxChoice(Panel1, ID_CHOICE1, wxDefaultPosition, wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_CHOICE1"));
     dma_choice->Disable();
     for (int X=0 ; X <=7 ; X++)
-    { dma_choice->Append(DMA_ALIAS[X]); }
+    {
+        dma_choice->Append(DMA_ALIAS[X]);
+    }
     dma_choice->SetSelection(7);
     FlexGridSizer7->Add(dma_choice, 0, wxLEFT|wxRIGHT|wxEXPAND, 5);
     StaticLine2 = new wxStaticLine(Panel1, ID_STATICLINE2, wxDefaultPosition, wxSize(0,0), wxLI_HORIZONTAL, _T("ID_STATICLINE2"));
@@ -1161,7 +1163,7 @@ void HDL_Batch_installerFrame::Update_hdd_data(void)
                 TMP.ToLong(&size_total);
                 TMP.clear();
                 int A = line.find_first_of(",") + 8,
-                B = line.find_first_of("MB",A)-1;
+                    B = line.find_first_of("MB",A)-1;
                 TMP  = line.SubString(A, B);
                 TMP.ToLong(&size_used);
                 TMP.clear();
@@ -1175,12 +1177,12 @@ void HDL_Batch_installerFrame::Update_hdd_data(void)
 
         hdd_used_space->Clear();
         hdd_used_space->AppendText( wxString::Format(_("Total: %dGb | Used: %d%s | Free: %d%s"),
-                                                       (size_total / 1024),
-                                                       (size_used > 1024) ? (size_used / 1024) : size_used,
-                                                       (size_used > 1024) ? ("Gb") : "Mb",
-                                                       (size_free > 1024) ? (size_free / 1024) : size_free,
-                                                       (size_free > 1024) ? ("Gb") : "Mb"
-                                                       ));
+                                    (size_total / 1024),
+                                    (size_used > 1024) ? (size_used / 1024) : size_used,
+                                    (size_used > 1024) ? ("Gb") : "Mb",
+                                    (size_free > 1024) ? (size_free / 1024) : size_free,
+                                    (size_free > 1024) ? ("Gb") : "Mb"
+                                                    ));
 
         Enable_HDD_dependant_objects(true); //re-enable & clean installed game list
     }
@@ -2083,10 +2085,10 @@ void HDL_Batch_installerFrame::OnSelectiveGameMigration(wxCommandEvent& event)
 void HDL_Batch_installerFrame::OnGameDeletionRequest(wxCommandEvent& event)
 {
     if (wxMessageBox(_("This feature is unstable, untested and potentially dangerous.\n"
-                   "It has been confirmed that it corrupts the HDD format.\n"
-                   "Are you certain that you want to delete this game?"),
-                 _("IMPORTANT WARNING"),
-                 wxICON_WARNING|wxYES_NO|wxNO_DEFAULT, this) == wxNO)
+                       "It has been confirmed that it corrupts the HDD format.\n"
+                       "Are you certain that you want to delete this game?"),
+                     _("IMPORTANT WARNING"),
+                     wxICON_WARNING|wxYES_NO|wxNO_DEFAULT, this) == wxNO)
         return;
 
     long itemIndex = -1, retcode;
@@ -2117,7 +2119,7 @@ void HDL_Batch_installerFrame::OnFrameResize(wxSizeEvent& event)
 
 int wxCALLBACK hdlbinst_listctrl_compare(wxIntPtr item1, wxIntPtr item2, wxIntPtr WXUNUSED(sortData))
 {
-  if(item1<item2) return -1;
-  if(item1>item2) return 1;
-  return 0; // if both items are equal...
+    if(item1<item2) return -1;
+    if(item1>item2) return 1;
+    return 0; // if both items are equal...
 }
