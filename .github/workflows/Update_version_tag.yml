@@ -14,24 +14,15 @@ jobs:
     steps:
     - uses: actions/checkout@v3
 
-#    - name: Get short SHA
-#      id: slug
-#      run: echo "::set-output name=sha8::$(echo ${GITHUB_SHA} | cut -c1-8)"
-
     - name: get version from changelog
       shell: bash
-      run: echo "::set-output name=string::$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//' | awk '{$1=$1;print}')"
+      run: echo "VERSION=$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//' | awk '{$1=$1;print}')" >> $GITHUB_ENV
       id: version
       
-#    - name: get version from changelog as release tag
-#      shell: bash
-#      run: echo "::set-output name=version_tag::$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//' | sed -r 's/\s+//g' | sed 's/Revision/rev/' | awk '{$1=$1;print}')"
-#      id: tag
-
     - name: rewrite version tag
       run: |
         cd svr
-        echo "${{ steps.version.outputs.string }}">VERSION
+        echo "${{ env.VERSION }}">VERSION
 
     - uses: EndBug/add-and-commit@v7
       with:

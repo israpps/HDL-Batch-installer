@@ -33,12 +33,12 @@ jobs:
 
     - name: get version from changelog
       shell: bash
-      run: echo "::set-output name=string::$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//' | awk '{$1=$1;print}')"
+      run: echo ":VERSION=$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//' | awk '{$1=$1;print}')" >> $GITHUB_ENV
       id: version
       
     - name: get version from changelog as release tag
       shell: bash
-      run: echo "::set-output name=version_tag::$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//' | sed -r 's/\s+//g' | sed 's/Aniversary/aniv/' | sed 's/Revision/rev/' | sed 's/Release/rel/'| awk '{$1=$1;print}')"
+      run: echo "VERSION_TAG=$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//' | sed -r 's/\s+//g' | sed 's/Aniversary/aniv/' | sed 's/Revision/rev/' | sed 's/Release/rel/'| awk '{$1=$1;print}')" >> $GITHUB_ENV
       id: tag
             
     - name: Download Latest HDL-Dump
@@ -97,7 +97,7 @@ jobs:
     - name: Repack latest x64 build
       run: |
         SCH=${GITHUB_SHA::7}
-        REF=${{ steps.tag.outputs.version_tag }}
+        REF=${{ env.VERSION_TAG }}
         cd Release
         cd Common
         echo commit $SCH>commit.sys
@@ -107,13 +107,13 @@ jobs:
         cd ..
         cp COPYING.* Release/
         cp LICENSE Release/LICENSE
-        cp -r Release "HDLBInst[${{ steps.version.outputs.string }}-x64]"
+        cp -r Release "HDLBInst[${{ env.VERSION }}-x64]"
         7z a -t7z -r HDLBInst-x64-$REF.7z HDLBInst*x64*/*
 
     - name: Repack latest x86 build
       run: |
         SCH=${GITHUB_SHA::7}
-        REF=${{ steps.tag.outputs.version_tag }}
+        REF=${{ env.VERSION_TAG }}
         cd Release
         cd Common
         echo 32bits build >>commit.sys
@@ -121,7 +121,7 @@ jobs:
         cd ..
         rm Release/HDL-Batch-installer.exe
         cp Release32/HDL-Batch-installer.exe Release/HDL-Batch-installer.exe
-        mv Release "HDLBInst[${{ steps.version.outputs.string }}-x86]"
+        mv Release "HDLBInst[${{ env.VERSION }}-x86]"
         7z a -t7z -r HDLBInst-x86-$REF.7z HDLBInst*x86*/*
 
 
@@ -145,22 +145,10 @@ jobs:
              HDLBInst*x86*.7z
              Translation-template.7z
              NBD.zip
-        name: "${{ steps.version.outputs.string }}"
+        name: "${{ env.VERSION }}"
         tag_name: "Latest"
         body_path: 'latest_changes.log'
         prerelease: false
-
-#    - name: Deploy pre-release (legacy)
-#      if: (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main')
-#      uses: marvinpinto/action-automatic-releases@latest
-#      with:
-#        prerelease: true
-#        repo_token: "${{ secrets.GITHUB_TOKEN }}"
-#        automatic_release_tag: "Latest"
-#        title: "${{ steps.version.outputs.string }}"
-#        files: |
-#              HDLBInst*.7z
-#              Translation-template.7z
 
   discord_webhooks:
     needs: Repack_and_Release
@@ -191,14 +179,14 @@ jobs:
       uses: tsickert/discord-webhook@v2.0.2
       with:
         webhook-url: ${{ secrets.TESTERS_WEBHOOK }}
-        content: "<@&859572447761793034> & <@&859615291477590046> , HDL Batch Installer has been updated some minutes ago\\n according to changelog: **[${{ steps.version.outputs.string }}]** \\n as always, you can download the latest version from here:\\n https://github.com/israpps/HDL-Batch-installer/releases/tag/Latest \\n or <#863913236457062421>"
+        content: "<@&859572447761793034> & <@&859615291477590046> , HDL Batch Installer has been updated some minutes ago\\n according to changelog: **[${{ env.VERSION }}]** \\n as always, you can download the latest version from here:\\n https://github.com/israpps/HDL-Batch-installer/releases/tag/Latest \\n or <#863913236457062421>"
 
     - name: Discord Webhook, Latest release
       if: github.event_name == 'repository_dispatch'
       uses: tsickert/discord-webhook@v2.0.2
       with:
         webhook-url: ${{ secrets.TESTERS_WEBHOOK }}
-        content: "<@&859572447761793034> & <@&859615291477590046> , HDL Batch Installer **[${{ steps.version.outputs.string }}]** Has been **re-released** because **HDL Dump was updated** some minutes ago \\n as always, you can download the latest version from here:\\n https://github.com/israpps/HDL-Batch-installer/releases/tag/Latest \\n or <#863913236457062421>"
+        content: "<@&859572447761793034> & <@&859615291477590046> , HDL Batch Installer **[${{ env.VERSION }}]** Has been **re-released** because **HDL Dump was updated** some minutes ago \\n as always, you can download the latest version from here:\\n https://github.com/israpps/HDL-Batch-installer/releases/tag/Latest \\n or <#863913236457062421>"
 
 
     - name: Upload release to discord backup
