@@ -6,6 +6,7 @@
 #include "include/macro-vault.h"
 #include <wx/dir.h>
 #include <wx/fileconf.h>
+#include <wx/msgdlg.h>
 //(*InternalHeaders(DokanMan)
 #include <wx/intl.h>
 #include <wx/string.h>
@@ -13,6 +14,8 @@
 bool MOUNTSTATE;
 wxLongLong FREE_SPACE;
 wxLongLong TOTAL_SPACE;
+#define DOKAN_ENV "DokanLibrary1"
+#define DOKAN_ENV2 "DokanLibrary2"
 
 /*struct drive_t
 {
@@ -231,6 +234,7 @@ void DokanMan::OnDrive_selectorSelect(wxCommandEvent& event)
 
 void DokanMan::OnUnmountClick(wxCommandEvent& event)
 {
+    wxString DOKAN_ENV_TMP;
     if (wxDirExists(HDLBINST_APPDATA_2))
     {
         if (!wxFileExists(HDLBINST_APPDATA_2+"\\dokan_and_fuse.ini"))
@@ -245,10 +249,16 @@ void DokanMan::OnUnmountClick(wxCommandEvent& event)
     {
         wxMkDir(HDLBINST_APPDATA_2);
     }
-    std::cout <<"> Unmounting partition\n";
     wxString MOUNTPOINT = Drive_selector->GetString(Drive_selector->GetCurrentSelection());
+    if (!wxGetEnv(DOKAN_ENV, &DOKAN_ENV_TMP))
+        if (!wxGetEnv(DOKAN_ENV2, &DOKAN_ENV_TMP))
+        {
+            wxMessageBox(_("impossible to find dokan enviroment variables.\nunmount the drive manually by calling:\n")+"dokanctl.exe /u "+MOUNTPOINT, wxEmptyString, wxICON_ERROR);
+            return;
+        };
+    std::cout <<"> Unmounting partition\n";
 
-    wxString UNMOUNT_COMMAND = wxString::Format("%s\\dokanctl.exe /u %s",Get_env("DokanLibrary1"),MOUNTPOINT);
+    wxString UNMOUNT_COMMAND = wxString::Format("%s\\dokanctl.exe /u %s",DOKAN_ENV_TMP,MOUNTPOINT);
 
     wxExecute(UNMOUNT_COMMAND,wxEXEC_SYNC);
 

@@ -1,3 +1,11 @@
+30 January 2023
+   [v3.4.3 - Revision 1]
+
+     Change log:
+        -mount partition: Added support for dokan2, as it uses a different enviroment variable than it's predecesor...
+        -windows embedded manifest: updated to support automatic request of admin privileges on startup
+		-download package: icons will not be decompressed on package. HDL Batch Installer will decompress on boot. reducing package size
+
 28 January 2023
    [v3.4.3 - Revision 0]
 
@@ -5,7 +13,6 @@
         -installed game list: sort games alphabetically
         -HDD size report: Use `toc` command instead of `hdl_toc`, reducing the wait time in ~1.2secs
         -HDD size report: add used space to report
-        -windows embedded manifest: updated to support automatic request of admin privileges on startup
 
 10 January 2023
    [v3.4.2 - Revision 2]

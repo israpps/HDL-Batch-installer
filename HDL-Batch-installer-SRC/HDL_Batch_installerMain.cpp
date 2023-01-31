@@ -70,7 +70,8 @@ extern string DMA_ALIAS[8];
 const std::string MiniOPL_URL = "https://github.com/israpps/HDL-Batch-installer/raw/main/Release/boot.kelf";
 const wxString error_caption = _("error");
 const wxString warning_caption = _("warning");
-const wxString DOKAN_ENV = "DokanLibrary1";
+#define DOKAN_ENV "DokanLibrary1"
+#define DOKAN_ENV2 "DokanLibrary2"
 wxString HDLBINST_APPDATA;
 
 /*
@@ -188,7 +189,7 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     wxMenuItem* MenuItem3;
     wxStaticBoxSizer* StaticBoxSizer1;
 
-    Create(parent, wxID_ANY, _("HDL Batch Installer"), wxDefaultPosition, wxDefaultSize, wxSTAY_ON_TOP|wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxMINIMIZE_BOX|wxCLIP_CHILDREN, _T("wxID_ANY"));
+    Create(parent, wxID_ANY, _("HDL Batch Installer"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxMINIMIZE_BOX|wxCLIP_CHILDREN, _T("wxID_ANY"));
     SetClientSize(wxSize(537,651));
     Move(wxPoint(-1,-1));
     SetMinSize(wxSize(537,681));
@@ -1160,7 +1161,7 @@ void HDL_Batch_installerFrame::Update_hdd_data(void)
                 TMP.ToLong(&size_total);
                 TMP.clear();
                 int A = line.find_first_of(",") + 8,
-                B = line.find_first_of("MB",A)-1;
+                    B = line.find_first_of("MB",A)-1;
                 TMP  = line.SubString(A, B);
                 TMP.ToLong(&size_used);
                 TMP.clear();
@@ -1174,12 +1175,12 @@ void HDL_Batch_installerFrame::Update_hdd_data(void)
 
         hdd_used_space->Clear();
         hdd_used_space->AppendText( wxString::Format(_("Total: %dGb | Used: %d%s | Free: %d%s"),
-                                                       (size_total / 1024),
-                                                       (size_used > 1024) ? (size_used / 1024) : size_used,
-                                                       (size_used > 1024) ? ("Gb") : "Mb",
-                                                       (size_free > 1024) ? (size_free / 1024) : size_free,
-                                                       (size_free > 1024) ? ("Gb") : "Mb"
-                                                       ));
+                                    (size_total / 1024),
+                                    (size_used > 1024) ? (size_used / 1024) : size_used,
+                                    (size_used > 1024) ? ("Gb") : "Mb",
+                                    (size_free > 1024) ? (size_free / 1024) : size_free,
+                                    (size_free > 1024) ? ("Gb") : "Mb"
+                                                    ));
 
         Enable_HDD_dependant_objects(true); //re-enable & clean installed game list
     }
@@ -1770,8 +1771,7 @@ void HDL_Batch_installerFrame::ask_2_download_icons(void)
 
 bool Dokan_is_installed(void)
 {
-    wxString DUMMY;
-    return wxGetEnv(DOKAN_ENV,&DUMMY);
+    return wxGetEnv(DOKAN_ENV, NULL) || wxGetEnv(DOKAN_ENV2, NULL);
 }
 
 void HDL_Batch_installerFrame::OnButton4Click(wxCommandEvent& event)
@@ -1786,7 +1786,7 @@ void HDL_Batch_installerFrame::OnButton4Click(wxCommandEvent& event)
     {
         if(
             wxMessageBox(
-                wxString::Format(_("Can't find the enviroment variable \"%s\" used to locate the Dokan Library\n\n It seems like Dokan was unproperly installed (or it isn't installed)\n\nGo to Dokan download website?"),DOKAN_ENV)
+                wxString::Format(_("Can't find the enviroment variables \"%s\" or \"%s\" used to locate the Dokan Library\n\n It seems like Dokan was unproperly installed (or it isn't installed)\n\nGo to Dokan download website?"),DOKAN_ENV, DOKAN_ENV2)
                 ,error_caption,
                 wxICON_ERROR|wxYES_NO
             )==wxYES) wxLaunchDefaultBrowser("https://github.com/dokan-dev/dokany/releases/tag/v1.5.1.1000");
@@ -2083,10 +2083,10 @@ void HDL_Batch_installerFrame::OnSelectiveGameMigration(wxCommandEvent& event)
 void HDL_Batch_installerFrame::OnGameDeletionRequest(wxCommandEvent& event)
 {
     if (wxMessageBox(_("This feature is unstable, untested and potentially dangerous.\n"
-                   "It has been confirmed that it corrupts the HDD format.\n"
-                   "Are you certain that you want to delete this game?"),
-                 _("IMPORTANT WARNING"),
-                 wxICON_WARNING|wxYES_NO|wxNO_DEFAULT, this) == wxNO)
+                       "It has been confirmed that it corrupts the HDD format.\n"
+                       "Are you certain that you want to delete this game?"),
+                     _("IMPORTANT WARNING"),
+                     wxICON_WARNING|wxYES_NO|wxNO_DEFAULT, this) == wxNO)
         return;
 
     long itemIndex = -1, retcode;
@@ -2117,7 +2117,7 @@ void HDL_Batch_installerFrame::OnFrameResize(wxSizeEvent& event)
 
 int wxCALLBACK hdlbinst_listctrl_compare(wxIntPtr item1, wxIntPtr item2, wxIntPtr WXUNUSED(sortData))
 {
-  if(item1<item2) return -1;
-  if(item1>item2) return 1;
-  return 0; // if both items are equal...
+    if(item1<item2) return -1;
+    if(item1>item2) return 1;
+    return 0; // if both items are equal...
 }
