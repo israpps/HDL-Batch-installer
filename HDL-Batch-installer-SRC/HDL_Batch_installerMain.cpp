@@ -189,7 +189,7 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     wxMenuItem* MenuItem3;
     wxStaticBoxSizer* StaticBoxSizer1;
 
-    Create(parent, wxID_ANY, _("HDL Batch Installer"), wxDefaultPosition, wxDefaultSize, wxSTAY_ON_TOP|wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxMINIMIZE_BOX|wxCLIP_CHILDREN, _T("wxID_ANY"));
+    Create(parent, wxID_ANY, _("HDL Batch Installer"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxMINIMIZE_BOX|wxCLIP_CHILDREN, _T("wxID_ANY"));
     SetClientSize(wxSize(537,651));
     Move(wxPoint(-1,-1));
     SetMinSize(wxSize(537,681));
@@ -271,9 +271,7 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     dma_choice = new wxChoice(Panel1, ID_CHOICE1, wxDefaultPosition, wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_CHOICE1"));
     dma_choice->Disable();
     for (int X=0 ; X <=7 ; X++)
-    {
-        dma_choice->Append(DMA_ALIAS[X]);
-    }
+    { dma_choice->Append(DMA_ALIAS[X]); }
     dma_choice->SetSelection(7);
     FlexGridSizer7->Add(dma_choice, 0, wxLEFT|wxRIGHT|wxEXPAND, 5);
     StaticLine2 = new wxStaticLine(Panel1, ID_STATICLINE2, wxDefaultPosition, wxSize(0,0), wxLI_HORIZONTAL, _T("ID_STATICLINE2"));

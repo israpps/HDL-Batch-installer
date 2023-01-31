@@ -40,7 +40,7 @@ bool HDL_Batch_installerApp::OnInit()
     int fake_argc = wxTheApp->argc;
     wxString fake_argv[fake_argc], svr_ver;
     wxArrayString unused_buffer;
-    long custom_styles = 0, scoped_flags = 0, ctor_flags = 0;
+    long ping = -1, custom_styles = 0, scoped_flags = 0, ctor_flags = 0;
     bool wxsOK = true, check_updates, new_ver_available = false;
     COLOR(07)///normalize console color
     ///---------------------construct-version-string----------------------///
@@ -139,22 +139,31 @@ bool HDL_Batch_installerApp::OnInit()
         freopen("logs/stderr.log","a",stderr);
         std::cerr <<"---stdeer redirection init---\n";
     }
+
+    ping = wxExecute("ping google.com",unused_buffer,wxEXEC_SYNC);
+
+    if (ping == 0)
+    {
+        if (!wxFileExists("Common\\_ICN.7z"))
+        {
+            std::cout << "icon package is missing. pulling copy from svr...\n";
+            wxExecute(DOWNLOAD_COMMAND, wxEXEC_SYNC);
+        }
+
+        if ((!wxFileExists("Common\\Icons.INI") || wxDirExists("Common\\ICNS")) && wxFileExists("Common\\_ICN.7z"))
+        {
+            std::cout << "icon manifest is missing. unpacking icons...\n";
+            wxExecute(EXTRACTION_COMMAND, wxEXEC_SYNC);
+        }
+    }
+
     if (check_updates)
     {
         printf("Checking for updates...\n");
-        long ping = -1, ping2 = -1;
-        ping = wxExecute("ping google.com",unused_buffer,wxEXEC_SYNC);
+        long ping2 = -1;
         if (ping == 0)
         {
             printf("we have internet! Checking for Updates...\n");
-            if (!wxFileExists("Common\\_ICN.7z"))
-            {
-                wxExecute(DOWNLOAD_COMMAND,unused_buffer,wxEXEC_SYNC);
-            }
-            if (!wxFileExists("Common\\Icons.INI") || wxDirExists("Common\\ICNS"))
-            {
-                wxExecute(EXTRACTION_COMMAND,unused_buffer,wxEXEC_SYNC);
-            }
             unused_buffer.clear();
             ping2 = wxExecute("Common\\WGET.EXE -q https://raw.githubusercontent.com/israpps/HDL-Batch-installer/main/svr/VERSION -O -",unused_buffer,wxEXEC_SYNC);
             if (ping2 == 0)
