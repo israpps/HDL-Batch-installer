@@ -7,6 +7,7 @@ on:
       - 'Release**'
       - 'Release32**'
       - 'translations/**'
+      - '.github/workflows/Repack-and-release.yml'
 
   repository_dispatch:
     types: [HDL_Dump_Updated_]
@@ -32,7 +33,7 @@ jobs:
 
     - name: get version from changelog
       shell: bash
-      run: echo ":VERSION=$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//' | awk '{$1=$1;print}')" >> $GITHUB_ENV
+      run: echo "VERSION=$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//' | awk '{$1=$1;print}')" >> $GITHUB_ENV
       id: version
 
     - name: get version from changelog as release tag
