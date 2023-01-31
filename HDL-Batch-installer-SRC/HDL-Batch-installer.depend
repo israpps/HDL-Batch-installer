@@ -24640,7 +24640,7 @@
 	<wx/statline.h>
 	<wx/stattext.h>
 
-1675085270 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\version.h
+1675171830 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\version.h
 
 1671708606 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\artman.cpp
 	"ArtMan.h"
@@ -24681,7 +24681,7 @@
 	<wx/sizer.h>
 	<wx/stattext.h>
 
-1671722531 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\config.cpp
+1675171833 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\config.cpp
 	"Config.h"
 	"include/locale_table.h"
 	<wx/font.h>
@@ -24730,7 +24730,7 @@
 	<wx/sizer.h>
 	<wx/stattext.h>
 
-1671708606 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\dokanman.cpp
+1675172708 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\dokanman.cpp
 	"DokanMan.h"
 	<wx/filefn.h>
 	<wx/longlong.h>
@@ -24739,6 +24739,7 @@
 	"include/macro-vault.h"
 	<wx/dir.h>
 	<wx/fileconf.h>
+	<wx/msgdlg.h>
 	<wx/intl.h>
 	<wx/string.h>
 
@@ -24752,7 +24753,7 @@
 	<wx/textctrl.h>
 	<wx/arrstr.h>
 
-1671708639 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\gamename\database.cpp
+1675171868 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\gamename\database.cpp
 	"database.h"
 
 1671708639 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\gamename\database.h
@@ -24804,7 +24805,7 @@
 	<wx/sizer.h>
 	<wx/stattext.h>
 
-1675085263 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installerapp.cpp
+1675174479 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installerapp.cpp
 	"HDL_Batch_installerApp.h"
 	"flags.h"
 	"HDL_Batch_installerMain.h"
@@ -24821,7 +24822,7 @@
 
 1671708638 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\flags.h
 
-1675085263 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installermain.h
+1675171830 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installermain.h
 	"version.h"
 	<wx/button.h>
 	<wx/checkbox.h>
@@ -24868,7 +24869,7 @@
 	"wx/defs.h"
 	"wx/string.h"
 
-1675085263 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installermain.cpp
+1675171832 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installermain.cpp
 	"HDL_Batch_installerMain.h"
 	"About.h"
 	"Config.h"

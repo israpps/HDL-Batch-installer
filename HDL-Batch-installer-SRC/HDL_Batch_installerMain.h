@@ -270,7 +270,7 @@ public:
     wxLocale& m_locale;
     long CTOR_FLAGS;
 };
-    int wxCALLBACK hdlbinst_listctrl_compare(wxIntPtr item1, wxIntPtr item2, wxIntPtr WXUNUSED(sortData));
+int wxCALLBACK hdlbinst_listctrl_compare(wxIntPtr item1, wxIntPtr item2, wxIntPtr WXUNUSED(sortData));
 
 
 
