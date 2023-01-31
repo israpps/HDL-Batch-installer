@@ -8,10 +8,11 @@ on:
 
 jobs:
   update-tag:
+    if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
+    - uses: actions/checkout@v3
 
 #    - name: Get short SHA
 #      id: slug
