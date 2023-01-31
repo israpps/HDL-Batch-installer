@@ -306,6 +306,8 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 		<Unit filename="manifest.bin" />
 		<Unit filename="manifest.rc">
 			<Option compilerVar="WINDRES" />
+			<Option compile="0" />
+			<Option link="0" />
 		</Unit>
 		<Unit filename="resource.rc">
 			<Option compilerVar="WINDRES" />
