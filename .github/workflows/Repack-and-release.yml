@@ -30,25 +30,20 @@ jobs:
       run: |
         sudo apt-get install gettext p7zip dos2unix
 
-
     - name: get version from changelog
       shell: bash
       run: echo ":VERSION=$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//' | awk '{$1=$1;print}')" >> $GITHUB_ENV
       id: version
-      
+
     - name: get version from changelog as release tag
       shell: bash
       run: echo "VERSION_TAG=$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//' | sed -r 's/\s+//g' | sed 's/Aniversary/aniv/' | sed 's/Revision/rev/' | sed 's/Release/rel/'| awk '{$1=$1;print}')" >> $GITHUB_ENV
       id: tag
-            
+
     - name: Download Latest HDL-Dump
       run: |
         cd Release
         wget https://github.com/israpps/hdl-dump/releases/download/hdlinst/HDL.EXE -O $PWD/HDL.EXE
-
-    - name: dispatch icons
-      run: |
-       cp svr/_ICN.7z Release/Common/_ICN.7z
 
     - name: Trim changes of latest version
       run: |
@@ -63,6 +58,7 @@ jobs:
         echo "----------------CHANGELOG----------------"
         cat latest_changes.log
         echo "----------------CHANGELOG----------------"
+
     - name: Compile translation catalogs
       run: |
         cd translations
@@ -84,7 +80,7 @@ jobs:
         unix2dos HDL-Batch-installer.BAT
         cd Common
         unix2dos config.INI
-        
+
     - name: delete previous tag/release
       if: (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main')
       uses: dev-drprasad/delete-tag-and-release@v0.2.0
@@ -93,7 +89,7 @@ jobs:
         tag_name: Latest
       env:
        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        
+
     - name: Repack latest x64 build
       run: |
         SCH=${GITHUB_SHA::7}
@@ -163,7 +159,7 @@ jobs:
       shell: bash
       run: echo "::set-output name=string::$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//' | awk '{$1=$1;print}')"
       id: version
-      
+
     - name: get version from changelog as release tag
       shell: bash
       run: echo "::set-output name=version_tag::$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//' | sed -r 's/\s+//g' | sed 's/Revision/rev/' | sed 's/Release/rel/' | awk '{$1=$1;print}')"
@@ -173,7 +169,7 @@ jobs:
       uses: actions/download-artifact@v1
       with:
         name: HDL-INST
-        
+
     - name: Discord Webhook, Latest release
       if: github.event_name == 'push'
       uses: tsickert/discord-webhook@v2.0.2
@@ -195,4 +191,4 @@ jobs:
         DISCORD_WEBHOOK: ${{ secrets.BACKUP_WEBHOOK }}
       with:
         args: HDL-INST/HDLBInst*.7z
-        
+
