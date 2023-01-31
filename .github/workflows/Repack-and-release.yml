@@ -46,9 +46,9 @@ jobs:
         cd Release
         wget https://github.com/israpps/hdl-dump/releases/download/hdlinst/HDL.EXE -O $PWD/HDL.EXE
 
-    - name: unpack icons
+    - name: dispatch icons
       run: |
-        7z x -oRelease/Common/ -pPDPA svr/_ICN.7z
+       cp svr/_ICN.7z Release/Common/_ICN.7z
 
     - name: Trim changes of latest version
       run: |

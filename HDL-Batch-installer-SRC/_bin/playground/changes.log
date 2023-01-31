@@ -4,6 +4,7 @@
      Change log:
         -mount partition: Added support for dokan2, as it uses a different enviroment variable than it's predecesor...
         -windows embedded manifest: updated to support automatic request of admin privileges on startup
+		-download package: icons will not be decompressed on package. HDL Batch Installer will decompress on boot. reducing package size
 
 28 January 2023
    [v3.4.3 - Revision 0]
