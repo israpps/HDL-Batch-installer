@@ -281,6 +281,8 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 		<Unit filename="CopyHDD.h" />
 		<Unit filename="DokanMan.cpp" />
 		<Unit filename="DokanMan.h" />
+		<Unit filename="HDDManager.cpp" />
+		<Unit filename="HDDManager.h" />
 		<Unit filename="HDL_Batch_installerApp.cpp" />
 		<Unit filename="HDL_Batch_installerApp.h" />
 		<Unit filename="HDL_Batch_installerMain.cpp" />
@@ -324,6 +326,7 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 		<Unit filename="wxsmith/Config.wxs" />
 		<Unit filename="wxsmith/CopyHDD.wxs" />
 		<Unit filename="wxsmith/DokanMan.wxs" />
+		<Unit filename="wxsmith/HDDManager.wxs" />
 		<Unit filename="wxsmith/HDL_Batch_installerframe.wxs" />
 		<Unit filename="wxsmith/NDBMan.wxs" />
 		<Unit filename="wxsmith/Post_Install_Report.wxs" />
@@ -352,6 +355,7 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 					<wxDialog wxs="wxsmith/NDBMan.wxs" src="NDBMan.cpp" hdr="NDBMan.h" fwddecl="0" i18n="1" name="NDBMan" language="CPP" />
 					<wxDialog wxs="wxsmith/Partitions_displayer.wxs" src="Partitions_displayer.cpp" hdr="Partitions_displayer.h" fwddecl="0" i18n="1" name="Partitions_displayer" language="CPP" />
 					<wxDialog wxs="wxsmith/CopyHDD.wxs" src="CopyHDD.cpp" hdr="CopyHDD.h" fwddecl="0" i18n="1" name="CopyHDD" language="CPP" />
+					<wxDialog wxs="wxsmith/HDDManager.wxs" src="HDDManager.cpp" hdr="HDDManager.h" fwddecl="0" i18n="1" name="HDDManager" language="CPP" />
 				</resources>
 			</wxsmith>
 		</Extensions>

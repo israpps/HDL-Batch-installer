@@ -1196,7 +1196,7 @@ void HDL_Batch_installerFrame::Update_hdd_data(void)
             PFSSHELL_USABLE = true;
 
         PFSSHELL.lspart(0);
-        std::cout << "still here\n";
+        PFSS
     }
     else
     {

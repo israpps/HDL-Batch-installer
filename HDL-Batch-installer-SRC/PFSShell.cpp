@@ -20,6 +20,7 @@ PFSShell::~PFSShell()
 
 extern "C" {
 extern void set_atad_device_path(const char *path);
+extern void atad_close(void);
 }
 
 int PFSShell::SelectDevice(std::string device)
@@ -73,6 +74,12 @@ int PFSShell::SelectDevice(std::string device)
     ctx.setup = 1;
     COLOR(07)
     return (0);
+}
+
+int PFSShell::CloseDevice()
+{
+    atad_close();
+    return 0;
 }
 
 int PFSShell::FormatDevice()

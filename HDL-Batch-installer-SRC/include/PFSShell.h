@@ -17,6 +17,7 @@ class PFSShell
         PFSShell();
         virtual ~PFSShell();
         int SelectDevice(std::string device);
+        int CloseDevice(void);
         int FormatDevice();
         int mkpfs(const char *mount_point);
         int mkpart(const char *mount_point, long size_in_mb, int format);
