@@ -150,7 +150,7 @@ bool HDL_Batch_installerApp::OnInit()
             wxExecute(DOWNLOAD_COMMAND, wxEXEC_SYNC);
         }
 
-        if ((!wxFileExists("Common\\Icons.INI") || wxDirExists("Common\\ICNS")) && wxFileExists("Common\\_ICN.7z"))
+        if ((!wxFileExists("Common\\Icons.INI") || !wxDirExists("Common\\ICNS")) && wxFileExists("Common\\_ICN.7z"))
         {
             std::cout << "icon manifest is missing. unpacking icons...\n";
             wxExecute(EXTRACTION_COMMAND, wxEXEC_SYNC);

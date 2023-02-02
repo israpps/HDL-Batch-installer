@@ -20,6 +20,7 @@
 #include "hdl-dump-recodes.h"
 #include "gamename/parser.h" //includes both database & parser function
 #include "MD5Man.h"
+#include "PFSShell.h"
 
 using namespace std;
 bool first_init = false;
@@ -64,6 +65,10 @@ wxString HDL_CACHE;
 wxString MBR_CACHE;
 wxString MiniOPL;
 wxString ICONS_FOLDER;
+
+std::string HDD_TOKEN;
+PFSShell PFSSHELL;
+bool PFSSHELL_USABLE = false;
 
 extern string DMA_TABLE[8];
 extern string DMA_ALIAS[8];
@@ -1133,12 +1138,14 @@ void HDL_Batch_installerFrame::Enable_HDD_dependant_objects(bool WTF_should_I_do
         FUSE->Disable();
     }
 }
+
 void HDL_Batch_installerFrame::Update_hdd_data(void)
 {
     Enable_HDD_dependant_objects(false);///Temporarly disble just in case data parsing fails
     ///MAKE SURE TO RE-ENABLE EVERYTHING THAT WAS DISABLEd HERE INSIDE THE 'if (toc_ret == 0)' BLOCK
     wxString command;
     wxString label = selected_hdd->GetString(selected_hdd->GetSelection());
+    HDD_TOKEN = wxString::Format("\\\\.\\PHYSICALDRIVE%s", label.SubString(3, label.find(':')-1));
     cout << "selected "<< label <<endl;
     command.Printf("HDL.EXE toc %s",label);
     wxArrayString result,std_error;
@@ -1183,6 +1190,11 @@ void HDL_Batch_installerFrame::Update_hdd_data(void)
                                                     ));
 
         Enable_HDD_dependant_objects(true); //re-enable & clean installed game list
+        if (!PFSSHELL.SelectDevice(HDD_TOKEN.c_str()))
+            PFSSHELL_USABLE = true;
+
+        PFSSHELL.lspart(0);
+        std::cout << "still here\n";
     }
     else
     {

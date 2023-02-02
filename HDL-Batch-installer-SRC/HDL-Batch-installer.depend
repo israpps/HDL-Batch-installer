@@ -18941,7 +18941,7 @@
 	<wx/statline.h>
 	<wx/stattext.h>
 
-1674918701 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\version.h
+1675215123 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\version.h
 
 1587560968 c:\libs\wxwidgets-3.0.5\include\wx\dialog.h
 	"wx/toplevel.h"
@@ -20766,7 +20766,7 @@
 	"wx/defs.h"
 	"wx/window.h"
 
-1674915379 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\config.cpp
+1675215123 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\config.cpp
 	"Config.h"
 	"include/locale_table.h"
 	<wx/font.h>
@@ -21478,7 +21478,7 @@
 
 1587560968 c:\libs\wxwidgets-3.0.5\include\wx\msw\progdlg.h
 
-1674915379 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\dokanman.cpp
+1675215123 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\dokanman.cpp
 	"DokanMan.h"
 	<wx/filefn.h>
 	<wx/longlong.h>
@@ -21487,6 +21487,7 @@
 	"include/macro-vault.h"
 	<wx/dir.h>
 	<wx/fileconf.h>
+	<wx/msgdlg.h>
 	<wx/intl.h>
 	<wx/string.h>
 
@@ -21559,7 +21560,7 @@
 
 1674915380 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\hdl-dump-recodes.cpp
 
-1674930789 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installerapp.cpp
+1675305750 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installerapp.cpp
 	"HDL_Batch_installerApp.h"
 	"flags.h"
 	"HDL_Batch_installerMain.h"
@@ -21591,7 +21592,7 @@
 
 1674915380 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\flags.h
 
-1674918011 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installermain.h
+1675215123 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installermain.h
 	"version.h"
 	<wx/button.h>
 	<wx/checkbox.h>
@@ -21832,7 +21833,7 @@
 	"wx/protocol/protocol.h"
 	"wx/buffer.h"
 
-1674957347 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installermain.cpp
+1675311375 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installermain.cpp
 	"HDL_Batch_installerMain.h"
 	"About.h"
 	"Config.h"
@@ -21845,6 +21846,7 @@
 	"hdl-dump-recodes.h"
 	"gamename/parser.h"
 	"MD5Man.h"
+	"PFSShell.h"
 	<wx/font.h>
 	<wx/intl.h>
 	<wx/settings.h>
@@ -21887,7 +21889,7 @@
 	<wx/intl.h>
 	<wx/string.h>
 
-1674957635 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\resource.rc
+1675215123 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\resource.rc
 	"version.h"
 	"wx/msw/wx.rc"
 
@@ -24904,4 +24906,511 @@
 1587560968 c:\wxwidgets-3.0.5\include\wx\regex.h
 	"wx/defs.h"
 	"wx/string.h"
+
+1675311139 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\pfsshell.cpp
+	"PFSShell.h"
+	"iomanX_port.h"
+	<wx/wx.h>
+	<wx/string.h>
+	<fcntl.h>
+	<cstring>
+	<iostream>
+
+1675310402 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\include\pfsshell.h
+	<string>
+
+1675304619 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\iomanx_port.h
+	<stdlib.h>
+	<stdint.h>
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\wx.h
+	"wx/defs.h"
+	"wx/object.h"
+	"wx/dynarray.h"
+	"wx/list.h"
+	"wx/hash.h"
+	"wx/string.h"
+	"wx/hashmap.h"
+	"wx/arrstr.h"
+	"wx/intl.h"
+	"wx/log.h"
+	"wx/event.h"
+	"wx/app.h"
+	"wx/utils.h"
+	"wx/stream.h"
+	"wx/memory.h"
+	"wx/math.h"
+	"wx/stopwatch.h"
+	"wx/timer.h"
+	"wx/module.h"
+	"wx/wxcrt.h"
+	"wx/wxcrtvararg.h"
+	"wx/window.h"
+	"wx/containr.h"
+	"wx/panel.h"
+	"wx/toplevel.h"
+	"wx/frame.h"
+	"wx/gdicmn.h"
+	"wx/gdiobj.h"
+	"wx/region.h"
+	"wx/bitmap.h"
+	"wx/image.h"
+	"wx/colour.h"
+	"wx/font.h"
+	"wx/dc.h"
+	"wx/dcclient.h"
+	"wx/dcmemory.h"
+	"wx/dcprint.h"
+	"wx/dcscreen.h"
+	"wx/button.h"
+	"wx/menuitem.h"
+	"wx/menu.h"
+	"wx/pen.h"
+	"wx/brush.h"
+	"wx/palette.h"
+	"wx/icon.h"
+	"wx/cursor.h"
+	"wx/dialog.h"
+	"wx/settings.h"
+	"wx/msgdlg.h"
+	"wx/dataobj.h"
+	"wx/control.h"
+	"wx/ctrlsub.h"
+	"wx/bmpbuttn.h"
+	"wx/checkbox.h"
+	"wx/checklst.h"
+	"wx/choice.h"
+	"wx/scrolbar.h"
+	"wx/stattext.h"
+	"wx/statbmp.h"
+	"wx/statbox.h"
+	"wx/listbox.h"
+	"wx/radiobox.h"
+	"wx/radiobut.h"
+	"wx/textctrl.h"
+	"wx/slider.h"
+	"wx/gauge.h"
+	"wx/scrolwin.h"
+	"wx/dirdlg.h"
+	"wx/toolbar.h"
+	"wx/combobox.h"
+	"wx/layout.h"
+	"wx/sizer.h"
+	"wx/statusbr.h"
+	"wx/choicdlg.h"
+	"wx/textdlg.h"
+	"wx/filedlg.h"
+	"wx/mdi.h"
+	"wx/validate.h"
+	"wx/valtext.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\module.h
+	"wx/object.h"
+	"wx/list.h"
+	"wx/arrstr.h"
+	"wx/dynarray.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\dcprint.h
+	"wx/defs.h"
+	"wx/dc.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\dcscreen.h
+	"wx/defs.h"
+	"wx/dc.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\dataobj.h
+	"wx/defs.h"
+	"wx/string.h"
+	"wx/bitmap.h"
+	"wx/list.h"
+	"wx/arrstr.h"
+	"wx/msw/ole/dataform.h"
+	"wx/motif/dataform.h"
+	"wx/gtk/dataform.h"
+	"wx/gtk1/dataform.h"
+	"wx/x11/dataform.h"
+	"wx/osx/dataform.h"
+	"wx/cocoa/dataform.h"
+	"wx/os2/dataform.h"
+	"wx/msw/ole/dataobj.h"
+	"wx/motif/dataobj.h"
+	"wx/x11/dataobj.h"
+	"wx/gtk/dataobj.h"
+	"wx/gtk1/dataobj.h"
+	"wx/osx/dataobj.h"
+	"wx/cocoa/dataobj.h"
+	"wx/os2/dataobj.h"
+	"wx/msw/ole/dataobj2.h"
+	"wx/gtk/dataobj2.h"
+	"wx/gtk1/dataobj2.h"
+	"wx/x11/dataobj2.h"
+	"wx/motif/dataobj2.h"
+	"wx/osx/dataobj2.h"
+	"wx/cocoa/dataobj2.h"
+	"wx/os2/dataobj2.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\msw\ole\dataform.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\motif\dataform.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\gtk\dataform.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\gtk1\dataform.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\x11\dataform.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\osx\dataform.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\cocoa\dataform.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\os2\dataform.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\msw\ole\dataobj.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\motif\dataobj.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\x11\dataobj.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\gtk\dataobj.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\gtk1\dataobj.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\osx\dataobj.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\cocoa\dataobj.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\os2\dataobj.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\msw\ole\dataobj2.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\gtk\dataobj2.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\gtk1\dataobj2.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\x11\dataobj2.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\motif\dataobj2.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\osx\dataobj2.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\cocoa\dataobj2.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\os2\dataobj2.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\bmpbuttn.h
+	"wx/defs.h"
+	"wx/button.h"
+	"wx/univ/bmpbuttn.h"
+	"wx/msw/bmpbuttn.h"
+	"wx/motif/bmpbuttn.h"
+	"wx/gtk/bmpbuttn.h"
+	"wx/gtk1/bmpbuttn.h"
+	"wx/osx/bmpbuttn.h"
+	"wx/cocoa/bmpbuttn.h"
+	"wx/os2/bmpbuttn.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\univ\bmpbuttn.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\msw\bmpbuttn.h
+	"wx/button.h"
+	"wx/bitmap.h"
+	"wx/brush.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\motif\bmpbuttn.h
+	"wx/motif/bmpmotif.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\motif\bmpmotif.h
+	"wx/defs.h"
+	"wx/bitmap.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\gtk\bmpbuttn.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\gtk1\bmpbuttn.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\osx\bmpbuttn.h
+	"wx/button.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\cocoa\bmpbuttn.h
+	"wx/cocoa/NSButton.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\os2\bmpbuttn.h
+	"wx/button.h"
+	"wx/dcclient.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\checklst.h
+	"wx/defs.h"
+	"wx/listbox.h"
+	"wx/univ/checklst.h"
+	"wx/msw/wince/checklst.h"
+	"wx/msw/checklst.h"
+	"wx/motif/checklst.h"
+	"wx/gtk/checklst.h"
+	"wx/gtk1/checklst.h"
+	"wx/osx/checklst.h"
+	"wx/cocoa/checklst.h"
+	"wx/os2/checklst.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\listbox.h
+	"wx/defs.h"
+	"wx/ctrlsub.h"
+	"wx/univ/listbox.h"
+	"wx/msw/listbox.h"
+	"wx/motif/listbox.h"
+	"wx/gtk/listbox.h"
+	"wx/gtk1/listbox.h"
+	"wx/osx/listbox.h"
+	"wx/os2/listbox.h"
+	"wx/cocoa/listbox.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\univ\listbox.h
+	"wx/scrolwin.h"
+	"wx/dynarray.h"
+	"wx/arrstr.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\msw\listbox.h
+	"wx/dynarray.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\motif\listbox.h
+	"wx/ctrlsub.h"
+	"wx/clntdata.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\gtk\listbox.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\gtk1\listbox.h
+	"wx/list.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\osx\listbox.h
+	"wx/dynarray.h"
+	"wx/arrstr.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\os2\listbox.h
+	"wx/dynarray.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\cocoa\listbox.h
+	"wx/cocoa/NSTableView.h"
+	"wx/dynarray.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\cocoa\nstableview.h
+	"wx/hashmap.h"
+	"wx/cocoa/ObjcAssociate.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\univ\checklst.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\msw\wince\checklst.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\msw\checklst.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\motif\checklst.h
+	"wx/listbox.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\gtk\checklst.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\gtk1\checklst.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\osx\checklst.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\cocoa\checklst.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\os2\checklst.h
+	<stddef.h>
+	"wx/defs.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\scrolbar.h
+	"wx/defs.h"
+	"wx/control.h"
+	"wx/univ/scrolbar.h"
+	"wx/msw/scrolbar.h"
+	"wx/motif/scrolbar.h"
+	"wx/gtk/scrolbar.h"
+	"wx/gtk1/scrolbar.h"
+	"wx/osx/scrolbar.h"
+	"wx/cocoa/scrolbar.h"
+	"wx/os2/scrolbar.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\univ\scrolbar.h
+	"wx/univ/scrarrow.h"
+	"wx/renderer.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\univ\scrarrow.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\msw\scrolbar.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\motif\scrolbar.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\gtk\scrolbar.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\gtk1\scrolbar.h
+	"wx/defs.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\osx\scrolbar.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\cocoa\scrolbar.h
+	"wx/cocoa/NSScroller.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\cocoa\nsscroller.h
+	"wx/hashmap.h"
+	"wx/cocoa/ObjcAssociate.h"
+	"wx/cocoa/ObjcRef.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\os2\scrolbar.h
+	"wx/scrolbar.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\statbmp.h
+	"wx/defs.h"
+	"wx/control.h"
+	"wx/bitmap.h"
+	"wx/icon.h"
+	"wx/univ/statbmp.h"
+	"wx/msw/statbmp.h"
+	"wx/motif/statbmp.h"
+	"wx/gtk/statbmp.h"
+	"wx/gtk1/statbmp.h"
+	"wx/osx/statbmp.h"
+	"wx/cocoa/statbmp.h"
+	"wx/os2/statbmp.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\univ\statbmp.h
+	"wx/bitmap.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\msw\statbmp.h
+	"wx/control.h"
+	"wx/icon.h"
+	"wx/bitmap.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\motif\statbmp.h
+	"wx/motif/bmpmotif.h"
+	"wx/icon.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\gtk\statbmp.h
+	"wx/icon.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\gtk1\statbmp.h
+	"wx/icon.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\osx\statbmp.h
+	"wx/osx/carbon/statbmp.h"
+	"wx/generic/statbmpg.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\osx\carbon\statbmp.h
+	"wx/icon.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\generic\statbmpg.h
+	"wx/statbmp.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\cocoa\statbmp.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\os2\statbmp.h
+	"wx/control.h"
+	"wx/icon.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\radiobox.h
+	"wx/defs.h"
+	"wx/ctrlsub.h"
+	"wx/dynarray.h"
+	"wx/univ/radiobox.h"
+	"wx/msw/radiobox.h"
+	"wx/motif/radiobox.h"
+	"wx/gtk/radiobox.h"
+	"wx/gtk1/radiobox.h"
+	"wx/osx/radiobox.h"
+	"wx/cocoa/radiobox.h"
+	"wx/os2/radiobox.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\univ\radiobox.h
+	"wx/statbox.h"
+	"wx/dynarray.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\msw\radiobox.h
+	"wx/statbox.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\motif\radiobox.h
+	"wx/dynarray.h"
+	"wx/arrstr.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\gtk\radiobox.h
+	"wx/bitmap.h"
+	"wx/list.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\gtk1\radiobox.h
+	"wx/bitmap.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\osx\radiobox.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\cocoa\radiobox.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\os2\radiobox.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\slider.h
+	"wx/defs.h"
+	"wx/control.h"
+	"wx/univ/slider.h"
+	"wx/msw/slider.h"
+	"wx/motif/slider.h"
+	"wx/gtk/slider.h"
+	"wx/gtk1/slider.h"
+	"wx/osx/slider.h"
+	"wx/cocoa/slider.h"
+	"wx/os2/slider.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\univ\slider.h
+	"wx/univ/scrthumb.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\univ\scrthumb.h
+	"wx/timer.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\msw\slider.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\motif\slider.h
+	"wx/control.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\gtk\slider.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\gtk1\slider.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\osx\slider.h
+	"wx/control.h"
+	"wx/slider.h"
+	"wx/stattext.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\cocoa\slider.h
+	"wx/cocoa/NSSlider.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\cocoa\nsslider.h
+	"wx/hashmap.h"
+	"wx/cocoa/ObjcAssociate.h"
+	"wx/cocoa/ObjcRef.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\os2\slider.h
+	"wx/control.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\layout.h
+	"wx/object.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\mdi.h
+	"wx/defs.h"
+	"wx/frame.h"
+	"wx/menu.h"
+	"wx/generic/mdig.h"
+	"wx/msw/mdi.h"
+	"wx/gtk/mdi.h"
+	"wx/gtk1/mdi.h"
+	"wx/osx/mdi.h"
+	"wx/cocoa/mdi.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\generic\mdig.h
+	"wx/panel.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\msw\mdi.h
+	"wx/frame.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\gtk\mdi.h
+	"wx/frame.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\gtk1\mdi.h
+	"wx/frame.h"
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\osx\mdi.h
+
+1587560968 c:\libs\wxwidgets-3.0.5\include\wx\cocoa\mdi.h
+	"wx/frame.h"
 
