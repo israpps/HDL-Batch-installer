@@ -7,6 +7,7 @@ extern "C" {
 #include <fcntl.h>
 #include <cstring>
 #include <iostream>
+#include "macro-vault.h"
 PFSShell::PFSShell()
 {
     //ctor
@@ -23,14 +24,18 @@ extern void set_atad_device_path(const char *path);
 
 int PFSShell::SelectDevice(std::string device)
 {
+    COLOR(0d)
+    std::cout << "accessing device " << device << "\n";
     set_atad_device_path(device.c_str());
 
     /* mandatory */
     std::cout << "Initializing APA:\n";
     int result = _init_apa(0, NULL);
     if (result < 0) {
+        COLOR(0c)
         fprintf(stderr, "(!) init_apa: failed with %d (%s)\n", result,
                 std::strerror(-result));
+        COLOR(07)
         return (1);
     }
 
@@ -46,8 +51,10 @@ int PFSShell::SelectDevice(std::string device)
     std::cout << "Initializing PFS:\n";
     result = _init_pfs(7, (char **)pfs_args);
     if (result < 0) {
+        COLOR(0c)
         fprintf(stderr, "(!) init_pfs: failed with %d (%s)\n", result,
                 strerror(-result));
+        COLOR(07)
         return (1);
     }
 
@@ -55,27 +62,38 @@ int PFSShell::SelectDevice(std::string device)
     std::cout << "Initializing HDLFS:\n";
     result = _init_hdlfs(0, NULL);
     if (result < 0) {
+        COLOR(0c)
         fprintf(stderr, "(!) init_hdlfs: failed with %d (%s)\n", result,
                 strerror(-result));
+        COLOR(07)
         return (1);
     }
 
-    std::cout << "finished init?\n";
+    std::cout << "finished init\n";
     ctx.setup = 1;
+    COLOR(07)
     return (0);
 }
 
 int PFSShell::FormatDevice()
 {
+    COLOR(0e)
+    std::cout << "HDD format requested...n";
+    COLOR(0d)
     int result = iomanX_format("hdd0:", NULL, NULL, 0);
     if (result >= 0) {
+        std::cout << "\tFormat succeeded\n";
         result = mkpfs("__net");
         mkpfs("__system");
         mkpfs("__sysconf");
         mkpfs("__common");
     }
     if (result < 0)
-        fprintf(stderr, "(!) format: %s.\n", strerror(-result));
+    {
+        COLOR(0c)
+        fprintf(stderr, "(!) format error: %s (-%d).\n", strerror(-result), result);
+        COLOR(07)
+    }
     return (result);
 }
 
@@ -83,17 +101,21 @@ int PFSShell::mkpfs(const char *mount_point)
 {
 #define PFS_ZONE_SIZE 8192
 #define PFS_FRAGMENT  0x00000000
+    COLOR(0d)
     int format_arg[] = {PFS_ZONE_SIZE, 0x2d66, PFS_FRAGMENT};
-
+    int ret;
+    std::cout << "creating PFS filesystem for '" << mount_point << "'\n";
     char tmp[256];
     strcpy(tmp, "hdd0:");
     strcat(tmp, mount_point);
-    return (iomanX_format("pfs:", tmp,
-                          (void *)&format_arg, sizeof(format_arg)));
+    ret = iomanX_format("pfs:", tmp, (void *)&format_arg, sizeof(format_arg));
+    COLOR(07)
+    return ret;
 }
 
 int PFSShell::mkpart(const char *mount_point, long size_in_mb, int format)
 {
+    COLOR(0d)
     char tmp[256];
     if (size_in_mb >= 1024)
         sprintf(tmp, "%s,%ldG", mount_point, size_in_mb / 1024);
@@ -107,10 +129,12 @@ int PFSShell::mkpart(const char *mount_point, long size_in_mb, int format)
             result = mkpfs(mount_point);
     }
     return (result);
+    COLOR(07)
 }
 
 int PFSShell::ls(const char *mount_point, const char *path)
 {
+    COLOR(0d)
     int retval = 0;
     int result = iomanX_mount("pfs0:", mount_point, 0, NULL, 0);
     if (result >= 0) { /* mount successful */
@@ -140,10 +164,12 @@ int PFSShell::ls(const char *mount_point, const char *path)
                mount_point, result),
             retval = -1;
     return (retval);
+    COLOR(07)
 }
 
 int PFSShell::copyto(const char *mount_point, const char *dest, const char *src)
 {
+    COLOR(0d)
     int retval = 0;
     int in_file = open(src, O_RDONLY | O_BINARY);
     if (in_file != -1) {
@@ -184,12 +210,13 @@ int PFSShell::copyto(const char *mount_point, const char *dest, const char *src)
         close(in_file);
     } else
         perror(src), retval = -1;
+    COLOR(07)
     return (retval);
 }
 
 int PFSShell::recoverfile(const char *mount_point, const char *src, const char *dest)
 {
-
+    COLOR(0d)
     int retval = 0;
     int out_file = open(dest, O_CREAT | O_WRONLY | O_BINARY, 0664);
     if (out_file != -1) {
@@ -233,11 +260,13 @@ int PFSShell::recoverfile(const char *mount_point, const char *src, const char *
             perror(dest), retval = -1;
     } else
         perror(dest), retval = -1;
+    COLOR(07)
     return (retval);
 }
 
 int PFSShell::list_dir_objects(int dh, int lsmode)
 {
+    COLOR(0d)
     int result;
     iox_dirent_t dirent;
     char end_symbol[2];
@@ -286,11 +315,13 @@ int PFSShell::list_dir_objects(int dh, int lsmode)
             printf("%s %10u  %s  %s%s\n",
                    mode, dirent.stat.size, mod_time, dirent.name, end_symbol);
     }
+    COLOR(07)
     return (result);
 }
 
 int PFSShell::lspart(int lsmode)
 {
+    COLOR(0d)
     const char *dir_path = "hdd0:";
     char end_symbol[2];
     end_symbol[1] = '\0';
@@ -341,5 +372,6 @@ int PFSShell::lspart(int lsmode)
         printf("dopen: \"%s\" failed with %d\n",
                dir_path, dh),
             retval = dh;
+    COLOR(07)
     return (retval);
 }

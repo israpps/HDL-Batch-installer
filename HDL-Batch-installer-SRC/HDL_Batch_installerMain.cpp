@@ -194,7 +194,7 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     wxMenuItem* MenuItem3;
     wxStaticBoxSizer* StaticBoxSizer1;
 
-    Create(parent, wxID_ANY, _("HDL Batch Installer"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxMINIMIZE_BOX|wxCLIP_CHILDREN, _T("wxID_ANY"));
+    Create(parent, wxID_ANY, _("HDL Batch Installer"), wxDefaultPosition, wxDefaultSize, wxSTAY_ON_TOP|wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxMINIMIZE_BOX|wxCLIP_CHILDREN, _T("wxID_ANY"));
     SetClientSize(wxSize(537,651));
     Move(wxPoint(-1,-1));
     SetMinSize(wxSize(537,681));
@@ -1157,13 +1157,14 @@ void HDL_Batch_installerFrame::Update_hdd_data(void)
         for(size_t x=0; x < result.GetCount(); x++) //Parse line-to-line :D
         {
             line = result.Item(x);
-            if (CFG::DEBUG_LEVEL > 5 || (CTOR_FLAGS & FORCE_HIGH_DEBUG_LEVEL) )
-                cout << line <<"\n";
+
 
             if (line.find(", used") == NOT_FOUND)
                 continue;
             else
             {
+                if (CFG::DEBUG_LEVEL > 5 || (CTOR_FLAGS & FORCE_HIGH_DEBUG_LEVEL) )
+                    cout << line <<"\n";
                 TMP =  line.SubString(line.find_first_of(":") + 2,line.find_first_of("MB") - 1);
                 TMP.ToLong(&size_total);
                 TMP.clear();
@@ -1176,7 +1177,7 @@ void HDL_Batch_installerFrame::Update_hdd_data(void)
                 TMP.ToLong(&size_free);
             }
         }
-        std::cout << "total ["<<size_total<<"]\n used["<<size_used<<"]\n free ["<<size_free<<"]\n";
+        std::cout << "total: ["<<size_total<<"]\nused:  ["<<size_used<<"]\nfree:  ["<<size_free<<"]\n";
         Gauge1->SetRange(size_total);
         Gauge1->SetValue(size_used);
 
@@ -1190,6 +1191,7 @@ void HDL_Batch_installerFrame::Update_hdd_data(void)
                                                     ));
 
         Enable_HDD_dependant_objects(true); //re-enable & clean installed game list
+        std::cout << "initializing libPS2HDD...\n";
         if (!PFSSHELL.SelectDevice(HDD_TOKEN.c_str()))
             PFSSHELL_USABLE = true;
 
@@ -1275,7 +1277,8 @@ void HDL_Batch_installerFrame::On_MiniOPL_Update_request(wxCommandEvent& event)
 }
 
 void HDL_Batch_installerFrame::OnButton2Click3(wxCommandEvent& event)
-{}
+{
+}
 
 void HDL_Batch_installerFrame::OnHDL_DumpUpdateRequest(wxCommandEvent& event)
 {

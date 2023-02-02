@@ -24642,7 +24642,7 @@
 	<wx/statline.h>
 	<wx/stattext.h>
 
-1675171830 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\version.h
+1675175117 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\version.h
 
 1671708606 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\artman.cpp
 	"ArtMan.h"
@@ -24683,7 +24683,7 @@
 	<wx/sizer.h>
 	<wx/stattext.h>
 
-1675171833 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\config.cpp
+1675175117 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\config.cpp
 	"Config.h"
 	"include/locale_table.h"
 	<wx/font.h>
@@ -24732,7 +24732,7 @@
 	<wx/sizer.h>
 	<wx/stattext.h>
 
-1675172708 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\dokanman.cpp
+1675175117 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\dokanman.cpp
 	"DokanMan.h"
 	<wx/filefn.h>
 	<wx/longlong.h>
@@ -24807,7 +24807,7 @@
 	<wx/sizer.h>
 	<wx/stattext.h>
 
-1675174479 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installerapp.cpp
+1675340730 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installerapp.cpp
 	"HDL_Batch_installerApp.h"
 	"flags.h"
 	"HDL_Batch_installerMain.h"
@@ -24824,7 +24824,7 @@
 
 1671708638 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\flags.h
 
-1675171830 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installermain.h
+1675357540 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installermain.h
 	"version.h"
 	<wx/button.h>
 	<wx/checkbox.h>
@@ -24871,7 +24871,7 @@
 	"wx/defs.h"
 	"wx/string.h"
 
-1675171832 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installermain.cpp
+1675357113 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installermain.cpp
 	"HDL_Batch_installerMain.h"
 	"About.h"
 	"Config.h"
@@ -24884,6 +24884,7 @@
 	"hdl-dump-recodes.h"
 	"gamename/parser.h"
 	"MD5Man.h"
+	"PFSShell.h"
 	<wx/font.h>
 	<wx/intl.h>
 	<wx/settings.h>
@@ -25413,4 +25414,21 @@
 
 1587560968 c:\libs\wxwidgets-3.0.5\include\wx\cocoa\mdi.h
 	"wx/frame.h"
+
+1675340730 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\include\pfsshell.h
+	<string>
+
+1675356445 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\pfsshell.cpp
+	"PFSShell.h"
+	"iomanX_port.h"
+	<wx/wx.h>
+	<wx/string.h>
+	<fcntl.h>
+	<cstring>
+	<iostream>
+	"macro-vault.h"
+
+1675340730 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\iomanx_port.h
+	<stdlib.h>
+	<stdint.h>
 
