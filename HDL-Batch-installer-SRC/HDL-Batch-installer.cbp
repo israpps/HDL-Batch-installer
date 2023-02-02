@@ -21,11 +21,9 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 				<Option object_output="_obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
-				<Option use_console_runner="0" />
 				<Option parameters="--force-max-debug --stay-on-top --skip-update" />
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
-					<Add option="-O2" />
 					<Add option="-m64" />
 					<Add option="-pipe" />
 					<Add option="-mthreads" />
@@ -36,13 +34,14 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 					<Add directory="$(#wx)/lib/gcc_lib/mswu" />
 					<Add directory="$(#wx)/include" />
 					<Add directory="include" />
+					<Add directory="HDL-Batch-installer-SRC/include" />
 				</Compiler>
 				<ResourceCompiler>
 					<Add directory="$(#wx)/lib/gcc_lib/mswu" />
 					<Add directory="$(#wx)/include" />
 				</ResourceCompiler>
 				<Linker>
-					<Add option="-s" />
+					<Add option="-O2" />
 					<Add option="-static-libstdc++" />
 					<Add option="-static-libgcc" />
 					<Add option="-static" />
@@ -66,6 +65,7 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 					<Add library="libcomctl32.a" />
 					<Add library="libwsock32.a" />
 					<Add library="libodbc32.a" />
+					<Add library="external/libps2hdd.a" />
 					<Add directory="$(#wx)/lib/gcc_lib" />
 				</Linker>
 			</Target>
@@ -92,6 +92,7 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 					<Add directory="wxwidgets/lib/gcc_lib/mswu" />
 					<Add directory="D:/wxWidgets-3.0.5-static/include" />
 					<Add directory="include" />
+					<Add directory="HDL-Batch-installer-SRC/include" />
 				</Compiler>
 				<ResourceCompiler>
 					<Add directory="D:/wxWidgets-3.0.5-static/lib/gcc_lib/mswu" />
@@ -133,14 +134,12 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 				<Option object_output="_obj/32-bits/" />
 				<Option type="1" />
 				<Option compiler="gnu_gcc_compiler_tdm-32bits" />
-				<Option use_console_runner="0" />
 				<Option parameters="--force-max-debug --stay-on-top --skip-update" />
 				<Option projectCompilerOptionsRelation="1" />
 				<Option projectLinkerOptionsRelation="1" />
 				<Option projectResourceIncludeDirsRelation="1" />
 				<Option projectLibDirsRelation="1" />
 				<Compiler>
-					<Add option="-O" />
 					<Add option="-Wall" />
 					<Add option="-m32" />
 					<Add option="-pipe" />
@@ -152,12 +151,14 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 					<Add directory="$(#wx32)/include" />
 					<Add directory="$(#wx32)/lib/gcc_lib/mswu" />
 					<Add directory="include" />
+					<Add directory="HDL-Batch-installer-SRC/include" />
 				</Compiler>
 				<ResourceCompiler>
 					<Add directory="$(#wx32)/include" />
 					<Add directory="$(#wx32)/lib/gcc_lib/mswu" />
 				</ResourceCompiler>
 				<Linker>
+					<Add option="-O2" />
 					<Add option="-s" />
 					<Add option="-static-libstdc++" />
 					<Add option="-static-libgcc" />
@@ -183,6 +184,7 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 					<Add library="libwsock32.a" />
 					<Add library="libodbc32.a" />
 					<Add library="libwxregexu.a" />
+					<Add library="external/libps2hdd-x86.a" />
 					<Add directory="$(#wx32)/lib/gcc_lib" />
 				</Linker>
 			</Target>
@@ -212,6 +214,7 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 					<Add directory="$(#wx32)/include" />
 					<Add directory="$(#wx32)/lib/gcc_lib/mswu" />
 					<Add directory="include" />
+					<Add directory="HDL-Batch-installer-SRC/include" />
 				</Compiler>
 				<ResourceCompiler>
 					<Add directory="$(#wx32)/include" />
@@ -285,6 +288,7 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 		<Unit filename="MD5Man.cpp" />
 		<Unit filename="NDBMan.cpp" />
 		<Unit filename="NDBMan.h" />
+		<Unit filename="PFSShell.cpp" />
 		<Unit filename="Post_Install_Report.cpp" />
 		<Unit filename="Post_Install_Report.h" />
 		<Unit filename="_bin/Debug/Common/commit.sys" />
@@ -301,6 +305,7 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 		<Unit filename="hdl-dump-recodes.cpp" />
 		<Unit filename="hdl-dump-recodes.h" />
 		<Unit filename="include/MD5Man.h" />
+		<Unit filename="include/PFSShell.h" />
 		<Unit filename="include/locale_table.h" />
 		<Unit filename="include/macro-vault.h" />
 		<Unit filename="manifest.bin" />
