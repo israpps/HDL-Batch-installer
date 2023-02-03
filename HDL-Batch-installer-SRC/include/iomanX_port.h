@@ -21,7 +21,7 @@ extern int _init_apa(int argc, char *argv[]);
 extern int _init_pfs(int argc, char *argv[]);
 extern int _init_hdlfs(int argc, char *argv[]);
 enum PARTITION_TYPE {
-    FREE     = 0x0000,
+    FREE     = 0,
     MBR      = 0x0001,
     EXT2SWAP = 0x0082,
     EXT2     = 0x0083,

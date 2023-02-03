@@ -162,7 +162,7 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     COLOR(0f)
     cout << "welcome to HDL Batch Installer [" << versionTAG <<"]\n";
     COLOR(07)
-#ifdef RELEASE
+#ifndef RELEASE
     Create(parent, wxID_ANY, "HDL Batch Installer | By Matias Israelson (El_isra)", wxDefaultPosition, wxDefaultSize, wxRESIZE_BORDER|Custom_Styles|wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX|wxMINIMIZE_BOX|wxCLIP_CHILDREN, _T("wxID_ANY"));
 #endif
     //(*Initialize(HDL_Batch_installerFrame)
@@ -195,7 +195,7 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     wxMenuItem* MenuItem3;
     wxStaticBoxSizer* StaticBoxSizer1;
 
-    Create(parent, wxID_ANY, _("HDL Batch Installer"), wxDefaultPosition, wxDefaultSize, wxSTAY_ON_TOP|wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxMINIMIZE_BOX|wxCLIP_CHILDREN, _T("wxID_ANY"));
+    //Create(parent, wxID_ANY, _("HDL Batch Installer"), wxDefaultPosition, wxDefaultSize, wxSTAY_ON_TOP|wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxMINIMIZE_BOX|wxCLIP_CHILDREN, _T("wxID_ANY"));
     SetClientSize(wxSize(537,651));
     Move(wxPoint(-1,-1));
     SetMinSize(wxSize(537,681));
@@ -1688,7 +1688,7 @@ void HDL_Batch_installerFrame::On_GameNameDatabaseDownloadRequest(wxCommandEvent
     int database_mode;
     if (wxFileExists("gamename.DB"))
     {
-        if (wxMessageBox(_("A local database already exists.\nDownloading the database from the repository will delete the old one...\n\n Continue?"),warning_caption,wxICON_WARNING|wxYES_NO) == wxID_NO)
+        if (wxMessageBox(_("A local database already exists.\nDownloading the database from the repository will delete the old one...\n\n Continue?"),warning_caption,wxICON_WARNING|wxYES_NO) == wxNO)
             return;
     }
 

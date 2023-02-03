@@ -15,7 +15,7 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 		</Option>
 		<Build>
 			<Target title="Debug">
-				<Option platforms="Windows;Unix;" />
+				<Option platforms="Windows;" />
 				<Option output="_bin/playground/HDL-Batch-installer" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="_bin/playground/" />
 				<Option object_output="_obj/Debug/" />
@@ -42,6 +42,7 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 				</ResourceCompiler>
 				<Linker>
 					<Add option="-O2" />
+					<Add option="-s" />
 					<Add option="-static-libstdc++" />
 					<Add option="-static-libgcc" />
 					<Add option="-static" />
@@ -128,7 +129,7 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 				</Linker>
 			</Target>
 			<Target title="32-bits">
-				<Option platforms="Windows;Unix;" />
+				<Option platforms="Windows;" />
 				<Option output="_bin/playground/HDL-Batch-installer-x86" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="_bin/playground/" />
 				<Option object_output="_obj/32-bits/" />
@@ -309,9 +310,9 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 		<Unit filename="hdlfs.h" />
 		<Unit filename="include/MD5Man.h" />
 		<Unit filename="include/PFSShell.h" />
+		<Unit filename="include/iomanX_port.h" />
 		<Unit filename="include/locale_table.h" />
 		<Unit filename="include/macro-vault.h" />
-		<Unit filename="iomanX_port.h" />
 		<Unit filename="manifest.bin" />
 		<Unit filename="manifest.rc">
 			<Option compilerVar="WINDRES" />

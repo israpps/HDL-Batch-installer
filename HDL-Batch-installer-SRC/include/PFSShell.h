@@ -33,6 +33,7 @@ class PFSShell
         int copyto(const char *mount_point, const char *dest, const char *src);
         int recoverfile(const char *mount_point, const char *src, const char *dest);
         int list_dir_objects(int dh, int lsmode);
+        int RemovePartition(const char* part);
 
     protected:
 

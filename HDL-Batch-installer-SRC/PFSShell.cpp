@@ -379,11 +379,34 @@ int PFSShell::lspart(int lsmode, std::vector <iox_dirent_t>* dirent_return)
 
         result = iomanX_close(dh);
         if (result < 0)
-            printf("dclose: failed with %d\n", result), retval = -1;
+            {
+                COLOR(0c)
+                fprintf(stderr, "dclose: failed with %d\n", result), retval = -1;
+            }
     } else
-        printf("dopen: \"%s\" failed with %d\n",
+    {
+        COLOR(0c)
+        fprintf(stderr, "dopen: \"%s\" failed with %d\n",
                dir_path, dh),
-            retval = dh;
+                retval = dh;
+    }
     COLOR(07)
     return (retval);
 }
+
+int PFSShell::RemovePartition(const char* part)
+{
+    std::cout << "removing "<<part << "\n";
+    char tmp[256];
+    strcpy(tmp, "hdd0:");
+    strcat(tmp, part);
+    int result = iomanX_remove(tmp);
+    if (result < 0)
+    {
+        COLOR(0c)
+        fprintf(stderr, "(!) %s: %s.\n", tmp, strerror(-result));
+        COLOR(07)
+    }
+    return (result);
+}
+

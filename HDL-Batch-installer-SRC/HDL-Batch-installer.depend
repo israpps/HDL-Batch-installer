@@ -21560,7 +21560,7 @@
 
 1674915380 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\hdl-dump-recodes.cpp
 
-1675305750 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installerapp.cpp
+1675457491 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installerapp.cpp
 	"HDL_Batch_installerApp.h"
 	"flags.h"
 	"HDL_Batch_installerMain.h"
@@ -21833,7 +21833,7 @@
 	"wx/protocol/protocol.h"
 	"wx/buffer.h"
 
-1675389081 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installermain.cpp
+1675458139 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installermain.cpp
 	"HDL_Batch_installerMain.h"
 	"About.h"
 	"Config.h"
@@ -24909,7 +24909,7 @@
 	"wx/defs.h"
 	"wx/string.h"
 
-1675387862 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\pfsshell.cpp
+1675458039 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\pfsshell.cpp
 	"PFSShell.h"
 	<wx/wx.h>
 	<wx/string.h>
@@ -24919,7 +24919,7 @@
 	<iostream>
 	"macro-vault.h"
 
-1675387593 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\include\pfsshell.h
+1675457041 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\include\pfsshell.h
 	<string>
 	<vector>
 	"iomanX_port.h"
@@ -25445,21 +25445,26 @@
 1675364278 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\hddmanager.h
 	<wx/dialog.h>
 
-1675392555 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\hddmanager.cpp
+1675457936 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\hddmanager.cpp
 	"HDDManager.h"
 	"PFSShell.h"
 	<stdint.h>
+	<iostream>
+	<wx/arrstr.h>
+	<wx/msgdlg.h>
+	<wx/utils.h>
 	<wx/intl.h>
 	<wx/string.h>
 
-1675389232 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\hddmanager.h
+1675457661 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\hddmanager.h
 	"iomanX_port.h"
 	<vector>
 	<wx/dialog.h>
 	<wx/listctrl.h>
+	<wx/menu.h>
 	<wx/sizer.h>
 
-1675390090 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\include\iomanx_port.h
+1675457876 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\include\iomanx_port.h
 	<stdlib.h>
 	<stdint.h>
 

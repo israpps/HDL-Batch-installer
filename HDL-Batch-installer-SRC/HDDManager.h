@@ -5,6 +5,7 @@
 //(*Headers(HDDManager)
 #include <wx/dialog.h>
 #include <wx/listctrl.h>
+#include <wx/menu.h>
 #include <wx/sizer.h>
 //*)
 
@@ -17,12 +18,15 @@ class HDDManager: public wxDialog
 
 		//(*Declarations(HDDManager)
 		wxListCtrl* PARTList;
+		wxMenu HDDManagerMenu;
+		wxMenuItem* MenuItem1;
 		//*)
 
 	protected:
 
 		//(*Identifiers(HDDManager)
 		static const long ID_LISTCTRL1;
+		static const long ID_MENUITEM1;
 		//*)
 
 	private:
@@ -30,7 +34,10 @@ class HDDManager: public wxDialog
         std::vector<iox_dirent_t> PART_LIST;
 		//(*Handlers(HDDManager)
 		void OnPARTListBeginDrag(wxListEvent& event);
+		void OnPARTListItemRClick(wxListEvent& event);
+		void OnPartitionDeleteRequest(wxCommandEvent& event);
 		//*)
+        void UpdateList(void);
 
 		DECLARE_EVENT_TABLE()
 };
