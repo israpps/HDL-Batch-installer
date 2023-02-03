@@ -16,6 +16,7 @@
 #include "Post_Install_Report.h"
 #include "CopyHDD.h"
 #include "NDBMan.h"
+#include "HDDManager.h"
 
 #include "hdl-dump-recodes.h"
 #include "gamename/parser.h" //includes both database & parser function
@@ -349,9 +350,9 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     FlexGridSizer5->AddGrowableRow(0);
     BoxSizer3 = new wxBoxSizer(wxVERTICAL);
     BoxSizer10 = new wxBoxSizer(wxHORIZONTAL);
-    Button2 = new wxButton(Panel3, ID_BUTTON10, _("HDD Manager"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON10"));
-    Button2->Disable();
-    BoxSizer10->Add(Button2, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
+    HDDManagerButton = new wxButton(Panel3, ID_BUTTON10, _("HDD Manager"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON10"));
+    HDDManagerButton->Disable();
+    BoxSizer10->Add(HDDManagerButton, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
     BoxSizer3->Add(BoxSizer10, 1, wxALL|wxEXPAND, 5);
     BoxSizer9 = new wxBoxSizer(wxHORIZONTAL);
     mass_header_injection = new wxButton(Panel3, ID_BUTTON13, _("Inject OPL Launcher"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON13"));
@@ -1120,6 +1121,7 @@ void HDL_Batch_installerFrame::Enable_HDD_dependant_objects(bool WTF_should_I_do
         mass_header_injection->Enable();
         MBRExtractRequest->Enable();
         FUSE->Enable();
+        HDDManagerButton->Enable();
 
         ///this one has nothing to do
         Installed_game_list->DeleteAllItems();
@@ -1136,6 +1138,7 @@ void HDL_Batch_installerFrame::Enable_HDD_dependant_objects(bool WTF_should_I_do
         mass_header_injection->Disable();
         MBRExtractRequest->Disable();
         FUSE->Disable();
+        HDDManagerButton->Disable();
     }
 }
 
@@ -1195,8 +1198,8 @@ void HDL_Batch_installerFrame::Update_hdd_data(void)
         if (!PFSSHELL.SelectDevice(HDD_TOKEN.c_str()))
             PFSSHELL_USABLE = true;
 
-        PFSSHELL.lspart(0);
-        PFSS
+        PFSSHELL.lspart(1, NULL);
+        PFSSHELL.CloseDevice();
     }
     else
     {
@@ -1278,6 +1281,9 @@ void HDL_Batch_installerFrame::On_MiniOPL_Update_request(wxCommandEvent& event)
 
 void HDL_Batch_installerFrame::OnButton2Click3(wxCommandEvent& event)
 {
+    HDDManager *MANAGER = new HDDManager(this, HDD_TOKEN);
+    MANAGER->ShowModal();
+    delete MANAGER;
 }
 
 void HDL_Batch_installerFrame::OnHDL_DumpUpdateRequest(wxCommandEvent& event)

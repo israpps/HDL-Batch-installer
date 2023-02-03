@@ -1,11 +1,9 @@
 #include "PFSShell.h"
-extern "C" {
-#include "iomanX_port.h"
-}
 #include <wx/wx.h>
 #include <wx/string.h>
 #include <fcntl.h>
 #include <cstring>
+#include <errno.h>
 #include <iostream>
 #include "macro-vault.h"
 PFSShell::PFSShell()
@@ -21,6 +19,7 @@ PFSShell::~PFSShell()
 extern "C" {
 extern void set_atad_device_path(const char *path);
 extern void atad_close(void);
+extern void init(void);
 }
 
 int PFSShell::SelectDevice(std::string device)
@@ -28,47 +27,50 @@ int PFSShell::SelectDevice(std::string device)
     COLOR(0d)
     std::cout << "accessing device " << device << "\n";
     set_atad_device_path(device.c_str());
+    if (!libinit)
+    {
+        /* mandatory */
+        std::cout << "Initializing APA:\n";
+        int result = _init_apa(0, NULL);
+        if (result < 0) {
+            COLOR(0c)
+            fprintf(stderr, "(!) init_apa: failed with %d (%s)\n", result,
+                    std::strerror(-result));
+            COLOR(07)
+            return (1);
+        }
 
-    /* mandatory */
-    std::cout << "Initializing APA:\n";
-    int result = _init_apa(0, NULL);
-    if (result < 0) {
-        COLOR(0c)
-        fprintf(stderr, "(!) init_apa: failed with %d (%s)\n", result,
-                std::strerror(-result));
-        COLOR(07)
-        return (1);
-    }
+        static const char *pfs_args[] =
+            {
+                "pfs.irx",
+                "-m", "1",
+                "-o", "1",
+                "-n", "10",
+                NULL};
 
-    static const char *pfs_args[] =
-        {
-            "pfs.irx",
-            "-m", "1",
-            "-o", "1",
-            "-n", "10",
-            NULL};
+        /* mandatory */
+        std::cout << "Initializing PFS:\n";
+        result = _init_pfs(7, (char **)pfs_args);
+        if (result < 0) {
+            COLOR(0c)
+            fprintf(stderr, "(!) init_pfs: failed with %d (%s)\n", result,
+                    strerror(-result));
+            COLOR(07)
+            return (1);
+        }
 
-    /* mandatory */
-    std::cout << "Initializing PFS:\n";
-    result = _init_pfs(7, (char **)pfs_args);
-    if (result < 0) {
-        COLOR(0c)
-        fprintf(stderr, "(!) init_pfs: failed with %d (%s)\n", result,
-                strerror(-result));
-        COLOR(07)
-        return (1);
-    }
-
-    /* mandatory */
-    std::cout << "Initializing HDLFS:\n";
-    result = _init_hdlfs(0, NULL);
-    if (result < 0) {
-        COLOR(0c)
-        fprintf(stderr, "(!) init_hdlfs: failed with %d (%s)\n", result,
-                strerror(-result));
-        COLOR(07)
-        return (1);
-    }
+        /* mandatory */
+        std::cout << "Initializing HDLFS:\n";
+        result = _init_hdlfs(0, NULL);
+        if (result < 0) {
+            COLOR(0c)
+            fprintf(stderr, "(!) init_hdlfs: failed with %d (%s)\n", result,
+                    strerror(-result));
+            COLOR(07)
+            return (1);
+        }
+        libinit = true;
+    } else init();
 
     std::cout << "finished init\n";
     ctx.setup = 1;
@@ -326,8 +328,10 @@ int PFSShell::list_dir_objects(int dh, int lsmode)
     return (result);
 }
 
-int PFSShell::lspart(int lsmode)
+int PFSShell::lspart(int lsmode, std::vector <iox_dirent_t>* dirent_return)
 {
+    if (dirent_return != NULL)
+        dirent_return->clear();
     COLOR(0d)
     const char *dir_path = "hdd0:";
     char end_symbol[2];
@@ -343,7 +347,8 @@ int PFSShell::lspart(int lsmode)
         if (lsmode == 1)
             printf("Start (sector)  Code      Size         Timestamp  Name\n");
         while ((result = iomanX_dread(dh, &dirent)) && result != -1) {
-
+            if (dirent_return != NULL)
+                dirent_return->push_back(dirent);
             // Equal to, but avoids overflows of: size * 512 / 1024 / 1024;
             uint32_t size = dirent.stat.size / 2048;
 

@@ -198,10 +198,10 @@ private:
 
     //(*Declarations(HDL_Batch_installerFrame)
     wxButton* Button1;
-    wxButton* Button2;
     wxButton* Button3;
     wxButton* Button4;
     wxButton* FUSE;
+    wxButton* HDDManagerButton;
     wxButton* MBRExtractRequest;
     wxButton* MBR_EVENT;
     wxButton* NBDConnect;

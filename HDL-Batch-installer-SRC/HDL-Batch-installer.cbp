@@ -306,10 +306,12 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 		<Unit filename="gamename/parser.h" />
 		<Unit filename="hdl-dump-recodes.cpp" />
 		<Unit filename="hdl-dump-recodes.h" />
+		<Unit filename="hdlfs.h" />
 		<Unit filename="include/MD5Man.h" />
 		<Unit filename="include/PFSShell.h" />
 		<Unit filename="include/locale_table.h" />
 		<Unit filename="include/macro-vault.h" />
+		<Unit filename="iomanX_port.h" />
 		<Unit filename="manifest.bin" />
 		<Unit filename="manifest.rc">
 			<Option compilerVar="WINDRES" />

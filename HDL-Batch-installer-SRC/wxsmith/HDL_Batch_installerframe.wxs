@@ -369,7 +369,7 @@
 													<object class="sizeritem">
 														<object class="wxBoxSizer" variable="BoxSizer10" member="no">
 															<object class="sizeritem">
-																<object class="wxButton" name="ID_BUTTON10" variable="Button2" member="yes">
+																<object class="wxButton" name="ID_BUTTON10" variable="HDDManagerButton" member="yes">
 																	<label>HDD Manager</label>
 																	<enabled>0</enabled>
 																	<handler function="OnButton2Click3" entry="EVT_BUTTON" />
