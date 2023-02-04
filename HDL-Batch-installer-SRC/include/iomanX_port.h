@@ -31,6 +31,23 @@ enum PARTITION_TYPE {
     HDL      = 0x1337,
 };
 
+
+struct apaFsType
+{
+    const char *desc;
+    uint16_t type;
+};
+
+static const struct apaFsType fsTypes[] = {
+    {"MBR",           PARTITION_TYPE::MBR},
+    {"EXT2SWAP", PARTITION_TYPE::EXT2SWAP},
+    {"EXT2",         PARTITION_TYPE::EXT2},
+    {"REISER",     PARTITION_TYPE::REISER},
+    {"PFS",           PARTITION_TYPE::PFS},
+    {"CFS",           PARTITION_TYPE::CFS},
+    {"HDL",           PARTITION_TYPE::HDL}
+};
+
 #define FIO_O_RDONLY 0x0001
 #define FIO_O_WRONLY 0x0002
 #define FIO_O_RDWR 0x0003

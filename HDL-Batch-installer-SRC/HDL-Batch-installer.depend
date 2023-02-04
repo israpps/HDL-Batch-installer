@@ -24809,7 +24809,7 @@
 	<wx/sizer.h>
 	<wx/stattext.h>
 
-1675340730 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installerapp.cpp
+1675515082 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installerapp.cpp
 	"HDL_Batch_installerApp.h"
 	"flags.h"
 	"HDL_Batch_installerMain.h"
@@ -24826,7 +24826,7 @@
 
 1671708638 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\flags.h
 
-1675358876 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installermain.h
+1675515082 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installermain.h
 	"version.h"
 	<wx/button.h>
 	<wx/checkbox.h>
@@ -24873,7 +24873,7 @@
 	"wx/defs.h"
 	"wx/string.h"
 
-1675357113 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installermain.cpp
+1675515082 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installermain.cpp
 	"HDL_Batch_installerMain.h"
 	"About.h"
 	"Config.h"
@@ -24883,6 +24883,8 @@
 	"Post_Install_Report.h"
 	"CopyHDD.h"
 	"NDBMan.h"
+	"HDDManager.h"
+	"HDDFomatMan.h"
 	"hdl-dump-recodes.h"
 	"gamename/parser.h"
 	"MD5Man.h"
@@ -25421,16 +25423,19 @@
 1587560968 c:\libs\wxwidgets-3.0.5\include\wx\cocoa\mdi.h
 	"wx/frame.h"
 
-1675366939 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\include\pfsshell.h
+1675518624 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\include\pfsshell.h
 	<string>
-
-1675357817 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\pfsshell.cpp
-	"PFSShell.h"
+	<vector>
 	"iomanX_port.h"
+	"hdlfs.h"
+
+1675519645 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\pfsshell.cpp
+	"PFSShell.h"
 	<wx/wx.h>
 	<wx/string.h>
 	<fcntl.h>
 	<cstring>
+	<errno.h>
 	<iostream>
 	"macro-vault.h"
 
@@ -25438,13 +25443,25 @@
 	<stdlib.h>
 	<stdint.h>
 
-1675364278 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\hddmanager.cpp
+1675519273 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\hddmanager.cpp
 	"HDDManager.h"
+	"PFSShell.h"
+	<stdint.h>
+	<iostream>
+	<wx/arrstr.h>
+	<wx/msgdlg.h>
+	<wx/utils.h>
 	<wx/intl.h>
 	<wx/string.h>
 
-1675364278 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\hddmanager.h
+1675517712 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\hddmanager.h
+	"iomanX_port.h"
+	<vector>
+	<wx/button.h>
 	<wx/dialog.h>
+	<wx/listctrl.h>
+	<wx/menu.h>
+	<wx/sizer.h>
 
 1675480461 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\hddmanager.cpp
 	"HDDManager.h"
@@ -25485,4 +25502,24 @@
 	<wx/dialog.h>
 	<wx/listctrl.h>
 	<wx/sizer.h>
+
+1675515081 source:d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\hddfomatman.cpp
+	"HDDFomatMan.h"
+	<iostream>
+	<wx/msgdlg.h>
+	<wx/arrstr.h>
+	<wx/utils.h>
+	"PFSShell.h"
+
+1675515081 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\hddfomatman.h
+	<wx/button.h>
+	<wx/dialog.h>
+	<wx/listctrl.h>
+	<wx/sizer.h>
+
+1675518387 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\include\iomanx_port.h
+	<stdlib.h>
+	<stdint.h>
+
+1675515082 d:\isr\isr_git\hdl-batch-installer\hdl-batch-installer-src\include\hdlfs.h
 

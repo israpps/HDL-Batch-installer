@@ -24,29 +24,14 @@ BEGIN_EVENT_TABLE(HDDManager,wxDialog)
 	//*)
 END_EVENT_TABLE()
 
-struct apaFsType
-{
-    const char *desc;
-    uint16_t type;
-};
 
-static const struct apaFsType fsTypes[] = {
-    {"MBR",           PARTITION_TYPE::MBR},
-    {"EXT2SWAP", PARTITION_TYPE::EXT2SWAP},
-    {"EXT2",         PARTITION_TYPE::EXT2},
-    {"REISER",     PARTITION_TYPE::REISER},
-    {"PFS",           PARTITION_TYPE::PFS},
-    {"CFS",           PARTITION_TYPE::CFS},
-    {"HDL",           PARTITION_TYPE::HDL}
+enum PARTLIST_ITEMS {
+    START_SECTOR = 0,
+    NAME,
+    PARTSIZE,
+    TYPE,
+    GAME_TITLE,
 };
-
-	enum PARTLIST_ITEMS {
-        START_SECTOR = 0,
-        NAME,
-        PARTSIZE,
-        TYPE,
-        GAME_TITLE,
-	};
 HDDManager::HDDManager(wxWindow* parent, std::string HDDTOK,wxWindowID id,const wxPoint& pos,const wxSize& size):
     HDD_TOKEN(HDDTOK)
 {
@@ -75,6 +60,7 @@ HDDManager::HDDManager(wxWindow* parent, std::string HDDTOK,wxWindowID id,const 
 
 	Connect(ID_LISTCTRL1,wxEVT_COMMAND_LIST_BEGIN_DRAG,(wxObjectEventFunction)&HDDManager::OnPARTListBeginDrag);
 	Connect(ID_LISTCTRL1,wxEVT_COMMAND_LIST_ITEM_RIGHT_CLICK,(wxObjectEventFunction)&HDDManager::OnPARTListItemRClick);
+	Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&HDDManager::OnMKPartClick);
 	Connect(ID_MENUITEM1,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDDManager::OnPartitionDeleteRequest);
 	//*)
 	PFSSHELL.SelectDevice(HDD_TOKEN);
@@ -226,4 +212,10 @@ void HDDManager::UpdateList(void)
             }
         }
     }
+}
+
+void HDDManager::OnMKPartClick(wxCommandEvent& event)
+{
+    PFSSHELL.mkpart("PP.DOU", 128, "PFS");
+    PFSSHELL.mkpart("PP.HDL", 128, "HDL");
 }

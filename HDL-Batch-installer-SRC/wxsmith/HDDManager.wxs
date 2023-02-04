@@ -32,6 +32,7 @@
 					<object class="sizeritem">
 						<object class="wxButton" name="ID_BUTTON1" variable="MKPart" member="yes">
 							<label>Create Partition</label>
+							<handler function="OnMKPartClick" entry="EVT_BUTTON" />
 						</object>
 						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 						<border>5</border>

@@ -124,21 +124,96 @@ int PFSShell::mkpfs(const char *mount_point)
     return ret;
 }
 
-int PFSShell::mkpart(const char *mount_point, long size_in_mb, int format)
+int PFSShell::mkpart(const char *mount_point, unsigned long size_in_mb, const char* part_typee)
 {
-    COLOR(0d)
-    char tmp[256];
-    if (size_in_mb >= 1024)
-        sprintf(tmp, "%s,%ldG", mount_point, size_in_mb / 1024);
-    else
-        sprintf(tmp, "%s,%ldM", mount_point, size_in_mb);
-    int result = iomanX_open(tmp, FIO_O_RDWR | FIO_O_CREAT, 0);
-    if (result >= 0) {
-        iomanX_close(result), result = 0;
+    COLOR(0f)
+    std::cout << " -- \tcreating partition ["<<mount_point<<"] of "<<size_in_mb<<"Mb in size.\n\t  filesystem ID is: '" <<part_typee<<"'\n";
+    const static char *sizesString[9] = {
+        "128M",
+        "256M",
+        "512M",
+        "1G",
+        "2G",
+        "4G",
+        "8G",
+        "16G",
+        "32G"
+    };
+    static unsigned int sizesMB[9] = {
+        128,
+        256,
+        512,
+        1024,
+        2048,
+        4096,
+        8192,
+        16384,
+        32768
+    };
 
-        if (format)
-            result = mkpfs(mount_point);
+    char tmp[128];
+    char openString[32 + 5];
+    char part_type[9];
+    int i = 9;
+    int result = -1;
+    int partfd = 0;
+    COLOR(0d)
+
+    strncpy(part_type, part_typee, 9);
+    sprintf(openString, "hdd0:%s", mount_point);
+    openString[32 + 5 - 1] = '\0';
+    partfd = iomanX_open(openString, FIO_O_RDONLY);
+    if (partfd != -2) // partition already exists+
+    {
+        iomanX_close(partfd);
+        COLOR(0c)
+        printf("%s: partition already exists.\n", mount_point);
+        COLOR(07)
+        return (-1);
     }
+
+
+    while (result < 0 && i > 0) { // create main partition
+        i--;
+        if (sizesMB[i] <= size_in_mb) {
+            sprintf(tmp, "hdd0:%s,,,%s,%s", mount_point, sizesString[i], part_type);
+
+            partfd = iomanX_open(tmp, FIO_O_RDWR | FIO_O_CREAT);
+            if (partfd >= 0) {
+                printf("Main partition of %s created.\n", sizesString[i]);
+                size_in_mb = size_in_mb - sizesMB[i];
+                result = partfd;
+            }
+        }
+    }
+
+    if (i < 0) { // dont create smaller then 128MB Main partition
+        fprintf(stderr, "%lu: too small partition size.\n", size_in_mb);
+        return (-1);
+    }
+    int j = i; // limit sub partition max size
+    if (partfd >= 0) {
+        while (size_in_mb > 0 && j >= 0) {
+            if (sizesMB[j] <= size_in_mb) {
+                if (iomanX_ioctl2(partfd, HIOCADDSUB, const_cast<char*>(sizesString[j]), strlen(sizesString[j]) + 1, NULL, 0) >= 0) {
+                    printf("Sub partition of %s created.\n", sizesString[j]);
+                    size_in_mb = size_in_mb - sizesMB[j];
+                } else
+                    j--;
+            } else
+                j--;
+        }
+    }
+
+    if (result >= 0) {
+        (void)iomanX_close(partfd), result = 0;
+        if (result >= 0)
+            if (strncmp(part_type, "PFS", 3) == 0)
+                result = mkpfs(mount_point);
+    }
+
+    if (result < 0)
+        fprintf(stderr, "(!) %s: %s.\n", mount_point, strerror(-result));
     return (result);
     COLOR(07)
 }

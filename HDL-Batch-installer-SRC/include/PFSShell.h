@@ -27,7 +27,7 @@ class PFSShell
         int CloseDevice(void);
         int FormatDevice();
         int mkpfs(const char *mount_point);
-        int mkpart(const char *mount_point, long size_in_mb, int format);
+        int mkpart(const char *mount_point, unsigned long size_in_mb, const char* part_typee);
         int ls(const char *mount_point, const char *path);
         int lspart(int lsmode, std::vector <iox_dirent_t>* dirent_return);
         int copyto(const char *mount_point, const char *dest, const char *src);
