@@ -291,8 +291,6 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 		<Unit filename="HDL_Batch_installerMain.cpp" />
 		<Unit filename="HDL_Batch_installerMain.h" />
 		<Unit filename="MD5Man.cpp" />
-		<Unit filename="MKPartPrompt.cpp" />
-		<Unit filename="MKPartPrompt.h" />
 		<Unit filename="NDBMan.cpp" />
 		<Unit filename="NDBMan.h" />
 		<Unit filename="PFSShell.cpp" />
@@ -336,7 +334,6 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 		<Unit filename="wxsmith/HDDFomatMan.wxs" />
 		<Unit filename="wxsmith/HDDManager.wxs" />
 		<Unit filename="wxsmith/HDL_Batch_installerframe.wxs" />
-		<Unit filename="wxsmith/MKPartPrompt.wxs" />
 		<Unit filename="wxsmith/NDBMan.wxs" />
 		<Unit filename="wxsmith/Post_Install_Report.wxs" />
 		<Unit filename="wxsmith/pfsshell_wizard.wxs" />

@@ -40,7 +40,7 @@ HDDManager::HDDManager(wxWindow* parent, std::string HDDTOK,wxWindowID id,const 
 	wxFlexGridSizer* FlexGridSizer2;
 	wxFlexGridSizer* FlexGridSizer3;
 
-	Create(parent, id, _("HDDManager"), wxDefaultPosition, wxDefaultSize, wxSTAY_ON_TOP|wxDEFAULT_DIALOG_STYLE|wxSYSTEM_MENU, _T("id"));
+	Create(parent, id, _("HDDManager"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE|wxSYSTEM_MENU, _T("id"));
 	SetClientSize(wxDefaultSize);
 	Move(wxDefaultPosition);
 	FlexGridSizer1 = new wxFlexGridSizer(0, 1, 0, 0);
@@ -102,6 +102,7 @@ HDDManager::HDDManager(wxWindow* parent, std::string HDDTOK,wxWindowID id,const 
 
 HDDManager::~HDDManager()
 {
+    PFSSHELL.CloseDevice(); //don't leave device attached 'al pedo'
 	//(*Destroy(HDDManager)
 	//*)
 }
@@ -216,6 +217,5 @@ void HDDManager::UpdateList(void)
 
 void HDDManager::OnMKPartClick(wxCommandEvent& event)
 {
-    PFSSHELL.mkpart("PP.DOU", 128, "PFS");
-    PFSSHELL.mkpart("PP.HDL", 128, "HDL");
+
 }

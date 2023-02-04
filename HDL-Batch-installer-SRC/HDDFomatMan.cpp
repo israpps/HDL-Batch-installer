@@ -127,6 +127,8 @@ void HDDFomatMan::OnFormatClick(wxCommandEvent& event)
         wxMessageBox(wxString::Format(_("HDD format failed\nError code is %d\nsee console log for more information"), ret), wxMessageBoxCaptionStr, wxICON_ERROR);
     else
         wxMessageBox(_("HDD was successfully formated.\nDefault partitions have been created!"), wxMessageBoxCaptionStr, wxICON_INFORMATION);
+
+    PFSSHELL.CloseDevice();
 }
 
 void HDDFomatMan::OnHDDListItemSelect(wxListEvent& event)

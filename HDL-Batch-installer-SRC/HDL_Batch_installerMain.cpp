@@ -790,7 +790,7 @@ void HDL_Batch_installerFrame::OninstallClick(wxCommandEvent& event)
         ask_2_download_icons();
         wxBeginBusyCursor();
     }
-
+    PFSSHELL.CloseDevice(); //PFSShell with device attached will make HDL Dump write features crash
     std::cout <<"game count: "<< original_item_count<<std::endl;
     cout << "> begining installation...\n";
     install_progress = new wxProgressDialog(_("Installing"), wxEmptyString, original_item_count, this, wxPD_APP_MODAL|wxPD_ELAPSED_TIME|wxPD_SMOOTH|wxPD_AUTO_HIDE);
@@ -1046,12 +1046,13 @@ void HDL_Batch_installerFrame::OnMBR_EVENTClick(wxCommandEvent& event)
     else
     {
         COLOR(08) cout<<"> operation cancelled\n";
-        COLOR(07)
     }
 
-    COLOR(08) cout <<"> Cleaning MBR.KELF cache.\n";
-    if (!wxFileExists("./MBR.KELF"))
-        wxRemoveFile("./MBR.KELF");
+    if (wxFileExists("./MBR.KELF"))
+        {
+            COLOR(08) cout <<"> Cleaning MBR.KELF cache.\n";
+            wxRemoveFile("./MBR.KELF");
+        }
     COLOR(07)
 }
 

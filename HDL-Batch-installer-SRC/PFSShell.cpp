@@ -6,6 +6,11 @@
 #include <errno.h>
 #include <iostream>
 #include "macro-vault.h"
+
+
+#define PFS_ZONE_SIZE 8192
+#define PFS_FRAGMENT  0x00000000
+
 PFSShell::PFSShell()
 {
     //ctor
@@ -24,13 +29,18 @@ extern void init(void);
 
 int PFSShell::SelectDevice(std::string device)
 {
+    COLOR(0e)
+    std::cout << " - accessing device " << device << "\n";
     COLOR(0d)
-    std::cout << "accessing device " << device << "\n";
+    if (has_device_opened)
+        CloseDevice();
     set_atad_device_path(device.c_str());
     if (!libinit)
     {
         /* mandatory */
-        std::cout << "Initializing APA:\n";
+        COLOR(0e)
+        std::cout << " - Initializing APA:\n";
+        COLOR(0d)
         int result = _init_apa(0, NULL);
         if (result < 0) {
             COLOR(0c)
@@ -49,7 +59,9 @@ int PFSShell::SelectDevice(std::string device)
                 NULL};
 
         /* mandatory */
-        std::cout << "Initializing PFS:\n";
+        COLOR(0e)
+        std::cout << " - Initializing PFS:\n";
+        COLOR(0d)
         result = _init_pfs(7, (char **)pfs_args);
         if (result < 0) {
             COLOR(0c)
@@ -60,19 +72,21 @@ int PFSShell::SelectDevice(std::string device)
         }
 
         /* mandatory */
-        std::cout << "Initializing HDLFS:\n";
+        COLOR(0e)
+        std::cout << " - Initializing HDLFS:\n";
+        COLOR(0d)
         result = _init_hdlfs(0, NULL);
         if (result < 0) {
             COLOR(0c)
-            fprintf(stderr, "(!) init_hdlfs: failed with %d (%s)\n", result,
+            fprintf(stderr, "PFSShell: (!) init_hdlfs: failed with %d (%s)\n", result,
                     strerror(-result));
             COLOR(07)
             return (1);
         }
         libinit = true;
     } else init();
-
-    std::cout << "finished init\n";
+    has_device_opened = true;
+    std::cout << "PFSShell: finished init\n";
     ctx.setup = 1;
     COLOR(07)
     return (0);
@@ -80,18 +94,25 @@ int PFSShell::SelectDevice(std::string device)
 
 int PFSShell::CloseDevice()
 {
-    atad_close();
+    if (has_device_opened)
+    {
+        atad_close();
+        has_device_opened = false;
+        COLOR(0e)
+        std::cout << "PFSShell: Closing device\n";
+        COLOR(07)
+    }
     return 0;
 }
 
 int PFSShell::FormatDevice()
 {
     COLOR(0e)
-    std::cout << "HDD format requested...\n";
+    std::cout << " -- HDD format requested...\n";
     COLOR(0d)
     int result = iomanX_format("hdd0:", NULL, NULL, 0);
     if (result >= 0) {
-        std::cout << "\tFormat succeeded\n";
+        std::cout << "\t- Format succeeded\n";
         result = mkpfs("__net");
         mkpfs("__system");
         mkpfs("__sysconf");
@@ -100,7 +121,7 @@ int PFSShell::FormatDevice()
     if (result < 0)
     {
         COLOR(0c)
-        fprintf(stderr, "(!) format error: %s (-%d).\n", strerror(-result), result);
+        fprintf(stderr, "PFSShell: (!) format error: %s (-%d).\n", strerror(-result), result);
         COLOR(07)
     }
     return (result);
@@ -108,8 +129,6 @@ int PFSShell::FormatDevice()
 
 int PFSShell::mkpfs(const char *mount_point)
 {
-#define PFS_ZONE_SIZE 8192
-#define PFS_FRAGMENT  0x00000000
     COLOR(0d)
     int format_arg[] = {PFS_ZONE_SIZE, 0x2d66, PFS_FRAGMENT};
     int ret;

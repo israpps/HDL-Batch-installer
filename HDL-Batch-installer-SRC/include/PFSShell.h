@@ -40,6 +40,7 @@ class PFSShell
     private:
         context_t ctx;
         bool libinit = false;
+        bool has_device_opened = false;
 };
 
 #endif // PFSSHELL_H
