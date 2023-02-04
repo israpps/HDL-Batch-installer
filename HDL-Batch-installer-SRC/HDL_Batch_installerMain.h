@@ -134,6 +134,7 @@ private:
     void OnSelectiveGameMigration(wxCommandEvent& event);
     void OnGameDeletionRequest(wxCommandEvent& event);
     void OnFrameResize(wxSizeEvent& event);
+    void OnHDDFormatMenuRequest(wxCommandEvent& event);
     //*)
     void OnGoToFileLocationRequest(wxString victim);
     void OnTakeOutFromTheListRequest(wxListCtrl* ListCtrl, long itemIndex);
@@ -174,6 +175,7 @@ private:
     static const long ID_PANEL5;
     static const long idMenuQuit;
     static const long ID_MENUITEM13;
+    static const long ID_MENUITEM15;
     static const long SETTINGS;
     static const long idMenuAbout;
     static const long UPDT;
@@ -234,6 +236,7 @@ private:
     wxMenuItem* MenuItem16;
     wxMenuItem* MenuItem17;
     wxMenuItem* MenuItem18;
+    wxMenuItem* MenuItem19;
     wxMenuItem* MenuItem4;
     wxMenuItem* MenuItem5;
     wxMenuItem* MenuItem6;

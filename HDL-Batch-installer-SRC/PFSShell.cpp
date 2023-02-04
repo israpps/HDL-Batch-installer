@@ -87,7 +87,7 @@ int PFSShell::CloseDevice()
 int PFSShell::FormatDevice()
 {
     COLOR(0e)
-    std::cout << "HDD format requested...n";
+    std::cout << "HDD format requested...\n";
     COLOR(0d)
     int result = iomanX_format("hdd0:", NULL, NULL, 0);
     if (result >= 0) {
@@ -113,7 +113,9 @@ int PFSShell::mkpfs(const char *mount_point)
     COLOR(0d)
     int format_arg[] = {PFS_ZONE_SIZE, 0x2d66, PFS_FRAGMENT};
     int ret;
+    COLOR(0e)
     std::cout << "creating PFS filesystem for '" << mount_point << "'\n";
+    COLOR(0d)
     char tmp[256];
     strcpy(tmp, "hdd0:");
     strcat(tmp, mount_point);

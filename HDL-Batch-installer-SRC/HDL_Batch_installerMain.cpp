@@ -17,6 +17,7 @@
 #include "CopyHDD.h"
 #include "NDBMan.h"
 #include "HDDManager.h"
+#include "HDDFomatMan.h"
 
 #include "hdl-dump-recodes.h"
 #include "gamename/parser.h" //includes both database & parser function
@@ -128,6 +129,7 @@ const long HDL_Batch_installerFrame::ID_NOTEBOOK1 = wxNewId();
 const long HDL_Batch_installerFrame::ID_PANEL5 = wxNewId();
 const long HDL_Batch_installerFrame::idMenuQuit = wxNewId();
 const long HDL_Batch_installerFrame::ID_MENUITEM13 = wxNewId();
+const long HDL_Batch_installerFrame::ID_MENUITEM15 = wxNewId();
 const long HDL_Batch_installerFrame::SETTINGS = wxNewId();
 const long HDL_Batch_installerFrame::idMenuAbout = wxNewId();
 const long HDL_Batch_installerFrame::UPDT = wxNewId();
@@ -162,7 +164,7 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     COLOR(0f)
     cout << "welcome to HDL Batch Installer [" << versionTAG <<"]\n";
     COLOR(07)
-#ifndef RELEASE
+#ifdef RELEASE
     Create(parent, wxID_ANY, "HDL Batch Installer | By Matias Israelson (El_isra)", wxDefaultPosition, wxDefaultSize, wxRESIZE_BORDER|Custom_Styles|wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX|wxMINIMIZE_BOX|wxCLIP_CHILDREN, _T("wxID_ANY"));
 #endif
     //(*Initialize(HDL_Batch_installerFrame)
@@ -195,7 +197,7 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     wxMenuItem* MenuItem3;
     wxStaticBoxSizer* StaticBoxSizer1;
 
-    //Create(parent, wxID_ANY, _("HDL Batch Installer"), wxDefaultPosition, wxDefaultSize, wxSTAY_ON_TOP|wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxMINIMIZE_BOX|wxCLIP_CHILDREN, _T("wxID_ANY"));
+    Create(parent, wxID_ANY, _("HDL Batch Installer"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxMINIMIZE_BOX|wxCLIP_CHILDREN, _T("wxID_ANY"));
     SetClientSize(wxSize(537,651));
     Move(wxPoint(-1,-1));
     SetMinSize(wxSize(537,681));
@@ -403,7 +405,9 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     COPYHDD = new wxMenuItem(Menu1, ID_MENUITEM13, _("Massive game transfer"), _("Transfer all games installed on currently selected HDD into another one"), wxITEM_NORMAL);
     Menu1->Append(COPYHDD);
     COPYHDD->Enable(false);
-    MenuBar1->Append(Menu1, _("&File"));
+    MenuItem19 = new wxMenuItem(Menu1, ID_MENUITEM15, _("Format HDD"), _("Format any device into PS2 HDD"), wxITEM_NORMAL);
+    Menu1->Append(MenuItem19);
+    MenuBar1->Append(Menu1, _("&Main"));
     Menu3 = new wxMenu();
     MenuItem3 = new wxMenuItem(Menu3, SETTINGS, _("Settings\tF2"), _("configure program"), wxITEM_NORMAL);
     Menu3->Append(MenuItem3);
@@ -417,13 +421,13 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     Menu2->Append(MenuItem6);
     MenuBar1->Append(Menu2, _("About"));
     Menu4 = new wxMenu();
-    MenuItem4 = new wxMenuItem(Menu4, ID_MENUITEM1, _("Update OPL Launcher"), wxEmptyString, wxITEM_NORMAL);
+    MenuItem4 = new wxMenuItem(Menu4, ID_MENUITEM1, _("Update OPL Launcher"), _("update OPL Launcher KELF"), wxITEM_NORMAL);
     Menu4->Append(MenuItem4);
-    MenuItem7 = new wxMenuItem(Menu4, ID_MENUITEM2, _("Update HDL-Dump"), wxEmptyString, wxITEM_NORMAL);
+    MenuItem7 = new wxMenuItem(Menu4, ID_MENUITEM2, _("Update HDL-Dump"), _("Update the game installation tool"), wxITEM_NORMAL);
     Menu4->Append(MenuItem7);
-    MenuItem14 = new wxMenuItem(Menu4, ID_MENUITEM9, _("Update game title database"), wxEmptyString, wxITEM_NORMAL);
+    MenuItem14 = new wxMenuItem(Menu4, ID_MENUITEM9, _("Update game title database"), _("Update game title database"), wxITEM_NORMAL);
     Menu4->Append(MenuItem14);
-    MenuItem15 = new wxMenuItem(Menu4, ID_MENUITEM10, _("Download Icons Package"), wxEmptyString, wxITEM_NORMAL);
+    MenuItem15 = new wxMenuItem(Menu4, ID_MENUITEM10, _("Download Icons Package"), _("Update HDD-OSD icons package"), wxITEM_NORMAL);
     Menu4->Append(MenuItem15);
     MenuBar1->Append(Menu4, _("Downloads"));
     SetMenuBar(MenuBar1);
@@ -484,6 +488,7 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     Connect(ID_NOTEBOOK1,wxEVT_COMMAND_NOTEBOOK_PAGE_CHANGED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnNotebook1PageChanged);
     Connect(idMenuQuit,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnQuit);
     Connect(ID_MENUITEM13,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnCOPYHDDSelected);
+    Connect(ID_MENUITEM15,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnHDDFormatMenuRequest);
     Connect(SETTINGS,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnSettings);
     Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnAbout);
     Connect(UPDT,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnUpdateRequest);
@@ -2141,4 +2146,11 @@ int wxCALLBACK hdlbinst_listctrl_compare(wxIntPtr item1, wxIntPtr item2, wxIntPt
     if(item1<item2) return -1;
     if(item1>item2) return 1;
     return 0; // if both items are equal...
+}
+
+void HDL_Batch_installerFrame::OnHDDFormatMenuRequest(wxCommandEvent& event)
+{
+    HDDFomatMan *MAN = new HDDFomatMan(this);
+    MAN->ShowModal();
+    delete MAN;
 }

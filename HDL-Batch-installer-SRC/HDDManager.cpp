@@ -15,6 +15,7 @@ PFSShell PFSSHELL;
 
 //(*IdInit(HDDManager)
 const long HDDManager::ID_LISTCTRL1 = wxNewId();
+const long HDDManager::ID_BUTTON1 = wxNewId();
 const long HDDManager::ID_MENUITEM1 = wxNewId();
 //*)
 
@@ -63,6 +64,8 @@ HDDManager::HDDManager(wxWindow* parent, std::string HDDTOK,wxWindowID id,const 
 	FlexGridSizer2->Add(PARTList, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	FlexGridSizer1->Add(FlexGridSizer2, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	FlexGridSizer3 = new wxFlexGridSizer(0, 3, 0, 0);
+	MKPart = new wxButton(this, ID_BUTTON1, _("Create Partition"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
+	FlexGridSizer3->Add(MKPart, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	FlexGridSizer1->Add(FlexGridSizer3, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	SetSizer(FlexGridSizer1);
 	MenuItem1 = new wxMenuItem((&HDDManagerMenu), ID_MENUITEM1, _("Delete Partition"), wxEmptyString, wxITEM_NORMAL);
@@ -142,7 +145,7 @@ void HDDManager::OnPartitionDeleteRequest(wxCommandEvent& event)
         } else if ((PART == "__net") || (PART == "__system") || (PART == "__sysconf") || (PART == "__common") || (PART == "__contents"))
         {
             if (wxMessageBox(_("You requested the deletion of a system partition\nthis is not recommended unless you truly understand what you are doing\n\nContinue anyways?"),wxMessageBoxCaptionStr, wxICON_INFORMATION|wxYES_NO|wxNO_DEFAULT)
-                == wxID_NO
+                == wxNO
                 ) return;
         }
 
@@ -158,7 +161,7 @@ void HDDManager::OnPartitionDeleteRequest(wxCommandEvent& event)
 
 void HDDManager::UpdateList(void)
 {
-
+    PARTList->DeleteAllItems();
     PFSSHELL.lspart(1, &PART_LIST);
     wxString TMP, TMP2, cmd;
     wxArrayString ARR;

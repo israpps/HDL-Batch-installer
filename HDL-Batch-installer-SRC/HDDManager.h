@@ -3,6 +3,7 @@
 #include "iomanX_port.h"
 #include <vector>
 //(*Headers(HDDManager)
+#include <wx/button.h>
 #include <wx/dialog.h>
 #include <wx/listctrl.h>
 #include <wx/menu.h>
@@ -17,6 +18,7 @@ class HDDManager: public wxDialog
 		virtual ~HDDManager();
 
 		//(*Declarations(HDDManager)
+		wxButton* MKPart;
 		wxListCtrl* PARTList;
 		wxMenu HDDManagerMenu;
 		wxMenuItem* MenuItem1;
@@ -26,6 +28,7 @@ class HDDManager: public wxDialog
 
 		//(*Identifiers(HDDManager)
 		static const long ID_LISTCTRL1;
+		static const long ID_BUTTON1;
 		static const long ID_MENUITEM1;
 		//*)
 
