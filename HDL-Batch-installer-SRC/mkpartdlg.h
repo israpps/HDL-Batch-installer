@@ -6,7 +6,6 @@
 #include <wx/dialog.h>
 #include <wx/sizer.h>
 #include <wx/slider.h>
-#include <wx/statline.h>
 #include <wx/stattext.h>
 #include <wx/textctrl.h>
 //*)
@@ -21,7 +20,6 @@ class mkpartdlg: public wxDialog
 		//(*Declarations(mkpartdlg)
 		wxButton* mkpart;
 		wxSlider* HDDSize;
-		wxStaticLine* StaticLine1;
 		wxStaticText* GB;
 		wxStaticText* MB;
 		wxTextCtrl* PARTName;
@@ -33,7 +31,6 @@ class mkpartdlg: public wxDialog
 		static const long ID_TEXTCTRL1;
 		static const long ID_SLIDER1;
 		static const long ID_STATICTEXT1;
-		static const long ID_STATICLINE1;
 		static const long ID_STATICTEXT2;
 		static const long ID_BUTTON1;
 		//*)

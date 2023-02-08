@@ -56,29 +56,33 @@
 			</object>
 			<object class="sizeritem">
 				<object class="wxFlexGridSizer" variable="FlexGridSizer3" member="no">
-					<cols>3</cols>
+					<cols>5</cols>
 					<growablecols>1</growablecols>
-					<object class="sizeritem">
-						<object class="wxStaticText" name="ID_STATICTEXT1" variable="MB" member="yes">
-							<label>128Mb</label>
-						</object>
-						<flag>wxALL|wxEXPAND</flag>
-						<border>5</border>
-						<option>1</option>
-					</object>
-					<object class="sizeritem">
-						<object class="wxStaticLine" name="ID_STATICLINE1" variable="StaticLine1" member="yes">
-							<size>10,-1</size>
-						</object>
+					<object class="spacer">
 						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 						<border>5</border>
 						<option>1</option>
 					</object>
 					<object class="sizeritem">
+						<object class="wxStaticText" name="ID_STATICTEXT1" variable="MB" member="yes">
+							<label>128Mb</label>
+							<size>61,21</size>
+						</object>
+						<flag>wxTOP|wxBOTTOM|wxLEFT|wxALIGN_LEFT|wxALIGN_TOP</flag>
+						<border>10</border>
+						<option>1</option>
+					</object>
+					<object class="sizeritem">
 						<object class="wxStaticText" name="ID_STATICTEXT2" variable="GB" member="yes">
 							<label>0.12Gb</label>
+							<size>65,21</size>
 						</object>
-						<flag>wxALL|wxEXPAND</flag>
+						<flag>wxTOP|wxBOTTOM|wxRIGHT|wxALIGN_LEFT|wxALIGN_TOP</flag>
+						<border>10</border>
+						<option>1</option>
+					</object>
+					<object class="spacer">
+						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 						<border>5</border>
 						<option>1</option>
 					</object>
@@ -90,6 +94,7 @@
 			<object class="sizeritem">
 				<object class="wxButton" name="ID_BUTTON1" variable="mkpart" member="yes">
 					<label>Create</label>
+					<enabled>0</enabled>
 					<handler function="OnmkpartClick" entry="EVT_BUTTON" />
 				</object>
 				<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>

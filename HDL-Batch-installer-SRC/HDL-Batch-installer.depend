@@ -21833,7 +21833,7 @@
 	"wx/protocol/protocol.h"
 	"wx/buffer.h"
 
-1675823434 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installermain.cpp
+1675824215 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installermain.cpp
 	"HDL_Batch_installerMain.h"
 	"About.h"
 	"Config.h"
@@ -25491,7 +25491,7 @@
 
 1675378673 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\include\hdlfs.h
 
-1675810253 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\hddfomatman.cpp
+1675825374 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\hddfomatman.cpp
 	"HDDFomatMan.h"
 	<iostream>
 	<wx/msgdlg.h>
@@ -25538,12 +25538,11 @@
 	"MkpartMan.h"
 	"PFSShell.h"
 
-1675820779 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\mkpartdlg.h
+1675826247 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\mkpartdlg.h
 	<wx/button.h>
 	<wx/dialog.h>
 	<wx/sizer.h>
 	<wx/slider.h>
-	<wx/statline.h>
 	<wx/stattext.h>
 	<wx/textctrl.h>
 
