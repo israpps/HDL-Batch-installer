@@ -12,4 +12,4 @@ jobs:
       uses: tsickert/discord-webhook@v2.0.2
       with:
         webhook-url: ${{ secrets.ISSUE_WEBHOOK }}
-        content: "<@&859525500393357353>, A new issue was Opened on github\nURL: https://github.com/israpps/HDL-Batch-installer/issues/${{ github.event.issue.number }}"
+        content: "<@&859525500393357353>, issue number ${{ github.event.issue.number }} was Opened on github\n"
