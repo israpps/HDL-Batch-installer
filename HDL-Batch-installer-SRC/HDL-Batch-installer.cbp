@@ -291,6 +291,8 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 		<Unit filename="HDL_Batch_installerMain.cpp" />
 		<Unit filename="HDL_Batch_installerMain.h" />
 		<Unit filename="MD5Man.cpp" />
+		<Unit filename="MD5Report.cpp" />
+		<Unit filename="MD5Report.h" />
 		<Unit filename="NDBMan.cpp" />
 		<Unit filename="NDBMan.h" />
 		<Unit filename="PFSShell.cpp" />
@@ -321,8 +323,14 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 			<Option compile="0" />
 			<Option link="0" />
 		</Unit>
+		<Unit filename="manifest/amd64.bin" />
+		<Unit filename="manifest/ia64.bin" />
+		<Unit filename="manifest/wx.bin" />
+		<Unit filename="mkpartdlg.cpp" />
+		<Unit filename="mkpartdlg.h" />
 		<Unit filename="resource.rc">
 			<Option compilerVar="WINDRES" />
+			<Option compiler="gcc" use="0" buildCommand="C:\compilers\TDM-GCC-32\bin\windres $res_includes $res_options -J rc -O coff -i $file -o $resource_output" />
 		</Unit>
 		<Unit filename="version.h" />
 		<Unit filename="wxsmith/About.wxs" />
@@ -334,8 +342,10 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 		<Unit filename="wxsmith/HDDFomatMan.wxs" />
 		<Unit filename="wxsmith/HDDManager.wxs" />
 		<Unit filename="wxsmith/HDL_Batch_installerframe.wxs" />
+		<Unit filename="wxsmith/MD5Report.wxs" />
 		<Unit filename="wxsmith/NDBMan.wxs" />
 		<Unit filename="wxsmith/Post_Install_Report.wxs" />
+		<Unit filename="wxsmith/mkpartdlg.wxs" />
 		<Unit filename="wxsmith/pfsshell_wizard.wxs" />
 		<Extensions>
 			<AutoVersioning>
@@ -363,7 +373,8 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 					<wxDialog wxs="wxsmith/CopyHDD.wxs" src="CopyHDD.cpp" hdr="CopyHDD.h" fwddecl="0" i18n="1" name="CopyHDD" language="CPP" />
 					<wxDialog wxs="wxsmith/HDDManager.wxs" src="HDDManager.cpp" hdr="HDDManager.h" fwddecl="0" i18n="1" name="HDDManager" language="CPP" />
 					<wxDialog wxs="wxsmith/HDDFomatMan.wxs" src="HDDFomatMan.cpp" hdr="HDDFomatMan.h" fwddecl="0" i18n="1" name="HDDFomatMan" language="CPP" />
-					<wxDialog wxs="wxsmith/MKPartPrompt.wxs" src="MKPartPrompt.cpp" hdr="MKPartPrompt.h" fwddecl="0" i18n="1" name="MKPartPrompt" language="CPP" />
+					<wxDialog wxs="wxsmith/mkpartdlg.wxs" src="mkpartdlg.cpp" hdr="mkpartdlg.h" fwddecl="0" i18n="1" name="mkpartdlg" language="CPP" />
+					<wxDialog wxs="wxsmith/MD5Report.wxs" src="MD5Report.cpp" hdr="MD5Report.h" fwddecl="0" i18n="1" name="MD5Report" language="CPP" />
 				</resources>
 			</wxsmith>
 		</Extensions>

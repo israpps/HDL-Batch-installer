@@ -83,10 +83,10 @@ int PFSShell::SelectDevice(std::string device)
             COLOR(07)
             return (1);
         }
+        std::cout << "PFSShell: finished init\n";
         libinit = true;
     } else init();
     has_device_opened = true;
-    std::cout << "PFSShell: finished init\n";
     ctx.setup = 1;
     COLOR(07)
     return (0);
@@ -108,7 +108,7 @@ int PFSShell::CloseDevice()
 int PFSShell::FormatDevice()
 {
     COLOR(0e)
-    std::cout << " -- HDD format requested...\n";
+    std::cout << " -- HDD format requested -- \n";
     COLOR(0d)
     int result = iomanX_format("hdd0:", NULL, NULL, 0);
     if (result >= 0) {

@@ -207,7 +207,7 @@ bool HDL_Batch_installerApp::OnInit()
     {
         new_ver_available = false;
     }
-    std::cout << __LINE__ <<" - \n";
+
     SPLASH_SCREEN->Hide();
     HDL_Batch_installerFrame* Frame = new HDL_Batch_installerFrame(0,m_locale,custom_styles,ctor_flags);
     delete SPLASH_SCREEN;

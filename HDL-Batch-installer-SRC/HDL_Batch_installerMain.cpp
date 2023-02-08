@@ -18,6 +18,7 @@
 #include "NDBMan.h"
 #include "HDDManager.h"
 #include "HDDFomatMan.h"
+#include "MD5Report.h"
 
 #include "hdl-dump-recodes.h"
 #include "gamename/parser.h" //includes both database & parser function
@@ -113,7 +114,6 @@ const long HDL_Batch_installerFrame::ID_STATICLINE4 = wxNewId();
 const long HDL_Batch_installerFrame::ID_CHECKBOX2 = wxNewId();
 const long HDL_Batch_installerFrame::ID_PANEL1 = wxNewId();
 const long HDL_Batch_installerFrame::ID_BUTTON3 = wxNewId();
-const long HDL_Batch_installerFrame::ID_BUTTON12 = wxNewId();
 const long HDL_Batch_installerFrame::ID_BUTTON8 = wxNewId();
 const long HDL_Batch_installerFrame::ID_LISTCTRL2 = wxNewId();
 const long HDL_Batch_installerFrame::ID_PANEL2 = wxNewId();
@@ -140,6 +140,7 @@ const long HDL_Batch_installerFrame::ID_MENUITEM9 = wxNewId();
 const long HDL_Batch_installerFrame::ID_MENUITEM10 = wxNewId();
 const long HDL_Batch_installerFrame::ID_PROGRESSDIALOG1 = wxNewId();
 const long HDL_Batch_installerFrame::ID_MENUITEM3 = wxNewId();
+const long HDL_Batch_installerFrame::ID_MENUITEM18 = wxNewId();
 const long HDL_Batch_installerFrame::ID_MENUITEM4 = wxNewId();
 const long HDL_Batch_installerFrame::ID_MENUITEM5 = wxNewId();
 const long HDL_Batch_installerFrame::ID_MENUITEM7 = wxNewId();
@@ -307,9 +308,6 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     Parse_hdl_toc = new wxButton(Panel2, ID_BUTTON3, _("Get List"), wxDefaultPosition, wxSize(80,23), 0, wxDefaultValidator, _T("ID_BUTTON3"));
     Parse_hdl_toc->Disable();
     BoxSizer2->Add(Parse_hdl_toc, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
-    print_partition_table = new wxButton(Panel2, ID_BUTTON12, _("Show Partition table"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON12"));
-    print_partition_table->Disable();
-    BoxSizer2->Add(print_partition_table, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
     Button3 = new wxButton(Panel2, ID_BUTTON8, _("\?"), wxDefaultPosition, wxSize(16,23), 0, wxDefaultValidator, _T("ID_BUTTON8"));
     BoxSizer2->Add(Button3, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
     FlexGridSizer8->Add(BoxSizer2, 1, wxALL|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL, 5);
@@ -405,8 +403,9 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     COPYHDD = new wxMenuItem(Menu1, ID_MENUITEM13, _("Massive game transfer"), _("Transfer all games installed on currently selected HDD into another one"), wxITEM_NORMAL);
     Menu1->Append(COPYHDD);
     COPYHDD->Enable(false);
-    MenuItem19 = new wxMenuItem(Menu1, ID_MENUITEM15, _("Format HDD"), _("Format any device into PS2 HDD"), wxITEM_NORMAL);
-    Menu1->Append(MenuItem19);
+    MenuHDDFormat = new wxMenuItem(Menu1, ID_MENUITEM15, _("Format HDD"), _("Format any device into PS2 HDD"), wxITEM_NORMAL);
+    Menu1->Append(MenuHDDFormat);
+    MenuHDDFormat->Enable(false);
     MenuBar1->Append(Menu1, _("&Main"));
     Menu3 = new wxMenu();
     MenuItem3 = new wxMenuItem(Menu3, SETTINGS, _("Settings\tF2"), _("configure program"), wxITEM_NORMAL);
@@ -435,6 +434,8 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     //nedeaaa
     MenuItem8 = new wxMenuItem((&about_2_install_menu), ID_MENUITEM3, _("Open File location"), wxEmptyString, wxITEM_NORMAL);
     about_2_install_menu.Append(MenuItem8);
+    Redump_search = new wxMenuItem((&about_2_install_menu), ID_MENUITEM18, _("Calculate MD5 Hash"), wxEmptyString, wxITEM_NORMAL);
+    about_2_install_menu.Append(Redump_search);
     MenuItem9 = new wxMenuItem((&about_2_install_menu), ID_MENUITEM4, _("Remove from List"), wxEmptyString, wxITEM_NORMAL);
     about_2_install_menu.Append(MenuItem9);
     MenuItem10 = new wxMenuItem((&Browser_menu), ID_MENUITEM5, _("Extract Game(s)"), wxEmptyString, wxITEM_NORMAL);
@@ -472,7 +473,6 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     Connect(ID_BUTTON4,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OninstallClick);
     Connect(ID_CHECKBOX2,wxEVT_COMMAND_CHECKBOX_CLICKED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnCheckBox1Click1);
     Connect(ID_BUTTON3,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnParse_hdl_tocClick);
-    Connect(ID_BUTTON12,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&HDL_Batch_installerFrame::Onprint_partition_tableClick);
     Connect(ID_BUTTON8,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnButton3Click1);
     Connect(ID_LISTCTRL2,wxEVT_COMMAND_LIST_BEGIN_DRAG,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnListCtrl1BeginDrag1);
     Connect(ID_LISTCTRL2,wxEVT_COMMAND_LIST_ITEM_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::Selected_games);
@@ -498,6 +498,7 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     Connect(ID_MENUITEM9,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::On_GameNameDatabaseDownloadRequest);
     Connect(ID_MENUITEM10,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnIconsPackageRequest);
     Connect(ID_MENUITEM3,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnItemListShowRequest);
+    Connect(ID_MENUITEM18,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnCalculateMD5Selected);
     Connect(ID_MENUITEM4,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::RemoveISOfromList);
     Connect(ID_MENUITEM5,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnExtractInstalledGameRequest);
     Connect(ID_MENUITEM7,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnInstalledGameAssetsDownloadRequest);
@@ -1123,11 +1124,10 @@ void HDL_Batch_installerFrame::Enable_HDD_dependant_objects(bool WTF_should_I_do
         clear_iso_list->Enable();
         MBR_EVENT->Enable();
         dma_choice->Enable();
-        print_partition_table->Enable();
         mass_header_injection->Enable();
         MBRExtractRequest->Enable();
         FUSE->Enable();
-        HDDManagerButton->Enable();
+        HDDManagerButton->Enable(PFSSHELL_USABLE);
 
         ///this one has nothing to do
         Installed_game_list->DeleteAllItems();
@@ -1140,7 +1140,6 @@ void HDL_Batch_installerFrame::Enable_HDD_dependant_objects(bool WTF_should_I_do
         clear_iso_list->Disable();
         MBR_EVENT->Disable();
         dma_choice->Disable();
-        print_partition_table->Disable();
         mass_header_injection->Disable();
         MBRExtractRequest->Disable();
         FUSE->Disable();
@@ -1199,13 +1198,17 @@ void HDL_Batch_installerFrame::Update_hdd_data(void)
                                     (size_free > 1024) ? ("Gb") : "Mb"
                                                     ));
 
-        Enable_HDD_dependant_objects(true); //re-enable & clean installed game list
         std::cout << "initializing libPS2HDD...\n";
         if (!PFSSHELL.SelectDevice(HDD_TOKEN.c_str()))
+        {
             PFSSHELL_USABLE = true;
-
-        PFSSHELL.lspart(1, NULL);
+        } else {
+            PFSSHELL_USABLE = false;
+            wxMessageBox(("Error initializing libps2hdd service\n\nCheck log for more details\n\nHDD formatting and HDD Manager disabled"), wxMessageBoxCaptionStr, wxICON_WARNING);
+        }
         PFSSHELL.CloseDevice();
+        MenuHDDFormat->Enable(PFSSHELL_USABLE);
+        Enable_HDD_dependant_objects(true); //re-enable & clean installed game list
     }
     else
     {
@@ -1307,47 +1310,6 @@ void HDL_Batch_installerFrame::Onart_requestClick(wxCommandEvent& event)
 
 void HDL_Batch_installerFrame::Onprint_partition_tableClick(wxCommandEvent& event)
 {
-    wxString command = "HDL.EXE toc " + selected_hdd->GetString( selected_hdd->GetSelection() );
-    COLOR(0f)
-    printf("\n\n----======[Partition Table]======----\n");
-    COLOR(0f)
-    wxArrayString result,errorBuffer;
-    std::string nedea, couterr;
-    long program_return_value = wxExecute(command,result,errorBuffer);
-    wxString z;
-    if (program_return_value == 0)
-    {
-        for (size_t x=0; x<result.GetCount(); x++)
-        {
-            z = result.Item(x);
-            if (z.find("0x1337") != NOT_FOUND)
-            {
-                COLOR(0a)
-            }
-            if (z.find("0x0001") != NOT_FOUND)
-            {
-                COLOR(0e)
-            }
-            if (z.find("0x0100") != NOT_FOUND)
-            {
-                COLOR(0b)
-            }
-            cout  << z <<"\n";   //pass contents of array into a single string
-            COLOR(0f)
-        }
-    }
-    else
-    {
-        COLOR(0c) std::cerr << " Error\n";
-        for (size_t x=0; x<errorBuffer.GetCount(); x++)
-        {
-            cerr  << errorBuffer.Item(x)<<"\n";
-        }
-        COLOR(07)
-    }
-    COLOR(0f)
-    printf("----======[Partition Table]======----\n");
-    COLOR(07)
 }
 
 
@@ -1439,7 +1401,7 @@ void HDL_Batch_installerFrame::Onmass_header_injectionClick(wxCommandEvent& even
         {
             if (CFG::DEBUG_LEVEL > 5 || (CTOR_FLAGS & FORCE_HIGH_DEBUG_LEVEL) )
             {
-                std::cout << "skipping this [" << line << "]\n";
+                std::cout << "skipping [" << line << "]\n";
             }
         }
     }
@@ -2154,4 +2116,20 @@ void HDL_Batch_installerFrame::OnHDDFormatMenuRequest(wxCommandEvent& event)
     HDDFomatMan *MAN = new HDDFomatMan(this);
     MAN->ShowModal();
     delete MAN;
+}
+
+void HDL_Batch_installerFrame::OnRedump_searchSelected(wxCommandEvent& event)
+{
+}
+
+void HDL_Batch_installerFrame::OnCalculateMD5Selected(wxCommandEvent& event)
+{
+    long itemIndex = -1;
+    if ( (itemIndex = game_list__->GetNextItem(itemIndex, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED)) != wxNOT_FOUND)
+        {
+            wxString HASH = MD5digest_file(game_list__->GetItemText(itemIndex).ToStdString());
+            MD5Report *REPORT = new MD5Report(this, game_list__->GetItemText(itemIndex), HASH);
+            REPORT->ShowModal();
+            delete REPORT;
+        }
 }

@@ -71,7 +71,6 @@ HDDFomatMan::HDDFomatMan(wxWindow* parent,wxWindowID id,const wxPoint& pos,const
     HDDList->InsertColumn(2, col3);
 
     wxString line;
-	bool OK = false;
 	wxArrayString RET, ERR;
 
 	long retcode = wxExecute("wmic diskdrive get Caption,DeviceID,InterfaceType", RET, ERR, wxEXEC_SYNC);
@@ -80,13 +79,13 @@ HDDFomatMan::HDDFomatMan(wxWindow* parent,wxWindowID id,const wxPoint& pos,const
         for (size_t x=0; x<RET.GetCount();x++)
         {
             line = RET.Item(x);
+            std::cout << line << "\n";
             if (line == wxEmptyString || x == 0)
                 continue;
 
-            std::cout << line << '@'<< x << "\n";
-            std::cout << line.SubString(line.find("\\\\.\\PHYSICALDRIVE"), line.find_first_of(' ', line.find("\\\\.\\PHYSICALDRIVE"))) << "\n";
-            std::cout << line.Mid(line.find_first_of(' ', line.find("\\\\.\\PHYSICALDRIVE"))) << "|\n";
-            std::cout << line.SubString(0, line.find("\\\\.\\PHYSICALDRIVE")-1) << "\n";
+            //std::cout << line.SubString(line.find("\\\\.\\PHYSICALDRIVE"), line.find_first_of(' ', line.find("\\\\.\\PHYSICALDRIVE"))) << "\n";
+            //std::cout << line.Mid(line.find_first_of(' ', line.find("\\\\.\\PHYSICALDRIVE"))) << "|\n";
+            //std::cout << line.SubString(0, line.find("\\\\.\\PHYSICALDRIVE")-1) << "\n";
             long itemIndex = HDDList->InsertItem(0, line.SubString(line.find("\\\\.\\PHYSICALDRIVE"), line.find_first_of(' ', line.find("\\\\.\\PHYSICALDRIVE"))));// col. 1
             HDDList->SetItem(itemIndex, 1, line.SubString(0, line.find("\\\\.\\PHYSICALDRIVE")-1));
             HDDList->SetItem(itemIndex, 2, line.Mid(line.find_first_of(' ', line.find("\\\\.\\PHYSICALDRIVE"))));

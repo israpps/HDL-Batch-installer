@@ -318,14 +318,6 @@
 														<flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 													</object>
 													<object class="sizeritem">
-														<object class="wxButton" name="ID_BUTTON12" variable="print_partition_table" member="yes">
-															<label>Show Partition table</label>
-															<enabled>0</enabled>
-															<handler function="Onprint_partition_tableClick" entry="EVT_BUTTON" />
-														</object>
-														<flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-													</object>
-													<object class="sizeritem">
 														<object class="wxButton" name="ID_BUTTON8" variable="Button3" member="yes">
 															<label>?</label>
 															<size>16,23</size>
@@ -507,9 +499,10 @@
 					<enabled>0</enabled>
 					<handler function="OnCOPYHDDSelected" entry="EVT_MENU" />
 				</object>
-				<object class="wxMenuItem" name="ID_MENUITEM15" variable="MenuItem19" member="yes">
+				<object class="wxMenuItem" name="ID_MENUITEM15" variable="MenuHDDFormat" member="yes">
 					<label>Format HDD</label>
 					<help>Format any device into PS2 HDD</help>
+					<enabled>0</enabled>
 					<handler function="OnHDDFormatMenuRequest" entry="EVT_MENU" />
 				</object>
 			</object>
@@ -580,6 +573,10 @@
 			<object class="wxMenuItem" name="ID_MENUITEM3" variable="MenuItem8" member="yes">
 				<label>Open File location</label>
 				<handler function="OnItemListShowRequest" entry="EVT_MENU" />
+			</object>
+			<object class="wxMenuItem" name="ID_MENUITEM18" variable="Redump_search" member="yes">
+				<label>Calculate MD5 Hash</label>
+				<handler function="OnCalculateMD5Selected" entry="EVT_MENU" />
 			</object>
 			<object class="wxMenuItem" name="ID_MENUITEM4" variable="MenuItem9" member="yes">
 				<label>Remove from List</label>

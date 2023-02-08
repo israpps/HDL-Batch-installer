@@ -1,4 +1,5 @@
 #include "HDDManager.h"
+#include "mkpartdlg.h"
 #include "PFSShell.h"
 #include <stdint.h>
 #include <iostream>
@@ -36,18 +37,24 @@ HDDManager::HDDManager(wxWindow* parent, std::string HDDTOK,wxWindowID id,const 
     HDD_TOKEN(HDDTOK)
 {
 	//(*Initialize(HDDManager)
+	wxBoxSizer* BoxSizer1;
 	wxFlexGridSizer* FlexGridSizer1;
 	wxFlexGridSizer* FlexGridSizer2;
 	wxFlexGridSizer* FlexGridSizer3;
 
-	Create(parent, id, _("HDDManager"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE|wxSYSTEM_MENU, _T("id"));
+	Create(parent, id, _("HDDManager"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE|wxSYSTEM_MENU|wxRESIZE_BORDER, _T("id"));
 	SetClientSize(wxDefaultSize);
 	Move(wxDefaultPosition);
-	FlexGridSizer1 = new wxFlexGridSizer(0, 1, 0, 0);
+	FlexGridSizer1 = new wxFlexGridSizer(4, 1, 0, 0);
+	FlexGridSizer1->AddGrowableCol(0);
+	FlexGridSizer1->AddGrowableRow(1);
 	FlexGridSizer2 = new wxFlexGridSizer(0, 3, 0, 0);
+	FlexGridSizer2->AddGrowableCol(1);
+	FlexGridSizer1->Add(FlexGridSizer2, 1, wxALL|wxALIGN_LEFT|wxALIGN_TOP, 5);
+	BoxSizer1 = new wxBoxSizer(wxHORIZONTAL);
 	PARTList = new wxListCtrl(this, ID_LISTCTRL1, wxDefaultPosition, wxSize(1030,307), wxLC_REPORT|wxLC_SORT_ASCENDING|wxLC_HRULES|wxLC_VRULES, wxDefaultValidator, _T("ID_LISTCTRL1"));
-	FlexGridSizer2->Add(PARTList, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-	FlexGridSizer1->Add(FlexGridSizer2, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	BoxSizer1->Add(PARTList, 1, wxALL|wxEXPAND, 5);
+	FlexGridSizer1->Add(BoxSizer1, 1, wxALL|wxEXPAND, 5);
 	FlexGridSizer3 = new wxFlexGridSizer(0, 3, 0, 0);
 	MKPart = new wxButton(this, ID_BUTTON1, _("Create Partition"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
 	FlexGridSizer3->Add(MKPart, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
@@ -217,5 +224,8 @@ void HDDManager::UpdateList(void)
 
 void HDDManager::OnMKPartClick(wxCommandEvent& event)
 {
-
+    mkpartdlg *MAN = new mkpartdlg(this);
+    MAN->ShowModal();
+    delete MAN;
+    UpdateList();
 }

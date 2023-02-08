@@ -4,12 +4,23 @@
 		<title>HDDManager</title>
 		<pos_arg>1</pos_arg>
 		<size_arg>1</size_arg>
-		<style>wxDEFAULT_DIALOG_STYLE|wxSYSTEM_MENU</style>
+		<style>wxDEFAULT_DIALOG_STYLE|wxSYSTEM_MENU|wxRESIZE_BORDER</style>
 		<object class="wxFlexGridSizer" variable="FlexGridSizer1" member="no">
 			<cols>1</cols>
+			<rows>4</rows>
+			<growablecols>0</growablecols>
+			<growablerows>1</growablerows>
 			<object class="sizeritem">
 				<object class="wxFlexGridSizer" variable="FlexGridSizer2" member="no">
 					<cols>3</cols>
+					<growablecols>1</growablecols>
+				</object>
+				<flag>wxALL|wxALIGN_LEFT|wxALIGN_TOP</flag>
+				<border>5</border>
+				<option>1</option>
+			</object>
+			<object class="sizeritem">
+				<object class="wxBoxSizer" variable="BoxSizer1" member="no">
 					<object class="sizeritem">
 						<object class="wxListCtrl" name="ID_LISTCTRL1" variable="PARTList" member="yes">
 							<size>1030,307</size>
@@ -17,12 +28,12 @@
 							<handler function="OnPARTListBeginDrag" entry="EVT_LIST_BEGIN_DRAG" />
 							<handler function="OnPARTListItemRClick" entry="EVT_LIST_ITEM_RIGHT_CLICK" />
 						</object>
-						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<flag>wxALL|wxEXPAND</flag>
 						<border>5</border>
 						<option>1</option>
 					</object>
 				</object>
-				<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<flag>wxALL|wxEXPAND</flag>
 				<border>5</border>
 				<option>1</option>
 			</object>

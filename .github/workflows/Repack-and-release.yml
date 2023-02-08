@@ -117,7 +117,8 @@ jobs:
         cd ..
         cd ..
         rm Release/HDL-Batch-installer.exe
-        cp Release32/HDL-Batch-installer.exe Release/HDL-Batch-installer.exe
+        rm Release/libps2hdd.dll
+        cp -r Release32/* Release/
         mv Release "HDLBInst[${{ env.VERSION }}-x86]"
         7z a -t7z -r HDLBInst-x86-$REF.7z HDLBInst*x86*/*
 
