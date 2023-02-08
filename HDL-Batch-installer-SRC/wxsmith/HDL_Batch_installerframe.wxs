@@ -17,7 +17,7 @@
 		<minsize>537,681</minsize>
 		<extra_code>SetIcon( wxICON(HDL__BATCH__ICON));</extra_code>
 		<id_arg>0</id_arg>
-		<style>wxSTAY_ON_TOP|wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxMINIMIZE_BOX|wxCLIP_CHILDREN</style>
+		<style>wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxMINIMIZE_BOX|wxCLIP_CHILDREN</style>
 		<handler function="OnClose" entry="EVT_CLOSE" />
 		<handler function="OnPaint" entry="EVT_PAINT" />
 		<object class="wxPanel" name="ID_PANEL5" variable="Panel5" member="yes">
@@ -318,14 +318,6 @@
 														<flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 													</object>
 													<object class="sizeritem">
-														<object class="wxButton" name="ID_BUTTON12" variable="print_partition_table" member="yes">
-															<label>Show Partition table</label>
-															<enabled>0</enabled>
-															<handler function="Onprint_partition_tableClick" entry="EVT_BUTTON" />
-														</object>
-														<flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-													</object>
-													<object class="sizeritem">
 														<object class="wxButton" name="ID_BUTTON8" variable="Button3" member="yes">
 															<label>?</label>
 															<size>16,23</size>
@@ -369,7 +361,7 @@
 													<object class="sizeritem">
 														<object class="wxBoxSizer" variable="BoxSizer10" member="no">
 															<object class="sizeritem">
-																<object class="wxButton" name="ID_BUTTON10" variable="Button2" member="yes">
+																<object class="wxButton" name="ID_BUTTON10" variable="HDDManagerButton" member="yes">
 																	<label>HDD Manager</label>
 																	<enabled>0</enabled>
 																	<handler function="OnButton2Click3" entry="EVT_BUTTON" />
@@ -494,7 +486,7 @@
 		</object>
 		<object class="wxMenuBar" variable="MenuBar1" member="no">
 			<object class="wxMenu" variable="Menu1" member="no">
-				<label>&amp;File</label>
+				<label>&amp;Main</label>
 				<object class="wxMenuItem" name="idMenuQuit" variable="MenuItem1" member="no">
 					<label>Quit</label>
 					<accel>Alt-F4</accel>
@@ -506,6 +498,12 @@
 					<help>Transfer all games installed on currently selected HDD into another one</help>
 					<enabled>0</enabled>
 					<handler function="OnCOPYHDDSelected" entry="EVT_MENU" />
+				</object>
+				<object class="wxMenuItem" name="ID_MENUITEM15" variable="MenuHDDFormat" member="yes">
+					<label>Format HDD</label>
+					<help>Format any device into PS2 HDD</help>
+					<enabled>0</enabled>
+					<handler function="OnHDDFormatMenuRequest" entry="EVT_MENU" />
 				</object>
 			</object>
 			<object class="wxMenu" variable="Menu3" member="no">
@@ -538,18 +536,22 @@
 				<label>Downloads</label>
 				<object class="wxMenuItem" name="ID_MENUITEM1" variable="MenuItem4" member="yes">
 					<label>Update OPL Launcher</label>
+					<help>update OPL Launcher KELF</help>
 					<handler function="On_MiniOPL_Update_request" entry="EVT_MENU" />
 				</object>
 				<object class="wxMenuItem" name="ID_MENUITEM2" variable="MenuItem7" member="yes">
 					<label>Update HDL-Dump</label>
+					<help>Update the game installation tool</help>
 					<handler function="OnHDL_DumpUpdateRequest" entry="EVT_MENU" />
 				</object>
 				<object class="wxMenuItem" name="ID_MENUITEM9" variable="MenuItem14" member="yes">
 					<label>Update game title database</label>
+					<help>Update game title database</help>
 					<handler function="On_GameNameDatabaseDownloadRequest" entry="EVT_MENU" />
 				</object>
 				<object class="wxMenuItem" name="ID_MENUITEM10" variable="MenuItem15" member="yes">
 					<label>Download Icons Package</label>
+					<help>Update HDD-OSD icons package</help>
 					<handler function="OnIconsPackageRequest" entry="EVT_MENU" />
 				</object>
 			</object>
@@ -571,6 +573,10 @@
 			<object class="wxMenuItem" name="ID_MENUITEM3" variable="MenuItem8" member="yes">
 				<label>Open File location</label>
 				<handler function="OnItemListShowRequest" entry="EVT_MENU" />
+			</object>
+			<object class="wxMenuItem" name="ID_MENUITEM18" variable="Redump_search" member="yes">
+				<label>Calculate MD5 Hash</label>
+				<handler function="OnCalculateMD5Selected" entry="EVT_MENU" />
 			</object>
 			<object class="wxMenuItem" name="ID_MENUITEM4" variable="MenuItem9" member="yes">
 				<label>Remove from List</label>

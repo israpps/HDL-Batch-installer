@@ -1,3 +1,13 @@
+08 February 2023
+   [v3.5.0 - Revision 0]
+
+     Change log:
+        -Program core: Added `libps2hdd.dll` to allow usage of PFSShell features
+        -__New Feature__: HDD format wizard. format your HDD into PS2 format with the basic partitions
+        -__New Feature__: HDDManager. manage the partitions inside your HDD. view, creation and deletion are available. (now you can safely delete games from PC)
+        -Windows manifest: Fixed manifest used on 32bits versions. it was calling a 64bit assembly. causing a program init failure
+        -__New Feature__: MD5 hash check feature. calculate, copy and auto search on redump.org the hashes of the games that you're about to install
+
 30 January 2023
    [v3.4.3 - Revision 1]
 

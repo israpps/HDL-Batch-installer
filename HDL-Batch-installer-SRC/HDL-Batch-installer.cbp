@@ -15,17 +15,15 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 		</Option>
 		<Build>
 			<Target title="Debug">
-				<Option platforms="Windows;Unix;" />
+				<Option platforms="Windows;" />
 				<Option output="_bin/playground/HDL-Batch-installer" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="_bin/playground/" />
 				<Option object_output="_obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
-				<Option use_console_runner="0" />
 				<Option parameters="--force-max-debug --stay-on-top --skip-update" />
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
-					<Add option="-O2" />
 					<Add option="-m64" />
 					<Add option="-pipe" />
 					<Add option="-mthreads" />
@@ -36,12 +34,14 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 					<Add directory="$(#wx)/lib/gcc_lib/mswu" />
 					<Add directory="$(#wx)/include" />
 					<Add directory="include" />
+					<Add directory="HDL-Batch-installer-SRC/include" />
 				</Compiler>
 				<ResourceCompiler>
 					<Add directory="$(#wx)/lib/gcc_lib/mswu" />
 					<Add directory="$(#wx)/include" />
 				</ResourceCompiler>
 				<Linker>
+					<Add option="-O2" />
 					<Add option="-s" />
 					<Add option="-static-libstdc++" />
 					<Add option="-static-libgcc" />
@@ -66,6 +66,7 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 					<Add library="libcomctl32.a" />
 					<Add library="libwsock32.a" />
 					<Add library="libodbc32.a" />
+					<Add library="external/libps2hdd.a" />
 					<Add directory="$(#wx)/lib/gcc_lib" />
 				</Linker>
 			</Target>
@@ -92,6 +93,7 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 					<Add directory="wxwidgets/lib/gcc_lib/mswu" />
 					<Add directory="D:/wxWidgets-3.0.5-static/include" />
 					<Add directory="include" />
+					<Add directory="HDL-Batch-installer-SRC/include" />
 				</Compiler>
 				<ResourceCompiler>
 					<Add directory="D:/wxWidgets-3.0.5-static/lib/gcc_lib/mswu" />
@@ -127,20 +129,18 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 				</Linker>
 			</Target>
 			<Target title="32-bits">
-				<Option platforms="Windows;Unix;" />
+				<Option platforms="Windows;" />
 				<Option output="_bin/playground/HDL-Batch-installer-x86" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="_bin/playground/" />
 				<Option object_output="_obj/32-bits/" />
 				<Option type="1" />
 				<Option compiler="gnu_gcc_compiler_tdm-32bits" />
-				<Option use_console_runner="0" />
 				<Option parameters="--force-max-debug --stay-on-top --skip-update" />
 				<Option projectCompilerOptionsRelation="1" />
 				<Option projectLinkerOptionsRelation="1" />
 				<Option projectResourceIncludeDirsRelation="1" />
 				<Option projectLibDirsRelation="1" />
 				<Compiler>
-					<Add option="-O" />
 					<Add option="-Wall" />
 					<Add option="-m32" />
 					<Add option="-pipe" />
@@ -152,12 +152,14 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 					<Add directory="$(#wx32)/include" />
 					<Add directory="$(#wx32)/lib/gcc_lib/mswu" />
 					<Add directory="include" />
+					<Add directory="HDL-Batch-installer-SRC/include" />
 				</Compiler>
 				<ResourceCompiler>
 					<Add directory="$(#wx32)/include" />
 					<Add directory="$(#wx32)/lib/gcc_lib/mswu" />
 				</ResourceCompiler>
 				<Linker>
+					<Add option="-O2" />
 					<Add option="-s" />
 					<Add option="-static-libstdc++" />
 					<Add option="-static-libgcc" />
@@ -183,6 +185,7 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 					<Add library="libwsock32.a" />
 					<Add library="libodbc32.a" />
 					<Add library="libwxregexu.a" />
+					<Add library="external/libps2hdd-x86.a" />
 					<Add directory="$(#wx32)/lib/gcc_lib" />
 				</Linker>
 			</Target>
@@ -212,6 +215,7 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 					<Add directory="$(#wx32)/include" />
 					<Add directory="$(#wx32)/lib/gcc_lib/mswu" />
 					<Add directory="include" />
+					<Add directory="HDL-Batch-installer-SRC/include" />
 				</Compiler>
 				<ResourceCompiler>
 					<Add directory="$(#wx32)/include" />
@@ -278,13 +282,20 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 		<Unit filename="CopyHDD.h" />
 		<Unit filename="DokanMan.cpp" />
 		<Unit filename="DokanMan.h" />
+		<Unit filename="HDDFomatMan.cpp" />
+		<Unit filename="HDDFomatMan.h" />
+		<Unit filename="HDDManager.cpp" />
+		<Unit filename="HDDManager.h" />
 		<Unit filename="HDL_Batch_installerApp.cpp" />
 		<Unit filename="HDL_Batch_installerApp.h" />
 		<Unit filename="HDL_Batch_installerMain.cpp" />
 		<Unit filename="HDL_Batch_installerMain.h" />
 		<Unit filename="MD5Man.cpp" />
+		<Unit filename="MD5Report.cpp" />
+		<Unit filename="MD5Report.h" />
 		<Unit filename="NDBMan.cpp" />
 		<Unit filename="NDBMan.h" />
+		<Unit filename="PFSShell.cpp" />
 		<Unit filename="Post_Install_Report.cpp" />
 		<Unit filename="Post_Install_Report.h" />
 		<Unit filename="_bin/Debug/Common/commit.sys" />
@@ -300,7 +311,10 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 		<Unit filename="gamename/parser.h" />
 		<Unit filename="hdl-dump-recodes.cpp" />
 		<Unit filename="hdl-dump-recodes.h" />
+		<Unit filename="hdlfs.h" />
 		<Unit filename="include/MD5Man.h" />
+		<Unit filename="include/PFSShell.h" />
+		<Unit filename="include/iomanX_port.h" />
 		<Unit filename="include/locale_table.h" />
 		<Unit filename="include/macro-vault.h" />
 		<Unit filename="manifest.bin" />
@@ -309,8 +323,14 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 			<Option compile="0" />
 			<Option link="0" />
 		</Unit>
+		<Unit filename="manifest/amd64.bin" />
+		<Unit filename="manifest/ia64.bin" />
+		<Unit filename="manifest/wx.bin" />
+		<Unit filename="mkpartdlg.cpp" />
+		<Unit filename="mkpartdlg.h" />
 		<Unit filename="resource.rc">
 			<Option compilerVar="WINDRES" />
+			<Option compiler="gcc" use="0" buildCommand="C:\compilers\TDM-GCC-32\bin\windres $res_includes $res_options -J rc -O coff -i $file -o $resource_output" />
 		</Unit>
 		<Unit filename="version.h" />
 		<Unit filename="wxsmith/About.wxs" />
@@ -319,9 +339,13 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 		<Unit filename="wxsmith/Config.wxs" />
 		<Unit filename="wxsmith/CopyHDD.wxs" />
 		<Unit filename="wxsmith/DokanMan.wxs" />
+		<Unit filename="wxsmith/HDDFomatMan.wxs" />
+		<Unit filename="wxsmith/HDDManager.wxs" />
 		<Unit filename="wxsmith/HDL_Batch_installerframe.wxs" />
+		<Unit filename="wxsmith/MD5Report.wxs" />
 		<Unit filename="wxsmith/NDBMan.wxs" />
 		<Unit filename="wxsmith/Post_Install_Report.wxs" />
+		<Unit filename="wxsmith/mkpartdlg.wxs" />
 		<Unit filename="wxsmith/pfsshell_wizard.wxs" />
 		<Extensions>
 			<AutoVersioning>
@@ -347,6 +371,10 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 					<wxDialog wxs="wxsmith/NDBMan.wxs" src="NDBMan.cpp" hdr="NDBMan.h" fwddecl="0" i18n="1" name="NDBMan" language="CPP" />
 					<wxDialog wxs="wxsmith/Partitions_displayer.wxs" src="Partitions_displayer.cpp" hdr="Partitions_displayer.h" fwddecl="0" i18n="1" name="Partitions_displayer" language="CPP" />
 					<wxDialog wxs="wxsmith/CopyHDD.wxs" src="CopyHDD.cpp" hdr="CopyHDD.h" fwddecl="0" i18n="1" name="CopyHDD" language="CPP" />
+					<wxDialog wxs="wxsmith/HDDManager.wxs" src="HDDManager.cpp" hdr="HDDManager.h" fwddecl="0" i18n="1" name="HDDManager" language="CPP" />
+					<wxDialog wxs="wxsmith/HDDFomatMan.wxs" src="HDDFomatMan.cpp" hdr="HDDFomatMan.h" fwddecl="0" i18n="1" name="HDDFomatMan" language="CPP" />
+					<wxDialog wxs="wxsmith/mkpartdlg.wxs" src="mkpartdlg.cpp" hdr="mkpartdlg.h" fwddecl="0" i18n="1" name="mkpartdlg" language="CPP" />
+					<wxDialog wxs="wxsmith/MD5Report.wxs" src="MD5Report.cpp" hdr="MD5Report.h" fwddecl="0" i18n="1" name="MD5Report" language="CPP" />
 				</resources>
 			</wxsmith>
 		</Extensions>

@@ -16,10 +16,14 @@
 #include "Post_Install_Report.h"
 #include "CopyHDD.h"
 #include "NDBMan.h"
+#include "HDDManager.h"
+#include "HDDFomatMan.h"
+#include "MD5Report.h"
 
 #include "hdl-dump-recodes.h"
 #include "gamename/parser.h" //includes both database & parser function
 #include "MD5Man.h"
+#include "PFSShell.h"
 
 using namespace std;
 bool first_init = false;
@@ -65,6 +69,10 @@ wxString MBR_CACHE;
 wxString MiniOPL;
 wxString ICONS_FOLDER;
 
+std::string HDD_TOKEN;
+PFSShell PFSSHELL;
+bool PFSSHELL_USABLE = false;
+
 extern string DMA_TABLE[8];
 extern string DMA_ALIAS[8];
 const std::string MiniOPL_URL = "https://github.com/israpps/HDL-Batch-installer/raw/main/Release/boot.kelf";
@@ -106,7 +114,6 @@ const long HDL_Batch_installerFrame::ID_STATICLINE4 = wxNewId();
 const long HDL_Batch_installerFrame::ID_CHECKBOX2 = wxNewId();
 const long HDL_Batch_installerFrame::ID_PANEL1 = wxNewId();
 const long HDL_Batch_installerFrame::ID_BUTTON3 = wxNewId();
-const long HDL_Batch_installerFrame::ID_BUTTON12 = wxNewId();
 const long HDL_Batch_installerFrame::ID_BUTTON8 = wxNewId();
 const long HDL_Batch_installerFrame::ID_LISTCTRL2 = wxNewId();
 const long HDL_Batch_installerFrame::ID_PANEL2 = wxNewId();
@@ -122,6 +129,7 @@ const long HDL_Batch_installerFrame::ID_NOTEBOOK1 = wxNewId();
 const long HDL_Batch_installerFrame::ID_PANEL5 = wxNewId();
 const long HDL_Batch_installerFrame::idMenuQuit = wxNewId();
 const long HDL_Batch_installerFrame::ID_MENUITEM13 = wxNewId();
+const long HDL_Batch_installerFrame::ID_MENUITEM15 = wxNewId();
 const long HDL_Batch_installerFrame::SETTINGS = wxNewId();
 const long HDL_Batch_installerFrame::idMenuAbout = wxNewId();
 const long HDL_Batch_installerFrame::UPDT = wxNewId();
@@ -132,6 +140,7 @@ const long HDL_Batch_installerFrame::ID_MENUITEM9 = wxNewId();
 const long HDL_Batch_installerFrame::ID_MENUITEM10 = wxNewId();
 const long HDL_Batch_installerFrame::ID_PROGRESSDIALOG1 = wxNewId();
 const long HDL_Batch_installerFrame::ID_MENUITEM3 = wxNewId();
+const long HDL_Batch_installerFrame::ID_MENUITEM18 = wxNewId();
 const long HDL_Batch_installerFrame::ID_MENUITEM4 = wxNewId();
 const long HDL_Batch_installerFrame::ID_MENUITEM5 = wxNewId();
 const long HDL_Batch_installerFrame::ID_MENUITEM7 = wxNewId();
@@ -299,9 +308,6 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     Parse_hdl_toc = new wxButton(Panel2, ID_BUTTON3, _("Get List"), wxDefaultPosition, wxSize(80,23), 0, wxDefaultValidator, _T("ID_BUTTON3"));
     Parse_hdl_toc->Disable();
     BoxSizer2->Add(Parse_hdl_toc, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
-    print_partition_table = new wxButton(Panel2, ID_BUTTON12, _("Show Partition table"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON12"));
-    print_partition_table->Disable();
-    BoxSizer2->Add(print_partition_table, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
     Button3 = new wxButton(Panel2, ID_BUTTON8, _("\?"), wxDefaultPosition, wxSize(16,23), 0, wxDefaultValidator, _T("ID_BUTTON8"));
     BoxSizer2->Add(Button3, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
     FlexGridSizer8->Add(BoxSizer2, 1, wxALL|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL, 5);
@@ -344,9 +350,9 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     FlexGridSizer5->AddGrowableRow(0);
     BoxSizer3 = new wxBoxSizer(wxVERTICAL);
     BoxSizer10 = new wxBoxSizer(wxHORIZONTAL);
-    Button2 = new wxButton(Panel3, ID_BUTTON10, _("HDD Manager"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON10"));
-    Button2->Disable();
-    BoxSizer10->Add(Button2, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
+    HDDManagerButton = new wxButton(Panel3, ID_BUTTON10, _("HDD Manager"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON10"));
+    HDDManagerButton->Disable();
+    BoxSizer10->Add(HDDManagerButton, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
     BoxSizer3->Add(BoxSizer10, 1, wxALL|wxEXPAND, 5);
     BoxSizer9 = new wxBoxSizer(wxHORIZONTAL);
     mass_header_injection = new wxButton(Panel3, ID_BUTTON13, _("Inject OPL Launcher"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON13"));
@@ -397,7 +403,10 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     COPYHDD = new wxMenuItem(Menu1, ID_MENUITEM13, _("Massive game transfer"), _("Transfer all games installed on currently selected HDD into another one"), wxITEM_NORMAL);
     Menu1->Append(COPYHDD);
     COPYHDD->Enable(false);
-    MenuBar1->Append(Menu1, _("&File"));
+    MenuHDDFormat = new wxMenuItem(Menu1, ID_MENUITEM15, _("Format HDD"), _("Format any device into PS2 HDD"), wxITEM_NORMAL);
+    Menu1->Append(MenuHDDFormat);
+    MenuHDDFormat->Enable(false);
+    MenuBar1->Append(Menu1, _("&Main"));
     Menu3 = new wxMenu();
     MenuItem3 = new wxMenuItem(Menu3, SETTINGS, _("Settings\tF2"), _("configure program"), wxITEM_NORMAL);
     Menu3->Append(MenuItem3);
@@ -411,13 +420,13 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     Menu2->Append(MenuItem6);
     MenuBar1->Append(Menu2, _("About"));
     Menu4 = new wxMenu();
-    MenuItem4 = new wxMenuItem(Menu4, ID_MENUITEM1, _("Update OPL Launcher"), wxEmptyString, wxITEM_NORMAL);
+    MenuItem4 = new wxMenuItem(Menu4, ID_MENUITEM1, _("Update OPL Launcher"), _("update OPL Launcher KELF"), wxITEM_NORMAL);
     Menu4->Append(MenuItem4);
-    MenuItem7 = new wxMenuItem(Menu4, ID_MENUITEM2, _("Update HDL-Dump"), wxEmptyString, wxITEM_NORMAL);
+    MenuItem7 = new wxMenuItem(Menu4, ID_MENUITEM2, _("Update HDL-Dump"), _("Update the game installation tool"), wxITEM_NORMAL);
     Menu4->Append(MenuItem7);
-    MenuItem14 = new wxMenuItem(Menu4, ID_MENUITEM9, _("Update game title database"), wxEmptyString, wxITEM_NORMAL);
+    MenuItem14 = new wxMenuItem(Menu4, ID_MENUITEM9, _("Update game title database"), _("Update game title database"), wxITEM_NORMAL);
     Menu4->Append(MenuItem14);
-    MenuItem15 = new wxMenuItem(Menu4, ID_MENUITEM10, _("Download Icons Package"), wxEmptyString, wxITEM_NORMAL);
+    MenuItem15 = new wxMenuItem(Menu4, ID_MENUITEM10, _("Download Icons Package"), _("Update HDD-OSD icons package"), wxITEM_NORMAL);
     Menu4->Append(MenuItem15);
     MenuBar1->Append(Menu4, _("Downloads"));
     SetMenuBar(MenuBar1);
@@ -425,6 +434,8 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     //nedeaaa
     MenuItem8 = new wxMenuItem((&about_2_install_menu), ID_MENUITEM3, _("Open File location"), wxEmptyString, wxITEM_NORMAL);
     about_2_install_menu.Append(MenuItem8);
+    Redump_search = new wxMenuItem((&about_2_install_menu), ID_MENUITEM18, _("Calculate MD5 Hash"), wxEmptyString, wxITEM_NORMAL);
+    about_2_install_menu.Append(Redump_search);
     MenuItem9 = new wxMenuItem((&about_2_install_menu), ID_MENUITEM4, _("Remove from List"), wxEmptyString, wxITEM_NORMAL);
     about_2_install_menu.Append(MenuItem9);
     MenuItem10 = new wxMenuItem((&Browser_menu), ID_MENUITEM5, _("Extract Game(s)"), wxEmptyString, wxITEM_NORMAL);
@@ -462,7 +473,6 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     Connect(ID_BUTTON4,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OninstallClick);
     Connect(ID_CHECKBOX2,wxEVT_COMMAND_CHECKBOX_CLICKED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnCheckBox1Click1);
     Connect(ID_BUTTON3,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnParse_hdl_tocClick);
-    Connect(ID_BUTTON12,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&HDL_Batch_installerFrame::Onprint_partition_tableClick);
     Connect(ID_BUTTON8,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnButton3Click1);
     Connect(ID_LISTCTRL2,wxEVT_COMMAND_LIST_BEGIN_DRAG,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnListCtrl1BeginDrag1);
     Connect(ID_LISTCTRL2,wxEVT_COMMAND_LIST_ITEM_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::Selected_games);
@@ -478,6 +488,7 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     Connect(ID_NOTEBOOK1,wxEVT_COMMAND_NOTEBOOK_PAGE_CHANGED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnNotebook1PageChanged);
     Connect(idMenuQuit,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnQuit);
     Connect(ID_MENUITEM13,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnCOPYHDDSelected);
+    Connect(ID_MENUITEM15,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnHDDFormatMenuRequest);
     Connect(SETTINGS,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnSettings);
     Connect(idMenuAbout,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnAbout);
     Connect(UPDT,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnUpdateRequest);
@@ -487,6 +498,7 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     Connect(ID_MENUITEM9,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::On_GameNameDatabaseDownloadRequest);
     Connect(ID_MENUITEM10,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnIconsPackageRequest);
     Connect(ID_MENUITEM3,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnItemListShowRequest);
+    Connect(ID_MENUITEM18,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnCalculateMD5Selected);
     Connect(ID_MENUITEM4,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::RemoveISOfromList);
     Connect(ID_MENUITEM5,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnExtractInstalledGameRequest);
     Connect(ID_MENUITEM7,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnInstalledGameAssetsDownloadRequest);
@@ -779,7 +791,7 @@ void HDL_Batch_installerFrame::OninstallClick(wxCommandEvent& event)
         ask_2_download_icons();
         wxBeginBusyCursor();
     }
-
+    PFSSHELL.CloseDevice(); //PFSShell with device attached will make HDL Dump write features crash
     std::cout <<"game count: "<< original_item_count<<std::endl;
     cout << "> begining installation...\n";
     install_progress = new wxProgressDialog(_("Installing"), wxEmptyString, original_item_count, this, wxPD_APP_MODAL|wxPD_ELAPSED_TIME|wxPD_SMOOTH|wxPD_AUTO_HIDE);
@@ -1035,12 +1047,13 @@ void HDL_Batch_installerFrame::OnMBR_EVENTClick(wxCommandEvent& event)
     else
     {
         COLOR(08) cout<<"> operation cancelled\n";
-        COLOR(07)
     }
 
-    COLOR(08) cout <<"> Cleaning MBR.KELF cache.\n";
-    if (!wxFileExists("./MBR.KELF"))
-        wxRemoveFile("./MBR.KELF");
+    if (wxFileExists("./MBR.KELF"))
+        {
+            COLOR(08) cout <<"> Cleaning MBR.KELF cache.\n";
+            wxRemoveFile("./MBR.KELF");
+        }
     COLOR(07)
 }
 
@@ -1111,10 +1124,10 @@ void HDL_Batch_installerFrame::Enable_HDD_dependant_objects(bool WTF_should_I_do
         clear_iso_list->Enable();
         MBR_EVENT->Enable();
         dma_choice->Enable();
-        print_partition_table->Enable();
         mass_header_injection->Enable();
         MBRExtractRequest->Enable();
         FUSE->Enable();
+        HDDManagerButton->Enable(PFSSHELL_USABLE);
 
         ///this one has nothing to do
         Installed_game_list->DeleteAllItems();
@@ -1127,18 +1140,20 @@ void HDL_Batch_installerFrame::Enable_HDD_dependant_objects(bool WTF_should_I_do
         clear_iso_list->Disable();
         MBR_EVENT->Disable();
         dma_choice->Disable();
-        print_partition_table->Disable();
         mass_header_injection->Disable();
         MBRExtractRequest->Disable();
         FUSE->Disable();
+        HDDManagerButton->Disable();
     }
 }
+
 void HDL_Batch_installerFrame::Update_hdd_data(void)
 {
     Enable_HDD_dependant_objects(false);///Temporarly disble just in case data parsing fails
     ///MAKE SURE TO RE-ENABLE EVERYTHING THAT WAS DISABLEd HERE INSIDE THE 'if (toc_ret == 0)' BLOCK
     wxString command;
     wxString label = selected_hdd->GetString(selected_hdd->GetSelection());
+    HDD_TOKEN = wxString::Format("\\\\.\\PHYSICALDRIVE%s", label.SubString(3, label.find(':')-1));
     cout << "selected "<< label <<endl;
     command.Printf("HDL.EXE toc %s",label);
     wxArrayString result,std_error;
@@ -1150,13 +1165,14 @@ void HDL_Batch_installerFrame::Update_hdd_data(void)
         for(size_t x=0; x < result.GetCount(); x++) //Parse line-to-line :D
         {
             line = result.Item(x);
-            if (CFG::DEBUG_LEVEL > 5 || (CTOR_FLAGS & FORCE_HIGH_DEBUG_LEVEL) )
-                cout << line <<"\n";
+
 
             if (line.find(", used") == NOT_FOUND)
                 continue;
             else
             {
+                if (CFG::DEBUG_LEVEL > 5 || (CTOR_FLAGS & FORCE_HIGH_DEBUG_LEVEL) )
+                    cout << line <<"\n";
                 TMP =  line.SubString(line.find_first_of(":") + 2,line.find_first_of("MB") - 1);
                 TMP.ToLong(&size_total);
                 TMP.clear();
@@ -1169,7 +1185,7 @@ void HDL_Batch_installerFrame::Update_hdd_data(void)
                 TMP.ToLong(&size_free);
             }
         }
-        std::cout << "total ["<<size_total<<"]\n used["<<size_used<<"]\n free ["<<size_free<<"]\n";
+        std::cout << "total: ["<<size_total<<"]\nused:  ["<<size_used<<"]\nfree:  ["<<size_free<<"]\n";
         Gauge1->SetRange(size_total);
         Gauge1->SetValue(size_used);
 
@@ -1182,6 +1198,16 @@ void HDL_Batch_installerFrame::Update_hdd_data(void)
                                     (size_free > 1024) ? ("Gb") : "Mb"
                                                     ));
 
+        std::cout << "initializing libPS2HDD...\n";
+        if (!PFSSHELL.SelectDevice(HDD_TOKEN.c_str()))
+        {
+            PFSSHELL_USABLE = true;
+        } else {
+            PFSSHELL_USABLE = false;
+            wxMessageBox(("Error initializing libps2hdd service\n\nCheck log for more details\n\nHDD formatting and HDD Manager disabled"), wxMessageBoxCaptionStr, wxICON_WARNING);
+        }
+        PFSSHELL.CloseDevice();
+        MenuHDDFormat->Enable(PFSSHELL_USABLE);
         Enable_HDD_dependant_objects(true); //re-enable & clean installed game list
     }
     else
@@ -1263,7 +1289,11 @@ void HDL_Batch_installerFrame::On_MiniOPL_Update_request(wxCommandEvent& event)
 }
 
 void HDL_Batch_installerFrame::OnButton2Click3(wxCommandEvent& event)
-{}
+{
+    HDDManager *MANAGER = new HDDManager(this, HDD_TOKEN);
+    MANAGER->ShowModal();
+    delete MANAGER;
+}
 
 void HDL_Batch_installerFrame::OnHDL_DumpUpdateRequest(wxCommandEvent& event)
 {
@@ -1280,47 +1310,6 @@ void HDL_Batch_installerFrame::Onart_requestClick(wxCommandEvent& event)
 
 void HDL_Batch_installerFrame::Onprint_partition_tableClick(wxCommandEvent& event)
 {
-    wxString command = "HDL.EXE toc " + selected_hdd->GetString( selected_hdd->GetSelection() );
-    COLOR(0f)
-    printf("\n\n----======[Partition Table]======----\n");
-    COLOR(0f)
-    wxArrayString result,errorBuffer;
-    std::string nedea, couterr;
-    long program_return_value = wxExecute(command,result,errorBuffer);
-    wxString z;
-    if (program_return_value == 0)
-    {
-        for (size_t x=0; x<result.GetCount(); x++)
-        {
-            z = result.Item(x);
-            if (z.find("0x1337") != NOT_FOUND)
-            {
-                COLOR(0a)
-            }
-            if (z.find("0x0001") != NOT_FOUND)
-            {
-                COLOR(0e)
-            }
-            if (z.find("0x0100") != NOT_FOUND)
-            {
-                COLOR(0b)
-            }
-            cout  << z <<"\n";   //pass contents of array into a single string
-            COLOR(0f)
-        }
-    }
-    else
-    {
-        COLOR(0c) std::cerr << " Error\n";
-        for (size_t x=0; x<errorBuffer.GetCount(); x++)
-        {
-            cerr  << errorBuffer.Item(x)<<"\n";
-        }
-        COLOR(07)
-    }
-    COLOR(0f)
-    printf("----======[Partition Table]======----\n");
-    COLOR(07)
 }
 
 
@@ -1412,7 +1401,7 @@ void HDL_Batch_installerFrame::Onmass_header_injectionClick(wxCommandEvent& even
         {
             if (CFG::DEBUG_LEVEL > 5 || (CTOR_FLAGS & FORCE_HIGH_DEBUG_LEVEL) )
             {
-                std::cout << "skipping this [" << line << "]\n";
+                std::cout << "skipping [" << line << "]\n";
             }
         }
     }
@@ -1667,7 +1656,7 @@ void HDL_Batch_installerFrame::On_GameNameDatabaseDownloadRequest(wxCommandEvent
     int database_mode;
     if (wxFileExists("gamename.DB"))
     {
-        if (wxMessageBox(_("A local database already exists.\nDownloading the database from the repository will delete the old one...\n\n Continue?"),warning_caption,wxICON_WARNING|wxYES_NO) == wxID_NO)
+        if (wxMessageBox(_("A local database already exists.\nDownloading the database from the repository will delete the old one...\n\n Continue?"),warning_caption,wxICON_WARNING|wxYES_NO) == wxNO)
             return;
     }
 
@@ -2120,4 +2109,27 @@ int wxCALLBACK hdlbinst_listctrl_compare(wxIntPtr item1, wxIntPtr item2, wxIntPt
     if(item1<item2) return -1;
     if(item1>item2) return 1;
     return 0; // if both items are equal...
+}
+
+void HDL_Batch_installerFrame::OnHDDFormatMenuRequest(wxCommandEvent& event)
+{
+    HDDFomatMan *MAN = new HDDFomatMan(this);
+    MAN->ShowModal();
+    delete MAN;
+}
+
+void HDL_Batch_installerFrame::OnRedump_searchSelected(wxCommandEvent& event)
+{
+}
+
+void HDL_Batch_installerFrame::OnCalculateMD5Selected(wxCommandEvent& event)
+{
+    long itemIndex = -1;
+    if ( (itemIndex = game_list__->GetNextItem(itemIndex, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED)) != wxNOT_FOUND)
+        {
+            wxString HASH = MD5digest_file(game_list__->GetItemText(itemIndex).ToStdString());
+            MD5Report *REPORT = new MD5Report(this, game_list__->GetItemText(itemIndex), HASH);
+            REPORT->ShowModal();
+            delete REPORT;
+        }
 }

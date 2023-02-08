@@ -134,6 +134,9 @@ private:
     void OnSelectiveGameMigration(wxCommandEvent& event);
     void OnGameDeletionRequest(wxCommandEvent& event);
     void OnFrameResize(wxSizeEvent& event);
+    void OnHDDFormatMenuRequest(wxCommandEvent& event);
+    void OnRedump_searchSelected(wxCommandEvent& event);
+    void OnCalculateMD5Selected(wxCommandEvent& event);
     //*)
     void OnGoToFileLocationRequest(wxString victim);
     void OnTakeOutFromTheListRequest(wxListCtrl* ListCtrl, long itemIndex);
@@ -158,7 +161,6 @@ private:
     static const long ID_CHECKBOX2;
     static const long ID_PANEL1;
     static const long ID_BUTTON3;
-    static const long ID_BUTTON12;
     static const long ID_BUTTON8;
     static const long ID_LISTCTRL2;
     static const long ID_PANEL2;
@@ -174,6 +176,7 @@ private:
     static const long ID_PANEL5;
     static const long idMenuQuit;
     static const long ID_MENUITEM13;
+    static const long ID_MENUITEM15;
     static const long SETTINGS;
     static const long idMenuAbout;
     static const long UPDT;
@@ -184,6 +187,7 @@ private:
     static const long ID_MENUITEM10;
     static const long ID_PROGRESSDIALOG1;
     static const long ID_MENUITEM3;
+    static const long ID_MENUITEM18;
     static const long ID_MENUITEM4;
     static const long ID_MENUITEM5;
     static const long ID_MENUITEM7;
@@ -198,10 +202,10 @@ private:
 
     //(*Declarations(HDL_Batch_installerFrame)
     wxButton* Button1;
-    wxButton* Button2;
     wxButton* Button3;
     wxButton* Button4;
     wxButton* FUSE;
+    wxButton* HDDManagerButton;
     wxButton* MBRExtractRequest;
     wxButton* MBR_EVENT;
     wxButton* NBDConnect;
@@ -212,7 +216,6 @@ private:
     wxButton* install;
     wxButton* mass_header_injection;
     wxButton* modify_header_event;
-    wxButton* print_partition_table;
     wxCheckBox* use_database;
     wxChoice* dma_choice;
     wxChoice* selected_hdd;
@@ -225,6 +228,7 @@ private:
     wxMenu* Menu4;
     wxMenuItem* COPYHDD;
     wxMenuItem* DeleteGameMenuItem;
+    wxMenuItem* MenuHDDFormat;
     wxMenuItem* MenuItem10;
     wxMenuItem* MenuItem11;
     wxMenuItem* MenuItem12;
@@ -240,6 +244,7 @@ private:
     wxMenuItem* MenuItem7;
     wxMenuItem* MenuItem8;
     wxMenuItem* MenuItem9;
+    wxMenuItem* Redump_search;
     wxNotebook* Notebook1;
     wxPanel* Panel1;
     wxPanel* Panel2;

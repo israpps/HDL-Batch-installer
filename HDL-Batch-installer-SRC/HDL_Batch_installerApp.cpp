@@ -150,7 +150,7 @@ bool HDL_Batch_installerApp::OnInit()
             wxExecute(DOWNLOAD_COMMAND, wxEXEC_SYNC);
         }
 
-        if ((!wxFileExists("Common\\Icons.INI") || wxDirExists("Common\\ICNS")) && wxFileExists("Common\\_ICN.7z"))
+        if ((!wxFileExists("Common\\Icons.INI") || !wxDirExists("Common\\ICNS")) && wxFileExists("Common\\_ICN.7z"))
         {
             std::cout << "icon manifest is missing. unpacking icons...\n";
             wxExecute(EXTRACTION_COMMAND, wxEXEC_SYNC);
@@ -207,6 +207,7 @@ bool HDL_Batch_installerApp::OnInit()
     {
         new_ver_available = false;
     }
+
     SPLASH_SCREEN->Hide();
     HDL_Batch_installerFrame* Frame = new HDL_Batch_installerFrame(0,m_locale,custom_styles,ctor_flags);
     delete SPLASH_SCREEN;

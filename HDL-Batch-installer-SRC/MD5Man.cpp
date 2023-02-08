@@ -336,6 +336,7 @@ std::ostream& operator<<(std::ostream& out, MD5 md5)
 //////////////////////////////
 std::string MD5digest_file(std::string path)
 {
+    std::cout << "calculating MD5 Hash for ["<<path<<"]\n";
     MD5* MD5instance = new MD5();
     std::ifstream INPFILE;
     INPFILE.open(path, std::ifstream::binary);
@@ -352,7 +353,9 @@ std::string MD5digest_file(std::string path)
         MD5instance->update(MemStream.data(), MemStreamSize);
     }
     MD5instance->finalize();
-    return MD5instance->hexdigest();
+    std::string FINAL = MD5instance->hexdigest();
+    std::cout <<"\t["<<FINAL<<"]\n";
+    return FINAL;
 }
 //////////////////////////////
 
