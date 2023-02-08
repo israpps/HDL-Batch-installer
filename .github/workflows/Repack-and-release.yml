@@ -176,6 +176,7 @@ jobs:
       if: github.event_name == 'push'
       uses: tsickert/discord-webhook@v2.0.2
       with:
+        username: GitHub
         webhook-url: ${{ secrets.TESTERS_WEBHOOK }}
         content: "<@&859572447761793034> & <@&859615291477590046> , HDL Batch Installer has been updated some minutes ago\\n according to changelog: **[${{ env.VERSION }}]** \\n as always, you can download the latest version from here:\\n https://github.com/israpps/HDL-Batch-installer/releases/tag/Latest \\n or <#863913236457062421>"
 
@@ -183,6 +184,7 @@ jobs:
       if: github.event_name == 'repository_dispatch'
       uses: tsickert/discord-webhook@v2.0.2
       with:
+        username: GitHub
         webhook-url: ${{ secrets.TESTERS_WEBHOOK }}
         content: "<@&859572447761793034> & <@&859615291477590046> , HDL Batch Installer **[${{ env.VERSION }}]** Has been **re-released** because **HDL Dump was updated** some minutes ago \\n as always, you can download the latest version from here:\\n https://github.com/israpps/HDL-Batch-installer/releases/tag/Latest \\n or <#863913236457062421>"
 
