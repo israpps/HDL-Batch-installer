@@ -8,7 +8,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        Something isn't working as expected? Please provide the following data:
+        Something isn't working as expected? Please provide the following info:
         
       
   - type: textarea
@@ -39,13 +39,23 @@ body:
       placeholder: "version 2.7.6 [beta] ; revision 3 ; build date: 04-07-2021"
     validations:
       required: false
- # - type: textarea
- #   id: logs
- #   attributes:
- #     label: Relevant log output
- #     description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
- #     render: shell
-      
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant log output
+      description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
+      render: shell
+
+  - type: dropdown
+    id: version
+    attributes:
+      label: "In which package have you experienced this issue?"
+      multiple: true
+      options:
+        - 32 bits
+        - 64 bits
+
   - type: checkboxes
     id: terms
     attributes:
