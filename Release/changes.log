@@ -1,3 +1,13 @@
+12 February 2023
+   [v3.5.0 - Revision 1]
+
+     Change log:
+        -HDDManager: Fixed bug wich caused all games to display the title of the first game
+        -File download: Added check to prevent writing on disk if internet connection or file existence on github can't be confirmed
+        -HDDManager: Allow batch deletion of partitions (in this mode, system partitions deletion will be forbidden).
+        -HDDManager: Forbid creation and deletion of partitions named `__extend`
+        -HDD format menu: enable it by default and only disable if PFSShell init reported an error
+
 08 February 2023
    [v3.5.0 - Revision 0]
 

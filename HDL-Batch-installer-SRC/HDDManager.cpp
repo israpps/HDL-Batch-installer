@@ -126,31 +126,49 @@ void HDDManager::OnPARTListItemRClick(wxListEvent& event)
 
 void HDDManager::OnPartitionDeleteRequest(wxCommandEvent& event)
 {
+    wxArrayString _PART, _TYPE;
     long item = -1;
-    if ( (item = PARTList->GetNextItem(item, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED)) != wxNOT_FOUND)
+    while ( (item = PARTList->GetNextItem(item, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED)) != wxNOT_FOUND)
     {
-        wxString PART = PARTList->GetItemText(item, PARTLIST_ITEMS::NAME);
-        wxString TYPE = PARTList->GetItemText(item, PARTLIST_ITEMS::TYPE);
-        if (PART == "__mbr" || TYPE == "MBR")
-        {
-            wxMessageBox(_("MBR Partition is vital for HDD"), _("Operation forbidden"), wxICON_WARNING);
-            std::cout << "User requested deletion of __mbr. skipping\n";
-            return;
-        } else if ((PART == "__net") || (PART == "__system") || (PART == "__sysconf") || (PART == "__common") || (PART == "__contents"))
-        {
-            if (wxMessageBox(_("You requested the deletion of a system partition\nthis is not recommended unless you truly understand what you are doing\n\nContinue anyways?"),wxMessageBoxCaptionStr, wxICON_INFORMATION|wxYES_NO|wxNO_DEFAULT)
-                == wxNO
-                ) return;
-        }
 
-        if (wxMessageBox(wxString::Format(_("You are about to delete the following partition:\n\n%s\n\nContinue?"), PART), PART, wxICON_INFORMATION|wxYES_NO|wxNO_DEFAULT)
-            == wxYES
-            )
-            {
-                PFSSHELL.RemovePartition(PART.mb_str());
-                UpdateList();
-            }
+        _PART.Add(PARTList->GetItemText(item, PARTLIST_ITEMS::NAME)) ;
+        _TYPE.Add(PARTList->GetItemText(item, PARTLIST_ITEMS::TYPE));
     }
+    if (_PART.GetCount() > 1)
+    {
+        for (size_t x=0; x<_PART.GetCount(); x++)
+        {
+            wxString PART = _PART.Item(x),
+            TYPE = _TYPE.Item(x);
+            if (PART == "__mbr" || PART == "__extend" || TYPE == "MBR")
+            {
+                std::cout << "User requested deletion of '__mbr'. skipping\n";
+                continue;
+            } else if ((PART == "__net") || (PART == "__system") || (PART == "__sysconf") || (PART == "__common") || (PART == "__contents"))
+            {
+                std::cout << "User requested deletion of '"<<PART<<"' partition. skipping\n";
+                continue;
+            } else if (PART == "__empty") continue;
+
+            int ret = PFSSHELL.RemovePartition(PART.mb_str());
+            if (ret < 0)
+                return;
+        }
+    } else {
+
+        wxString PART = _PART.Item(0),
+        TYPE = _TYPE.Item(0);
+        if (PART == "__mbr" || PART == "__extend" || TYPE == "MBR")
+        {
+            std::cout << "User requested deletion of '__mbr'. skipping\n";
+            return;
+        } else if (PART == "__empty") return;
+        else if ((PART == "__net") || (PART == "__system") || (PART == "__sysconf") || (PART == "__common") || (PART == "__contents"))
+            if (wxMessageBox(_("You requested the deletion of a system partition\nthis is not recommended unless you truly understand what you are doing\n\nContinue anyways?"),wxMessageBoxCaptionStr, wxICON_INFORMATION|wxYES_NO|wxNO_DEFAULT)
+                == wxNO) return;
+        PFSSHELL.RemovePartition(PART.mb_str());
+    }
+    UpdateList();
 }
 
 void HDDManager::UpdateList(void)
@@ -210,6 +228,7 @@ void HDDManager::UpdateList(void)
         {
             cmd = wxString::Format("HDL.EXE info hdd%s: %s", HDD_TOKEN.substr(strlen("\\\\.\\PHYSICALDRIVE")), PART_LIST[x].name);
             std::cout << cmd << "\n";
+            ARR.clear();
             long ret = wxExecute(cmd, ARR, wxEXEC_SYNC);
             if (ret == 0)
             {

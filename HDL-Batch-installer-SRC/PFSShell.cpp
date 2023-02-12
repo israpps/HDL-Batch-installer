@@ -172,7 +172,7 @@ int PFSShell::mkpart(const char *mount_point, unsigned long size_in_mb, const ch
 
     char tmp[128];
     char openString[32 + 5];
-    char part_type[9];
+    char part_type[9+1];
     int i = 9;
     int result = -1;
     int partfd = 0;
@@ -492,7 +492,7 @@ int PFSShell::lspart(int lsmode, std::vector <iox_dirent_t>* dirent_return)
 
 int PFSShell::RemovePartition(const char* part)
 {
-    std::cout << "removing "<<part << "\n";
+    std::cout << "removing ["<<part << "]\n";
     char tmp[256];
     strcpy(tmp, "hdd0:");
     strcat(tmp, part);

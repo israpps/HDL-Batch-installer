@@ -24,6 +24,7 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 				<Option parameters="--force-max-debug --stay-on-top --skip-update" />
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
+					<Add option="-Wunreachable-code" />
 					<Add option="-m64" />
 					<Add option="-pipe" />
 					<Add option="-mthreads" />
@@ -141,6 +142,7 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 				<Option projectResourceIncludeDirsRelation="1" />
 				<Option projectLibDirsRelation="1" />
 				<Compiler>
+					<Add option="-Wunreachable-code" />
 					<Add option="-Wall" />
 					<Add option="-m32" />
 					<Add option="-pipe" />
@@ -159,7 +161,6 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 					<Add directory="$(#wx32)/lib/gcc_lib/mswu" />
 				</ResourceCompiler>
 				<Linker>
-					<Add option="-O2" />
 					<Add option="-s" />
 					<Add option="-static-libstdc++" />
 					<Add option="-static-libgcc" />

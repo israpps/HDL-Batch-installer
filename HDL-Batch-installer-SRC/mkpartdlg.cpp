@@ -126,7 +126,7 @@ void mkpartdlg::onPartitionNameChange(wxCommandEvent& event)
 {
     wxString PART = PARTName->GetValue();
 
-    if ((PART == "__mbr") || (PART.length() < 3) || !isAlphaString(PART))
+    if ((PART == "__mbr") || (PART == "__extend") || (PART.length() < 3) || !isAlphaString(PART))
     {
         mkpart->Disable();
         return;

@@ -502,7 +502,6 @@
 				<object class="wxMenuItem" name="ID_MENUITEM15" variable="MenuHDDFormat" member="yes">
 					<label>Format HDD</label>
 					<help>Format any device into PS2 HDD</help>
-					<enabled>0</enabled>
 					<handler function="OnHDDFormatMenuRequest" entry="EVT_MENU" />
 				</object>
 			</object>

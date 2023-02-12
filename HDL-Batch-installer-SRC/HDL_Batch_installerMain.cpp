@@ -405,7 +405,6 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     COPYHDD->Enable(false);
     MenuHDDFormat = new wxMenuItem(Menu1, ID_MENUITEM15, _("Format HDD"), _("Format any device into PS2 HDD"), wxITEM_NORMAL);
     Menu1->Append(MenuHDDFormat);
-    MenuHDDFormat->Enable(false);
     MenuBar1->Append(Menu1, _("&Main"));
     Menu3 = new wxMenu();
     MenuItem3 = new wxMenuItem(Menu3, SETTINGS, _("Settings\tF2"), _("configure program"), wxITEM_NORMAL);
@@ -1284,7 +1283,8 @@ void HDL_Batch_installerFrame::On_MiniOPL_Update_request(wxCommandEvent& event)
 {
     wxString cmd = "common\\wget.exe -q --show-progress " + MiniOPL_URL + " -O \"" + MiniOPL + "\"";
     COLOR(0d)
-    wxExecute(cmd,wxEXEC_SYNC);
+    if (wxExecute(wxString::Format("common\\wget.exe -q --spider --no-cache \"%s\"", MiniOPL_URL)) == 0)
+        wxExecute(cmd,wxEXEC_SYNC);
     COLOR(07)
 }
 
@@ -1301,7 +1301,8 @@ void HDL_Batch_installerFrame::OnHDL_DumpUpdateRequest(wxCommandEvent& event)
     wxString HDL_DUMP_URL   = "https://github.com/israpps/hdl-dump/releases/download/hdlinst/HDL.EXE";
     wxString cmd = "common\\wget.exe -q --show-progress " + HDL_DUMP_URL + " -O \"" + HDL_DUMP + "\"";
     COLOR(0d)
-    wxExecute(cmd,wxEXEC_SYNC);
+    if (wxExecute(wxString::Format("common\\wget.exe -q --spider --no-cache \"%s\"", HDL_DUMP_URL)) == 0)
+        wxExecute(cmd,wxEXEC_SYNC);
     COLOR(07)
 }
 
@@ -1663,7 +1664,8 @@ void HDL_Batch_installerFrame::On_GameNameDatabaseDownloadRequest(wxCommandEvent
     if (wxFileExists("gamename.DB"))
         wxRemoveFile("gamename.DB");
 
-    wxExecute("common\\wget.exe -q --show-progress https://raw.githubusercontent.com/israpps/HDL-Batch-installer/main/Database/gamename.csv -O gamename.DB",wxEXEC_SYNC);
+    if (wxExecute("common\\wget.exe -q --spider --no-cache https://raw.githubusercontent.com/israpps/HDL-Batch-installer/main/Database/gamename.csv",wxEXEC_SYNC)==0)
+        wxExecute("common\\wget.exe -q --show-progress https://raw.githubusercontent.com/israpps/HDL-Batch-installer/main/Database/gamename.csv -O gamename.DB",wxEXEC_SYNC);
 
     wxFileName fname( wxTheApp->argv[0] );
     wxString ini_filename = fname.GetPath(wxPATH_GET_VOLUME|wxPATH_GET_SEPARATOR) + "Common\\config.INI";
