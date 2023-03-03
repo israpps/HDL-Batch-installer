@@ -1780,7 +1780,7 @@ void HDL_Batch_installerFrame::OnButton4Click(wxCommandEvent& event)
                 wxString::Format(_("Can't find the enviroment variables \"%s\" or \"%s\" used to locate the Dokan Library\n\n It seems like Dokan was unproperly installed (or it isn't installed)\n\nGo to Dokan download website?"),DOKAN_ENV, DOKAN_ENV2)
                 ,error_caption,
                 wxICON_ERROR|wxYES_NO
-            )==wxYES) wxLaunchDefaultBrowser("https://github.com/dokan-dev/dokany/releases/tag/v1.5.1.1000");
+            )==wxYES) wxLaunchDefaultBrowser("https://github.com/dokan-dev/dokany/releases/latest");
 
         return;
     }
