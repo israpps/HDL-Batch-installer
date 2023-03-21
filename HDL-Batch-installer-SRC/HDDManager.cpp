@@ -248,3 +248,33 @@ void HDDManager::OnMKPartClick(wxCommandEvent& event)
     delete MAN;
     UpdateList();
 }
+
+static int wxCALLBACK MyCompareFunction(long item1, long item2, long sortData) {
+    wxListCtrl *ctrl = (wxListCtrl*) sortData;
+    wxString a, b;
+
+    long Va, Vb;
+    a = ctrl->GetItemText(item1, PARTLIST_ITEMS::START_SECTOR);
+    b = ctrl->GetItemText(item2, PARTLIST_ITEMS::START_SECTOR);
+
+    if(!a.ToLong(&Va)) { /* error! */ }
+    if(!b.ToLong(&Vb)) { /* error! */ }
+
+    if (Va > Vb) return 1;
+    if (Va == Vb) return 0;
+    if (Va < Vb) return -1;
+}
+
+bool HDDManager::PARTList::SortItems(wxListCtrlCompare fnSortCallBack, wxIntPtr data)
+{
+    long item = -1;
+    for ( ;; ) {
+        item = GetNextItem(item);
+        if ( item == -1 )
+            break;
+        SetItemData(item, item);
+        //this is needed even though MyCompareFunction doesn't use it AT ALL.
+        //however it overwrites the data that I use myself...
+    }
+    return wxListCtrl::SortItems(MyCompareFunction, (long)this);
+}
