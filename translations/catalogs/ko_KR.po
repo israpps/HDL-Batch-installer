@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2022-11-14 22:43-0300\n"
-"PO-Revision-Date: 2022-11-14 22:46-0300\n"
+"POT-Creation-Date: 2023-05-17 22:43-0300\n"
+"PO-Revision-Date: 2023-05-17 22:46-0300\n"
 "Last-Translator: DDinghoya\n"
 "Language-Team: DDinghoya\n"
 "Language: kr-KO\n"
@@ -18,15 +18,23 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.0.1\n"
 
-#: HDL_Batch_installerMain.cpp:398
-msgid "&File"
-msgstr "&파일"
+#: _obj/32-bits/HDL-Batch-installer-SRC/gamename/database.cpp:22377
+msgid "\f"
+msgstr "\f"
 
-#: HDL_Batch_installerMain.cpp:422
+#: _obj/32-bits/HDL-Batch-installer-SRC/gamename/database.cpp:22263
+msgid "\f\f"
+msgstr "\f\f"
+
+#: HDL_Batch_installerMain.cpp:409
+msgid "&Main"
+msgstr "메인(&M)"
+
+#: HDL_Batch_installerMain.cpp:433
 msgid "*.KELF"
 msgstr "*.KELF"
 
-#: Config.cpp:143
+#: Config.cpp:147
 msgid "+OPL"
 msgstr "+OPL"
 
@@ -34,15 +42,23 @@ msgstr "+OPL"
 msgid "---->"
 msgstr "---->"
 
-#: HDL_Batch_installerMain.cpp:303
+#: mkpartdlg.cpp:62
+msgid "0.12Gb"
+msgstr "0.12기가바이트"
+
+#: mkpartdlg.cpp:58
+msgid "128Mb"
+msgstr "128메가바이트"
+
+#: HDL_Batch_installerMain.cpp:311
 msgid "?"
 msgstr "?"
 
-#: HDL_Batch_installerMain.cpp:880
+#: HDL_Batch_installerMain.cpp:894
 msgid "A game with this name is already installed"
 msgstr "이 이름을 가진 게임이 이미 설치되어 있습니다."
 
-#: HDL_Batch_installerMain.cpp:1687
+#: HDL_Batch_installerMain.cpp:1659
 msgid ""
 "A local database already exists.\n"
 "Downloading the database from the repository will delete the old one...\n"
@@ -54,11 +70,15 @@ msgstr ""
 "\n"
 " 계속합니까?"
 
-#: HDL_Batch_installerMain.cpp:410
+#: HDL_Batch_installerMain.cpp:1222
+msgid "APA 파티션 손상"
+msgstr "La particion APA está rota"
+
+#: HDL_Batch_installerMain.cpp:421
 msgid "About"
 msgstr "정보"
 
-#: HDL_Batch_installerMain.cpp:404
+#: HDL_Batch_installerMain.cpp:415
 msgid "About\tF1"
 msgstr "정보\tF1"
 
@@ -70,7 +90,7 @@ msgstr ""
 "Alex Parrado:\n"
 "    아이디어 제공"
 
-#: HDL_Batch_installerMain.cpp:625
+#: HDL_Batch_installerMain.cpp:639
 msgid "All supported formats (*.ISO;*.CUE;*.NRG;*.GI;*.IML;*.ZSO)"
 msgstr "지원되는 모든 형식 (*.ISO;*.CUE;*.NRG;*.GI;*.IML;*.ZSO)"
 
@@ -78,7 +98,7 @@ msgstr "지원되는 모든 형식 (*.ISO;*.CUE;*.NRG;*.GI;*.IML;*.ZSO)"
 msgid "Allow unstable/experimental features"
 msgstr "불안정/실험적 기능 허용"
 
-#: DokanMan.cpp:82
+#: DokanMan.cpp:85
 msgid "Available partitions"
 msgstr "사용 가능한 파티션"
 
@@ -86,11 +106,11 @@ msgstr "사용 가능한 파티션"
 msgid "BG"
 msgstr "BG"
 
-#: HDL_Batch_installerMain.cpp:384
+#: HDL_Batch_installerMain.cpp:392
 msgid "Browse"
 msgstr "찾아보기"
 
-#: HDL_Batch_installerMain.cpp:627
+#: HDL_Batch_installerMain.cpp:641
 msgid "CDRWIN cuesheets (*.cue)"
 msgstr "CDRWIN 큐시트 (*.cue)"
 
@@ -110,11 +130,15 @@ msgstr "COV"
 msgid "COV2"
 msgstr "COV2"
 
-#: HDL_Batch_installerMain.cpp:889
+#: HDL_Batch_installerMain.cpp:903
 msgid "CUE or IML have a missing linked file"
 msgstr "CUE 또는 IML에 연결된 파일이 없습니다."
 
-#: HDL_Batch_installerMain.cpp:1785
+#: HDL_Batch_installerMain.cpp:437
+msgid "Calculate MD5 Hash"
+msgstr "MD5 해시 계산"
+
+#: HDL_Batch_installerMain.cpp:1757
 msgid ""
 "Can't find custom icons package\n"
 "\n"
@@ -124,16 +148,18 @@ msgstr ""
 "\n"
 "지금 다운로드하겠습니까?"
 
-#: HDL_Batch_installerMain.cpp:1807
+#: HDL_Batch_installerMain.cpp:1778
 #, c-format
 msgid ""
-"Can't find the enviroment variable \"%s\" used to locate the Dokan Library\n"
+"Can't find the enviroment variables \"%s\" or \"%s\" used to locate the "
+"Dokan Library\n"
 "\n"
 " It seems like Dokan was unproperly installed (or it isn't installed)\n"
 "\n"
 "Go to Dokan download website?"
 msgstr ""
-"Dokan 라이브러리를 찾는 데 사용되는 \"%s\" 환경 변수를 찾을 수 없습니다.\n"
+"Dokan 라이브러리를 찾는 데 사용되는 환경 변수 \"%s\" 또는 \"%s\"를 "
+"찾을 수 없습니다.\n"
 "\n"
 "Dokan이 잘못 설치되었거나 설치되지 않은 것 같습니다.\n"
 "\n"
@@ -143,35 +169,35 @@ msgstr ""
 msgid "Check for Updates"
 msgstr "업데이트 확인"
 
-#: DokanMan.cpp:93
+#: DokanMan.cpp:96
 msgid "Choose device letter to mount  partition"
 msgstr "파티션을 마운트할 장치 문자를 선택하세요."
 
-#: HDL_Batch_installerMain.cpp:1507
+#: HDL_Batch_installerMain.cpp:1480
 msgid "Choose path to extract selected games"
 msgstr "선택한 게임을 추출할 경로를 선택하세요."
 
-#: HDL_Batch_installerMain.cpp:1061
+#: HDL_Batch_installerMain.cpp:1076
 msgid "Clear List??"
 msgstr "목록을 지웁니까??"
 
-#: HDL_Batch_installerMain.cpp:262
+#: HDL_Batch_installerMain.cpp:273
 msgid "Clear list"
 msgstr "목록 지우기"
 
-#: HDL_Batch_installerMain.cpp:2055
+#: HDL_Batch_installerMain.cpp:2026
 msgid "Collected hash:"
 msgstr "수집된 해시:"
 
-#: HDL_Batch_installerMain.cpp:402
+#: HDL_Batch_installerMain.cpp:413
 msgid "Config"
 msgstr "구성"
 
-#: HDL_Batch_installerMain.cpp:221
+#: HDL_Batch_installerMain.cpp:232
 msgid "Connect"
 msgstr "연결"
 
-#: HDL_Batch_installerMain.cpp:1851
+#: HDL_Batch_installerMain.cpp:1822
 msgid "Could not find PFS Partitions"
 msgstr "PFS 파티션을 찾을 수 없음"
 
@@ -184,11 +210,19 @@ msgstr ""
 "로케일 '%s'에 대한 'HDLBinst' 카탈로그를 찾거나 로드할 수 없습니다.\n"
 "번역 파일은 여기에 있어야 합니다: \"Lang\\%s\\HDLBinst.mo\"\n"
 
+#: mkpartdlg.cpp:65
+msgid "Create"
+msgstr "생성"
+
+#: HDDManager.cpp:59
+msgid "Create Partition"
+msgstr "파티션 생성"
+
 #: About.cpp:51
 msgid "Created by El_isra (AKA: Matias Israelson)"
 msgstr "El_isra (Matias Israelson로 알려짐)가 제작함"
 
-#: DokanMan.cpp:86
+#: DokanMan.cpp:89
 msgid "Current HDD"
 msgstr "현재 HDD:"
 
@@ -204,11 +238,11 @@ msgstr "데이터 수집"
 msgid "Default DMA"
 msgstr "기본 DMA"
 
-#: Config.cpp:135
+#: Config.cpp:137
 msgid "Default HDD letter"
 msgstr "기본 HDD 문자"
 
-#: Config.cpp:142
+#: Config.cpp:146
 msgid "Default OPL data partition name"
 msgstr "기본 OPL 데이터 파티션 이름"
 
@@ -216,7 +250,11 @@ msgstr "기본 OPL 데이터 파티션 이름"
 msgid "Default game search path"
 msgstr "기본 게임 검색 경로"
 
-#: HDL_Batch_installerMain.cpp:444
+#: HDDManager.cpp:63
+msgid "Delete Partition"
+msgstr "파티션 삭제"
+
+#: HDL_Batch_installerMain.cpp:457
 msgid "Delete game"
 msgstr "게임 삭제"
 
@@ -234,7 +272,11 @@ msgstr ""
 "\n"
 "이 기능은 HDLoader 또는 MiniOPL과 같은 오래된 소프트웨어에서만 사용할 수 있습니다."
 
-#: HDL_Batch_installerMain.cpp:224
+#: HDDFomatMan.cpp:93
+msgid "Device"
+msgstr "장치"
+
+#: HDL_Batch_installerMain.cpp:235
 msgid "Disconnect"
 msgstr "연결 해제"
 
@@ -242,7 +284,16 @@ msgstr "연결 해제"
 msgid "Discord server"
 msgstr "디스코드 서버"
 
-#: DokanMan.cpp:79
+#: HDDFomatMan.cpp:146
+#, c-format
+msgid ""
+"Do you really want to proceed?\n"
+"this will wipe all data on device %s"
+msgstr ""
+"정말 진행하겠습니까?\n"
+"장치 %S의 모든 데이터를 지움"
+
+#: DokanMan.cpp:82
 msgid "Dokan Manager"
 msgstr "Dokan 관리자"
 
@@ -250,7 +301,7 @@ msgstr "Dokan 관리자"
 msgid "Download"
 msgstr "다운로드"
 
-#: HDL_Batch_installerMain.cpp:418
+#: HDL_Batch_installerMain.cpp:429
 msgid "Download Icons Package"
 msgstr "아이콘 패키지 다운로드"
 
@@ -258,11 +309,11 @@ msgstr "아이콘 패키지 다운로드"
 msgid "Download Latest version"
 msgstr "최신 버전 다운로드"
 
-#: HDL_Batch_installerMain.cpp:430
+#: HDL_Batch_installerMain.cpp:443
 msgid "Download assets"
 msgstr "아카이브 다운로드"
 
-#: HDL_Batch_installerMain.cpp:420
+#: HDL_Batch_installerMain.cpp:431
 msgid "Downloads"
 msgstr "다운로드"
 
@@ -274,15 +325,24 @@ msgstr "다운로드가 완료되었습니다!"
 msgid "Downloads manager"
 msgstr "다운로드 관리자"
 
+#: HDDManager.cpp:200
+msgid "Empty Segment"
+msgstr "빈 세그먼트"
+
 #: Post_Install_Report.cpp:58
 msgid "Error code"
 msgstr "오류 코드"
+
+#: HDDManager.cpp:219
+#, c-format
+msgid "Error: %ld"
+msgstr "오류: %ld"
 
 #: Config.cpp:112
 msgid "External"
 msgstr "외부"
 
-#: HDL_Batch_installerMain.cpp:428
+#: HDL_Batch_installerMain.cpp:441
 msgid "Extract Game(s)"
 msgstr "게임 추출"
 
@@ -290,7 +350,7 @@ msgstr "게임 추출"
 msgid "FATAL ERROR"
 msgstr "치명적인 오류"
 
-#: HDL_Batch_installerMain.cpp:2120
+#: HDL_Batch_installerMain.cpp:2091
 #, c-format
 msgid "Failed with error code %ld"
 msgstr "오류 코드 %ld로 실패"
@@ -303,23 +363,39 @@ msgstr "빠른 다운로드"
 msgid "File "
 msgstr "파일 "
 
-#: HDL_Batch_installerMain.cpp:886
+#: HDL_Batch_installerMain.cpp:900
 msgid "File could not be found (or accesed?)"
 msgstr "파일을 찾을 수 없습니다 (또는 접근할 수 없습니까?)"
 
-#: DokanMan.cpp:100
+#: HDDFomatMan.cpp:63
+msgid "Format"
+msgstr "포맷"
+
+#: HDL_Batch_installerMain.cpp:406
+msgid "Format HDD"
+msgstr "HDD 포맷"
+
+#: HDL_Batch_installerMain.cpp:406
+msgid "Format any device into PS2 HDD"
+msgstr "모든 장치를 PS2 HDD로 포맷"
+
+#: DokanMan.cpp:103
 msgid "Free"
 msgstr "여유"
 
-#: HDL_Batch_installerMain.cpp:250 HDL_Batch_installerMain.cpp:310
+#: HDL_Batch_installerMain.cpp:261 HDL_Batch_installerMain.cpp:318
 msgid "Game "
 msgstr "게임 "
 
-#: HDL_Batch_installerMain.cpp:1056
+#: HDDManager.cpp:104
+msgid "Game Title"
+msgstr "게임 타이틀"
+
+#: HDL_Batch_installerMain.cpp:1071
 msgid "Game list is already empty"
 msgstr "게임 목록이 이미 비어 있습니다."
 
-#: HDL_Batch_installerMain.cpp:1620
+#: HDL_Batch_installerMain.cpp:1592
 msgid ""
 "Game related operations can be used by selecting games from the list and "
 "right clicking them..."
@@ -327,7 +403,7 @@ msgstr ""
 "게임 관련 작업은 목록에서 게임을 선택하고 "
 "오른쪽 클릭..."
 
-#: Config.cpp:158
+#: Config.cpp:162
 msgid "General"
 msgstr "일반"
 
@@ -339,27 +415,54 @@ msgstr "목록 가져오기"
 msgid "Get the Latest Version here:"
 msgstr "여기에서 최신 버전을 받으세요:"
 
-#: HDL_Batch_installerMain.cpp:629
+#: HDL_Batch_installerMain.cpp:643
 msgid "Global images (*.gi)"
 msgstr "글로벌 이미지 (*.gi) "
 
-#: HDL_Batch_installerMain.cpp:385
+#: HDDFomatMan.cpp:45
+msgid "HDD Formatter"
+msgstr "HDD 포맷"
+
+#: HDL_Batch_installerMain.cpp:393
 msgid "HDD Management"
 msgstr "HDD 관리"
 
-#: HDL_Batch_installerMain.cpp:345
+#: HDL_Batch_installerMain.cpp:353
 msgid "HDD Manager"
 msgstr "HDD 관리자"
 
-#: About.cpp:42
+#: HDDFomatMan.cpp:156
+#, c-format
+msgid ""
+"HDD format failed\n"
+"Error code is %d\n"
+"see console log for more information"
+msgstr ""
+"HDD 포맷 실패\n"
+"오류 코드는 %d 입니다.\n"
+"자세한 내용은 콘솔 로그 참조"
+
+#: HDDFomatMan.cpp:158
+msgid ""
+"HDD was successfully formated.\n"
+"Default partitions have been created!"
+msgstr ""
+"HDD가 성공적으로 포맷되었습니다.\n"
+"기본 파티션이 생성되었습니다!"
+
+#: HDDManager.cpp:45
+msgid "HDDManager"
+msgstr "HDD관리자"
+
+#: About.cpp:42 HDL_Batch_installerMain.cpp:201
 msgid "HDL Batch Installer"
 msgstr "HDL 일괄 설치 프로그램"
 
-#: HDL_Batch_installerMain.cpp:874
+#: HDL_Batch_installerMain.cpp:888
 msgid "HDL-Dump reported \"Out of memory\"."
 msgstr "HDL-Dump에서 \"메모리 부족\"을 보고했습니다."
 
-#: HDL_Batch_installerMain.cpp:1454
+#: HDL_Batch_installerMain.cpp:1429
 msgid "Header Injection finished"
 msgstr "헤더 주입 완료"
 
@@ -371,19 +474,20 @@ msgstr "게임 숨기기"
 msgid "ICO"
 msgstr "ICO"
 
-#: HDL_Batch_installerMain.cpp:317 Post_Install_Report.cpp:51
+#: HDDFomatMan.cpp:88 HDL_Batch_installerMain.cpp:325
+#: Post_Install_Report.cpp:51
 msgid "ID"
 msgstr "ID"
 
-#: HDL_Batch_installerMain.cpp:630
+#: HDL_Batch_installerMain.cpp:644
 msgid "IML files (*.iml)"
 msgstr "IML 파일 (*.iml)"
 
-#: HDL_Batch_installerMain.cpp:2106
+#: HDL_Batch_installerMain.cpp:2077
 msgid "IMPORTANT WARNING"
 msgstr "중요 경고"
 
-#: HDL_Batch_installerMain.cpp:626
+#: HDL_Batch_installerMain.cpp:640
 msgid "ISO 9660 (*.ISO)"
 msgstr "ISO 9660 (*.iso)"
 
@@ -391,35 +495,35 @@ msgstr "ISO 9660 (*.iso)"
 msgid "Images"
 msgstr "이미지"
 
-#: HDL_Batch_installerMain.cpp:442
+#: HDL_Batch_installerMain.cpp:455
 msgid "Information"
 msgstr "정보"
 
-#: HDL_Batch_installerMain.cpp:672
+#: HDL_Batch_installerMain.cpp:686
 msgid "Information:"
 msgstr "정보:"
 
-#: HDL_Batch_installerMain.cpp:366
+#: HDL_Batch_installerMain.cpp:374
 msgid "Inject MBR"
 msgstr "MBR 주입"
 
-#: HDL_Batch_installerMain.cpp:350 HDL_Batch_installerMain.cpp:437
+#: HDL_Batch_installerMain.cpp:358 HDL_Batch_installerMain.cpp:450
 msgid "Inject OPL Launcher"
 msgstr "OPL 런처 주입"
 
-#: HDL_Batch_installerMain.cpp:1433 HDL_Batch_installerMain.cpp:1947
+#: HDL_Batch_installerMain.cpp:1408 HDL_Batch_installerMain.cpp:1918
 msgid "Injecting OPL Launcher to..."
 msgstr "OPL 실행기를 주입하는 중..."
 
-#: HDL_Batch_installerMain.cpp:2009
+#: HDL_Batch_installerMain.cpp:1980
 msgid "Injecting custom icon to..."
 msgstr "커스텀 아이콘을 주입하는 중..."
 
-#: HDL_Batch_installerMain.cpp:2039
+#: HDL_Batch_installerMain.cpp:2010
 msgid "Injection Finished!"
 msgstr "주입이 완료되었습니다!"
 
-#: HDL_Batch_installerMain.cpp:278 HDL_Batch_installerMain.cpp:383
+#: HDL_Batch_installerMain.cpp:289 HDL_Batch_installerMain.cpp:391
 msgid "Install"
 msgstr "설치"
 
@@ -427,19 +531,23 @@ msgstr "설치"
 msgid "Installation features"
 msgstr "설치 기능"
 
-#: HDL_Batch_installerMain.cpp:901
+#: HDL_Batch_installerMain.cpp:915
 msgid "Installation process aborted, HDD is running out of space"
 msgstr "설치 프로세스 중단, HDD 공간 부족"
 
-#: HDL_Batch_installerMain.cpp:783
+#: HDL_Batch_installerMain.cpp:797
 msgid "Installing"
 msgstr "설치 중"
+
+#: HDDFomatMan.cpp:98
+msgid "Interface"
+msgstr "인터페이스"
 
 #: Config.cpp:109
 msgid "Internal"
 msgstr "내부"
 
-#: HDL_Batch_installerMain.cpp:1675
+#: HDL_Batch_installerMain.cpp:1647
 msgid ""
 "KELF size is 0 bytes!\n"
 "It seems that this HDD had no MBR program installed...\n"
@@ -467,11 +575,15 @@ msgstr "언어"
 msgid "Load Custom Icon"
 msgstr "커스텀 아이콘 불러오기"
 
-#: HDL_Batch_installerMain.cpp:661
+#: HDL_Batch_installerMain.cpp:675
 msgid "Loaded:"
 msgstr "불러옴:"
 
-#: HDL_Batch_installerMain.cpp:1670
+#: HDDManager.cpp:136
+msgid "MBR Partition is vital for HDD"
+msgstr "MBR 파티션은 HDD에 필수적입니다."
+
+#: HDL_Batch_installerMain.cpp:1642
 msgid ""
 "MBR extraction failed!!\n"
 "\n"
@@ -481,43 +593,47 @@ msgstr ""
 "\n"
 "오류 코드를 보려면 콘솔 로그를 참조하세요..."
 
-#: HDL_Batch_installerMain.cpp:422
+#: HDL_Batch_installerMain.cpp:433
 msgid "MBR.KELF"
 msgstr "MBR.KELF"
 
-#: HDL_Batch_installerMain.cpp:395
+#: MD5Report.cpp:28
+msgid "MD5 Hash report"
+msgstr "MD5 해시 보고서"
+
+#: HDL_Batch_installerMain.cpp:403
 msgid "Massive game transfer"
 msgstr "대규모 게임 전송"
 
-#: HDL_Batch_installerMain.cpp:331
+#: HDL_Batch_installerMain.cpp:339
 msgid "Media"
 msgstr "미디어"
 
-#: HDL_Batch_installerMain.cpp:356
+#: HDL_Batch_installerMain.cpp:364
 msgid "Modify Header"
 msgstr "헤더 수정"
 
-#: DokanMan.cpp:117
+#: DokanMan.cpp:120
 msgid "Mount "
 msgstr "마운트 "
 
-#: HDL_Batch_installerMain.cpp:371
+#: HDL_Batch_installerMain.cpp:379
 msgid "Mount hdd Partition"
 msgstr "hdd 파티션 마운트"
 
-#: DokanMan.cpp:90
+#: DokanMan.cpp:93
 msgid "Mount point"
 msgstr "마운트 포인트"
 
-#: Config.cpp:151
+#: Config.cpp:155
 msgid "NBD Default IP adress"
 msgstr "NBD 기본 IP 주소"
 
-#: HDL_Batch_installerMain.cpp:376
+#: HDL_Batch_installerMain.cpp:384
 msgid "NBD Driver manager"
 msgstr "NBD 드라이버 관리자"
 
-#: Config.cpp:160
+#: Config.cpp:164
 msgid "NBD Server"
 msgstr "NBD 서버"
 
@@ -529,15 +645,15 @@ msgstr ""
 "참고: 드라이버를 제대로 설치하려면 드라이버를 제대로 설치하려면 윈도우즈를 "
 "시작해야 합니다."
 
-#: HDL_Batch_installerMain.cpp:628
+#: HDL_Batch_installerMain.cpp:642
 msgid "Nero images (*.nrg)"
 msgstr "Nero 이미지 (*.nrg)"
 
-#: HDL_Batch_installerMain.cpp:1752
+#: HDL_Batch_installerMain.cpp:1724
 msgid "No internet connection!"
 msgstr "인터넷에 연결되지 않았습니다!"
 
-#: HDL_Batch_installerMain.cpp:612
+#: HDL_Batch_installerMain.cpp:626
 msgid ""
 "OPL Launcher is missing.\n"
 " you must get a copy of MiniOPL from the GitHub repo and place it back with "
@@ -561,23 +677,27 @@ msgstr "공식 깃허브"
 msgid "Official Repository"
 msgstr "공식 저장소"
 
-#: HDL_Batch_installerMain.cpp:424
+#: HDL_Batch_installerMain.cpp:435
 msgid "Open File location"
 msgstr "파일 위치 열기"
 
-#: DokanMan.cpp:128
+#: DokanMan.cpp:131
 msgid "Open in explorer"
 msgstr "탐색기에서 열기"
+
+#: HDDManager.cpp:136
+msgid "Operation forbidden"
+msgstr "작업 금지"
 
 #: ArtMan.cpp:103
 msgid "Others"
 msgstr "기타"
 
-#: Config.cpp:159
+#: Config.cpp:163
 msgid "PFSFUSE"
 msgstr "PFSFUSE"
 
-#: HDL_Batch_installerMain.cpp:663
+#: HDL_Batch_installerMain.cpp:677
 msgid "PS2 Games"
 msgstr "PS2 게임"
 
@@ -585,15 +705,31 @@ msgstr "PS2 게임"
 msgid "PSX-Place Thread"
 msgstr "PSX-Place 쓰레드"
 
+#: HDDManager.cpp:83
+msgid "Partition"
+msgstr "파티션"
+
+#: mkpartdlg.cpp:45
+msgid "Partition Name"
+msgstr "파티션 이름"
+
+#: mkpartdlg.cpp:50
+msgid "Partition Size"
+msgstr "파티션 크키"
+
+#: HDDManager.cpp:97
+msgid "Partition Type"
+msgstr "파티션 유형"
+
 #: CopyHDD.cpp:94
 msgid "Please wait, this might take a while."
 msgstr "잠시만 기다려주세요. 시간이 좀 걸릴 수 있습니다."
 
-#: HDL_Batch_installerMain.cpp:393
+#: HDL_Batch_installerMain.cpp:401
 msgid "Quit\tAlt-F4"
 msgstr "종료\tAlt-F4"
 
-#: HDL_Batch_installerMain.cpp:393
+#: HDL_Batch_installerMain.cpp:401
 msgid "Quit the application"
 msgstr "응용 프로그램 종료"
 
@@ -601,23 +737,23 @@ msgstr "응용 프로그램 종료"
 msgid "Reason"
 msgstr "이유"
 
-#: HDL_Batch_installerMain.cpp:361
+#: HDL_Batch_installerMain.cpp:369
 msgid "Recover MBR"
 msgstr "MBR 복구"
 
-#: HDL_Batch_installerMain.cpp:426
+#: HDL_Batch_installerMain.cpp:439
 msgid "Remove from List"
 msgstr "목록에서 제거"
 
-#: HDL_Batch_installerMain.cpp:435
+#: HDL_Batch_installerMain.cpp:448
 msgid "Rename"
 msgstr "이름 바꾸기"
 
-#: HDL_Batch_installerMain.cpp:408
+#: HDL_Batch_installerMain.cpp:419
 msgid "Report Issue"
 msgstr "문제 신고"
 
-#: HDL_Batch_installerMain.cpp:1652
+#: HDL_Batch_installerMain.cpp:1624
 #, c-format
 msgid "Report for [%s]"
 msgstr "[%s]에 대한 보고"
@@ -638,23 +774,27 @@ msgstr "SCR"
 msgid "SCR2"
 msgstr "SCR2"
 
-#: Config.cpp:163
+#: Config.cpp:167
 msgid "Save Settings"
 msgstr "설정 저장"
 
-#: HDL_Batch_installerMain.cpp:256
+#: HDL_Batch_installerMain.cpp:267
 msgid "Search Games"
 msgstr "게임 검색"
 
-#: HDL_Batch_installerMain.cpp:422
+#: HDL_Batch_installerMain.cpp:433
 msgid "Search MBR.KELF"
 msgstr "MBR.KELF 검색"
 
-#: HDL_Batch_installerMain.cpp:207
+#: MD5Report.cpp:42
+msgid "Search on redump.org"
+msgstr "Redump.org에서 검색"
+
+#: HDL_Batch_installerMain.cpp:218
 msgid "Search ps2 HDD's"
 msgstr "PS2 HDD 검색"
 
-#: HDL_Batch_installerMain.cpp:621
+#: HDL_Batch_installerMain.cpp:635
 msgid "Select your PS2 games"
 msgstr "PS2 게임을 선택하세요."
 
@@ -662,17 +802,17 @@ msgstr "PS2 게임을 선택하세요."
 msgid "Settings"
 msgstr "설정"
 
-#: HDL_Batch_installerMain.cpp:400
+#: HDL_Batch_installerMain.cpp:411
 msgid "Settings\tF2"
 msgstr "설정\tF2"
 
-#: HDL_Batch_installerMain.cpp:300
-msgid "Show Partition table"
-msgstr "파티션 테이블 보기"
-
-#: HDL_Batch_installerMain.cpp:404
+#: HDL_Batch_installerMain.cpp:415
 msgid "Show version and credits"
 msgstr "버전 및 크레딧 표시"
+
+#: HDDManager.cpp:90
+msgid "Size"
+msgstr "크기"
 
 #: Component_error.cpp:41
 msgid ""
@@ -702,7 +842,11 @@ msgstr ""
 
 #: About.cpp:54
 msgid "Special thanks to:"
-msgstr "특별히 감사함:"
+msgstr "특별히 감사한 분:"
+
+#: HDDManager.cpp:76
+msgid "Start Sector"
+msgstr "섹터 시작"
 
 #: Config.cpp:75
 msgid "Startup settings"
@@ -712,6 +856,10 @@ msgstr "시작 설정"
 msgid "The Following games couldn't be installed:"
 msgstr "다음 게임을 설치할 수 없습니다:"
 
+#: HDL_Batch_installerMain.cpp:1222
+msgid "The HDD is corrupted or your hard drive connection has issues"
+msgstr "HDD가 손상되었거나 하드 드라이브 연결에 문제가 있음"
+
 #: About.cpp:56
 msgid ""
 "The Testers:\n"
@@ -720,21 +868,21 @@ msgid ""
 msgstr ""
 "테스터:\n"
 "\n"
-"HUN7ER | Salamander | 내 여동생 | Jtrex | Torres Kadher"
+"HUN7ER | Salamander | My sister | Jtrex | Torres Kadher"
 
-#: HDL_Batch_installerMain.cpp:1765
+#: HDL_Batch_installerMain.cpp:1737
 msgid "The download of the icons package failed!"
 msgstr "아이콘 패키지 다운로드에 실패했습니다!"
 
-#: HDL_Batch_installerMain.cpp:883
+#: HDL_Batch_installerMain.cpp:897
 msgid "The game has a corrupt SYSTEM.CNF file"
 msgstr "게임에 손상된 SYSTEM.CNF 파일이 있습니다."
 
-#: HDL_Batch_installerMain.cpp:1773
+#: HDL_Batch_installerMain.cpp:1745
 msgid "The package extraction failed!"
 msgstr "패키지 추출 실패하였습니다!"
 
-#: HDL_Batch_installerMain.cpp:1701
+#: HDL_Batch_installerMain.cpp:1673
 msgid ""
 "The program is currently configured to use it's internal database.\n"
 "Change it on the settings menu in order to use the database you just "
@@ -743,12 +891,13 @@ msgstr ""
 "프로그램이 현재 내부 데이터베이스를 사용하도록 구성되었습니다.\n"
 "방금 다운로드한 데이터베이스를 사용하려면 설정 메뉴에서 "
 "변경하세요."
+													  
 
-#: HDL_Batch_installerMain.cpp:870
+#: HDL_Batch_installerMain.cpp:884
 msgid "There is not enough space on the HDD to install this game"
 msgstr "HDD에 이 게임을 설치할 공간이 부족합니다"
 
-#: HDL_Batch_installerApp.cpp:195
+#: HDL_Batch_installerApp.cpp:216
 #, c-format
 msgid ""
 "There's an update available for this program!\n"
@@ -761,15 +910,24 @@ msgstr ""
 "이 프로그램에 사용할 수 있는 업데이트가 있습니다!\n"
 "\n"
 "다운로드 페이지로 이동하겠습니까?"
+						
 "\n"
 "현재 버전: [%s]\n"
 "최신 버전: [%s]\n"
 
-#: HDL_Batch_installerMain.cpp:1268
+#: HDL_Batch_installerMain.cpp:1280
 msgid "This HDD has no PS2 Games inside"
 msgstr "이 HDD에는 PS2 게임이 없습니다."
 
-#: HDL_Batch_installerMain.cpp:2103
+#: HDDFomatMan.cpp:141
+msgid ""
+"This Operation will wipe ALL THE DATA inside this hard drive\n"
+"Continue?"
+msgstr ""
+"이 작업은 이 하드 드라이브 내부의 모든 데이터를 지움\n"
+"계속합니까?"
+
+#: HDL_Batch_installerMain.cpp:2074
 msgid ""
 "This feature is unstable, untested and potentially dangerous.\n"
 "It has been confirmed that it corrupts the HDD format.\n"
@@ -778,8 +936,9 @@ msgstr ""
 "이 기능은 불안정하고 테스트되지 않았으며 잠재적으로 위험합니다.\n"
 "HDD 포맷을 손상시키는 것으로 확인되었습니다.\n"
 "이 게임을 삭제하겠습니까?"
+												
 
-#: HDL_Batch_installerMain.cpp:1879
+#: HDL_Batch_installerMain.cpp:1850
 msgid ""
 "This is the first time you try to use NBD Server\n"
 "Keep in mind that you must disconnect the server when you finish using the "
@@ -791,7 +950,7 @@ msgstr ""
 "합니다.\n"
 "그렇지 않으면... HDD 손상의 위험이 있습니다."
 
-#: HDL_Batch_installerMain.cpp:1799
+#: HDL_Batch_installerMain.cpp:1770
 msgid ""
 "This is the first time you use PFSFUSE\n"
 "\n"
@@ -809,7 +968,7 @@ msgstr ""
 msgid "This language is not supported by the system."
 msgstr "이 언어는 시스템에서 지원하지 않습니다."
 
-#: HDL_Batch_installerMain.cpp:352
+#: HDL_Batch_installerMain.cpp:360
 msgid ""
 "This will inject OPL Launcher (boot.kelf on program folder) into every PS2 "
 "game found on this HDD.\n"
@@ -823,23 +982,24 @@ msgstr ""
 msgid "Title Database"
 msgstr "타이틀 데이터베이스"
 
-#: HDL_Batch_installerMain.cpp:1175
-msgid "Total: "
-msgstr "전체: "
+#: HDL_Batch_installerMain.cpp:1193
+#, c-format
+msgid "Total: %dGb | Used: %d%s | Free: %d%s"
+msgstr "전체: %d기가바이트 | 사용됨: %d%s | 여유: %d%s"
 
 #: CopyHDD.cpp:101
 msgid "Transfer Completed!"
 msgstr "전송이 완료되었습니다!"
 
-#: DokanMan.cpp:125
+#: DokanMan.cpp:128
 msgid "Transfer OPL files"
 msgstr "OPL 파일 전송"
 
-#: HDL_Batch_installerMain.cpp:395
+#: HDL_Batch_installerMain.cpp:403
 msgid "Transfer all games installed on currently selected HDD into another one"
 msgstr "현재 선택한 HDD에 설치된 모든 게임을 다른 HDD로 전송"
 
-#: HDL_Batch_installerMain.cpp:432
+#: HDL_Batch_installerMain.cpp:445
 msgid "Transfer game(s) to another PS2 HDD"
 msgstr "다른 PS2 HDD로 게임 전송"
 
@@ -865,35 +1025,43 @@ msgstr ""
 msgid "Uninstall"
 msgstr "설치 제거"
 
-#: DokanMan.cpp:120
+#: DokanMan.cpp:123
 msgid "Unmount"
 msgstr "마운트 해제"
 
-#: HDL_Batch_installerMain.cpp:414
+#: HDL_Batch_installerMain.cpp:429
+msgid "Update HDD-OSD icons package"
+msgstr "HDD-OSD 아이콘 패키지 업데이트"
+
+#: HDL_Batch_installerMain.cpp:425
 msgid "Update HDL-Dump"
 msgstr "HDL 덤프 업데이트"
 
-#: HDL_Batch_installerMain.cpp:412
+#: HDL_Batch_installerMain.cpp:423
 msgid "Update OPL Launcher"
 msgstr "OPL 런처 업데이트"
 
-#: HDL_Batch_installerMain.cpp:406
+#: HDL_Batch_installerMain.cpp:417
 msgid "Update Program"
 msgstr "프로그램 업데이트"
 
-#: HDL_Batch_installerMain.cpp:416
+#: HDL_Batch_installerMain.cpp:427
 msgid "Update game title database"
 msgstr "게임 타이틀 데이터베이스 업데이트"
 
-#: HDL_Batch_installerMain.cpp:284
+#: HDL_Batch_installerMain.cpp:425
+msgid "Update the game installation tool"
+msgstr "게임 설치 도구 업데이트"
+
+#: HDL_Batch_installerMain.cpp:295
 msgid "Use Database"
 msgstr "데이터베이스 사용"
 
-#: HDL_Batch_installerMain.cpp:217
+#: HDL_Batch_installerMain.cpp:228
 msgid "WNBD Server"
 msgstr "WNBD 서버"
 
-#: HDL_Batch_installerMain.cpp:1356
+#: HDL_Batch_installerMain.cpp:1331
 msgid ""
 "Warning\n"
 "\tCan't find boot.kelf\n"
@@ -923,7 +1091,7 @@ msgstr ""
 "또한 이 대체 접두어는 PSBBN 및 PSX XMB 메뉴에서 OPL 런처를 통해 게임을 "
 "시작하는 데 필요합니다.\n"
 
-#: HDL_Batch_installerMain.cpp:286
+#: HDL_Batch_installerMain.cpp:297
 msgid ""
 "When enabled, the program will try to automatically assign the original "
 "title for the games by searching the game ID on a database with more than "
@@ -947,49 +1115,78 @@ msgstr ""
 msgid "Widescreen hacks for OPL"
 msgstr "OPL용 와이드스크린 해킹"
 
+#: HDDManager.cpp:146
+#, c-format
+msgid ""
+"You are about to delete the following partition:\n"
+"\n"
+"%s\n"
+"\n"
+"Continue?"
+msgstr ""
+"다음 파티션을 삭제하려고 합니다:\n"
+"\n"
+"%s\n"
+"\n"
+"계속하겠습니까?"
+
 #: CopyHDD.cpp:85
 msgid "You can't transfer games from one HDD into the same HDD!"
 msgstr "하나의 HDD에서 동일한 HDD로 게임을 전송할 수 없습니다!"
 
-#: HDL_Batch_installerMain.cpp:1851
+#: HDL_Batch_installerMain.cpp:1822
 msgid "You need at least one PFS partition to use this menu"
 msgstr "이 메뉴를 사용하려면 하나 이상의 PFS 파티션이 필요합니다."
 
-#: HDL_Batch_installerMain.cpp:2062 HDL_Batch_installerMain.cpp:2079
+#: HDL_Batch_installerMain.cpp:2033 HDL_Batch_installerMain.cpp:2050
 msgid ""
 "You need at least two PlayStation 2 formatted HDDs to use this operation!"
 msgstr ""
 "이 작업을 사용하려면 최소 두 개의 플레이스테이션 2 포맷 HDD가 필요합니다!"
+			 
 
-#: HDL_Batch_installerMain.cpp:892
+#: HDDManager.cpp:141
+msgid ""
+"You requested the deletion of a system partition\n"
+"this is not recommended unless you truly understand what you are doing\n"
+"\n"
+"Continue anyways?"
+msgstr ""
+"시스템 파티션 삭제를 요청했습니다.\n"
+"자신이 하는 일을 진정으로 이해하지 않는 한 권장하지 않습니다.\n"
+"\n"
+"어쨌든 계속할까요?"
+
+#: HDL_Batch_installerMain.cpp:906
 msgid ""
 "bin/cue with multiple .bin files are not supported, combine them into a "
 "single bin"
 msgstr ""
+																		   
 "여러 .bin 파일이 있는 bin/cue는 지원되지 않습니다. 단일 bin으로 "
 "결합하세요."
 
-#: HDL_Batch_installerMain.cpp:1020
+#: HDL_Batch_installerMain.cpp:1034
 msgid "can't Load MBR.KELF"
 msgstr "MBR.KELF를 불러올 수 없습니다."
 
-#: HDL_Batch_installerMain.cpp:400
+#: HDL_Batch_installerMain.cpp:411
 msgid "configure program"
 msgstr "프로그램 구성"
 
-#: HDL_Batch_installerMain.cpp:668
+#: HDL_Batch_installerMain.cpp:682
 msgid "discarded"
 msgstr "버려짐"
 
-#: HDL_Batch_installerMain.cpp:71
+#: HDL_Batch_installerMain.cpp:79
 msgid "error"
 msgstr "오류"
 
-#: HDL_Batch_installerMain.cpp:1511
+#: HDL_Batch_installerMain.cpp:1484
 msgid "extracting game..."
 msgstr "게임을 추출하는 중..."
 
-#: HDL_Batch_installerMain.cpp:1369
+#: HDL_Batch_installerMain.cpp:1344
 msgid ""
 "file boot.kelf is too big!\n"
 "\n"
@@ -1015,61 +1212,77 @@ msgstr "https://github.com/israpps/HDL-Batch-installer/releases/tag/Latest"
 msgid "https://www.psx-place.com/resources/hdl-batch-installer.1173/"
 msgstr "https://www.psx-place.com/resources/hdl-batch-installer.1173/"
 
+#: DokanMan.cpp:256
+msgid ""
+"impossible to find dokan enviroment variables.\n"
+"unmount the drive manually by calling:\n"
+msgstr ""
+"Dokan 환경 변수를 찾을 수 없습니다.\n"
+"호출하여 드라이브를 수동으로 마운트 해제합니다:\n"
+
 #: NDBMan.cpp:35
 msgid "install"
 msgstr "설치"
 
-#: HDL_Batch_installerMain.cpp:802
+#: HDL_Batch_installerMain.cpp:816
 msgid "installing: "
 msgstr "설치 중: "
 
-#: HDL_Batch_installerMain.cpp:670
+#: HDL_Batch_installerMain.cpp:684
 msgid "invalid ISO's"
 msgstr "잘못된 ISO"
 
-#: HDL_Batch_installerMain.cpp:631
+#: HDL_Batch_installerMain.cpp:645
 msgid "lz4 Compressed Image Files (*.zso)"
 msgstr "lz4 압축 이미지 (*.zso)"
 
-#: HDL_Batch_installerMain.cpp:734
+#: HDL_Batch_installerMain.cpp:748
 msgid "no PS2 HDD's Found"
 msgstr "PS2 HDD를 찾을 수 없습니다."
 
-#: HDL_Batch_installerMain.cpp:769
+#: HDL_Batch_installerMain.cpp:783
 msgid "no games selected for installation"
 msgstr "설치할 게임이 선택되지 않았습니다."
 
-#: HDL_Batch_installerMain.cpp:877
+#: HDL_Batch_installerMain.cpp:891
 msgid "not a PlayStation 2 HDD."
 msgstr "플레이스테이션 2 HDD가 아닙니다."
 
-#: HDL_Batch_installerMain.cpp:324
+#: HDL_Batch_installerMain.cpp:332
 msgid "size (MB)"
 msgstr "크기 (MB)"
 
-#: DokanMan.cpp:106
+#: DokanMan.cpp:109
 msgid "total"
 msgstr "전체 "
-
-#: HDL_Batch_installerMain.cpp:231
-msgid "total:?GB | Free:?GB"
-msgstr "전체:? GB | 여유:? GB"
 
 #: HDL_Batch_installerApp.cpp:80
 msgid "unknown"
 msgstr "알 수 없음"
 
-#: HDL_Batch_installerMain.cpp:1178
-msgid "used: "
-msgstr "사용됨: "
+#: HDL_Batch_installerMain.cpp:423
+msgid "update OPL Launcher KELF"
+msgstr "OPL 런처 KELF 업데이트"
 
-#: HDL_Batch_installerMain.cpp:72 HDL_Batch_installerMain.cpp:734
+#: HDL_Batch_installerMain.cpp:80 HDL_Batch_installerMain.cpp:748
 msgid "warning"
 msgstr "경고"
 
-#: HDL_Batch_installerMain.cpp:1047
+#: HDL_Batch_installerMain.cpp:1062
 msgid "work in progress"
 msgstr "진행 중인 작업"
+
+#~ msgid "&File"
+#~ msgstr "파일(&F)"
+
+#~ msgid "Total: "
+#~ msgstr "전체: "
+
+#~ msgid "total:?GB | Free:?GB"
+#~ msgstr "전체:? GB | 여유:? GB"
+
+#~ msgid "used: "
+#~ msgstr "사용됨: "
 
 #~ msgid "Contact the developer"
 #~ msgstr "개발자에게 문의하기"
@@ -1079,9 +1292,6 @@ msgstr "진행 중인 작업"
 
 #~ msgid "https://github.com/israpps"
 #~ msgstr "https://github.com/israpps"
-
-#~ msgid "Calculate MD5 hash"
-#~ msgstr "MD5 해시 계산"
 
 #~ msgid ""
 #~ "HDL Batch Installer Has a game title database holding almost 15000 game "
@@ -1096,6 +1306,10 @@ msgstr "진행 중인 작업"
 #~ msgstr ""
 #~ "HDL 배치 설치 프로그램은 거의 15,000개의 게임 타이틀을 포함하는 게임 타이틀 "
 #~ "데이터베이스가 있습니다 (해당 ID와 연결됨).\n"
+			   
+	   
+																			
+												
 #~ "\n"
 #~ "이 프로그램은 데이터베이스에 등록되지 않은 설치한 모든 게임에 대한 "
 #~ "정보를 수집할 수 있습니다.\n"
@@ -1103,11 +1317,6 @@ msgstr "진행 중인 작업"
 #~ " 프로그램이 등록되지 않은 게임을 보고할 수 있도록 데이터베이스와 "
 #~ "협력하시겠습니까?\n"
 #~ "개인 정보는 수집하지 않으며, 게임 ID만 수집합니다."
-
-#, fuzzy
-#~| msgid "Show Partition table"
-#~ msgid "APA Partition is broken"
-#~ msgstr "파티션 테이블 표시"
 
 #, fuzzy
 #~| msgid "Mount hdd Partition"
@@ -1236,9 +1445,6 @@ msgstr "진행 중인 작업"
 
 #~ msgid "Modify Game"
 #~ msgstr "게임 수정"
-
-#~ msgid "Format"
-#~ msgstr "형식"
 
 #~ msgid "ART Manager"
 #~ msgstr "삽화 관리자"
