@@ -1,3 +1,13 @@
+08 June 2023
+   [v3.5.0 - Revision 2]
+
+     Change log:
+        -Partiton creation dialog: Added bussy cursor and messages in partition creation success or error
+        -PFSShell Features: Blocked on 32bit compilations untill further notice (error during I/O corrupts HDD randomly)
+        -Translation: Russian translation by @stanlapru
+        -Translation: Korean translation by @DDinghoya 
+        -Dokan download link: Updated URL to latest release due to usage of newer pfsfuse
+
 12 February 2023
    [v3.5.0 - Revision 1]
 

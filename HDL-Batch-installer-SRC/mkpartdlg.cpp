@@ -2,7 +2,7 @@
 #include <iostream>
 #include <iomanip>
 #include "PFSShell.h"
-
+#include <wx/msgdlg.h>
 extern PFSShell PFSSHELL;
 
 //(*InternalHeaders(mkpartdlg)
@@ -87,10 +87,16 @@ mkpartdlg::~mkpartdlg()
 
 void mkpartdlg::OnmkpartClick(wxCommandEvent& event)
 {
+    wxBeginBusyCursor();
     unsigned long val = HDDSize->GetValue();
+    int ret;
     val = val*128;
     val = NORMALIZE_APA_SIZE(val);
-    PFSSHELL.mkpart(PARTName->GetValue().mb_str(), val, "PFS");
+    ret = PFSSHELL.mkpart(PARTName->GetValue().mb_str(), val, "PFS");
+    std::cout << "returned " << ret << "\n";
+    if (ret == 0 ) wxMessageBox(_("Partition Creation was successfull"), wxMessageBoxCaptionStr, wxICON_INFORMATION);
+    else wxMessageBox(_("Partition Creation Failed!\nPlease check log to find more information..."), wxMessageBoxCaptionStr, wxICON_ERROR);
+    wxEndBusyCursor();
 }
 
 void mkpartdlg::OnSlider1CmdScrollChanged(wxScrollEvent& event)

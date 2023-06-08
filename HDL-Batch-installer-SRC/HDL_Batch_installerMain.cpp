@@ -25,6 +25,9 @@
 #include "MD5Man.h"
 #include "PFSShell.h"
 
+#define PFSSHELL_DISABLED_WARNING() wxMessageBox(_("HDD Management features are temporarily disabled on 32bit versions because it can cause HDD corruption"), warning_caption, wxICON_WARNING)
+#define PFSSHELL_ALLOWED_INT 0
+#define PFSSHELL_ALLOWED ((BITS != 32) || (PFSSHELL_ALLOWED_INT == 1))
 using namespace std;
 bool first_init = false;
 
@@ -583,9 +586,9 @@ void HDL_Batch_installerFrame::OnAbout(wxCommandEvent& event)
                AutoVersion::BUILD,
                AutoVersion::STATUS,
 #if (BITS == 32)
-               "-[32 bits]",
+               "32 bits",
 #elif (BITS == 64)
-               "-[64 bits]",
+               "64 bits",
 #endif
                AutoVersion::REVISION,
                AutoVersion::DATE,
@@ -790,7 +793,9 @@ void HDL_Batch_installerFrame::OninstallClick(wxCommandEvent& event)
         ask_2_download_icons();
         wxBeginBusyCursor();
     }
+#if PFSSHELL_ALLOWED
     PFSSHELL.CloseDevice(); //PFSShell with device attached will make HDL Dump write features crash
+#endif
     std::cout <<"game count: "<< original_item_count<<std::endl;
     cout << "> begining installation...\n";
     install_progress = new wxProgressDialog(_("Installing"), wxEmptyString, original_item_count, this, wxPD_APP_MODAL|wxPD_ELAPSED_TIME|wxPD_SMOOTH|wxPD_AUTO_HIDE);
@@ -1126,8 +1131,11 @@ void HDL_Batch_installerFrame::Enable_HDD_dependant_objects(bool WTF_should_I_do
         mass_header_injection->Enable();
         MBRExtractRequest->Enable();
         FUSE->Enable();
+#if PFSSHELL_ALLOWED
         HDDManagerButton->Enable(PFSSHELL_USABLE);
-
+#else
+        HDDManagerButton->Enable(true);
+#endif
         ///this one has nothing to do
         Installed_game_list->DeleteAllItems();
     }
@@ -1196,7 +1204,7 @@ void HDL_Batch_installerFrame::Update_hdd_data(void)
                                     (size_free > 1024) ? (size_free / 1024) : size_free,
                                     (size_free > 1024) ? ("Gb") : "Mb"
                                                     ));
-
+#if PFSSHELL_ALLOWED
         std::cout << "initializing libPS2HDD...\n";
         if (!PFSSHELL.SelectDevice(HDD_TOKEN.c_str()))
         {
@@ -1207,6 +1215,7 @@ void HDL_Batch_installerFrame::Update_hdd_data(void)
         }
         PFSSHELL.CloseDevice();
         MenuHDDFormat->Enable(PFSSHELL_USABLE);
+#endif
         Enable_HDD_dependant_objects(true); //re-enable & clean installed game list
     }
     else
@@ -1290,9 +1299,13 @@ void HDL_Batch_installerFrame::On_MiniOPL_Update_request(wxCommandEvent& event)
 
 void HDL_Batch_installerFrame::OnButton2Click3(wxCommandEvent& event)
 {
+#if PFSSHELL_ALLOWED
     HDDManager *MANAGER = new HDDManager(this, HDD_TOKEN);
     MANAGER->ShowModal();
     delete MANAGER;
+#else
+    PFSSHELL_DISABLED_WARNING();
+#endif
 }
 
 void HDL_Batch_installerFrame::OnHDL_DumpUpdateRequest(wxCommandEvent& event)
@@ -1780,7 +1793,7 @@ void HDL_Batch_installerFrame::OnButton4Click(wxCommandEvent& event)
                 wxString::Format(_("Can't find the enviroment variables \"%s\" or \"%s\" used to locate the Dokan Library\n\n It seems like Dokan was unproperly installed (or it isn't installed)\n\nGo to Dokan download website?"),DOKAN_ENV, DOKAN_ENV2)
                 ,error_caption,
                 wxICON_ERROR|wxYES_NO
-            )==wxYES) wxLaunchDefaultBrowser("https://github.com/dokan-dev/dokany/releases/tag/v1.5.1.1000");
+            )==wxYES) wxLaunchDefaultBrowser("https://github.com/dokan-dev/dokany/releases");
 
         return;
     }
@@ -2115,9 +2128,13 @@ int wxCALLBACK hdlbinst_listctrl_compare(wxIntPtr item1, wxIntPtr item2, wxIntPt
 
 void HDL_Batch_installerFrame::OnHDDFormatMenuRequest(wxCommandEvent& event)
 {
+#if PFSSHELL_ALLOWED
     HDDFomatMan *MAN = new HDDFomatMan(this);
     MAN->ShowModal();
     delete MAN;
+#else
+    PFSSHELL_DISABLED_WARNING();
+#endif
 }
 
 void HDL_Batch_installerFrame::OnRedump_searchSelected(wxCommandEvent& event)
