@@ -1,3 +1,9 @@
+21 July 2023
+   [v3.5.0 - Revision 3]
+
+     Change log:
+        -Program startup: If program is running for first time and OS is windows 11. warn about ransomware false positives caused due to RAW HDD I/O when reading PS2 HDDs
+
 08 June 2023
    [v3.5.0 - Revision 2]
 

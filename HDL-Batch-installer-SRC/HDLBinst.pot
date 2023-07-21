@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-08 16:10-0300\n"
+"POT-Creation-Date: 2023-07-21 00:09-0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -16,6 +16,14 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
+
+#: _obj/32-bits/HDL-Batch-installer-SRC/gamename/database.cpp:22377
+msgid "\f"
+msgstr ""
+
+#: _obj/32-bits/HDL-Batch-installer-SRC/gamename/database.cpp:22263
+msgid "\f\f"
+msgstr ""
 
 #: HDL_Batch_installerMain.cpp:411
 msgid "&Main"
@@ -1009,6 +1017,21 @@ msgstr ""
 
 #: ArtMan.cpp:111
 msgid "Widescreen hacks for OPL"
+msgstr ""
+
+#: HDL_Batch_installerApp.cpp:233
+msgid ""
+"Windows 11 and some anti-virus software will detect HDL-Batch-Installer and "
+"underlying tools as ransomware due to accessing PS2 HDDs via RAW I/O "
+"(Because windows does not understand their format)\n"
+"If game installation gives error 5, some issue related with permissions or "
+"\"disk is not ready\" please consider whitelisting on your defender/AV the "
+"HDL batch installer exe, along with HDL.EXE and pfsfuse.exe from program "
+"folder."
+msgstr ""
+
+#: HDL_Batch_installerApp.cpp:237
+msgid "Windows 11 detected"
 msgstr ""
 
 #: CopyHDD.cpp:85

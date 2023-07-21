@@ -18941,7 +18941,7 @@
 	<wx/statline.h>
 	<wx/stattext.h>
 
-1676243948 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\version.h
+1689907689 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\version.h
 
 1587560968 c:\libs\wxwidgets-3.0.5\include\wx\dialog.h
 	"wx/toplevel.h"
@@ -21445,7 +21445,7 @@
 1587560968 c:\libs\wxwidgets-3.0.5\include\wx\univ\theme.h
 	"wx/string.h"
 
-1674915380 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\include\locale_table.h
+1689907689 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\include\locale_table.h
 	<wx/string.h>
 	<wx/language.h>
 	<wx/debug.h>
@@ -21833,7 +21833,7 @@
 	"wx/protocol/protocol.h"
 	"wx/buffer.h"
 
-1676242369 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installermain.cpp
+1689907689 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installermain.cpp
 	"HDL_Batch_installerMain.h"
 	"About.h"
 	"Config.h"
@@ -25548,11 +25548,12 @@
 	<wx/stattext.h>
 	<wx/textctrl.h>
 
-1676242122 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\mkpartdlg.cpp
+1689907689 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\mkpartdlg.cpp
 	"mkpartdlg.h"
 	<iostream>
 	<iomanip>
 	"PFSShell.h"
+	<wx/msgdlg.h>
 	<wx/intl.h>
 	<wx/string.h>
 

@@ -33,10 +33,9 @@ bool HDL_Batch_installerApp::OnInit()
     std::cout <<"HDLBINST_APPDATA ["<< HDLBINST_APPDATA <<"]\n";
     if (!wxDirExists(HDLBINST_APPDATA))
         wxMkDir(HDLBINST_APPDATA);
-    if (!wxFileExists("Common\\tinmft.sys"))
-    {
-        first_time=true;
-    }
+
+        first_time = (!wxFileExists("Common\\tinmft.sys"));
+
     int fake_argc = wxTheApp->argc;
     wxString fake_argv[fake_argc], svr_ver;
     wxArrayString unused_buffer;
@@ -221,8 +220,23 @@ bool HDL_Batch_installerApp::OnInit()
         wxFile A("Common\\tinmft.sys",wxFile::write);
         A.Write("What are you looking for?\n");
         A.Close();
+        wxExecute("wmic os get Caption", unused_buffer, wxEXEC_ASYNC);
+        for (size_t x = 0; x < unused_buffer.GetCount(); x++)
+        {
+            if (unused_buffer.Item(x).Contains("Windows 11"))
+            {
+                COLOR(0c)
+                std::cout << "-- winver: " << unused_buffer.Item(x) << "\n";
+                COLOR(07)
+                wxMessageBox(_("Windows 11 and some anti-virus software will detect HDL-Batch-Installer and underlying tools as ransomware "
+                            "due to accessing PS2 HDDs via RAW I/O (Because windows does not understand their format)\n"
+                            "If game installation gives error 5, some issue related with permissions or \"disk is not ready\" "
+                            "please consider whitelisting on your defender/AV the HDL batch installer exe, along with HDL.EXE and pfsfuse.exe "
+                            "from program folder."), _("Windows 11 detected"), wxICON_WARNING);
+                break;
+            }
+        }
     }
-
     delete main_config;
     Frame->Show();
     SetTopWindow(Frame);

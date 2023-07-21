@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: HDL Batch Installer v3.5.0 - Revision 0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-06-08 16:10-0300\n"
-"PO-Revision-Date: 2023-06-08 16:13-0300\n"
+"POT-Creation-Date: 2023-07-21 00:09-0300\n"
+"PO-Revision-Date: 2023-07-21 00:17-0300\n"
 "Last-Translator: \n"
 "Language-Team: El_isra\n"
 "Language: es\n"
@@ -16,7 +16,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 2.4.2\n"
+"X-Generator: Poedit 3.2.2\n"
+
+#: _obj/32-bits/HDL-Batch-installer-SRC/gamename/database.cpp:22377
+msgid "\f"
+msgstr "\f"
+
+#: _obj/32-bits/HDL-Batch-installer-SRC/gamename/database.cpp:22263
+msgid "\f\f"
+msgstr "\f\f"
 
 #: HDL_Batch_installerMain.cpp:411
 msgid "&Main"
@@ -949,8 +957,8 @@ msgid ""
 "Otherwise... There might be risk of HDD Damage"
 msgstr ""
 "Esta es la primera vez que usas el servidor NBD\n"
-"Ten en mente que debes desconectar el servidor NBD tras terminar de usarlo"
-"\vDe lo contrario... Habrá riesgo de daño al HDD"
+"Ten en mente que debes desconectar el servidor NBD tras terminar de "
+"usarlo\vDe lo contrario... Habrá riesgo de daño al HDD"
 
 #: HDL_Batch_installerMain.cpp:1785
 msgid ""
@@ -1117,6 +1125,30 @@ msgstr ""
 msgid "Widescreen hacks for OPL"
 msgstr "Hacks de pantalla panoramica para OPL"
 
+#: HDL_Batch_installerApp.cpp:233
+msgid ""
+"Windows 11 and some anti-virus software will detect HDL-Batch-Installer and "
+"underlying tools as ransomware due to accessing PS2 HDDs via RAW I/O "
+"(Because windows does not understand their format)\n"
+"If game installation gives error 5, some issue related with permissions or "
+"\"disk is not ready\" please consider whitelisting on your defender/AV the "
+"HDL batch installer exe, along with HDL.EXE and pfsfuse.exe from program "
+"folder."
+msgstr ""
+"Windows 11 y algunos antivirus creerán que HDL batch installer y las "
+"herramientas que lo acompañan son Ransomware, este falso positivo se debe a "
+"que el programa realiza lecturas crudas del disco duro de PS2 (es necesario "
+"porque Windows no entiende del formato del HDD interno de PS2)\n"
+"Si la instalación de los juegos falla con error numero 5, o alguno otro "
+"relacionado a permisos, o el error de \"el disco no esta listo\". por favor, "
+"considera añadir el HDL batch installer asi como los archivos HDL.EXE y "
+"pfsfuse.exe del paquete a las excepciones de tus antivirus y de Windows "
+"defender."
+
+#: HDL_Batch_installerApp.cpp:237
+msgid "Windows 11 detected"
+msgstr "Windows 11 detectado"
+
 #: CopyHDD.cpp:85
 msgid "You can't transfer games from one HDD into the same HDD!"
 msgstr "No podes transferir juegos desde un HDD al mismo HDD!"
@@ -1257,12 +1289,6 @@ msgstr " Advertencia"
 #: HDL_Batch_installerMain.cpp:1066
 msgid "work in progress"
 msgstr "trabajo en curso"
-
-#~ msgid "\f"
-#~ msgstr "\f"
-
-#~ msgid "\f\f"
-#~ msgstr "\f\f"
 
 #~ msgid "MBR Partition is vital for HDD"
 #~ msgstr "La partición MBR es vital para el HDD"
