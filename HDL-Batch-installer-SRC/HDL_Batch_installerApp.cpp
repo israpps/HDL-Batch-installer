@@ -34,7 +34,7 @@ bool HDL_Batch_installerApp::OnInit()
     if (!wxDirExists(HDLBINST_APPDATA))
         wxMkDir(HDLBINST_APPDATA);
 
-        first_time = (!wxFileExists("Common\\tinmft.sys"));
+    first_time = (!wxFileExists("Common\\tinmft.sys"));
 
     int fake_argc = wxTheApp->argc;
     wxString fake_argv[fake_argc], svr_ver;
