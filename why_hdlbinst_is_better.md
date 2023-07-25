@@ -31,7 +31,7 @@ i´ll list it´s strengths compared to other programs:
   </tr>
   <tr>
     <td style="color:Tomato;"><b>Abandoned</b> project </td>
-    <td style="color:MediumSeaGreen;">Project on <b>active development</b> (Even if this GUI Get´s abandoned, you can update HDLDump</td>
+    <td style="color:MediumSeaGreen;">Project on <b>active development</b> (Even if this GUI Get´s abandoned, you can update HDLDump)</td>
     <td style="color:Tomato;"><b>Abandoned</b> project </td>
     <td style="color:Tomato;"><b>Abandoned</b> project </td>
   </tr>
@@ -87,8 +87,20 @@ i´ll list it´s strengths compared to other programs:
   <tr>
     <td style="color:Tomato;"><b>Can't hide</b> games from HDD-OSD/PS2BBN </td>
     <td style="color:MediumSeaGreen;">Capable of hiding games from HDD-OSD/PS2BBN</td>
-	<td style="color:Tomato;"><b>Can't hide</b> games from HDD-OSD/PS2BBN </td>
-	<td style="color:Tomato;"><b>Can't hide</b> games from HDD-OSD/PS2BBN </td>
+    <td style="color:Tomato;"><b>Can't hide</b> games from HDD-OSD/PS2BBN </td>
+    <td style="color:Tomato;"><b>Can't hide</b> games from HDD-OSD/PS2BBN </td>
+  </tr>
+  <tr>
+    <td style="color:MediumSeaGreen;">can format HDD into PS2 format</td>
+    <td style="color:MediumSeaGreen;">can format HDD into PS2 format</td>
+    <td style="color:Tomato;">Can't format HDD into PS2 format</td>
+    <td style="color:Tomato;">Can't format HDD into PS2 format</td>
+  </tr>
+  <tr>
+    <td style="color:Tomato;">can't browse partitions contents from windows explorer</td>
+    <td style="color:MediumSeaGreen;">can browse partitions contents from windows explorer</td>
+    <td style="color:Tomato;">can't browse partitions contents from windows explorer</td>
+    <td style="color:Tomato;">can't browse partitions contents from windows explorer</td>
   </tr>
 </table>
 <!--
