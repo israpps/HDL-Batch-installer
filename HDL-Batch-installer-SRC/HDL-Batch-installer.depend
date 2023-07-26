@@ -20766,7 +20766,7 @@
 	"wx/defs.h"
 	"wx/window.h"
 
-1690337002 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\config.cpp
+1690338635 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\config.cpp
 	"Config.h"
 	"include/locale_table.h"
 	<wx/font.h>
