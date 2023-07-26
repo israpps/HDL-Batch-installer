@@ -176,7 +176,7 @@ void HDDManager::UpdateList(void)
     for (size_t x=0; x<PART_LIST.size(); x++)
     {
         bool is_subpartition = (PART_LIST[x].stat.attr == 1);
-        if ((is_subpartition) && (DISPLAY_SUB_PARTITIONS))
+        if ((is_subpartition) && (!DISPLAY_SUB_PARTITIONS))
             continue;
         std::cout << PART_LIST[x].name << std::endl;
         long itemIndex = PARTList->InsertItem(PARTLIST_ITEMS::START_SECTOR, wxString::Format("%#8x",PART_LIST[x].stat.private_5) );// col. 1

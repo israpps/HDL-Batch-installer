@@ -1,3 +1,12 @@
+26 July 2023
+   [v3.5.1 - Revision 0]
+
+     Change log:
+        -UI: Add resizing capabilities to every dialog save credits and component error
+        -HDDManager: Allow to disable game title display via configuration (enabled by default)
+        -HDDManager: Dont display Sub-Partitions by default (also customizable on configuration)
+        -ART Download: Dont display download gauge on fast download 
+
 21 July 2023
    [v3.5.0 - Revision 3]
 

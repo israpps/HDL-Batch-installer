@@ -108,6 +108,7 @@
 														<object class="sizeritem">
 															<object class="wxCheckBox" name="ID_CHECKBOX7" variable="HDDManagerGPD" member="yes">
 																<label>Display game title on HDDManager</label>
+																<checked>1</checked>
 																<tooltip>if this is enabled, game partitions will show up on HDDManager.&#x0A;&#x0A;Disable this to speed up the program when opening HDDManager on large HDDs full of games</tooltip>
 															</object>
 															<flag>wxALL|wxEXPAND</flag>

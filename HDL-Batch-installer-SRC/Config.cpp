@@ -105,7 +105,7 @@ Config::Config(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& s
     AllowExperimental->SetValue(false);
     GridSizer1->Add(AllowExperimental, 1, wxALL|wxEXPAND, 5);
     HDDManagerGPD = new wxCheckBox(Panel1, ID_CHECKBOX7, _("Display game title on HDDManager"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX7"));
-    HDDManagerGPD->SetValue(false);
+    HDDManagerGPD->SetValue(true);
     HDDManagerGPD->SetToolTip(_("if this is enabled, game partitions will show up on HDDManager.\n\nDisable this to speed up the program when opening HDDManager on large HDDs full of games"));
     GridSizer1->Add(HDDManagerGPD, 1, wxALL|wxEXPAND, 5);
     HDDManagerSubPartDSP = new wxCheckBox(Panel1, ID_CHECKBOX8, _("Display sub-partitions on HDDManager"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX8"));
