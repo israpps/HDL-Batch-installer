@@ -14,7 +14,7 @@ class HDDManager: public wxDialog
 {
 	public:
 
-		HDDManager(wxWindow* parent, std::string HDDTOK,wxWindowID id=wxID_ANY,const wxPoint& pos=wxDefaultPosition,const wxSize& size=wxDefaultSize);
+		HDDManager(wxWindow* parent, std::string HDDTOK, bool DGT, bool DSP, wxWindowID id=wxID_ANY,const wxPoint& pos=wxDefaultPosition,const wxSize& size=wxDefaultSize);
 		virtual ~HDDManager();
 
 		//(*Declarations(HDDManager)
@@ -34,6 +34,8 @@ class HDDManager: public wxDialog
 
 	private:
         std::string HDD_TOKEN;
+        bool        DISPLAY_GAME_TITLE;
+        bool        DISPLAY_SUB_PARTITIONS;
         std::vector<iox_dirent_t> PART_LIST;
 		//(*Handlers(HDDManager)
 		void OnPARTListBeginDrag(wxListEvent& event);

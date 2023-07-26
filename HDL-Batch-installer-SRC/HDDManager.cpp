@@ -33,8 +33,8 @@ enum PARTLIST_ITEMS {
     TYPE,
     GAME_TITLE,
 };
-HDDManager::HDDManager(wxWindow* parent, std::string HDDTOK,wxWindowID id,const wxPoint& pos,const wxSize& size):
-    HDD_TOKEN(HDDTOK)
+HDDManager::HDDManager(wxWindow* parent, std::string HDDTOK, bool DGT, bool DSP, wxWindowID id,const wxPoint& pos,const wxSize& size):
+    HDD_TOKEN(HDDTOK), DISPLAY_GAME_TITLE(DGT), DISPLAY_SUB_PARTITIONS(DSP)
 {
 	//(*Initialize(HDDManager)
 	wxBoxSizer* BoxSizer1;
@@ -175,6 +175,10 @@ void HDDManager::UpdateList(void)
     wxArrayString ARR;
     for (size_t x=0; x<PART_LIST.size(); x++)
     {
+        bool is_subpartition = (PART_LIST[x].stat.attr == 1);
+        if ((is_subpartition) && (DISPLAY_SUB_PARTITIONS))
+            continue;
+        std::cout << PART_LIST[x].name << std::endl;
         long itemIndex = PARTList->InsertItem(PARTLIST_ITEMS::START_SECTOR, wxString::Format("%#8x",PART_LIST[x].stat.private_5) );// col. 1
         PARTList->SetItem(itemIndex, PARTLIST_ITEMS::NAME, PART_LIST[x].name); // col. 2
         PARTList->SetItem(itemIndex, PARTLIST_ITEMS::PARTSIZE, wxString::Format("%uMB",PART_LIST[x].stat.size / 2048)); // col. 3
@@ -219,8 +223,9 @@ void HDDManager::UpdateList(void)
             PARTList->SetItemTextColour(itemIndex, *wxRED);
             break;
         }
+        if (is_subpartition) TMP += "-(SUBPART)";
         PARTList->SetItem(itemIndex, PARTLIST_ITEMS::TYPE, TMP); // col. 4
-        if (PART_LIST[x].stat.mode == PARTITION_TYPE::HDL)
+        if ((PART_LIST[x].stat.mode == PARTITION_TYPE::HDL && (!is_subpartition)) && DISPLAY_GAME_TITLE) //display game title ONLY if this is a game partition index, and if enabled
         {
             cmd = wxString::Format("HDL.EXE info hdd%s: %s", HDD_TOKEN.substr(strlen("\\\\.\\PHYSICALDRIVE")), PART_LIST[x].name);
             std::cout << cmd << "\n";

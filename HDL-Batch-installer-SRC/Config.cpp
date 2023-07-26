@@ -23,8 +23,10 @@ const long Config::ID_COMBOBOX1 = wxNewId();
 const long Config::ID_CHECKBOX1 = wxNewId();
 const long Config::ID_CHECKBOX2 = wxNewId();
 const long Config::ID_CHECKBOX4 = wxNewId();
-const long Config::ID_CHECKBOX5 = wxNewId();
 const long Config::ID_CHECKBOX6 = wxNewId();
+const long Config::ID_CHECKBOX7 = wxNewId();
+const long Config::ID_CHECKBOX8 = wxNewId();
+const long Config::ID_CHECKBOX5 = wxNewId();
 const long Config::ID_RADIOBUTTON1 = wxNewId();
 const long Config::ID_RADIOBUTTON2 = wxNewId();
 const long Config::ID_DIRPICKERCTRL1 = wxNewId();
@@ -99,15 +101,23 @@ Config::Config(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& s
     CUSTOM_ICONS = new wxCheckBox(Panel1, ID_CHECKBOX4, _("Custom Icon Loader"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX4"));
     CUSTOM_ICONS->SetValue(true);
     GridSizer1->Add(CUSTOM_ICONS, 1, wxALL|wxEXPAND, 5);
+    AllowExperimental = new wxCheckBox(Panel1, ID_CHECKBOX6, _("Allow unstable/experimental features"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX6"));
+    AllowExperimental->SetValue(false);
+    GridSizer1->Add(AllowExperimental, 1, wxALL|wxEXPAND, 5);
+    HDDManagerGPD = new wxCheckBox(Panel1, ID_CHECKBOX7, _("Display game title on HDDManager"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX7"));
+    HDDManagerGPD->SetValue(false);
+    HDDManagerGPD->SetToolTip(_("if this is enabled, game partitions will show up on HDDManager.\n\nDisable this to speed up the program when opening HDDManager on large HDDs full of games"));
+    GridSizer1->Add(HDDManagerGPD, 1, wxALL|wxEXPAND, 5);
+    HDDManagerSubPartDSP = new wxCheckBox(Panel1, ID_CHECKBOX8, _("Display sub-partitions on HDDManager"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX8"));
+    HDDManagerSubPartDSP->SetValue(false);
+    HDDManagerSubPartDSP->SetToolTip(_("Useless unless you\'re an experienced user with a decent knoledge of APA scheme"));
+    GridSizer1->Add(HDDManagerSubPartDSP, 1, wxALL|wxEXPAND, 5);
     DATA_COLLECTION = new wxCheckBox(Panel1, ID_CHECKBOX5, _("Data Collection"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX5"));
     DATA_COLLECTION->SetValue(false);
     DATA_COLLECTION->Disable();
     DATA_COLLECTION->Hide();
     DATA_COLLECTION->SetToolTip(_("When this Feature is enabled, the program will send information to it\'s creator every time it installs a game whose region code isn\'t registered in the database"));
     GridSizer1->Add(DATA_COLLECTION, 1, wxALL|wxEXPAND, 5);
-    AllowExperimental = new wxCheckBox(Panel1, ID_CHECKBOX6, _("Allow unstable/experimental features"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX6"));
-    AllowExperimental->SetValue(false);
-    GridSizer1->Add(AllowExperimental, 1, wxALL|wxEXPAND, 5);
     FlexGridSizer4->Add(GridSizer1, 1, wxALL|wxEXPAND, 5);
     StaticBoxSizer4 = new wxStaticBoxSizer(wxHORIZONTAL, Panel1, _("Title Database"));
     gndb_intern = new wxRadioButton(Panel1, ID_RADIOBUTTON1, _("Internal"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_RADIOBUTTON1"));
@@ -193,7 +203,11 @@ Config::Config(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& s
     CUSTOM_ICONS->SetValue(CFGT.custom_icons);
     main_config->Read("Installation/inform_unknown_ID", &CFGT.collect_onkown_games_ID, false);
     DATA_COLLECTION->SetValue(CFGT.collect_onkown_games_ID);
-    main_config->Read("NBD/Default_IP",                 &CFGT.NBD_IP, "");
+    main_config->Read("HDDManager/display_games_titles",&CFGT.HDDManagerGameTitleDISP, true);
+    HDDManagerGPD->SetValue(CFGT.HDDManagerGameTitleDISP);
+    main_config->Read("HDDManager/display_subpartition",&CFGT.HDDManagerDisplaySubpart, false);
+    HDDManagerGPD->SetValue(CFGT.HDDManagerDisplaySubpart);
+
     main_config->Read("FEATURES/allow_experimental",    &CFGT.allow_experimental, false);
     delete main_config;
 }
@@ -241,6 +255,8 @@ void Config::SaveSettings()
     CFGT.FUSE.default_OPLPART       	= OPLPART->GetValue();
     CFGT.FUSE.mountpoint            	= MountPoint->GetString(MountPoint->GetSelection());
     CFGT.allow_experimental             = AllowExperimental->GetValue();
+    CFGT.HDDManagerGameTitleDISP        = HDDManagerGPD->GetValue();
+    CFGT.HDDManagerDisplaySubpart       = HDDManagerSubPartDSP->GetValue();
 
     //main_config->Write("Init/Debug_level", CFGT.debug_level);                   std::cout <<"debug_level=" << CFGT.debug_level<<std::endl;
     main_config->Write("Game_search/Default_iso_path", CFGT.Default_iso_path);
@@ -269,6 +285,10 @@ void Config::SaveSettings()
     std::cout <<"Default_IP="<<CFGT.NBD_IP<<std::endl;
     main_config->Write("FEATURES/allow_experimental",CFGT.allow_experimental);
     std::cout <<"allow_experimental_features="<<CFGT.allow_experimental<<std::endl;
+    main_config->Write("HDDManager/display_games_titles",CFGT.HDDManagerGameTitleDISP);
+    std::cout <<"dislay game title on HDDManager="<<CFGT.HDDManagerGameTitleDISP<<std::endl;
+    main_config->Write("HDDManager/display_subpartition",CFGT.HDDManagerDisplaySubpart);
+    std::cout <<"dislay sub-partitions on HDDManager="<<CFGT.HDDManagerDisplaySubpart<<std::endl;
 
     std::cout << "> flushing settings handler and forcing file writing\n";
     main_config->Flush();//force data writing

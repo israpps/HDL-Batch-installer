@@ -48,6 +48,8 @@ wxString    NBD_IP;
 bool        SHARE_DATA;
 bool        DISPATCH_SYSTEM_NOTIFICATIONS;
 bool        ALLOW_EXPERIMENTAL;
+bool        HDDManagerGameTitleDISP;
+bool        HDDManagerSubPartDSP;
 //    bool        UPDATE_AVAILABLE = false;
 //    bool        UPDATE_WARNINGS;
 }
@@ -960,8 +962,10 @@ void HDL_Batch_installerFrame::OnPaint(wxPaintEvent& event)
         main_config->Read("FUSE/default_mountpoint", &CFG::mountpoint, "X");
         main_config->Read("FUSE/opl_partition", &CFG::default_OPLPART, "+OPL");
         main_config->Read("Installation/inform_unknown_ID", &CFG::SHARE_DATA, false);
-        main_config->Read("NBD/Default_IP", &CFG::NBD_IP, "");
+        main_config->Read("HDDManager/display_games_titles", &CFG::HDDManagerGameTitleDISP, true);
+        main_config->Read("HDDManager/display_subpartition", &CFG::HDDManagerSubPartDSP, false);
         main_config->Read("FEATURES/allow_experimental", &CFG::ALLOW_EXPERIMENTAL, false);
+
 //        main_config->Read("Init/Check_for_Updates",&CFG::UPDATE_WARNINGS,false);
         COLOR(08)
         cout <<"database mode="     << CFG::DBMODE                                     <<endl;
@@ -1270,7 +1274,7 @@ void HDL_Batch_installerFrame::On_MiniOPL_Update_request(wxCommandEvent& event)
 void HDL_Batch_installerFrame::OnButton2Click3(wxCommandEvent& event)
 {
 #if PFSSHELL_ALLOWED
-    HDDManager *MANAGER = new HDDManager(this, HDD_TOKEN);
+    HDDManager *MANAGER = new HDDManager(this, HDD_TOKEN, CFG::HDDManagerGameTitleDISP, CFG::HDDManagerSubPartDSP);
     MANAGER->ShowModal();
     delete MANAGER;
 #else

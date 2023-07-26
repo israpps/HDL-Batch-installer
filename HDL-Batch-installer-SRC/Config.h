@@ -42,6 +42,8 @@ public:
     wxCheckBox* AllowExperimental;
     wxCheckBox* CUSTOM_ICONS;
     wxCheckBox* DATA_COLLECTION;
+    wxCheckBox* HDDManagerGPD;
+    wxCheckBox* HDDManagerSubPartDSP;
     wxCheckBox* check_updates;
     wxCheckBox* miniopl_warning;
     wxCheckBox* osd_hide_settings;
@@ -65,8 +67,10 @@ protected:
     static const long ID_CHECKBOX1;
     static const long ID_CHECKBOX2;
     static const long ID_CHECKBOX4;
-    static const long ID_CHECKBOX5;
     static const long ID_CHECKBOX6;
+    static const long ID_CHECKBOX7;
+    static const long ID_CHECKBOX8;
+    static const long ID_CHECKBOX5;
     static const long ID_RADIOBUTTON1;
     static const long ID_RADIOBUTTON2;
     static const long ID_DIRPICKERCTRL1;
@@ -127,6 +131,8 @@ struct config_t
     bool        custom_icons;
     bool        collect_onkown_games_ID;
     bool        allow_experimental;
+    bool        HDDManagerGameTitleDISP;
+    bool        HDDManagerDisplaySubpart;
     fuse_t      FUSE;
     wxString    NBD_IP;
 };

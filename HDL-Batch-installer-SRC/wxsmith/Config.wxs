@@ -97,20 +97,38 @@
 															<option>1</option>
 														</object>
 														<object class="sizeritem">
-															<object class="wxCheckBox" name="ID_CHECKBOX5" variable="DATA_COLLECTION" member="yes">
-																<label>Data Collection</label>
-																<enabled>0</enabled>
-																<hidden>1</hidden>
-																<tooltip>When this Feature is enabled, the program will send information to it&apos;s creator every time it installs a game whose region code isn&apos;t registered in the database</tooltip>
+															<object class="wxCheckBox" name="ID_CHECKBOX6" variable="AllowExperimental" member="yes">
+																<label>Allow unstable/experimental features</label>
+																<handler function="OnCheckBox1Click" entry="EVT_CHECKBOX" />
 															</object>
 															<flag>wxALL|wxEXPAND</flag>
 															<border>5</border>
 															<option>1</option>
 														</object>
 														<object class="sizeritem">
-															<object class="wxCheckBox" name="ID_CHECKBOX6" variable="AllowExperimental" member="yes">
-																<label>Allow unstable/experimental features</label>
-																<handler function="OnCheckBox1Click" entry="EVT_CHECKBOX" />
+															<object class="wxCheckBox" name="ID_CHECKBOX7" variable="HDDManagerGPD" member="yes">
+																<label>Display game title on HDDManager</label>
+																<tooltip>if this is enabled, game partitions will show up on HDDManager.&#x0A;&#x0A;Disable this to speed up the program when opening HDDManager on large HDDs full of games</tooltip>
+															</object>
+															<flag>wxALL|wxEXPAND</flag>
+															<border>5</border>
+															<option>1</option>
+														</object>
+														<object class="sizeritem">
+															<object class="wxCheckBox" name="ID_CHECKBOX8" variable="HDDManagerSubPartDSP" member="yes">
+																<label>Display sub-partitions on HDDManager</label>
+																<tooltip>Useless unless you&apos;re an experienced user with a decent knoledge of APA scheme</tooltip>
+															</object>
+															<flag>wxALL|wxEXPAND</flag>
+															<border>5</border>
+															<option>1</option>
+														</object>
+														<object class="sizeritem">
+															<object class="wxCheckBox" name="ID_CHECKBOX5" variable="DATA_COLLECTION" member="yes">
+																<label>Data Collection</label>
+																<enabled>0</enabled>
+																<hidden>1</hidden>
+																<tooltip>When this Feature is enabled, the program will send information to it&apos;s creator every time it installs a game whose region code isn&apos;t registered in the database</tooltip>
 															</object>
 															<flag>wxALL|wxEXPAND</flag>
 															<border>5</border>

@@ -20765,14 +20765,14 @@
 	"wx/defs.h"
 	"wx/window.h"
 
-1690338635 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\config.cpp
+1690344391 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\config.cpp
 	"Config.h"
 	"include/locale_table.h"
 	<wx/font.h>
 	<wx/intl.h>
 	<wx/string.h>
 
-1690336202 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\config.h
+1690343905 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\config.h
 	<wx/button.h>
 	<wx/checkbox.h>
 	<wx/choice.h>
@@ -21831,7 +21831,7 @@
 	"wx/protocol/protocol.h"
 	"wx/buffer.h"
 
-1690337957 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installermain.cpp
+1690344391 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installermain.cpp
 	"HDL_Batch_installerMain.h"
 	"About.h"
 	"Config.h"
@@ -21853,11 +21853,10 @@
 	<wx/settings.h>
 	<wx/string.h>
 
-1674915379 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\post_install_report.h
+1690342220 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\post_install_report.h
 	<wx/dialog.h>
 	<wx/listctrl.h>
 	<wx/sizer.h>
-	<wx/stattext.h>
 
 1674915379 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\ndbman.h
 	<wx/button.h>
@@ -21884,7 +21883,7 @@
 	<wx/intl.h>
 	<wx/string.h>
 
-1674915379 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\post_install_report.cpp
+1690342298 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\post_install_report.cpp
 	"Post_Install_Report.h"
 	<iostream>
 	<wx/intl.h>
@@ -25464,7 +25463,7 @@
 	<wx/menu.h>
 	<wx/sizer.h>
 
-1690341758 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\hddmanager.cpp
+1690343035 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\hddmanager.cpp
 	"HDDManager.h"
 	"mkpartdlg.h"
 	"PFSShell.h"
@@ -25476,7 +25475,7 @@
 	<wx/intl.h>
 	<wx/string.h>
 
-1675533405 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\hddmanager.h
+1690344391 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\hddmanager.h
 	"iomanX_port.h"
 	<vector>
 	<wx/button.h>
@@ -25546,7 +25545,7 @@
 	<wx/stattext.h>
 	<wx/textctrl.h>
 
-1689907689 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\mkpartdlg.cpp
+1690342323 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\mkpartdlg.cpp
 	"mkpartdlg.h"
 	<iostream>
 	<iomanip>
