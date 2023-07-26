@@ -1997,13 +1997,13 @@ void HDL_Batch_installerFrame::OnLoadCustomIcon2InstalledGameRequest(wxCommandEv
 
 void HDL_Batch_installerFrame::OnMD5HashRequest(wxCommandEvent& event)
 {
-    wxBeginBusyCursor();
     std::string HASH, FILEPATH;
     long itemIndex = -1;
     if((itemIndex = game_list__->GetNextItem(itemIndex, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED)) != wxNOT_FOUND)
     {
         FILEPATH = std::string(game_list__->GetItemText(itemIndex).mb_str());
     }
+    wxBeginBusyCursor();
     std::cout << "Collecting MD5 hash for ["<<FILEPATH<<"]\n";
     HASH = MD5digest_file(FILEPATH);
     std::cout << "\tCollected hash: ["<<HASH<<"]\n";

@@ -20,28 +20,29 @@ MD5Report::MD5Report(wxWindow* parent, wxString _FILEPATH, wxString _HASH, wxWin
     FILEPATH(_FILEPATH), HASH(_HASH)
 {
 	//(*Initialize(MD5Report)
-	wxBoxSizer* BoxSizer1;
 	wxBoxSizer* BoxSizer2;
 	wxBoxSizer* BoxSizer3;
 	wxFlexGridSizer* FlexGridSizer1;
+	wxStaticBoxSizer* StaticBoxSizer1;
 
-	Create(parent, id, _("MD5 Hash report"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE, _T("id"));
+	Create(parent, id, _("MD5 Hash report"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER, _T("id"));
 	SetClientSize(wxDefaultSize);
 	Move(wxDefaultPosition);
 	FlexGridSizer1 = new wxFlexGridSizer(0, 1, 0, 0);
-	FlexGridSizer1->AddGrowableRow(1);
-	BoxSizer1 = new wxBoxSizer(wxHORIZONTAL);
+	FlexGridSizer1->AddGrowableCol(0);
+	FlexGridSizer1->AddGrowableRow(0);
+	StaticBoxSizer1 = new wxStaticBoxSizer(wxHORIZONTAL, this, _("Filename"));
 	FILENAME = new wxStaticText(this, ID_STATICTEXT1, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0, _T("ID_STATICTEXT1"));
-	BoxSizer1->Add(FILENAME, 1, wxALL|wxEXPAND, 5);
-	FlexGridSizer1->Add(BoxSizer1, 1, wxALL|wxEXPAND, 5);
+	StaticBoxSizer1->Add(FILENAME, 1, wxALL|wxEXPAND, 5);
+	FlexGridSizer1->Add(StaticBoxSizer1, 1, wxALL|wxEXPAND, 5);
 	BoxSizer2 = new wxBoxSizer(wxHORIZONTAL);
 	DHASH = new wxTextCtrl(this, ID_TEXTCTRL1, wxEmptyString, wxDefaultPosition, wxSize(505,30), wxTE_READONLY, wxDefaultValidator, _T("ID_TEXTCTRL1"));
 	BoxSizer2->Add(DHASH, 1, wxALL|wxEXPAND, 5);
 	FlexGridSizer1->Add(BoxSizer2, 1, wxALL|wxEXPAND, 5);
 	BoxSizer3 = new wxBoxSizer(wxHORIZONTAL);
 	redumpsearch = new wxButton(this, ID_BUTTON1, _("Search on redump.org"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
-	BoxSizer3->Add(redumpsearch, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-	FlexGridSizer1->Add(BoxSizer3, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	BoxSizer3->Add(redumpsearch, 1, wxALL|wxEXPAND, 5);
+	FlexGridSizer1->Add(BoxSizer3, 1, wxALL|wxEXPAND, 5);
 	SetSizer(FlexGridSizer1);
 	FlexGridSizer1->Fit(this);
 	FlexGridSizer1->SetSizeHints(this);
