@@ -4,11 +4,16 @@
 		<title>HDD Formatter</title>
 		<pos_arg>1</pos_arg>
 		<size_arg>1</size_arg>
+		<style>wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER</style>
 		<object class="wxFlexGridSizer" variable="FlexGridSizer1" member="no">
 			<cols>1</cols>
+			<growablecols>0</growablecols>
+			<growablerows>0</growablerows>
 			<object class="sizeritem">
 				<object class="wxFlexGridSizer" variable="FlexGridSizer2" member="no">
 					<cols>3</cols>
+					<growablecols>0</growablecols>
+					<growablerows>0</growablerows>
 					<object class="sizeritem">
 						<object class="wxListCtrl" name="ID_LISTCTRL1" variable="HDDList" member="yes">
 							<size>1111,269</size>
@@ -16,30 +21,32 @@
 							<handler function="OnHDDListItemSelect" entry="EVT_LIST_ITEM_SELECTED" />
 							<handler function="OnHDDListItemDeselect" entry="EVT_LIST_ITEM_DESELECTED" />
 						</object>
-						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<flag>wxALL|wxEXPAND</flag>
 						<border>5</border>
 						<option>1</option>
 					</object>
 				</object>
-				<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<flag>wxALL|wxEXPAND</flag>
 				<border>5</border>
 				<option>1</option>
 			</object>
 			<object class="sizeritem">
 				<object class="wxFlexGridSizer" variable="FlexGridSizer3" member="no">
 					<cols>3</cols>
+					<growablecols>0</growablecols>
+					<growablerows>0</growablerows>
 					<object class="sizeritem">
 						<object class="wxButton" name="ID_BUTTON1" variable="Format" member="yes">
 							<label>Format</label>
 							<enabled>0</enabled>
 							<handler function="OnFormatClick" entry="EVT_BUTTON" />
 						</object>
-						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<flag>wxALL|wxEXPAND</flag>
 						<border>5</border>
 						<option>1</option>
 					</object>
 				</object>
-				<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<flag>wxALL|wxEXPAND</flag>
 				<border>5</border>
 				<option>1</option>
 			</object>
