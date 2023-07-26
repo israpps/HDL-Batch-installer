@@ -5,7 +5,6 @@
 #include <wx/dialog.h>
 #include <wx/listctrl.h>
 #include <wx/sizer.h>
-#include <wx/stattext.h>
 //*)
 
 class Post_Install_Report: public wxDialog
@@ -17,13 +16,11 @@ public:
 
     //(*Declarations(Post_Install_Report)
     wxListCtrl* list;
-    wxStaticText* StaticText1;
     //*)
 
 protected:
 
     //(*Identifiers(Post_Install_Report)
-    static const long ID_STATICTEXT1;
     static const long ID_LISTCTRL1;
     //*)
 
