@@ -9,16 +9,7 @@
 			<cols>1</cols>
 			<rows>4</rows>
 			<growablecols>0</growablecols>
-			<growablerows>1</growablerows>
-			<object class="sizeritem">
-				<object class="wxFlexGridSizer" variable="FlexGridSizer2" member="no">
-					<cols>3</cols>
-					<growablecols>1</growablecols>
-				</object>
-				<flag>wxALL|wxALIGN_LEFT|wxALIGN_TOP</flag>
-				<border>5</border>
-				<option>1</option>
-			</object>
+			<growablerows>0</growablerows>
 			<object class="sizeritem">
 				<object class="wxBoxSizer" variable="BoxSizer1" member="no">
 					<object class="sizeritem">
@@ -45,12 +36,12 @@
 							<label>Create Partition</label>
 							<handler function="OnMKPartClick" entry="EVT_BUTTON" />
 						</object>
-						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<flag>wxALL|wxEXPAND</flag>
 						<border>5</border>
 						<option>1</option>
 					</object>
 				</object>
-				<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<flag>wxALL|wxEXPAND</flag>
 				<border>5</border>
 				<option>1</option>
 			</object>

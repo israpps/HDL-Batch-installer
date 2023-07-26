@@ -39,7 +39,6 @@ HDDManager::HDDManager(wxWindow* parent, std::string HDDTOK,wxWindowID id,const 
 	//(*Initialize(HDDManager)
 	wxBoxSizer* BoxSizer1;
 	wxFlexGridSizer* FlexGridSizer1;
-	wxFlexGridSizer* FlexGridSizer2;
 	wxFlexGridSizer* FlexGridSizer3;
 
 	Create(parent, id, _("HDDManager"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE|wxSYSTEM_MENU|wxRESIZE_BORDER, _T("id"));
@@ -47,18 +46,15 @@ HDDManager::HDDManager(wxWindow* parent, std::string HDDTOK,wxWindowID id,const 
 	Move(wxDefaultPosition);
 	FlexGridSizer1 = new wxFlexGridSizer(4, 1, 0, 0);
 	FlexGridSizer1->AddGrowableCol(0);
-	FlexGridSizer1->AddGrowableRow(1);
-	FlexGridSizer2 = new wxFlexGridSizer(0, 3, 0, 0);
-	FlexGridSizer2->AddGrowableCol(1);
-	FlexGridSizer1->Add(FlexGridSizer2, 1, wxALL|wxALIGN_LEFT|wxALIGN_TOP, 5);
+	FlexGridSizer1->AddGrowableRow(0);
 	BoxSizer1 = new wxBoxSizer(wxHORIZONTAL);
 	PARTList = new wxListCtrl(this, ID_LISTCTRL1, wxDefaultPosition, wxSize(1030,307), wxLC_REPORT|wxLC_SORT_ASCENDING|wxLC_HRULES|wxLC_VRULES, wxDefaultValidator, _T("ID_LISTCTRL1"));
 	BoxSizer1->Add(PARTList, 1, wxALL|wxEXPAND, 5);
 	FlexGridSizer1->Add(BoxSizer1, 1, wxALL|wxEXPAND, 5);
 	FlexGridSizer3 = new wxFlexGridSizer(0, 3, 0, 0);
 	MKPart = new wxButton(this, ID_BUTTON1, _("Create Partition"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
-	FlexGridSizer3->Add(MKPart, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-	FlexGridSizer1->Add(FlexGridSizer3, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	FlexGridSizer3->Add(MKPart, 1, wxALL|wxEXPAND, 5);
+	FlexGridSizer1->Add(FlexGridSizer3, 1, wxALL|wxEXPAND, 5);
 	SetSizer(FlexGridSizer1);
 	MenuItem1 = new wxMenuItem((&HDDManagerMenu), ID_MENUITEM1, _("Delete Partition"), wxEmptyString, wxITEM_NORMAL);
 	HDDManagerMenu.Append(MenuItem1);
