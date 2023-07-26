@@ -17,7 +17,7 @@
 		<minsize>537,681</minsize>
 		<extra_code>SetIcon( wxICON(HDL__BATCH__ICON));</extra_code>
 		<id_arg>0</id_arg>
-		<style>wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxMINIMIZE_BOX|wxCLIP_CHILDREN</style>
+		<style>wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxMAXIMIZE_BOX|wxMINIMIZE_BOX|wxCLIP_CHILDREN</style>
 		<handler function="OnClose" entry="EVT_CLOSE" />
 		<handler function="OnPaint" entry="EVT_PAINT" />
 		<object class="wxPanel" name="ID_PANEL5" variable="Panel5" member="yes">
@@ -35,87 +35,31 @@
 						<object class="sizeritem">
 							<object class="wxBoxSizer" variable="BoxSizer1" member="no">
 								<object class="sizeritem">
-									<object class="wxFlexGridSizer" variable="FlexGridSizer10" member="no">
-										<cols>3</cols>
-										<object class="sizeritem">
-											<object class="wxButton" name="ID_BUTTON2" variable="Button1" member="yes">
-												<label>Search ps2 HDD&apos;s</label>
-												<size>144,24</size>
-												<focused>1</focused>
-												<handler function="OnButton1Click" entry="EVT_BUTTON" />
-											</object>
-											<flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-										</object>
-										<object class="spacer">
-											<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-											<border>5</border>
-											<option>1</option>
-										</object>
-										<object class="sizeritem">
-											<object class="wxChoice" name="ID_selected_hdd" variable="selected_hdd" member="yes">
-												<selection>0</selection>
-												<size>148,24</size>
-												<handler function="Onselected_hddSelect" entry="EVT_CHOICE" />
-											</object>
-											<flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-										</object>
+									<object class="wxButton" name="ID_BUTTON2" variable="Button1" member="yes">
+										<label>Search ps2 HDD&apos;s</label>
+										<size>144,24</size>
+										<focused>1</focused>
+										<handler function="OnButton1Click" entry="EVT_BUTTON" />
 									</object>
-									<flag>wxALL|wxEXPAND</flag>
-									<border>5</border>
+									<flag>wxALIGN_TOP</flag>
 									<option>1</option>
 								</object>
-							</object>
-							<flag>wxALL|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL</flag>
-							<border>5</border>
-							<option>1</option>
-						</object>
-						<object class="sizeritem">
-							<object class="wxFlexGridSizer" variable="FlexGridSizer9" member="no">
-								<cols>3</cols>
-								<growablerows>0</growablerows>
 								<object class="sizeritem">
-									<object class="wxStaticBoxSizer" variable="StaticBoxSizer1" member="no">
-										<label>WNBD Server</label>
-										<object class="sizeritem">
-											<object class="wxTextCtrl" name="ID_TEXTCTRL2" variable="NBD4IP" member="yes">
-												<maxlength>15</maxlength>
-												<handler function="OnIP4NBDUpdate" entry="EVT_TEXT" />
-											</object>
-											<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-											<border>5</border>
-											<option>1</option>
-										</object>
-										<object class="sizeritem">
-											<object class="wxButton" name="ID_BUTTON14" variable="NBDConnect" member="yes">
-												<label>Connect</label>
-												<enabled>0</enabled>
-												<handler function="OnNBDConnectClick" entry="EVT_BUTTON" />
-											</object>
-											<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-											<border>5</border>
-											<option>1</option>
-										</object>
-										<object class="sizeritem">
-											<object class="wxButton" name="ID_BUTTON15" variable="NBDDisconnect" member="yes">
-												<label>Disconnect</label>
-												<handler function="OnNBDDisconnectClick" entry="EVT_BUTTON" />
-											</object>
-											<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-											<border>5</border>
-											<option>1</option>
-										</object>
+									<object class="wxChoice" name="ID_selected_hdd" variable="selected_hdd" member="yes">
+										<selection>0</selection>
+										<size>148,24</size>
+										<handler function="Onselected_hddSelect" entry="EVT_CHOICE" />
 									</object>
-									<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-									<border>5</border>
-									<option>1</option>
+									<flag>wxEXPAND</flag>
+									<option>2</option>
 								</object>
 							</object>
-							<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+							<flag>wxALL|wxEXPAND</flag>
 							<border>5</border>
 							<option>1</option>
 						</object>
 					</object>
-					<flag>wxTOP|wxLEFT|wxRIGHT|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL</flag>
+					<flag>wxTOP|wxLEFT|wxRIGHT|wxEXPAND</flag>
 					<border>5</border>
 					<option>1</option>
 				</object>
@@ -129,14 +73,14 @@
 								<style>wxTE_READONLY|wxTE_CENTRE</style>
 								<handler function="OnTextCtrl1Text" entry="EVT_TEXT" />
 							</object>
-							<flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+							<flag>wxEXPAND</flag>
 						</object>
 						<object class="sizeritem">
 							<object class="wxGauge" name="ID_GAUGE1" variable="Gauge1" member="yes">
 								<size>464,24</size>
 								<style>wxGA_SMOOTH</style>
 							</object>
-							<flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+							<flag>wxEXPAND</flag>
 						</object>
 						<object class="spacer">
 							<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
@@ -170,7 +114,7 @@
 											<growablerows>0</growablerows>
 											<object class="sizeritem">
 												<object class="wxListCtrl" name="ID_LISTCTRL1" variable="game_list__" member="yes">
-													<size>370,405</size>
+													<size>388,447</size>
 													<minsize>377,415</minsize>
 													<extra_code>wxListItem __col0;&#x0A;__col0.SetId(0);&#x0A;__col0.SetText( __(&quot;Game &quot;) );&#x0A;__col0.SetWidth(350);&#x0A;game__list____-&gt;InsertColumn(0, __col0);</extra_code>
 													<style>wxLC_REPORT|wxLC_SINGLE_SEL|wxLC_HRULES|wxLC_VRULES|wxBORDER_SUNKEN|wxVSCROLL</style>
@@ -187,6 +131,7 @@
 											<object class="sizeritem">
 												<object class="wxFlexGridSizer" variable="FlexGridSizer7" member="no">
 													<cols>1</cols>
+													<growablecols>0</growablecols>
 													<object class="sizeritem">
 														<object class="wxButton" name="ID_BUTTON1" variable="SEARCH_ISO" member="yes">
 															<label>Search Games</label>
@@ -194,7 +139,7 @@
 															<handler function="OnSEARCH_ISOClick" entry="EVT_BUTTON" />
 														</object>
 														<flag>wxLEFT|wxRIGHT|wxEXPAND</flag>
-														<border>5</border>
+														<border>2</border>
 													</object>
 													<object class="sizeritem">
 														<object class="wxStaticLine" name="ID_STATICLINE3" variable="StaticLine3" member="yes">
@@ -216,6 +161,7 @@
 															<handler function="Onclear_iso_listClick" entry="EVT_BUTTON" />
 														</object>
 														<flag>wxLEFT|wxRIGHT|wxEXPAND</flag>
+														<border>2</border>
 													</object>
 													<object class="sizeritem">
 														<object class="wxStaticLine" name="ID_STATICLINE1" variable="StaticLine1" member="yes">
@@ -243,7 +189,7 @@
 															<handler function="Ondma_choiceSelect" entry="EVT_CHOICE" />
 														</object>
 														<flag>wxLEFT|wxRIGHT|wxEXPAND</flag>
-														<border>5</border>
+														<border>2</border>
 													</object>
 													<object class="sizeritem">
 														<object class="wxStaticLine" name="ID_STATICLINE2" variable="StaticLine2" member="yes">
@@ -265,7 +211,7 @@
 															<handler function="OninstallClick" entry="EVT_BUTTON" />
 														</object>
 														<flag>wxLEFT|wxRIGHT|wxEXPAND</flag>
-														<border>5</border>
+														<border>2</border>
 													</object>
 													<object class="sizeritem">
 														<object class="wxStaticLine" name="ID_STATICLINE4" variable="StaticLine4" member="yes">
@@ -289,7 +235,7 @@
 															<handler function="OnCheckBox1Click1" entry="EVT_CHECKBOX" />
 														</object>
 														<flag>wxLEFT|wxRIGHT|wxEXPAND</flag>
-														<border>9</border>
+														<border>2</border>
 													</object>
 												</object>
 												<flag>wxALL|wxEXPAND</flag>
@@ -315,7 +261,9 @@
 															<enabled>0</enabled>
 															<handler function="OnParse_hdl_tocClick" entry="EVT_BUTTON" />
 														</object>
-														<flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+														<flag>wxALL|wxEXPAND</flag>
+														<border>1</border>
+														<option>1</option>
 													</object>
 													<object class="sizeritem">
 														<object class="wxButton" name="ID_BUTTON8" variable="Button3" member="yes">
@@ -323,10 +271,12 @@
 															<size>16,23</size>
 															<handler function="OnButton3Click1" entry="EVT_BUTTON" />
 														</object>
-														<flag>wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+														<flag>wxALL|wxALIGN_TOP|wxSHAPED</flag>
+														<border>1</border>
+														<option>1</option>
 													</object>
 												</object>
-												<flag>wxALL|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL</flag>
+												<flag>wxALL|wxEXPAND</flag>
 												<border>5</border>
 												<option>1</option>
 											</object>
@@ -450,17 +400,7 @@
 														<option>1</option>
 													</object>
 													<object class="sizeritem">
-														<object class="wxBoxSizer" variable="BoxSizer4" member="no">
-															<object class="sizeritem">
-																<object class="wxButton" name="ID_BUTTON16" variable="Button4" member="yes">
-																	<label>NBD Driver manager</label>
-																	<handler function="OnButton4Click1" entry="EVT_BUTTON" />
-																</object>
-																<flag>wxALL|wxALIGN_CENTER_VERTICAL</flag>
-																<border>5</border>
-																<option>1</option>
-															</object>
-														</object>
+														<object class="wxBoxSizer" variable="BoxSizer4" member="no" />
 														<flag>wxALL|wxEXPAND</flag>
 														<border>5</border>
 														<option>1</option>

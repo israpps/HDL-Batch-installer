@@ -100,9 +100,6 @@ wxString HDLBINST_APPDATA;
 //(*IdInit(HDL_Batch_installerFrame)
 const long HDL_Batch_installerFrame::ID_BUTTON2 = wxNewId();
 const long HDL_Batch_installerFrame::ID_selected_hdd = wxNewId();
-const long HDL_Batch_installerFrame::ID_TEXTCTRL2 = wxNewId();
-const long HDL_Batch_installerFrame::ID_BUTTON14 = wxNewId();
-const long HDL_Batch_installerFrame::ID_BUTTON15 = wxNewId();
 const long HDL_Batch_installerFrame::ID_TEXTCTRL1 = wxNewId();
 const long HDL_Batch_installerFrame::ID_GAUGE1 = wxNewId();
 const long HDL_Batch_installerFrame::ID_LISTCTRL1 = wxNewId();
@@ -126,7 +123,6 @@ const long HDL_Batch_installerFrame::ID_BUTTON6 = wxNewId();
 const long HDL_Batch_installerFrame::ID_BUTTON9 = wxNewId();
 const long HDL_Batch_installerFrame::ID_BUTTON5 = wxNewId();
 const long HDL_Batch_installerFrame::ID_BUTTON11 = wxNewId();
-const long HDL_Batch_installerFrame::ID_BUTTON16 = wxNewId();
 const long HDL_Batch_installerFrame::ID_PANEL3 = wxNewId();
 const long HDL_Batch_installerFrame::ID_NOTEBOOK1 = wxNewId();
 const long HDL_Batch_installerFrame::ID_PANEL5 = wxNewId();
@@ -182,7 +178,6 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     wxBoxSizer* BoxSizer7;
     wxBoxSizer* BoxSizer8;
     wxBoxSizer* BoxSizer9;
-    wxFlexGridSizer* FlexGridSizer10;
     wxFlexGridSizer* FlexGridSizer1;
     wxFlexGridSizer* FlexGridSizer2;
     wxFlexGridSizer* FlexGridSizer3;
@@ -191,7 +186,6 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     wxFlexGridSizer* FlexGridSizer6;
     wxFlexGridSizer* FlexGridSizer7;
     wxFlexGridSizer* FlexGridSizer8;
-    wxFlexGridSizer* FlexGridSizer9;
     wxMenu* Menu1;
     wxMenu* Menu2;
     wxMenu* Menu3;
@@ -199,9 +193,8 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     wxMenuItem* MenuItem1;
     wxMenuItem* MenuItem2;
     wxMenuItem* MenuItem3;
-    wxStaticBoxSizer* StaticBoxSizer1;
 
-    Create(parent, wxID_ANY, _("HDL Batch Installer"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxMINIMIZE_BOX|wxCLIP_CHILDREN, _T("wxID_ANY"));
+    Create(parent, wxID_ANY, _("HDL Batch Installer"), wxDefaultPosition, wxDefaultSize, wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxMAXIMIZE_BOX|wxMINIMIZE_BOX|wxCLIP_CHILDREN, _T("wxID_ANY"));
     SetClientSize(wxSize(537,651));
     Move(wxPoint(-1,-1));
     SetMinSize(wxSize(537,681));
@@ -217,35 +210,19 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     FlexGridSizer2 = new wxFlexGridSizer(0, 1, 0, 0);
     FlexGridSizer2->AddGrowableCol(0);
     BoxSizer1 = new wxBoxSizer(wxHORIZONTAL);
-    FlexGridSizer10 = new wxFlexGridSizer(0, 3, 0, 0);
     Button1 = new wxButton(Panel5, ID_BUTTON2, _("Search ps2 HDD\'s"), wxDefaultPosition, wxSize(144,24), 0, wxDefaultValidator, _T("ID_BUTTON2"));
     Button1->SetFocus();
-    FlexGridSizer10->Add(Button1, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
-    FlexGridSizer10->Add(-1,-1,1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    BoxSizer1->Add(Button1, 1, wxALIGN_TOP, 0);
     selected_hdd = new wxChoice(Panel5, ID_selected_hdd, wxDefaultPosition, wxSize(148,24), 0, 0, 0, wxDefaultValidator, _T("ID_selected_hdd"));
-    FlexGridSizer10->Add(selected_hdd, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
-    BoxSizer1->Add(FlexGridSizer10, 1, wxALL|wxEXPAND, 5);
-    FlexGridSizer2->Add(BoxSizer1, 1, wxALL|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL, 5);
-    FlexGridSizer9 = new wxFlexGridSizer(0, 3, 0, 0);
-    FlexGridSizer9->AddGrowableRow(0);
-    StaticBoxSizer1 = new wxStaticBoxSizer(wxHORIZONTAL, Panel5, _("WNBD Server"));
-    NBD4IP = new wxTextCtrl(Panel5, ID_TEXTCTRL2, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL2"));
-    NBD4IP->SetMaxLength(15);
-    StaticBoxSizer1->Add(NBD4IP, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    NBDConnect = new wxButton(Panel5, ID_BUTTON14, _("Connect"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON14"));
-    NBDConnect->Disable();
-    StaticBoxSizer1->Add(NBDConnect, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    NBDDisconnect = new wxButton(Panel5, ID_BUTTON15, _("Disconnect"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON15"));
-    StaticBoxSizer1->Add(NBDDisconnect, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    FlexGridSizer9->Add(StaticBoxSizer1, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    FlexGridSizer2->Add(FlexGridSizer9, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    FlexGridSizer1->Add(FlexGridSizer2, 1, wxTOP|wxLEFT|wxRIGHT|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL, 5);
+    BoxSizer1->Add(selected_hdd, 2, wxEXPAND, 0);
+    FlexGridSizer2->Add(BoxSizer1, 1, wxALL|wxEXPAND, 5);
+    FlexGridSizer1->Add(FlexGridSizer2, 1, wxTOP|wxLEFT|wxRIGHT|wxEXPAND, 5);
     FlexGridSizer3 = new wxFlexGridSizer(0, 1, 0, 0);
     FlexGridSizer3->AddGrowableCol(0);
     hdd_used_space = new wxTextCtrl(Panel5, ID_TEXTCTRL1, wxEmptyString, wxDefaultPosition, wxSize(400,23), wxTE_READONLY|wxTE_CENTRE, wxDefaultValidator, _T("ID_TEXTCTRL1"));
-    FlexGridSizer3->Add(hdd_used_space, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
+    FlexGridSizer3->Add(hdd_used_space, 0, wxEXPAND, 0);
     Gauge1 = new wxGauge(Panel5, ID_GAUGE1, 100, wxDefaultPosition, wxSize(464,24), wxGA_SMOOTH, wxDefaultValidator, _T("ID_GAUGE1"));
-    FlexGridSizer3->Add(Gauge1, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
+    FlexGridSizer3->Add(Gauge1, 0, wxEXPAND, 0);
     FlexGridSizer3->Add(-1,-1,1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     FlexGridSizer1->Add(FlexGridSizer3, 1, wxBOTTOM|wxLEFT|wxRIGHT|wxEXPAND, 5);
     FlexGridSizer4 = new wxFlexGridSizer(1, 3, 0, 0);
@@ -257,7 +234,7 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     FlexGridSizer6 = new wxFlexGridSizer(0, 3, 3, 4);
     FlexGridSizer6->AddGrowableCol(0);
     FlexGridSizer6->AddGrowableRow(0);
-    game_list__ = new wxListCtrl(Panel1, ID_LISTCTRL1, wxDefaultPosition, wxSize(370,405), wxLC_REPORT|wxLC_SINGLE_SEL|wxLC_HRULES|wxLC_VRULES|wxBORDER_SUNKEN|wxVSCROLL, wxDefaultValidator, _T("ID_LISTCTRL1"));
+    game_list__ = new wxListCtrl(Panel1, ID_LISTCTRL1, wxDefaultPosition, wxSize(388,447), wxLC_REPORT|wxLC_SINGLE_SEL|wxLC_HRULES|wxLC_VRULES|wxBORDER_SUNKEN|wxVSCROLL, wxDefaultValidator, _T("ID_LISTCTRL1"));
     game_list__->SetMinSize(wxSize(377,415));
     wxListItem _col0;
     _col0.SetId(0);
@@ -267,15 +244,16 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     FlexGridSizer6->Add(game_list__, 0, wxALL|wxEXPAND, 0);
     FlexGridSizer6->Add(-1,-1,1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     FlexGridSizer7 = new wxFlexGridSizer(0, 1, 0, 0);
+    FlexGridSizer7->AddGrowableCol(0);
     SEARCH_ISO = new wxButton(Panel1, ID_BUTTON1, _("Search Games"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
     SEARCH_ISO->Disable();
-    FlexGridSizer7->Add(SEARCH_ISO, 0, wxLEFT|wxRIGHT|wxEXPAND, 5);
+    FlexGridSizer7->Add(SEARCH_ISO, 0, wxLEFT|wxRIGHT|wxEXPAND, 2);
     StaticLine3 = new wxStaticLine(Panel1, ID_STATICLINE3, wxDefaultPosition, wxSize(0,0), wxLI_HORIZONTAL, _T("ID_STATICLINE3"));
     FlexGridSizer7->Add(StaticLine3, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     FlexGridSizer7->Add(-1,-1,1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     clear_iso_list = new wxButton(Panel1, ID_BUTTON7, _("Clear list"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON7"));
     clear_iso_list->Disable();
-    FlexGridSizer7->Add(clear_iso_list, 0, wxLEFT|wxRIGHT|wxEXPAND, 0);
+    FlexGridSizer7->Add(clear_iso_list, 0, wxLEFT|wxRIGHT|wxEXPAND, 2);
     StaticLine1 = new wxStaticLine(Panel1, ID_STATICLINE1, wxDefaultPosition, wxSize(10,-1), wxLI_HORIZONTAL, _T("ID_STATICLINE1"));
     FlexGridSizer7->Add(StaticLine1, 1, wxALL|wxEXPAND, 5);
     FlexGridSizer7->Add(-1,-1,1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
@@ -285,20 +263,20 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     for (int X=0 ; X <=7 ; X++)
     { dma_choice->Append(DMA_ALIAS[X]); }
     dma_choice->SetSelection(7);
-    FlexGridSizer7->Add(dma_choice, 0, wxLEFT|wxRIGHT|wxEXPAND, 5);
+    FlexGridSizer7->Add(dma_choice, 0, wxLEFT|wxRIGHT|wxEXPAND, 2);
     StaticLine2 = new wxStaticLine(Panel1, ID_STATICLINE2, wxDefaultPosition, wxSize(0,0), wxLI_HORIZONTAL, _T("ID_STATICLINE2"));
     FlexGridSizer7->Add(StaticLine2, 1, wxALL|wxEXPAND, 5);
     FlexGridSizer7->Add(-1,-1,1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     install = new wxButton(Panel1, ID_BUTTON4, _("Install"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON4"));
     install->Disable();
-    FlexGridSizer7->Add(install, 0, wxLEFT|wxRIGHT|wxEXPAND, 5);
+    FlexGridSizer7->Add(install, 0, wxLEFT|wxRIGHT|wxEXPAND, 2);
     StaticLine4 = new wxStaticLine(Panel1, ID_STATICLINE4, wxDefaultPosition, wxSize(10,-1), wxLI_HORIZONTAL, _T("ID_STATICLINE4"));
     FlexGridSizer7->Add(StaticLine4, 1, wxALL|wxEXPAND, 5);
     FlexGridSizer7->Add(-1,-1,1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     use_database = new wxCheckBox(Panel1, ID_CHECKBOX2, _("Use Database"), wxDefaultPosition, wxSize(110,20), 0, wxDefaultValidator, _T("ID_CHECKBOX2"));
     use_database->SetValue(true);
     use_database->SetToolTip(_("When enabled, the program will try to automatically assign the original title for the games by searching the game ID on a database with more than 14700 titles"));
-    FlexGridSizer7->Add(use_database, 0, wxLEFT|wxRIGHT|wxEXPAND, 9);
+    FlexGridSizer7->Add(use_database, 0, wxLEFT|wxRIGHT|wxEXPAND, 2);
     FlexGridSizer6->Add(FlexGridSizer7, 1, wxALL|wxEXPAND, 5);
     Panel1->SetSizer(FlexGridSizer6);
     FlexGridSizer6->Fit(Panel1);
@@ -310,10 +288,10 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     BoxSizer2 = new wxBoxSizer(wxHORIZONTAL);
     Parse_hdl_toc = new wxButton(Panel2, ID_BUTTON3, _("Get List"), wxDefaultPosition, wxSize(80,23), 0, wxDefaultValidator, _T("ID_BUTTON3"));
     Parse_hdl_toc->Disable();
-    BoxSizer2->Add(Parse_hdl_toc, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
+    BoxSizer2->Add(Parse_hdl_toc, 1, wxALL|wxEXPAND, 1);
     Button3 = new wxButton(Panel2, ID_BUTTON8, _("\?"), wxDefaultPosition, wxSize(16,23), 0, wxDefaultValidator, _T("ID_BUTTON8"));
-    BoxSizer2->Add(Button3, 0, wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 0);
-    FlexGridSizer8->Add(BoxSizer2, 1, wxALL|wxALIGN_TOP|wxALIGN_CENTER_HORIZONTAL, 5);
+    BoxSizer2->Add(Button3, 1, wxALL|wxALIGN_TOP|wxSHAPED, 1);
+    FlexGridSizer8->Add(BoxSizer2, 1, wxALL|wxEXPAND, 5);
     Installed_game_list = new wxListCtrl(Panel2, ID_LISTCTRL2, wxDefaultPosition, wxSize(509,378), wxLC_REPORT|wxLC_AUTOARRANGE|wxLC_SORT_ASCENDING|wxLC_HRULES|wxLC_VRULES|wxLC_NO_SORT_HEADER|wxBORDER_SUNKEN|wxVSCROLL, wxDefaultValidator, _T("ID_LISTCTRL2"));
     Installed_game_list->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOX));
     wxListItem col0;
@@ -384,8 +362,6 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     BoxSizer5->Add(FUSE, 0, wxALIGN_CENTER_VERTICAL, 0);
     BoxSizer3->Add(BoxSizer5, 1, wxALL|wxEXPAND, 5);
     BoxSizer4 = new wxBoxSizer(wxHORIZONTAL);
-    Button4 = new wxButton(Panel3, ID_BUTTON16, _("NBD Driver manager"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON16"));
-    BoxSizer4->Add(Button4, 1, wxALL|wxALIGN_CENTER_VERTICAL, 5);
     BoxSizer3->Add(BoxSizer4, 1, wxALL|wxEXPAND, 5);
     FlexGridSizer5->Add(BoxSizer3, 1, wxALL|wxEXPAND, 5);
     Panel3->SetSizer(FlexGridSizer5);
@@ -463,9 +439,6 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
 
     Connect(ID_BUTTON2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnButton1Click);
     Connect(ID_selected_hdd,wxEVT_COMMAND_CHOICE_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::Onselected_hddSelect);
-    Connect(ID_TEXTCTRL2,wxEVT_COMMAND_TEXT_UPDATED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnIP4NBDUpdate);
-    Connect(ID_BUTTON14,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnNBDConnectClick);
-    Connect(ID_BUTTON15,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnNBDDisconnectClick);
     Connect(ID_TEXTCTRL1,wxEVT_COMMAND_TEXT_UPDATED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnTextCtrl1Text);
     Connect(ID_LISTCTRL1,wxEVT_COMMAND_LIST_BEGIN_DRAG,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnListCtrl1BeginDrag);
     Connect(ID_LISTCTRL1,wxEVT_COMMAND_LIST_ITEM_RIGHT_CLICK,(wxObjectEventFunction)&HDL_Batch_installerFrame::onItemRightClick);
@@ -486,7 +459,6 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     Connect(ID_BUTTON9,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnMBRExtractRequestClick);
     Connect(ID_BUTTON5,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnMBR_EVENTClick);
     Connect(ID_BUTTON11,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnButton4Click);
-    Connect(ID_BUTTON16,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnButton4Click1);
     Connect(ID_NOTEBOOK1,wxEVT_COMMAND_NOTEBOOK_PAGE_CHANGED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnNotebook1PageChanged);
     Connect(idMenuQuit,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnQuit);
     Connect(ID_MENUITEM13,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnCOPYHDDSelected);
@@ -990,8 +962,6 @@ void HDL_Batch_installerFrame::OnPaint(wxPaintEvent& event)
         main_config->Read("Installation/inform_unknown_ID", &CFG::SHARE_DATA, false);
         main_config->Read("NBD/Default_IP", &CFG::NBD_IP, "");
         main_config->Read("FEATURES/allow_experimental", &CFG::ALLOW_EXPERIMENTAL, false);
-        NBD4IP->Clear();
-        NBD4IP->SetValue(CFG::NBD_IP);
 //        main_config->Read("Init/Check_for_Updates",&CFG::UPDATE_WARNINGS,false);
         COLOR(08)
         cout <<"database mode="     << CFG::DBMODE                                     <<endl;
@@ -1844,7 +1814,7 @@ void HDL_Batch_installerFrame::OnButton4Click(wxCommandEvent& event)
 }
 
 void HDL_Batch_installerFrame::OnIP4NBDUpdate(wxCommandEvent& event)
-{
+{/*
     wxRegEx regxIPAddr("^(([0-9]{1}|[0-9]{2}|[0-1][0-9]{2}|2[0-4][0-9]|25[0-5])\\.){3}([0-9]{1}|[0-9]{2}|[0-1][0-9]{2}|2[0-4][0-9]|25[0-5])$");
     wxString TMP = NBD4IP->GetValue();
     if (regxIPAddr.Matches(TMP))
@@ -1854,11 +1824,11 @@ void HDL_Batch_installerFrame::OnIP4NBDUpdate(wxCommandEvent& event)
     else
     {
         NBDConnect->Disable();
-    }
+    }*/
 }
 
 void HDL_Batch_installerFrame::OnNBDConnectClick(wxCommandEvent& event)
-{
+{/*
     if (!wxFileExists(HDLBINST_APPDATA+"\\NBD.ini"))
     {
         wxMessageBox(
@@ -1871,7 +1841,7 @@ void HDL_Batch_installerFrame::OnNBDConnectClick(wxCommandEvent& event)
     wxString command;
     command.Printf("Common\\WNBD\\wnbd-client.exe map PS2HDD %s", NBD4IP->GetValue());
     wxExecute(command,wxEXEC_SYNC);
-    wxEndBusyCursor();
+    wxEndBusyCursor();*/
 }
 
 void HDL_Batch_installerFrame::OnNBDDisconnectClick(wxCommandEvent& event)

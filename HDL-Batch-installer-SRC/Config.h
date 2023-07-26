@@ -52,10 +52,8 @@ public:
     wxNotebook* Notebook1;
     wxPanel* Panel1;
     wxPanel* Panel2;
-    wxPanel* Panel3;
     wxRadioButton* gndb_extern;
     wxRadioButton* gndb_intern;
-    wxTextCtrl* NBDIP;
     wxTextCtrl* OPLPART;
     //*)
 
@@ -77,8 +75,6 @@ protected:
     static const long ID_CHOICE2;
     static const long ID_TEXTCTRL1;
     static const long ID_PANEL2;
-    static const long ID_TEXTCTRL2;
-    static const long ID_PANEL3;
     static const long ID_NOTEBOOK1;
     static const long ID_BUTTON1;
     //*)

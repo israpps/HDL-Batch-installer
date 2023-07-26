@@ -18941,7 +18941,7 @@
 	<wx/statline.h>
 	<wx/stattext.h>
 
-1689907689 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\version.h
+1689908813 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\version.h
 
 1587560968 c:\libs\wxwidgets-3.0.5\include\wx\dialog.h
 	"wx/toplevel.h"
@@ -20766,14 +20766,14 @@
 	"wx/defs.h"
 	"wx/window.h"
 
-1675215123 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\config.cpp
+1690337002 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\config.cpp
 	"Config.h"
 	"include/locale_table.h"
 	<wx/font.h>
 	<wx/intl.h>
 	<wx/string.h>
 
-1674915379 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\config.h
+1690336202 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\config.h
 	<wx/button.h>
 	<wx/checkbox.h>
 	<wx/choice.h>
@@ -21560,7 +21560,7 @@
 
 1674915380 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\hdl-dump-recodes.cpp
 
-1675810787 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installerapp.cpp
+1689909834 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installerapp.cpp
 	"HDL_Batch_installerApp.h"
 	"flags.h"
 	"HDL_Batch_installerMain.h"
@@ -21592,7 +21592,7 @@
 
 1674915380 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\flags.h
 
-1675823434 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installermain.h
+1690337623 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installermain.h
 	"version.h"
 	<wx/button.h>
 	<wx/checkbox.h>
@@ -21833,7 +21833,7 @@
 	"wx/protocol/protocol.h"
 	"wx/buffer.h"
 
-1689907689 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installermain.cpp
+1690337957 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\hdl_batch_installermain.cpp
 	"HDL_Batch_installerMain.h"
 	"About.h"
 	"Config.h"

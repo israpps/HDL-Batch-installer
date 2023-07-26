@@ -33,8 +33,6 @@ const long Config::ID_PANEL1 = wxNewId();
 const long Config::ID_CHOICE2 = wxNewId();
 const long Config::ID_TEXTCTRL1 = wxNewId();
 const long Config::ID_PANEL2 = wxNewId();
-const long Config::ID_TEXTCTRL2 = wxNewId();
-const long Config::ID_PANEL3 = wxNewId();
 const long Config::ID_NOTEBOOK1 = wxNewId();
 const long Config::ID_BUTTON1 = wxNewId();
 //*)
@@ -52,7 +50,6 @@ Config::Config(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& s
     wxFlexGridSizer* FlexGridSizer2;
     wxFlexGridSizer* FlexGridSizer3;
     wxFlexGridSizer* FlexGridSizer4;
-    wxFlexGridSizer* FlexGridSizer5;
     wxGridSizer* GridSizer1;
     wxStaticBoxSizer* StaticBoxSizer1;
     wxStaticBoxSizer* StaticBoxSizer2;
@@ -62,7 +59,6 @@ Config::Config(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& s
     wxStaticBoxSizer* StaticBoxSizer6;
     wxStaticBoxSizer* StaticBoxSizer7;
     wxStaticBoxSizer* StaticBoxSizer8;
-    wxStaticBoxSizer* StaticBoxSizer9;
 
     Create(parent, wxID_ANY, _("Settings"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE, _T("wxID_ANY"));
     wxFont thisFont(8,wxFONTFAMILY_DEFAULT,wxFONTSTYLE_NORMAL,wxFONTWEIGHT_NORMAL,false,wxEmptyString,wxFONTENCODING_DEFAULT);
@@ -79,7 +75,7 @@ Config::Config(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& s
     StaticBoxSizer3 = new wxStaticBoxSizer(wxHORIZONTAL, Panel1, _("Language"));
     language_choice = new wxComboBox(Panel1, ID_COMBOBOX1, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_COMBOBOX1"));
     for (long long unsigned int x=0; x < WXSIZEOF(langNames) ; x++)
-        language_choice->Append(langNames[x]);
+    language_choice->Append(langNames[x]);
     language_choice->SetSelection(0);
     StaticBoxSizer3->Add(language_choice, 1, wxALL|wxEXPAND, 5);
     StaticBoxSizer2->Add(StaticBoxSizer3, 1, wxALL|wxEXPAND, 5);
@@ -120,9 +116,7 @@ Config::Config(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& s
     default_dma = new wxChoice(Panel1, ID_CHOICE1, wxDefaultPosition, wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_CHOICE1"));
     default_dma->SetToolTip(_("Determines wich DMA mode will be written to game APA Header.\n\nThis feature is only usable for outdated software like HDLoader or MiniOPL"));
     for (int X=0 ; X <=7 ; X++)
-    {
-        default_dma->Append(DMA_ALIAS[X]);
-    }
+    {default_dma->Append(DMA_ALIAS[X]);}
 
     default_dma->SetSelection(7);
     StaticBoxSizer6->Add(default_dma, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
@@ -137,9 +131,7 @@ Config::Config(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& s
     StaticBoxSizer7 = new wxStaticBoxSizer(wxHORIZONTAL, Panel2, _("Default HDD letter"));
     MountPoint = new wxChoice(Panel2, ID_CHOICE2, wxDefaultPosition, wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_CHOICE2"));
     for (int x=0; x<25; x++)
-    {
-        MountPoint->Append(mountpoints[x]);
-    }
+    {MountPoint->Append(mountpoints[x]);}
     MountPoint->SetSelection(22);
     StaticBoxSizer7->Add(MountPoint, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     FlexGridSizer3->Add(StaticBoxSizer7, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
@@ -150,18 +142,8 @@ Config::Config(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& s
     Panel2->SetSizer(FlexGridSizer3);
     FlexGridSizer3->Fit(Panel2);
     FlexGridSizer3->SetSizeHints(Panel2);
-    Panel3 = new wxPanel(Notebook1, ID_PANEL3, wxDefaultPosition, wxDefaultSize, wxTAB_TRAVERSAL, _T("ID_PANEL3"));
-    FlexGridSizer5 = new wxFlexGridSizer(0, 3, 0, 0);
-    StaticBoxSizer9 = new wxStaticBoxSizer(wxHORIZONTAL, Panel3, _("NBD Default IP adress"));
-    NBDIP = new wxTextCtrl(Panel3, ID_TEXTCTRL2, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL2"));
-    StaticBoxSizer9->Add(NBDIP, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    FlexGridSizer5->Add(StaticBoxSizer9, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-    Panel3->SetSizer(FlexGridSizer5);
-    FlexGridSizer5->Fit(Panel3);
-    FlexGridSizer5->SetSizeHints(Panel3);
     Notebook1->AddPage(Panel1, _("General"), false);
     Notebook1->AddPage(Panel2, _("PFSFUSE"), false);
-    Notebook1->AddPage(Panel3, _("NBD Server"), false);
     FlexGridSizer1->Add(Notebook1, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     BoxSizer1 = new wxBoxSizer(wxHORIZONTAL);
     Button1 = new wxButton(this, ID_BUTTON1, _("Save Settings"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
@@ -203,8 +185,6 @@ Config::Config(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& s
     DATA_COLLECTION->SetValue(CFGT.collect_onkown_games_ID);
     main_config->Read("NBD/Default_IP",                 &CFGT.NBD_IP, "");
     main_config->Read("FEATURES/allow_experimental",    &CFGT.allow_experimental, false);
-    NBDIP->Clear();
-    NBDIP->SetValue(CFGT.NBD_IP);
     delete main_config;
 }
 
@@ -250,7 +230,6 @@ void Config::SaveSettings()
     CFGT.collect_onkown_games_ID    	= DATA_COLLECTION->GetValue();
     CFGT.FUSE.default_OPLPART       	= OPLPART->GetValue();
     CFGT.FUSE.mountpoint            	= MountPoint->GetString(MountPoint->GetSelection());
-    CFGT.NBD_IP                     	= NBDIP->GetValue();
     CFGT.allow_experimental             = AllowExperimental->GetValue();
 
     //main_config->Write("Init/Debug_level", CFGT.debug_level);                   std::cout <<"debug_level=" << CFGT.debug_level<<std::endl;

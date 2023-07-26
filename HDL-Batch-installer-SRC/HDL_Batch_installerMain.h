@@ -144,9 +144,6 @@ private:
     //(*Identifiers(HDL_Batch_installerFrame)
     static const long ID_BUTTON2;
     static const long ID_selected_hdd;
-    static const long ID_TEXTCTRL2;
-    static const long ID_BUTTON14;
-    static const long ID_BUTTON15;
     static const long ID_TEXTCTRL1;
     static const long ID_GAUGE1;
     static const long ID_LISTCTRL1;
@@ -170,7 +167,6 @@ private:
     static const long ID_BUTTON9;
     static const long ID_BUTTON5;
     static const long ID_BUTTON11;
-    static const long ID_BUTTON16;
     static const long ID_PANEL3;
     static const long ID_NOTEBOOK1;
     static const long ID_PANEL5;
@@ -203,13 +199,10 @@ private:
     //(*Declarations(HDL_Batch_installerFrame)
     wxButton* Button1;
     wxButton* Button3;
-    wxButton* Button4;
     wxButton* FUSE;
     wxButton* HDDManagerButton;
     wxButton* MBRExtractRequest;
     wxButton* MBR_EVENT;
-    wxButton* NBDConnect;
-    wxButton* NBDDisconnect;
     wxButton* Parse_hdl_toc;
     wxButton* SEARCH_ISO;
     wxButton* clear_iso_list;
@@ -256,7 +249,6 @@ private:
     wxStaticLine* StaticLine2;
     wxStaticLine* StaticLine3;
     wxStaticLine* StaticLine4;
-    wxTextCtrl* NBD4IP;
     wxTextCtrl* hdd_used_space;
     //*)
     void Update_hdd_data(void);
