@@ -14,35 +14,20 @@
 //*)
 using namespace std;
 //(*IdInit(ArtMan)
-const long ArtMan::ID_BUTTON1 = wxNewId();
-const long ArtMan::ID_STATICBOX1 = wxNewId();
-const long ArtMan::ID_CHECKBOX2 = wxNewId();
 const long ArtMan::ID_CHECKBOX1 = wxNewId();
+const long ArtMan::ID_CHECKBOX2 = wxNewId();
 const long ArtMan::ID_CHECKBOX3 = wxNewId();
 const long ArtMan::ID_CHECKBOX4 = wxNewId();
 const long ArtMan::ID_CHECKBOX5 = wxNewId();
 const long ArtMan::ID_CHECKBOX6 = wxNewId();
 const long ArtMan::ID_CHECKBOX7 = wxNewId();
-const long ArtMan::ID_CHECKBOX8 = wxNewId();
-const long ArtMan::ID_TEXTCTRL1 = wxNewId();
-const long ArtMan::ID_STATICLINE1 = wxNewId();
 const long ArtMan::ID_CHECKBOX9 = wxNewId();
-const long ArtMan::ID_STATICLINE2 = wxNewId();
-const long ArtMan::ID_STATICLINE3 = wxNewId();
-const long ArtMan::ID_STATICLINE4 = wxNewId();
-const long ArtMan::ID_STATICLINE5 = wxNewId();
-const long ArtMan::ID_STATICLINE6 = wxNewId();
-const long ArtMan::ID_STATICLINE7 = wxNewId();
-const long ArtMan::ID_STATICLINE8 = wxNewId();
-const long ArtMan::ID_STATICLINE9 = wxNewId();
-const long ArtMan::ID_STATICBOX2 = wxNewId();
+const long ArtMan::ID_CHECKBOX8 = wxNewId();
 const long ArtMan::ID_CHECKBOX10 = wxNewId();
 const long ArtMan::ID_CHECKBOX11 = wxNewId();
-const long ArtMan::ID_STATICLINE10 = wxNewId();
 const long ArtMan::ID_CHECKBOX12 = wxNewId();
-const long ArtMan::ID_STATICLINE11 = wxNewId();
-const long ArtMan::ID_STATICLINE12 = wxNewId();
-const long ArtMan::ID_CHECKBOX13 = wxNewId();
+const long ArtMan::ID_BUTTON1 = wxNewId();
+const long ArtMan::ID_TEXTCTRL1 = wxNewId();
 //*)
 
 BEGIN_EVENT_TABLE(ArtMan,wxDialog)
@@ -67,57 +52,68 @@ ArtMan::ArtMan(wxWindow* parent,
     art_map.insert(art_alias_t("SCR2"   ,"_SCR_01.jpg"));
     */
     //(*Initialize(ArtMan)
-    Create(parent, wxID_ANY, _("Downloads manager"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE, _T("wxID_ANY"));
-    SetClientSize(wxSize(398,273));
+    wxFlexGridSizer* FlexGridSizer1;
+    wxStaticBoxSizer* StaticBoxSizer1;
+    wxStaticBoxSizer* StaticBoxSizer2;
+
+    Create(parent, wxID_ANY, _("Downloads manager"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER, _T("wxID_ANY"));
     SetIcon( wxICON(HDL_BATCH_ICON));
-    download = new wxButton(this, ID_BUTTON1, _("Download"), wxPoint(8,240), wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
-    StaticBox1 = new wxStaticBox(this, ID_STATICBOX1, _("Images"), wxPoint(270,24), wxSize(120,240), 0, _T("ID_STATICBOX1"));
-    bg = new wxCheckBox(this, ID_CHECKBOX2, _("BG"), wxPoint(302,96), wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX2"));
-    bg->SetValue(false);
-    cov = new wxCheckBox(this, ID_CHECKBOX1, _("COV"), wxPoint(302,72), wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX1"));
-    cov->SetValue(true);
-    cov2 = new wxCheckBox(this, ID_CHECKBOX3, _("COV2"), wxPoint(302,120), wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX3"));
-    cov2->SetValue(false);
-    ico = new wxCheckBox(this, ID_CHECKBOX4, _("ICO"), wxPoint(302,144), wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX4"));
-    ico->SetValue(false);
-    lab = new wxCheckBox(this, ID_CHECKBOX5, _("LAB"), wxPoint(302,168), wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX5"));
-    lab->SetValue(false);
-    lgo = new wxCheckBox(this, ID_CHECKBOX6, _("LGO"), wxPoint(302,192), wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX6"));
-    lgo->SetValue(false);
-    scr = new wxCheckBox(this, ID_CHECKBOX7, _("SCR"), wxPoint(302,216), wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX7"));
-    scr->SetValue(false);
-    scr_2 = new wxCheckBox(this, ID_CHECKBOX8, _("SCR2"), wxPoint(302,240), wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX8"));
-    scr_2->SetValue(false);
-    TextCtrl1 = new wxTextCtrl(this, ID_TEXTCTRL1, wxEmptyString, wxPoint(8,24), wxSize(120,23), wxTE_READONLY|wxBORDER_SUNKEN, wxDefaultValidator, _T("ID_TEXTCTRL1"));
-    StaticLine1 = new wxStaticLine(this, ID_STATICLINE1, wxPoint(284,64), wxSize(2,192), wxLI_VERTICAL, _T("ID_STATICLINE1"));
-    markall = new wxCheckBox(this, ID_CHECKBOX9, wxEmptyString, wxPoint(278,48), wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX9"));
-    markall->SetValue(false);
-    StaticLine2 = new wxStaticLine(this, ID_STATICLINE2, wxPoint(286,80), wxSize(10,-1), wxLI_HORIZONTAL, _T("ID_STATICLINE2"));
-    StaticLine3 = new wxStaticLine(this, ID_STATICLINE3, wxPoint(286,104), wxSize(10,-1), wxLI_HORIZONTAL, _T("ID_STATICLINE3"));
-    StaticLine4 = new wxStaticLine(this, ID_STATICLINE4, wxPoint(286,128), wxSize(10,-1), wxLI_HORIZONTAL, _T("ID_STATICLINE4"));
-    StaticLine5 = new wxStaticLine(this, ID_STATICLINE5, wxPoint(286,152), wxSize(10,-1), wxLI_HORIZONTAL, _T("ID_STATICLINE5"));
-    StaticLine6 = new wxStaticLine(this, ID_STATICLINE6, wxPoint(286,176), wxSize(10,-1), wxLI_HORIZONTAL, _T("ID_STATICLINE6"));
-    StaticLine7 = new wxStaticLine(this, ID_STATICLINE7, wxPoint(286,200), wxSize(10,-1), wxLI_HORIZONTAL, _T("ID_STATICLINE7"));
-    StaticLine8 = new wxStaticLine(this, ID_STATICLINE8, wxPoint(286,224), wxSize(10,-1), wxLI_HORIZONTAL, _T("ID_STATICLINE8"));
-    StaticLine9 = new wxStaticLine(this, ID_STATICLINE9, wxPoint(286,248), wxSize(10,-1), wxLI_HORIZONTAL, _T("ID_STATICLINE9"));
-    StaticBox2 = new wxStaticBox(this, ID_STATICBOX2, _("Others"), wxPoint(144,24), wxSize(112,112), 0, _T("ID_STATICBOX2"));
-    cfg = new wxCheckBox(this, ID_CHECKBOX10, _("CFG"), wxPoint(176,72), wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX10"));
-    cfg->SetValue(false);
-    others_markall = new wxCheckBox(this, ID_CHECKBOX11, wxEmptyString, wxPoint(152,48), wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX11"));
-    others_markall->SetValue(false);
-    StaticLine10 = new wxStaticLine(this, ID_STATICLINE10, wxPoint(160,80), wxSize(10,-1), wxLI_HORIZONTAL, _T("ID_STATICLINE10"));
-    cht = new wxCheckBox(this, ID_CHECKBOX12, _("CHT"), wxPoint(176,96), wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX12"));
+    FlexGridSizer1 = new wxFlexGridSizer(0, 2, 0, 0);
+    FlexGridSizer1->AddGrowableCol(0);
+    FlexGridSizer1->AddGrowableRow(0);
+    StaticBoxSizer1 = new wxStaticBoxSizer(wxVERTICAL, this, _("Others"));
+    cht = new wxCheckBox(this, ID_CHECKBOX1, _("CHT"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX1"));
     cht->SetValue(false);
     cht->SetToolTip(_("Widescreen hacks for OPL"));
-    StaticLine11 = new wxStaticLine(this, ID_STATICLINE11, wxPoint(160,104), wxSize(10,-1), wxLI_HORIZONTAL, _T("ID_STATICLINE11"));
-    StaticLine12 = new wxStaticLine(this, ID_STATICLINE12, wxPoint(158,64), wxSize(2,48), wxLI_VERTICAL, _T("ID_STATICLINE12"));
-    FAST = new wxCheckBox(this, ID_CHECKBOX13, _("Fast Download"), wxPoint(16,216), wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX13"));
+    StaticBoxSizer1->Add(cht, 1, wxALL|wxEXPAND, 5);
+    cfg = new wxCheckBox(this, ID_CHECKBOX2, _("CFG"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX2"));
+    cfg->SetValue(false);
+    StaticBoxSizer1->Add(cfg, 1, wxALL|wxEXPAND, 5);
+    FlexGridSizer1->Add(StaticBoxSizer1, 1, wxALL|wxEXPAND, 5);
+    StaticBoxSizer2 = new wxStaticBoxSizer(wxVERTICAL, this, _("Images"));
+    markall = new wxCheckBox(this, ID_CHECKBOX3, _("ALL"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX3"));
+    markall->SetValue(false);
+    StaticBoxSizer2->Add(markall, 1, wxALL|wxEXPAND, 5);
+    bg = new wxCheckBox(this, ID_CHECKBOX4, _("BG"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX4"));
+    bg->SetValue(false);
+    StaticBoxSizer2->Add(bg, 1, wxALL|wxEXPAND, 5);
+    cov = new wxCheckBox(this, ID_CHECKBOX5, _("COV"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX5"));
+    cov->SetValue(false);
+    StaticBoxSizer2->Add(cov, 1, wxALL|wxEXPAND, 5);
+    cov2 = new wxCheckBox(this, ID_CHECKBOX6, _("COV2"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX6"));
+    cov2->SetValue(false);
+    StaticBoxSizer2->Add(cov2, 1, wxALL|wxEXPAND, 5);
+    ico = new wxCheckBox(this, ID_CHECKBOX7, _("ICO"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX7"));
+    ico->SetValue(false);
+    StaticBoxSizer2->Add(ico, 1, wxALL|wxEXPAND, 5);
+    lgo = new wxCheckBox(this, ID_CHECKBOX9, _("LGO"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX9"));
+    lgo->SetValue(false);
+    StaticBoxSizer2->Add(lgo, 1, wxALL|wxEXPAND, 5);
+    lab = new wxCheckBox(this, ID_CHECKBOX8, _("LAB"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX8"));
+    lab->SetValue(false);
+    StaticBoxSizer2->Add(lab, 1, wxALL|wxEXPAND, 5);
+    scr = new wxCheckBox(this, ID_CHECKBOX10, _("SCR"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX10"));
+    scr->SetValue(false);
+    StaticBoxSizer2->Add(scr, 1, wxALL|wxEXPAND, 5);
+    scr_2 = new wxCheckBox(this, ID_CHECKBOX11, _("SCR2"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX11"));
+    scr_2->SetValue(false);
+    StaticBoxSizer2->Add(scr_2, 1, wxALL|wxEXPAND, 5);
+    FlexGridSizer1->Add(StaticBoxSizer2, 1, wxALL|wxEXPAND, 5);
+    FAST = new wxCheckBox(this, ID_CHECKBOX12, _("Fast Download"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX12"));
     FAST->SetValue(false);
+    FlexGridSizer1->Add(FAST, 1, wxALL|wxEXPAND, 5);
+    download = new wxButton(this, ID_BUTTON1, _("Download"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
+    FlexGridSizer1->Add(download, 1, wxALL|wxEXPAND, 5);
+    TextCtrl1 = new wxTextCtrl(this, ID_TEXTCTRL1, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY, wxDefaultValidator, _T("ID_TEXTCTRL1"));
+    TextCtrl1->SetMaxLength(32);
+    FlexGridSizer1->Add(TextCtrl1, 1, wxALL|wxEXPAND, 5);
+    SetSizer(FlexGridSizer1);
+    FlexGridSizer1->Fit(this);
+    FlexGridSizer1->SetSizeHints(this);
     Center();
 
+    Connect(ID_CHECKBOX3,wxEVT_COMMAND_CHECKBOX_CLICKED,(wxObjectEventFunction)&ArtMan::OnmarkallClick);
     Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&ArtMan::OndownloadClick);
-    Connect(ID_CHECKBOX9,wxEVT_COMMAND_CHECKBOX_CLICKED,(wxObjectEventFunction)&ArtMan::OnmarkallClick);
-    Connect(ID_CHECKBOX11,wxEVT_COMMAND_CHECKBOX_CLICKED,(wxObjectEventFunction)&ArtMan::Onothers_markallClick);
     Connect(wxID_ANY,wxEVT_INIT_DIALOG,(wxObjectEventFunction)&ArtMan::OnInit);
     Connect(wxEVT_PAINT,(wxObjectEventFunction)&ArtMan::OnPaint);
     //*)
@@ -193,6 +189,7 @@ void ArtMan::OndownloadClick(wxCommandEvent& event)
     COLOR(0e) std::cout <<"Downloading...\n";
     COLOR(07)
     wxBeginBusyCursor();
+    wxString gauge_switch = (FAST->IsChecked()) ? "" : "--show-progress";
     for (size_t x=0; x<ELF_t.GetCount(); x++)
     {
         ELF = std::string(ELF_t.Item(x).mb_str());
@@ -239,7 +236,7 @@ void ArtMan::OndownloadClick(wxCommandEvent& event)
             {
                 wxMkdir("Downloads\\CFG");
             }
-            commnand = "common\\wget.exe -q --show-progress https://raw.githubusercontent.com/israpps/PS2-OPL-CFG-Database/master/CFG_en/" + ELF + ".cfg -O \"Downloads\\CFG\\" + ELF + ".cfg\"";
+            commnand = "common\\wget.exe -q " + gauge_switch + " https://raw.githubusercontent.com/israpps/PS2-OPL-CFG-Database/master/CFG_en/" + ELF + ".cfg -O \"Downloads\\CFG\\" + ELF + ".cfg\"";
             /*retcode = */wxExecute(commnand, (FAST->IsChecked()) ? wxEXEC_ASYNC : wxEXEC_SYNC );
             //if (retcode != 0) {wxRemoveFile( wxString::Format("\"%sDownloads\\CFG\\%s.cfg\"", EXEC_PATH, ELF) );}
             COLOR(07)
@@ -251,7 +248,7 @@ void ArtMan::OndownloadClick(wxCommandEvent& event)
             {
                 wxMkdir("Downloads\\CHT");
             }
-            commnand = "common\\wget.exe -q --show-progress https://raw.githubusercontent.com/PS2-Widescreen/OPL-Widescreen-Cheats/main/CHT/" + ELF + ".cht -O \"Downloads\\CHT\\" + ELF + ".cht\"";
+            commnand = "common\\wget.exe -q " + gauge_switch + " https://raw.githubusercontent.com/PS2-Widescreen/OPL-Widescreen-Cheats/main/CHT/" + ELF + ".cht -O \"Downloads\\CHT\\" + ELF + ".cht\"";
             /*retcode = */wxExecute(commnand, (FAST->IsChecked()) ? wxEXEC_ASYNC : wxEXEC_SYNC );
             //if (retcode != 0) {wxRemoveFile( wxString::Format("\"%sDownloads\\CHT\\%s.cht\"", EXEC_PATH, ELF) );}
             COLOR(07)
@@ -283,8 +280,6 @@ void ArtMan::OndownloadClick1(wxCommandEvent& event)
 
 void ArtMan::Onothers_markallClick(wxCommandEvent& event)
 {
-    cht->SetValue(others_markall->GetValue());
-    cfg->SetValue(others_markall->GetValue());
 }
 
 void ArtMan::cleanup(void)

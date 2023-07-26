@@ -15,8 +15,7 @@
 #include <wx/button.h>
 #include <wx/checkbox.h>
 #include <wx/dialog.h>
-#include <wx/statbox.h>
-#include <wx/statline.h>
+#include <wx/sizer.h>
 #include <wx/textctrl.h>
 //*)
 
@@ -51,58 +50,28 @@ public:
     wxCheckBox* lab;
     wxCheckBox* lgo;
     wxCheckBox* markall;
-    wxCheckBox* others_markall;
     wxCheckBox* scr;
     wxCheckBox* scr_2;
-    wxStaticBox* StaticBox1;
-    wxStaticBox* StaticBox2;
-    wxStaticLine* StaticLine10;
-    wxStaticLine* StaticLine11;
-    wxStaticLine* StaticLine12;
-    wxStaticLine* StaticLine1;
-    wxStaticLine* StaticLine2;
-    wxStaticLine* StaticLine3;
-    wxStaticLine* StaticLine4;
-    wxStaticLine* StaticLine5;
-    wxStaticLine* StaticLine6;
-    wxStaticLine* StaticLine7;
-    wxStaticLine* StaticLine8;
-    wxStaticLine* StaticLine9;
     wxTextCtrl* TextCtrl1;
     //*)
 
 protected:
 
     //(*Identifiers(ArtMan)
-    static const long ID_BUTTON1;
-    static const long ID_STATICBOX1;
-    static const long ID_CHECKBOX2;
     static const long ID_CHECKBOX1;
+    static const long ID_CHECKBOX2;
     static const long ID_CHECKBOX3;
     static const long ID_CHECKBOX4;
     static const long ID_CHECKBOX5;
     static const long ID_CHECKBOX6;
     static const long ID_CHECKBOX7;
-    static const long ID_CHECKBOX8;
-    static const long ID_TEXTCTRL1;
-    static const long ID_STATICLINE1;
     static const long ID_CHECKBOX9;
-    static const long ID_STATICLINE2;
-    static const long ID_STATICLINE3;
-    static const long ID_STATICLINE4;
-    static const long ID_STATICLINE5;
-    static const long ID_STATICLINE6;
-    static const long ID_STATICLINE7;
-    static const long ID_STATICLINE8;
-    static const long ID_STATICLINE9;
-    static const long ID_STATICBOX2;
+    static const long ID_CHECKBOX8;
     static const long ID_CHECKBOX10;
     static const long ID_CHECKBOX11;
-    static const long ID_STATICLINE10;
     static const long ID_CHECKBOX12;
-    static const long ID_STATICLINE11;
-    static const long ID_STATICLINE12;
-    static const long ID_CHECKBOX13;
+    static const long ID_BUTTON1;
+    static const long ID_TEXTCTRL1;
     //*)
 
 private:

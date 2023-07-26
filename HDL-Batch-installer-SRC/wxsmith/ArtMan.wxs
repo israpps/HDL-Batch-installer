@@ -3,134 +3,149 @@
 	<object class="wxDialog" name="ArtMan">
 		<title>Downloads manager</title>
 		<centered>1</centered>
-		<size>398,273</size>
 		<extra_code>SetIcon( wxICON(HDL__BATCH__ICON));</extra_code>
 		<id_arg>0</id_arg>
+		<style>wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER</style>
 		<handler function="OnInit" entry="EVT_INIT_DIALOG" />
 		<handler function="OnPaint" entry="EVT_PAINT" />
-		<object class="wxButton" name="ID_BUTTON1" variable="download" member="yes">
-			<label>Download</label>
-			<pos>8,240</pos>
-			<handler function="OndownloadClick" entry="EVT_BUTTON" />
-		</object>
-		<object class="wxStaticBox" name="ID_STATICBOX1" variable="StaticBox1" member="yes">
-			<label>Images</label>
-			<pos>270,24</pos>
-			<size>120,240</size>
-		</object>
-		<object class="wxCheckBox" name="ID_CHECKBOX2" variable="bg" member="yes">
-			<label>BG</label>
-			<pos>302,96</pos>
-		</object>
-		<object class="wxCheckBox" name="ID_CHECKBOX1" variable="cov" member="yes">
-			<label>COV</label>
-			<checked>1</checked>
-			<pos>302,72</pos>
-		</object>
-		<object class="wxCheckBox" name="ID_CHECKBOX3" variable="cov2" member="yes">
-			<label>COV2</label>
-			<pos>302,120</pos>
-		</object>
-		<object class="wxCheckBox" name="ID_CHECKBOX4" variable="ico" member="yes">
-			<label>ICO</label>
-			<pos>302,144</pos>
-		</object>
-		<object class="wxCheckBox" name="ID_CHECKBOX5" variable="lab" member="yes">
-			<label>LAB</label>
-			<pos>302,168</pos>
-		</object>
-		<object class="wxCheckBox" name="ID_CHECKBOX6" variable="lgo" member="yes">
-			<label>LGO</label>
-			<pos>302,192</pos>
-		</object>
-		<object class="wxCheckBox" name="ID_CHECKBOX7" variable="scr" member="yes">
-			<label>SCR</label>
-			<pos>302,216</pos>
-		</object>
-		<object class="wxCheckBox" name="ID_CHECKBOX8" variable="scr_2" member="yes">
-			<label>SCR2</label>
-			<pos>302,240</pos>
-		</object>
-		<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="TextCtrl1" member="yes">
-			<pos>8,24</pos>
-			<size>120,23</size>
-			<style>wxTE_READONLY|wxBORDER_SUNKEN</style>
-		</object>
-		<object class="wxStaticLine" name="ID_STATICLINE1" variable="StaticLine1" member="yes">
-			<pos>284,64</pos>
-			<size>2,192</size>
-			<style>wxLI_VERTICAL</style>
-		</object>
-		<object class="wxCheckBox" name="ID_CHECKBOX9" variable="markall" member="yes">
-			<pos>278,48</pos>
-			<handler function="OnmarkallClick" entry="EVT_CHECKBOX" />
-		</object>
-		<object class="wxStaticLine" name="ID_STATICLINE2" variable="StaticLine2" member="yes">
-			<pos>286,80</pos>
-			<size>10,-1</size>
-		</object>
-		<object class="wxStaticLine" name="ID_STATICLINE3" variable="StaticLine3" member="yes">
-			<pos>286,104</pos>
-			<size>10,-1</size>
-		</object>
-		<object class="wxStaticLine" name="ID_STATICLINE4" variable="StaticLine4" member="yes">
-			<pos>286,128</pos>
-			<size>10,-1</size>
-		</object>
-		<object class="wxStaticLine" name="ID_STATICLINE5" variable="StaticLine5" member="yes">
-			<pos>286,152</pos>
-			<size>10,-1</size>
-		</object>
-		<object class="wxStaticLine" name="ID_STATICLINE6" variable="StaticLine6" member="yes">
-			<pos>286,176</pos>
-			<size>10,-1</size>
-		</object>
-		<object class="wxStaticLine" name="ID_STATICLINE7" variable="StaticLine7" member="yes">
-			<pos>286,200</pos>
-			<size>10,-1</size>
-		</object>
-		<object class="wxStaticLine" name="ID_STATICLINE8" variable="StaticLine8" member="yes">
-			<pos>286,224</pos>
-			<size>10,-1</size>
-		</object>
-		<object class="wxStaticLine" name="ID_STATICLINE9" variable="StaticLine9" member="yes">
-			<pos>286,248</pos>
-			<size>10,-1</size>
-		</object>
-		<object class="wxStaticBox" name="ID_STATICBOX2" variable="StaticBox2" member="yes">
-			<label>Others</label>
-			<pos>144,24</pos>
-			<size>112,112</size>
-		</object>
-		<object class="wxCheckBox" name="ID_CHECKBOX10" variable="cfg" member="yes">
-			<label>CFG</label>
-			<pos>176,72</pos>
-		</object>
-		<object class="wxCheckBox" name="ID_CHECKBOX11" variable="others_markall" member="yes">
-			<pos>152,48</pos>
-			<handler function="Onothers_markallClick" entry="EVT_CHECKBOX" />
-		</object>
-		<object class="wxStaticLine" name="ID_STATICLINE10" variable="StaticLine10" member="yes">
-			<pos>160,80</pos>
-			<size>10,-1</size>
-		</object>
-		<object class="wxCheckBox" name="ID_CHECKBOX12" variable="cht" member="yes">
-			<label>CHT</label>
-			<pos>176,96</pos>
-			<tooltip>Widescreen hacks for OPL</tooltip>
-		</object>
-		<object class="wxStaticLine" name="ID_STATICLINE11" variable="StaticLine11" member="yes">
-			<pos>160,104</pos>
-			<size>10,-1</size>
-		</object>
-		<object class="wxStaticLine" name="ID_STATICLINE12" variable="StaticLine12" member="yes">
-			<pos>158,64</pos>
-			<size>2,48</size>
-			<style>wxLI_VERTICAL</style>
-		</object>
-		<object class="wxCheckBox" name="ID_CHECKBOX13" variable="FAST" member="yes">
-			<label>Fast Download</label>
-			<pos>16,216</pos>
+		<object class="wxFlexGridSizer" variable="FlexGridSizer1" member="no">
+			<cols>2</cols>
+			<growablecols>0</growablecols>
+			<growablerows>0</growablerows>
+			<object class="sizeritem">
+				<object class="wxStaticBoxSizer" variable="StaticBoxSizer1" member="no">
+					<label>Others</label>
+					<orient>wxVERTICAL</orient>
+					<object class="sizeritem">
+						<object class="wxCheckBox" name="ID_CHECKBOX1" variable="cht" member="yes">
+							<label>CHT</label>
+							<tooltip>Widescreen hacks for OPL</tooltip>
+						</object>
+						<flag>wxALL|wxEXPAND</flag>
+						<border>5</border>
+						<option>1</option>
+					</object>
+					<object class="sizeritem">
+						<object class="wxCheckBox" name="ID_CHECKBOX2" variable="cfg" member="yes">
+							<label>CFG</label>
+						</object>
+						<flag>wxALL|wxEXPAND</flag>
+						<border>5</border>
+						<option>1</option>
+					</object>
+				</object>
+				<flag>wxALL|wxEXPAND</flag>
+				<border>5</border>
+				<option>1</option>
+			</object>
+			<object class="sizeritem">
+				<object class="wxStaticBoxSizer" variable="StaticBoxSizer2" member="no">
+					<label>Images</label>
+					<orient>wxVERTICAL</orient>
+					<object class="sizeritem">
+						<object class="wxCheckBox" name="ID_CHECKBOX3" variable="markall" member="yes">
+							<label>ALL</label>
+							<handler function="OnmarkallClick" entry="EVT_CHECKBOX" />
+						</object>
+						<flag>wxALL|wxEXPAND</flag>
+						<border>5</border>
+						<option>1</option>
+					</object>
+					<object class="sizeritem">
+						<object class="wxCheckBox" name="ID_CHECKBOX4" variable="bg" member="yes">
+							<label>BG</label>
+						</object>
+						<flag>wxALL|wxEXPAND</flag>
+						<border>5</border>
+						<option>1</option>
+					</object>
+					<object class="sizeritem">
+						<object class="wxCheckBox" name="ID_CHECKBOX5" variable="cov" member="yes">
+							<label>COV</label>
+						</object>
+						<flag>wxALL|wxEXPAND</flag>
+						<border>5</border>
+						<option>1</option>
+					</object>
+					<object class="sizeritem">
+						<object class="wxCheckBox" name="ID_CHECKBOX6" variable="cov2" member="yes">
+							<label>COV2</label>
+						</object>
+						<flag>wxALL|wxEXPAND</flag>
+						<border>5</border>
+						<option>1</option>
+					</object>
+					<object class="sizeritem">
+						<object class="wxCheckBox" name="ID_CHECKBOX7" variable="ico" member="yes">
+							<label>ICO</label>
+						</object>
+						<flag>wxALL|wxEXPAND</flag>
+						<border>5</border>
+						<option>1</option>
+					</object>
+					<object class="sizeritem">
+						<object class="wxCheckBox" name="ID_CHECKBOX9" variable="lgo" member="yes">
+							<label>LGO</label>
+						</object>
+						<flag>wxALL|wxEXPAND</flag>
+						<border>5</border>
+						<option>1</option>
+					</object>
+					<object class="sizeritem">
+						<object class="wxCheckBox" name="ID_CHECKBOX8" variable="lab" member="yes">
+							<label>LAB</label>
+						</object>
+						<flag>wxALL|wxEXPAND</flag>
+						<border>5</border>
+						<option>1</option>
+					</object>
+					<object class="sizeritem">
+						<object class="wxCheckBox" name="ID_CHECKBOX10" variable="scr" member="yes">
+							<label>SCR</label>
+						</object>
+						<flag>wxALL|wxEXPAND</flag>
+						<border>5</border>
+						<option>1</option>
+					</object>
+					<object class="sizeritem">
+						<object class="wxCheckBox" name="ID_CHECKBOX11" variable="scr_2" member="yes">
+							<label>SCR2</label>
+						</object>
+						<flag>wxALL|wxEXPAND</flag>
+						<border>5</border>
+						<option>1</option>
+					</object>
+				</object>
+				<flag>wxALL|wxEXPAND</flag>
+				<border>5</border>
+				<option>1</option>
+			</object>
+			<object class="sizeritem">
+				<object class="wxCheckBox" name="ID_CHECKBOX12" variable="FAST" member="yes">
+					<label>Fast Download</label>
+				</object>
+				<flag>wxALL|wxEXPAND</flag>
+				<border>5</border>
+				<option>1</option>
+			</object>
+			<object class="sizeritem">
+				<object class="wxButton" name="ID_BUTTON1" variable="download" member="yes">
+					<label>Download</label>
+					<handler function="OndownloadClick" entry="EVT_BUTTON" />
+				</object>
+				<flag>wxALL|wxEXPAND</flag>
+				<border>5</border>
+				<option>1</option>
+			</object>
+			<object class="sizeritem">
+				<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="TextCtrl1" member="yes">
+					<maxlength>32</maxlength>
+					<style>wxTE_READONLY</style>
+				</object>
+				<flag>wxALL|wxEXPAND</flag>
+				<border>5</border>
+				<option>1</option>
+			</object>
 		</object>
 	</object>
 </wxsmith>

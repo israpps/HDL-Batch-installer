@@ -8,9 +8,12 @@
 		</font>
 		<extra_code>SetIcon( wxICON(HDL__BATCH__ICON));</extra_code>
 		<id_arg>0</id_arg>
+		<style>wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER</style>
 		<handler function="OnInit" entry="EVT_INIT_DIALOG" />
 		<object class="wxFlexGridSizer" variable="FlexGridSizer1" member="no">
 			<cols>1</cols>
+			<growablecols>0</growablecols>
+			<growablerows>0</growablerows>
 			<object class="sizeritem">
 				<object class="wxNotebook" name="ID_NOTEBOOK1" variable="Notebook1" member="yes">
 					<handler function="OnNotebook1PageChanged" entry="EVT_NOTEBOOK_PAGE_CHANGED" />
@@ -18,6 +21,8 @@
 						<object class="wxPanel" name="ID_PANEL1" variable="Panel1" member="yes">
 							<object class="wxFlexGridSizer" variable="FlexGridSizer2" member="no">
 								<cols>3</cols>
+								<growablecols>0</growablecols>
+								<growablerows>0</growablerows>
 								<object class="sizeritem">
 									<object class="wxStaticBoxSizer" variable="StaticBoxSizer2" member="no">
 										<label>Startup settings</label>
@@ -38,7 +43,7 @@
 													<object class="wxComboBox" name="ID_COMBOBOX1" variable="language_choice" member="yes">
 														<extra_code>for (long long unsigned int x=0; x &lt; WXSIZEOF(langNames) ; x++)&#x0A;language__choice-&gt;Append(langNames[x]);&#x0A;language__choice-&gt;SetSelection(0);</extra_code>
 													</object>
-													<flag>wxALL|wxEXPAND</flag>
+													<flag>wxALL|wxALIGN_TOP</flag>
 													<border>5</border>
 													<option>1</option>
 												</object>
@@ -48,7 +53,7 @@
 											<option>1</option>
 										</object>
 									</object>
-									<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+									<flag>wxALL|wxEXPAND</flag>
 									<border>5</border>
 									<option>1</option>
 								</object>
@@ -59,6 +64,8 @@
 										<object class="sizeritem">
 											<object class="wxFlexGridSizer" variable="FlexGridSizer4" member="no">
 												<cols>2</cols>
+												<growablecols>0</growablecols>
+												<growablerows>0</growablerows>
 												<object class="sizeritem">
 													<object class="wxGridSizer" variable="GridSizer1" member="no">
 														<cols>2</cols>
@@ -67,7 +74,7 @@
 																<label>OPL Launcher warnings</label>
 																<checked>1</checked>
 															</object>
-															<flag>wxALL|wxALIGN_LEFT|wxALIGN_TOP</flag>
+															<flag>wxALL|wxEXPAND</flag>
 															<border>5</border>
 															<option>1</option>
 														</object>
@@ -76,7 +83,7 @@
 																<label>Hide game</label>
 																<tooltip>When enabled, the program will install games using ____. as partition prefix instead of PP.&#x0A;&#x0A;This will hide games from HDD-OSD.&#x0A;&#x0A;Also, this alternative prefix is required to launch games via OPL Launcher from PSBBN and PSX XMB menu</tooltip>
 															</object>
-															<flag>wxALL|wxALIGN_LEFT|wxALIGN_TOP</flag>
+															<flag>wxALL|wxEXPAND</flag>
 															<border>5</border>
 															<option>1</option>
 														</object>
@@ -85,16 +92,18 @@
 																<label>Custom Icon Loader</label>
 																<checked>1</checked>
 															</object>
-															<flag>wxALL|wxALIGN_LEFT|wxALIGN_TOP</flag>
+															<flag>wxALL|wxEXPAND</flag>
 															<border>5</border>
 															<option>1</option>
 														</object>
 														<object class="sizeritem">
 															<object class="wxCheckBox" name="ID_CHECKBOX5" variable="DATA_COLLECTION" member="yes">
 																<label>Data Collection</label>
+																<enabled>0</enabled>
+																<hidden>1</hidden>
 																<tooltip>When this Feature is enabled, the program will send information to it&apos;s creator every time it installs a game whose region code isn&apos;t registered in the database</tooltip>
 															</object>
-															<flag>wxALL|wxALIGN_LEFT|wxALIGN_TOP</flag>
+															<flag>wxALL|wxEXPAND</flag>
 															<border>5</border>
 															<option>1</option>
 														</object>
@@ -103,12 +112,12 @@
 																<label>Allow unstable/experimental features</label>
 																<handler function="OnCheckBox1Click" entry="EVT_CHECKBOX" />
 															</object>
-															<flag>wxALL|wxALIGN_LEFT|wxALIGN_TOP</flag>
+															<flag>wxALL|wxEXPAND</flag>
 															<border>5</border>
 															<option>1</option>
 														</object>
 													</object>
-													<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+													<flag>wxALL|wxEXPAND</flag>
 													<border>5</border>
 													<option>1</option>
 												</object>
@@ -149,7 +158,7 @@
 															<option>1</option>
 														</object>
 													</object>
-													<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+													<flag>wxALL|wxEXPAND</flag>
 													<border>5</border>
 													<option>1</option>
 												</object>
@@ -166,17 +175,17 @@
 															<option>1</option>
 														</object>
 													</object>
-													<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+													<flag>wxALL|wxEXPAND</flag>
 													<border>5</border>
 													<option>1</option>
 												</object>
 											</object>
-											<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+											<flag>wxALL|wxEXPAND</flag>
 											<border>5</border>
 											<option>1</option>
 										</object>
 									</object>
-									<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+									<flag>wxALL|wxEXPAND</flag>
 									<border>5</border>
 									<option>1</option>
 								</object>
@@ -188,6 +197,8 @@
 						<object class="wxPanel" name="ID_PANEL2" variable="Panel2" member="yes">
 							<object class="wxFlexGridSizer" variable="FlexGridSizer3" member="no">
 								<cols>3</cols>
+								<growablecols>0</growablecols>
+								<growablerows>0</growablerows>
 								<object class="sizeritem">
 									<object class="wxStaticBoxSizer" variable="StaticBoxSizer7" member="no">
 										<label>Default HDD letter</label>
@@ -195,12 +206,12 @@
 											<object class="wxChoice" name="ID_CHOICE2" variable="MountPoint" member="yes">
 												<extra_code>for (int x=0; x&lt;25; x++)&#x0A;{MountPoint-&gt;Append(mountpoints[x]);}&#x0A;MountPoint-&gt;SetSelection(22);</extra_code>
 											</object>
-											<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+											<flag>wxALL|wxALIGN_TOP</flag>
 											<border>5</border>
 											<option>1</option>
 										</object>
 									</object>
-									<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+									<flag>wxALL|wxEXPAND</flag>
 									<border>5</border>
 									<option>1</option>
 								</object>
@@ -211,12 +222,12 @@
 											<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="OPLPART" member="yes">
 												<value>+OPL</value>
 											</object>
-											<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+											<flag>wxALL|wxALIGN_TOP</flag>
 											<border>5</border>
 											<option>1</option>
 										</object>
 									</object>
-									<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+									<flag>wxALL|wxEXPAND</flag>
 									<border>5</border>
 									<option>1</option>
 								</object>
@@ -225,7 +236,7 @@
 						<label>PFSFUSE</label>
 					</object>
 				</object>
-				<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<flag>wxALL|wxEXPAND</flag>
 				<border>5</border>
 				<option>1</option>
 			</object>
@@ -241,7 +252,7 @@
 						<option>1</option>
 					</object>
 				</object>
-				<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<flag>wxALL|wxEXPAND</flag>
 				<border>5</border>
 				<option>1</option>
 			</object>
