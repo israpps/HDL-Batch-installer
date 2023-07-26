@@ -28,27 +28,32 @@ CopyHDD::CopyHDD(wxWindow* parent, wxArrayString HDDs, int selectedHDD, wxString
 {
     //(*Initialize(CopyHDD)
     wxBoxSizer* BoxSizer1;
+    wxBoxSizer* BoxSizer2;
     wxFlexGridSizer* FlexGridSizer1;
     wxStaticBoxSizer* StaticBoxSizer1;
     wxStaticBoxSizer* StaticBoxSizer2;
 
-    Create(parent, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE, _T("wxID_ANY"));
+    Create(parent, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER, _T("wxID_ANY"));
     FlexGridSizer1 = new wxFlexGridSizer(0, 1, 0, 0);
+    FlexGridSizer1->AddGrowableCol(0);
+    FlexGridSizer1->AddGrowableRow(0);
     BoxSizer1 = new wxBoxSizer(wxHORIZONTAL);
     StaticBoxSizer1 = new wxStaticBoxSizer(wxHORIZONTAL, this, _("Source"));
     Source = new wxChoice(this, ID_CHOICE1, wxDefaultPosition, wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_CHOICE1"));
-    StaticBoxSizer1->Add(Source, 1, wxALL|wxALIGN_CENTER_VERTICAL, 5);
+    StaticBoxSizer1->Add(Source, 1, wxALL|wxALIGN_TOP, 5);
     BoxSizer1->Add(StaticBoxSizer1, 1, wxALL|wxEXPAND, 5);
     StaticText1 = new wxStaticText(this, ID_STATICTEXT1, _("---->"), wxDefaultPosition, wxDefaultSize, wxALIGN_CENTRE, _T("ID_STATICTEXT1"));
     BoxSizer1->Add(StaticText1, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     StaticBoxSizer2 = new wxStaticBoxSizer(wxHORIZONTAL, this, _("Destination"));
     Destination = new wxChoice(this, ID_CHOICE2, wxDefaultPosition, wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_CHOICE2"));
-    StaticBoxSizer2->Add(Destination, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    StaticBoxSizer2->Add(Destination, 1, wxALL|wxALIGN_TOP, 5);
     BoxSizer1->Add(StaticBoxSizer2, 1, wxALL|wxEXPAND, 5);
     FlexGridSizer1->Add(BoxSizer1, 1, wxALL|wxEXPAND, 5);
+    BoxSizer2 = new wxBoxSizer(wxHORIZONTAL);
     Transfer = new wxButton(this, ID_BUTTON1, _("Transfer games"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
     Transfer->Disable();
-    FlexGridSizer1->Add(Transfer, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    BoxSizer2->Add(Transfer, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+    FlexGridSizer1->Add(BoxSizer2, 1, wxALL|wxEXPAND, 5);
     SetSizer(FlexGridSizer1);
     FlexGridSizer1->Fit(this);
     FlexGridSizer1->SetSizeHints(this);

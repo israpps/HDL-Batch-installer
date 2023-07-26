@@ -4,9 +4,11 @@
 		<title>Dokan Manager</title>
 		<centered>1</centered>
 		<id_arg>0</id_arg>
-		<style>wxSTAY_ON_TOP|wxCAPTION|wxSYSTEM_MENU|wxCLOSE_BOX|wxMINIMIZE_BOX|wxCLIP_CHILDREN</style>
+		<style>wxSTAY_ON_TOP|wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxMINIMIZE_BOX|wxCLIP_CHILDREN</style>
 		<object class="wxFlexGridSizer" variable="FlexGridSizer1" member="no">
 			<cols>1</cols>
+			<growablecols>0</growablecols>
+			<growablerows>0</growablerows>
 			<object class="sizeritem">
 				<object class="wxBoxSizer" variable="BoxSizer1" member="no">
 					<object class="sizeritem">
@@ -17,12 +19,12 @@
 									<size>161,28</size>
 									<handler function="OnpartyselectorSelect" entry="EVT_CHOICE" />
 								</object>
-								<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<flag>wxALL|wxEXPAND</flag>
 								<border>5</border>
 								<option>1</option>
 							</object>
 						</object>
-						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<flag>wxALL|wxEXPAND</flag>
 						<border>5</border>
 						<option>1</option>
 					</object>
@@ -33,12 +35,12 @@
 								<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="currhdd" member="yes">
 									<style>wxTE_READONLY</style>
 								</object>
-								<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<flag>wxALL|wxEXPAND</flag>
 								<border>5</border>
 								<option>1</option>
 							</object>
 						</object>
-						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<flag>wxALL|wxEXPAND</flag>
 						<border>5</border>
 						<option>1</option>
 					</object>
@@ -51,17 +53,17 @@
 									<tooltip>Choose device letter to mount  partition</tooltip>
 									<handler function="OnDrive_selectorSelect" entry="EVT_CHOICE" />
 								</object>
-								<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<flag>wxALL|wxEXPAND</flag>
 								<border>5</border>
 								<option>1</option>
 							</object>
 						</object>
-						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<flag>wxALL|wxEXPAND</flag>
 						<border>5</border>
 						<option>1</option>
 					</object>
 				</object>
-				<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<flag>wxALL|wxEXPAND</flag>
 				<border>5</border>
 				<option>1</option>
 			</object>
@@ -69,76 +71,28 @@
 				<object class="wxGridSizer" variable="GridSizer1" member="no">
 					<cols>1</cols>
 					<object class="sizeritem">
-						<object class="wxBoxSizer" variable="BoxSizer4" member="no">
+						<object class="wxBoxSizer" variable="BoxSizer5" member="no">
 							<object class="sizeritem">
-								<object class="wxFlexGridSizer" variable="FlexGridSizer3" member="no">
-									<cols>1</cols>
-									<object class="sizeritem">
-										<object class="wxStaticText" name="ID_STATICTEXT1" variable="StaticText1" member="yes">
-											<label>Free</label>
-										</object>
-										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-										<border>5</border>
-										<option>1</option>
-									</object>
-									<object class="sizeritem">
-										<object class="wxTextCtrl" name="ID_TEXTCTRL2" variable="PART_FREE" member="yes">
-											<style>wxTE_READONLY</style>
-										</object>
-										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-										<border>5</border>
-										<option>1</option>
-									</object>
+								<object class="wxGauge" name="ID_GAUGE1" variable="Gauge1" member="yes">
+									<size>391,28</size>
 								</object>
-								<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-								<border>5</border>
-								<option>1</option>
-							</object>
-							<object class="sizeritem">
-								<object class="wxFlexGridSizer" variable="FlexGridSizer4" member="no">
-									<cols>1</cols>
-									<object class="sizeritem">
-										<object class="wxStaticText" name="ID_STATICTEXT2" variable="StaticText2" member="yes">
-											<label>total</label>
-										</object>
-										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-										<border>5</border>
-										<option>1</option>
-									</object>
-									<object class="sizeritem">
-										<object class="wxTextCtrl" name="ID_TEXTCTRL3" variable="PART_TOTAL" member="yes">
-											<style>wxTE_READONLY</style>
-										</object>
-										<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-										<border>5</border>
-										<option>1</option>
-									</object>
-								</object>
-								<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<flag>wxTOP|wxLEFT|wxRIGHT|wxALIGN_TOP</flag>
 								<border>5</border>
 								<option>1</option>
 							</object>
 						</object>
-						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
-						<border>5</border>
-						<option>1</option>
-					</object>
-					<object class="sizeritem">
-						<object class="wxGauge" name="ID_GAUGE1" variable="Gauge1" member="yes">
-							<size>391,28</size>
-						</object>
-						<flag>wxTOP|wxLEFT|wxRIGHT|wxALIGN_LEFT|wxALIGN_TOP</flag>
+						<flag>wxALL|wxEXPAND</flag>
 						<border>5</border>
 						<option>1</option>
 					</object>
 				</object>
-				<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL|wxSHAPED</flag>
+				<flag>wxALL|wxEXPAND</flag>
 				<border>5</border>
 				<option>1</option>
 			</object>
 			<object class="sizeritem">
-				<object class="wxFlexGridSizer" variable="FlexGridSizer2" member="no">
-					<cols>1</cols>
+				<object class="wxBoxSizer" variable="BoxSizer4" member="no">
+					<orient>wxVERTICAL</orient>
 					<object class="sizeritem">
 						<object class="wxBoxSizer" variable="BoxSizer2" member="no">
 							<object class="sizeritem">
@@ -163,7 +117,7 @@
 								<option>1</option>
 							</object>
 						</object>
-						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<flag>wxALL|wxEXPAND</flag>
 						<border>5</border>
 						<option>1</option>
 					</object>
@@ -191,12 +145,12 @@
 								<option>1</option>
 							</object>
 						</object>
-						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<flag>wxALL|wxEXPAND</flag>
 						<border>5</border>
 						<option>1</option>
 					</object>
 				</object>
-				<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+				<flag>wxALL|wxEXPAND</flag>
 				<border>5</border>
 				<option>1</option>
 			</object>

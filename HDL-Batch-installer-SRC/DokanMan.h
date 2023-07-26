@@ -7,7 +7,6 @@
 #include <wx/dialog.h>
 #include <wx/gauge.h>
 #include <wx/sizer.h>
-#include <wx/stattext.h>
 #include <wx/textctrl.h>
 //*)
 #include <wx/arrstr.h>
@@ -26,10 +25,6 @@ public:
     wxChoice* Drive_selector;
     wxChoice* partyselector;
     wxGauge* Gauge1;
-    wxStaticText* StaticText1;
-    wxStaticText* StaticText2;
-    wxTextCtrl* PART_FREE;
-    wxTextCtrl* PART_TOTAL;
     wxTextCtrl* currhdd;
     //*)
 
@@ -39,10 +34,6 @@ protected:
     static const long ID_CHOICE1;
     static const long ID_TEXTCTRL1;
     static const long ID_CHOICE2;
-    static const long ID_STATICTEXT1;
-    static const long ID_TEXTCTRL2;
-    static const long ID_STATICTEXT2;
-    static const long ID_TEXTCTRL3;
     static const long ID_GAUGE1;
     static const long ID_BUTTON1;
     static const long ID_BUTTON2;

@@ -21450,7 +21450,7 @@
 	<wx/debug.h>
 	<wx/defs.h>
 
-1674915379 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\copyhdd.cpp
+1690341066 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\copyhdd.cpp
 	"CopyHDD.h"
 	<wx/intl.h>
 	<wx/string.h>
@@ -21490,13 +21490,12 @@
 	<wx/intl.h>
 	<wx/string.h>
 
-1674915379 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\dokanman.h
+1690341263 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\dokanman.h
 	<wx/button.h>
 	<wx/choice.h>
 	<wx/dialog.h>
 	<wx/gauge.h>
 	<wx/sizer.h>
-	<wx/stattext.h>
 	<wx/textctrl.h>
 	<wx/arrstr.h>
 
