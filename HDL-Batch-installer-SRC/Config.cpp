@@ -206,7 +206,7 @@ Config::Config(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& s
     main_config->Read("HDDManager/display_games_titles",&CFGT.HDDManagerGameTitleDISP, true);
     HDDManagerGPD->SetValue(CFGT.HDDManagerGameTitleDISP);
     main_config->Read("HDDManager/display_subpartition",&CFGT.HDDManagerDisplaySubpart, false);
-    HDDManagerGPD->SetValue(CFGT.HDDManagerDisplaySubpart);
+    HDDManagerSubPartDSP->SetValue(CFGT.HDDManagerDisplaySubpart);
 
     main_config->Read("FEATURES/allow_experimental",    &CFGT.allow_experimental, false);
     delete main_config;
