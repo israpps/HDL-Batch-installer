@@ -186,9 +186,11 @@ PAPX_902.29;XI [sai]
 PAPX_902.30;Arc the Lad - Seirei no Tasogare - Premiere Disc
 PAPX_902.31;Kaitou Sly Cooper
 PAPX_902.32;Chain Dive
+PAPX_902.33;Bakusou Mountain Bikers [Taikenban]
 PAPX_902.34;Katamari Damacy
 PAPX_902.35;XIII
 PAPX_902.37;Gun Parade Orchestra - Shiro no Shou - Aomori Penguin Densetsu - Blog Disc [Bonus Disc]
+PAPX_902_05;Dark Cloud [Sample Movie Disc]
 PAPX_903.30;Saru! Get You! 2 - Ukki Ukki Disc
 PAPX_905.01;Dark Cloud
 PAPX_905.02;The Yamanote-sen - Train Simulator Real
@@ -204,6 +206,7 @@ PAPX_905.14;Fuyu no Osusume Soft Otameshi Disc
 PAPX_905.15;Fuyu no Osusume Soft Otameshi Disc [2003-2004]
 PAPX_905.16;Jak II: Jak x Daxter 2
 PAPX_905.17;Prince of Persia - Jikan no Suna
+PAPX_905.19;Doko Demo Issho - Toro to Ippai [Taikenban]
 PAPX_905.20;Ratchet and Clank 3
 PAPX_905.21;Waga Ryuu o Miyo - Pride of the Dragon Peace
 PAPX_905.22;Genji
@@ -3812,7 +3815,10 @@ SCKA_300.04;Gran Turismo 4 [BigHits Series]
 SCKA_300.05;Rogue Galaxy
 SCKA_300.06;God of War 2
 SCKA_300.07;God of War II [BigHits Series]
+SCKA_900.03;XI5 - Aqui Ohyeongje [Korea] [Cheheompan]
 SCKA_900.09;R-Type Final [Trial Version]
+SCKA_900.10;SOCOM - U.S. Navy SEALs [Korea] [Cheheompan]
+SCKA_900.11;Arc the Lad - Jeongryeongui Hwanghon - Premiere Disc [Korea]
 SCKA_900.16;Katamari Damacy [Trial]
 SCKS_300.05;ROGUE GALAXY
 SCPH_100.90;One Piece: Pirates Carnival
@@ -4768,6 +4774,7 @@ SLED_544.01;Destroy All Humans! 2
 SLED_544.45;Pro Evolution Soccer 6
 SLED_545.09;Guitar Hero II
 SLED_550.22;PES 2008: Pro Evolution Soccer
+SLED_556.02;PES 2010 - Pro Evolution Soccer [Europe] [Demo]
 SLES_006.48;IL-2 Sturmovik - Birds of Prey
 SLES_051.39;IndyCar Series
 SLES_500.00;Ridge Racer V
@@ -8530,6 +8537,7 @@ SLKA_254.24;SNK Arcade Classics Vol.1
 SLKA_254.25;SHINING TEARS [BIG HIT SERIES]
 SLKA_254.29;Sonic Mega Collection Plus [PlayStation 2 BigHit Series]
 SLKA_254.35;SENGOKU BASARA X
+SLKA_254.36;DreamWorks Kung Fu Panda [Korea]
 SLKA_254.37;Street Fighter - Anniversary Collection [PlayStation 2 Big Hit]
 SLKA_254.41;Kidou Senshi Gundam 00 - Gundam Meisters
 SLKA_254.42;007 - Quantum of Solace
@@ -8870,6 +8878,7 @@ SLPM_601.12;Hresvelgr
 SLPM_601.13;Sorcerous Stabber Orphen
 SLPM_601.14;Magical Sports 2000 Koushien
 SLPM_601.15;Super Puzzle Bobble
+SLPM_601.16;Magical Sports GoGoGolf [Japan] [Taikenban]
 SLPM_601.17;Sangoku Musou
 SLPM_601.18;Surfroid - Densetsu no Surfer [Surfing H3O] [Trial]
 SLPM_601.19;CrossFire [X-Squad] [Trial]
@@ -8887,6 +8896,7 @@ SLPM_601.30;Truck Kyousoukyoku - Ai to Kanashimi no Rodeo
 SLPM_601.32;Shutokou Battle 0
 SLPM_601.33;Mobile Suit Gundam - Zeonic Front
 SLPM_601.34;Technictix
+SLPM_601.35;Shadow of Memories [Japan] [Tentou Houei-you Movie-ban]
 SLPM_601.36;Bloody Roar 3
 SLPM_601.37;Tenshi no Present - Marl Oukoku Monogatari [Trial]
 SLPM_601.38;Kaze no Klonoa 2 - Sekai ga Nozonda Wasuremono [Trial]
@@ -8938,13 +8948,16 @@ SLPM_602.04;Initial D - Special Stage
 SLPM_602.05;Initial D - Special Stage
 SLPM_602.06;Shutokou Battle 01
 SLPM_602.07;Rockman X7
+SLPM_602.09;Real Sports Pro Yakyuu [Japan] [Tentou Shiyuu Taikenban]
 SLPM_602.11;Bujingai
 SLPM_602.12;Makai Eiyuuki Maximo - Machine Monster no Yabou
 SLPM_602.13;Katamari Damacy
 SLPM_602.14;Shadow Hearts II
 SLPM_602.15;Dengeki PS2 PlayStation D63
 SLPM_602.16;R:Racing Evolution - Life in the Fast Lane [Trial]
+SLPM_602.17;Time Crisis 3 [Japan] [Tentou Taikenban]
 SLPM_602.18;Gungrave OD
+SLPM_602.19;Shadow Hearts II [Japan] [Furokuban]
 SLPM_602.20;Hajime no Ippo 2 - Victorious Road
 SLPM_602.25;Fuuun Shinsengumi
 SLPM_602.26;Shadow Hearts II
@@ -9101,6 +9114,7 @@ SLPM_611.33;Soulcalibur III
 SLPM_611.34;Kidou Senshi Gundam Seed: Rengou vs. Z.A.F.T.
 SLPM_611.35;Naruto: Narutimate Hero 3
 SLPM_611.37;Sega Rally 2006
+SLPM_611.38;Akumajou Dracula - Yami no Juin [Japan] [Tentou Taikenban]
 SLPM_611.39;Puyo Puyo Fever 2
 SLPM_611.40;Ryuu ga Gotoku
 SLPM_611.41;Dengeki PS2 PlayStation D87
