@@ -147,7 +147,7 @@ long ArtMan::Request_art(wxString ELF, wxString suffix)
 {
     wxString gauge_switch = (FAST->IsChecked()) ? "" : "--show-progress";
     long wget_return_value;
-    wxString command = "common\\wget.exe -q" + gauge_switch +"https://ia801805.us.archive.org/view_archive.php?archive=/26/items/OPLM_ART_2021_01/OPLM_ART_2021_01.zip&file=PS2%2F";
+    wxString command = "common\\wget.exe -q" + gauge_switch +"https://ia802706.us.archive.org/view_archive.php?archive=/4/items/OPLM_ART_2023_07/OPLM_ART_2023_07.zip&file=PS2%2F";
     command.append(ELF);
     command.append("%2F");
     command.append(ELF);
