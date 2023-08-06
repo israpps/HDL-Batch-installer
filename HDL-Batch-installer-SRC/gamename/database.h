@@ -4,6 +4,6 @@
 #include <string>
 #define \
 GAME_AMOUNT \
-15750
+15764
 extern const std::string gamename_internal_database[GAME_AMOUNT + 1];
 #endif//DATABASE_ARRAY
