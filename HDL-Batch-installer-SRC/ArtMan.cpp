@@ -145,8 +145,9 @@ void ArtMan::OnPaint(wxPaintEvent& event)
 
 long ArtMan::Request_art(wxString ELF, wxString suffix)
 {
+    wxString gauge_switch = (FAST->IsChecked()) ? "" : "--show-progress";
     long wget_return_value;
-    wxString command = "common\\wget.exe -q --show-progress https://ia801805.us.archive.org/view_archive.php?archive=/26/items/OPLM_ART_2021_01/OPLM_ART_2021_01.zip&file=PS2%2F";
+    wxString command = "common\\wget.exe -q" + gauge_switch +"https://ia801805.us.archive.org/view_archive.php?archive=/26/items/OPLM_ART_2021_01/OPLM_ART_2021_01.zip&file=PS2%2F";
     command.append(ELF);
     command.append("%2F");
     command.append(ELF);
@@ -162,7 +163,7 @@ long ArtMan::Request_art(wxString ELF, wxString suffix)
     command.append(ELF);
     command.append(suffix);
     command.append("\"");
-    COLOR(0d(FAST->IsChecked()) ? 00 : 0d)
+    COLOR(0d)
     wget_return_value = wxExecute(command,(FAST->IsChecked()) ? wxEXEC_ASYNC : wxEXEC_SYNC);
     COLOR(07)
     //if (wget_return_value != 0) {wxRemoveFile( wxString::Format("\"%sDownloads\\ART\\%s%s\"", EXEC_PATH, ELF, suffix) );}
@@ -231,7 +232,7 @@ void ArtMan::OndownloadClick(wxCommandEvent& event)
         }
         if (cfg->GetValue())
         {
-            COLOR((FAST->IsChecked()) ? 00 : 0d)
+            COLOR(0d)
             if (!wxDirExists("Downloads\\CFG"))
             {
                 wxMkdir("Downloads\\CFG");
@@ -243,7 +244,7 @@ void ArtMan::OndownloadClick(wxCommandEvent& event)
         }
         if (cht->GetValue())
         {
-            COLOR(0d(FAST->IsChecked()) ? 00 : 0d)
+            COLOR(0d)
             if (!wxDirExists("Downloads\\CHT"))
             {
                 wxMkdir("Downloads\\CHT");
