@@ -40,6 +40,7 @@ public:
     wxArrayString ELF_t;
     //(*Declarations(ArtMan)
     wxButton* download;
+    wxCheckBox* CheckCERT;
     wxCheckBox* FAST;
     wxCheckBox* bg;
     wxCheckBox* cfg;
@@ -71,6 +72,7 @@ protected:
     static const long ID_CHECKBOX11;
     static const long ID_CHECKBOX12;
     static const long ID_BUTTON1;
+    static const long ID_CHECKBOX13;
     static const long ID_TEXTCTRL1;
     //*)
 

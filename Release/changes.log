@@ -6,6 +6,7 @@
         -HDDManager: Allow to disable game title display via configuration (enabled by default)
         -HDDManager: Dont display Sub-Partitions by default (also customizable on configuration)
         -ART Download: Dont display download gauge on fast download 
+        -ART Download: add option to perform connection to artwork download service without checking certificates
 
 21 July 2023
    [v3.5.0 - Revision 3]

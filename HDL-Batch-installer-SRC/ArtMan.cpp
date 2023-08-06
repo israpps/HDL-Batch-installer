@@ -27,6 +27,7 @@ const long ArtMan::ID_CHECKBOX10 = wxNewId();
 const long ArtMan::ID_CHECKBOX11 = wxNewId();
 const long ArtMan::ID_CHECKBOX12 = wxNewId();
 const long ArtMan::ID_BUTTON1 = wxNewId();
+const long ArtMan::ID_CHECKBOX13 = wxNewId();
 const long ArtMan::ID_TEXTCTRL1 = wxNewId();
 //*)
 
@@ -104,6 +105,10 @@ ArtMan::ArtMan(wxWindow* parent,
     FlexGridSizer1->Add(FAST, 1, wxALL|wxEXPAND, 5);
     download = new wxButton(this, ID_BUTTON1, _("Download"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
     FlexGridSizer1->Add(download, 1, wxALL|wxEXPAND, 5);
+    CheckCERT = new wxCheckBox(this, ID_CHECKBOX13, _("Artwork certificate fix"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_CHECKBOX13"));
+    CheckCERT->SetValue(false);
+    CheckCERT->SetToolTip(_("Attempts connections to archive.org for artwork download without certificate checks"));
+    FlexGridSizer1->Add(CheckCERT, 1, wxALL|wxEXPAND, 5);
     TextCtrl1 = new wxTextCtrl(this, ID_TEXTCTRL1, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY, wxDefaultValidator, _T("ID_TEXTCTRL1"));
     TextCtrl1->SetMaxLength(32);
     FlexGridSizer1->Add(TextCtrl1, 1, wxALL|wxEXPAND, 5);
@@ -145,9 +150,10 @@ void ArtMan::OnPaint(wxPaintEvent& event)
 
 long ArtMan::Request_art(wxString ELF, wxString suffix)
 {
-    wxString gauge_switch = (FAST->IsChecked()) ? "" : "--show-progress";
+    wxString gauge_switch = (FAST->IsChecked()) ? "" : "--show-progress ";
+    wxString cert_switch =  (CheckCERT->IsChecked()) ? "--no-check-certificate " : "";
     long wget_return_value;
-    wxString command = "common\\wget.exe -q" + gauge_switch +"https://ia801805.us.archive.org/view_archive.php?archive=/26/items/OPLM_ART_2021_01/OPLM_ART_2021_01.zip&file=PS2%2F";
+    wxString command = "common\\wget.exe -q " + cert_switch + gauge_switch +"https://ia802706.us.archive.org/view_archive.php?archive=/4/items/OPLM_ART_2023_07/OPLM_ART_2023_07.zip&file=PS2%2F";
     command.append(ELF);
     command.append("%2F");
     command.append(ELF);
