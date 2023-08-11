@@ -20457,12 +20457,12 @@
 1587560968 c:\libs\wxwidgets-3.0.5\include\wx\os2\stattext.h
 	"wx/control.h"
 
-1690340747 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\artman.cpp
+1691300415 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\artman.cpp
 	"ArtMan.h"
 	<wx/intl.h>
 	<wx/string.h>
 
-1690340354 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\artman.h
+1691300310 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\artman.h
 	<wx/button.h>
 	<wx/checkbox.h>
 	<wx/dialog.h>
@@ -20765,7 +20765,7 @@
 	"wx/defs.h"
 	"wx/window.h"
 
-1690345017 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\config.cpp
+1690418589 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\config.cpp
 	"Config.h"
 	"include/locale_table.h"
 	<wx/font.h>
@@ -21539,10 +21539,10 @@
 	"wx/string.h"
 	"wx/filefn.h"
 
-1674915380 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\gamename\database.cpp
+1691297177 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\gamename\database.cpp
 	"database.h"
 
-1674915380 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\gamename\database.h
+1691297177 c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\gamename\database.h
 	<string>
 
 1674915380 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\gamename\parser.cpp
@@ -25545,7 +25545,7 @@
 	<wx/stattext.h>
 	<wx/textctrl.h>
 
-1690342323 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\mkpartdlg.cpp
+1691788333 source:c:\users\isra\documents\github\hdl-batch-installer\hdl-batch-installer-src\mkpartdlg.cpp
 	"mkpartdlg.h"
 	<iostream>
 	<iomanip>

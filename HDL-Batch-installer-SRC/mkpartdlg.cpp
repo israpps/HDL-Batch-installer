@@ -117,7 +117,7 @@ bool isAlphaNumChar(char fch){
 
 bool isAlphaString(const wxString &fs){
 	for (size_t i=0; i<fs.Length(); ++i) {
-		if (!isAlphaNumChar(fs[i]) && fs[i] != '_' && fs[i] != '.')
+		if (!isAlphaNumChar(fs[i]) && fs[i] != '_' && fs[i] != '.' && fs[i] != '+')
 		{
 #ifdef DEBUG
 		    std::cout << fs << "\n" << std::setw(i+1) << std::setfill('-') << "^"<< std::resetiosflags(std::ios::showbase) <<"\t(" << i <<")\n";

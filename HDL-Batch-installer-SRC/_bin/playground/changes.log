@@ -1,3 +1,9 @@
+11 August 2023
+   [v3.5.1 - Revision 1]
+
+     Change log:
+        -HDDManager: Fix bug wich denied creation of partitions with a `+` on its name 
+
 26 July 2023
    [v3.5.1 - Revision 0]
 
