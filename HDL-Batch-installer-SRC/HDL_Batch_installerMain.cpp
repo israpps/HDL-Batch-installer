@@ -1260,6 +1260,13 @@ void HDL_Batch_installerFrame::List_refresh_request()
             Installed_game_list->SetItem(itemIndex, 3, "DVD"); //col. 4
     }
     if (result.GetCount() <= 2) wxMessageBox(_("This HDD has no PS2 Games inside"), error_caption);
+
+    int size_ELFID = Installed_game_list->GetColumnWidth(1);
+    int size_SIZE = Installed_game_list->GetColumnWidth(2);
+    int size_MEDIA = Installed_game_list->GetColumnWidth(3);
+    int TOTAL;
+    Installed_game_list->GetClientSize(&TOTAL, NULL);
+    Installed_game_list->SetColumnWidth(0, TOTAL - (size_ELFID + size_SIZE + size_MEDIA));
 }
 
 void HDL_Batch_installerFrame::On_MiniOPL_Update_request(wxCommandEvent& event)
