@@ -116,10 +116,11 @@
 												<object class="wxListCtrl" name="ID_LISTCTRL1" variable="game_list__" member="yes">
 													<size>388,447</size>
 													<minsize>377,415</minsize>
-													<extra_code>wxListItem __col0;&#x0A;__col0.SetId(0);&#x0A;__col0.SetText( __(&quot;Game &quot;) );&#x0A;__col0.SetWidth(350);&#x0A;game__list____-&gt;InsertColumn(0, __col0);</extra_code>
+													<extra_code>wxListItem __col0;&#x0A;__col0.SetId(0);&#x0A;__col0.SetText( __(&quot;Game &quot;) );&#x0A;__col0.SetWidth(370);&#x0A;game__list____-&gt;InsertColumn(0, __col0);</extra_code>
 													<style>wxLC_REPORT|wxLC_SINGLE_SEL|wxLC_HRULES|wxLC_VRULES|wxBORDER_SUNKEN|wxVSCROLL</style>
 													<handler function="OnListCtrl1BeginDrag" entry="EVT_LIST_BEGIN_DRAG" />
 													<handler function="onItemRightClick" entry="EVT_LIST_ITEM_RIGHT_CLICK" />
+													<handler function="OnListCtrl1BeginDrag" entry="EVT_LIST_COL_CLICK" />
 												</object>
 												<flag>wxALL|wxEXPAND</flag>
 											</object>

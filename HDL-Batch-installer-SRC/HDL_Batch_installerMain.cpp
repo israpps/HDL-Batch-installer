@@ -241,7 +241,7 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     wxListItem _col0;
     _col0.SetId(0);
     _col0.SetText( _("Game ") );
-    _col0.SetWidth(350);
+    _col0.SetWidth(370);
     game_list__->InsertColumn(0, _col0);
     FlexGridSizer6->Add(game_list__, 0, wxALL|wxEXPAND, 0);
     FlexGridSizer6->Add(-1,-1,1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
@@ -444,6 +444,7 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     Connect(ID_TEXTCTRL1,wxEVT_COMMAND_TEXT_UPDATED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnTextCtrl1Text);
     Connect(ID_LISTCTRL1,wxEVT_COMMAND_LIST_BEGIN_DRAG,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnListCtrl1BeginDrag);
     Connect(ID_LISTCTRL1,wxEVT_COMMAND_LIST_ITEM_RIGHT_CLICK,(wxObjectEventFunction)&HDL_Batch_installerFrame::onItemRightClick);
+    Connect(ID_LISTCTRL1,wxEVT_COMMAND_LIST_COL_CLICK,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnListCtrl1BeginDrag);
     Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnSEARCH_ISOClick);
     Connect(ID_BUTTON7,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&HDL_Batch_installerFrame::Onclear_iso_listClick);
     Connect(ID_CHOICE1,wxEVT_COMMAND_CHOICE_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::Ondma_choiceSelect);
@@ -593,7 +594,11 @@ void HDL_Batch_installerFrame::OnCheckListBox1Toggled(wxCommandEvent& event)
 {}
 
 void HDL_Batch_installerFrame::OnListCtrl1BeginDrag(wxListEvent& event)
-{}
+{
+    int W;
+    game_list__->GetClientSize(&W, NULL);
+    game_list__->SetColumnWidth(0, W);
+}
 
 void HDL_Batch_installerFrame::OnSEARCH_ISOClick(wxCommandEvent& event)
 {
