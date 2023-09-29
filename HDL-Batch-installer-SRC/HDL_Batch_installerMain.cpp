@@ -248,13 +248,11 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     FlexGridSizer7 = new wxFlexGridSizer(0, 1, 0, 0);
     FlexGridSizer7->AddGrowableCol(0);
     SEARCH_ISO = new wxButton(Panel1, ID_BUTTON1, _("Search Games"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
-    SEARCH_ISO->Disable();
     FlexGridSizer7->Add(SEARCH_ISO, 0, wxLEFT|wxRIGHT|wxEXPAND, 2);
     StaticLine3 = new wxStaticLine(Panel1, ID_STATICLINE3, wxDefaultPosition, wxSize(0,0), wxLI_HORIZONTAL, _T("ID_STATICLINE3"));
     FlexGridSizer7->Add(StaticLine3, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     FlexGridSizer7->Add(-1,-1,1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
     clear_iso_list = new wxButton(Panel1, ID_BUTTON7, _("Clear list"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON7"));
-    clear_iso_list->Disable();
     FlexGridSizer7->Add(clear_iso_list, 0, wxLEFT|wxRIGHT|wxEXPAND, 2);
     StaticLine1 = new wxStaticLine(Panel1, ID_STATICLINE1, wxDefaultPosition, wxSize(10,-1), wxLI_HORIZONTAL, _T("ID_STATICLINE1"));
     FlexGridSizer7->Add(StaticLine1, 1, wxALL|wxEXPAND, 5);
@@ -1102,9 +1100,7 @@ void HDL_Batch_installerFrame::Enable_HDD_dependant_objects(bool WTF_should_I_do
     if (WTF_should_I_do)
     {
         Parse_hdl_toc->Enable();
-        SEARCH_ISO->Enable();
         install->Enable();
-        clear_iso_list->Enable();
         MBR_EVENT->Enable();
         dma_choice->Enable();
         mass_header_injection->Enable();
@@ -1121,9 +1117,7 @@ void HDL_Batch_installerFrame::Enable_HDD_dependant_objects(bool WTF_should_I_do
     else
     {
         Parse_hdl_toc->Disable();
-        SEARCH_ISO->Disable();
         install->Disable();
-        clear_iso_list->Disable();
         MBR_EVENT->Disable();
         dma_choice->Disable();
         mass_header_injection->Disable();
