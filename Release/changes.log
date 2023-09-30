@@ -1,10 +1,16 @@
+30 September 2023
+   [v3.5.1 - Revision 2]
+
+     Change log:
+        -MBR Rewrite: Add warning about what this operation does
+        -Built-in Game title database: Updated
+
 11 August 2023
    [v3.5.1 - Revision 1]
 
      Change log:
         -HDDManager: Fix bug wich denied creation of partitions with a `+` on its name
-	-Installed game list: when list gets updated, any unused space will be assigned to game title column
-	-Bring back ZSO support to HDL dump
+		-Installed game list: when list gets updated, any unused space will be assigned to game title column
 
 26 July 2023
    [v3.5.1 - Revision 0]
