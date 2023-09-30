@@ -1002,6 +1002,13 @@ void HDL_Batch_installerFrame::OnCheckBox1Click1(wxCommandEvent& event)
 
 void HDL_Batch_installerFrame::OnMBR_EVENTClick(wxCommandEvent& event)
 {
+    if (wxMessageBox(_("This feature will rewrite the PS2 BOOTSTRAP PROGRAM for this HDD.\n"
+                       "Please make sure you know what you are doing.\n"
+                       "MBR Programs must be headerless binaries, uncompressed, compiled with fixed load adress at 0x100000 and encrypted with KELFTool\n\n"
+                       "Do you want to continue with this operation?"),
+                     _("IMPORTANT WARNING"),
+                     wxICON_WARNING|wxYES_NO|wxNO_DEFAULT, this) == wxNO)
+        return;
     wxString MBR_PATH, command, output_string;
     wxArrayString output;
     wxFileName fname( wxTheApp->argv[0] );
