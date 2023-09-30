@@ -30,3 +30,4 @@ HDL-Batch-installer-SRC/_bin/playground/Common/Icons.INI
 HDL-Batch-installer-SRC/Lang/*.mo
 HDL-Batch-installer-SRC/_bin/playground/Downloads
 HDL-Batch-installer-SRC/HDL-Batch-installer.depend
+HDL-Batch-installer-SRC/gamename/gamename.csv
