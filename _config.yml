@@ -1,9 +1,31 @@
-title: HDL Batch Installer
-description: A GUI for HDL-dump
+title: PS2BBL
+description: A Basic bootloader for PS2 and PSX-DESR
 markdown: GFM
-show_downloads: true
-google_analytics:
-theme: jekyll-theme-slate
-github:
-      zip_url: https://github.com/israpps/HDL-Batch-installer/releases
-      tar_url: https://discord.gg/wczxvrkZk6
+remote_theme: rundocs/jekyll-rtd-theme
+# debug:
+#   compress: true
+#   dist: false
+#   shortcodes: true
+
+readme_index:
+  with_frontmatter: true
+
+plugins:
+  - jemoji
+  - jekyll-avatar
+  - jekyll-mentions
+  - jekyll-remote-theme
+
+exclude:
+  - Makefile
+  - CNAME
+  - LICENSE
+  - update.sh
+  - Gemfile
+  - Gemfile.lock
+  - requirements.txt
+  - node_modules
+  - package.json
+  - package-lock.json
+  - webpack.config.js
+  - jekyll-rtd-theme.gemspec
