@@ -1584,7 +1584,6 @@ void HDL_Batch_installerFrame::OnInstalledGameAssetsDownloadRequest(wxCommandEve
 
 void HDL_Batch_installerFrame::OnInstalled_game_listItemRClick1(wxListEvent& event)
 {
-    Browser_menu.Enable(DELETE_GAME_ID, CFG::ALLOW_EXPERIMENTAL);
     PopupMenu(&Browser_menu);
 }
 
@@ -2073,27 +2072,9 @@ void HDL_Batch_installerFrame::OnSelectiveGameMigration(wxCommandEvent& event)
 
 void HDL_Batch_installerFrame::OnGameDeletionRequest(wxCommandEvent& event)
 {
-    if (wxMessageBox(_("This feature is unstable, untested and potentially dangerous.\n"
-                       "It has been confirmed that it corrupts the HDD format.\n"
-                       "Are you certain that you want to delete this game?"),
-                     _("IMPORTANT WARNING"),
-                     wxICON_WARNING|wxYES_NO|wxNO_DEFAULT, this) == wxNO)
-        return;
-
-    long itemIndex = -1, retcode;
-    wxString title, HDD;
-    if ( (itemIndex = Installed_game_list->GetNextItem(itemIndex, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED)) != wxNOT_FOUND)
-    {
-        HDD = selected_hdd->GetString(selected_hdd->GetSelection());
-        title = Installed_game_list->GetItemText(itemIndex);
-        retcode = wxExecute(wxString::Format("HDL.EXE delete %s \"%s\"", HDD, title), wxEXEC_SYNC);
-        std::cout << __func__<<": returned "<< retcode << "\n";
-        if (retcode != 0)
-        {
-            wxMessageBox(wxString::Format(_("Failed with error code %ld"), retcode),error_caption, wxICON_ERROR);
-        }
-        List_refresh_request();
-    }
+    wxMessageBox(_("To delete your games, please use the 'HDD Manager' button found on the 'HDD Management' tab\n"
+                   "Inside there, locate the desired game partition, right click it and delete it."),
+                 wxEmptyString,wxCENTRE|wxICON_INFORMATION);
 }
 
 void HDL_Batch_installerFrame::OnFrameResize(wxSizeEvent& event)
