@@ -1,3 +1,15 @@
+26 October 2023
+   [v3.5.1 - Revision 3]
+
+     Change log:
+        -UI: Added missing titles to windows
+        -Game install: Add warning about appropiate usage of ZSO
+        -Game Extraction: Probe extracted game to check if its ZSO and change extension accordingly
+        -Game deletion: Deprecate old game deletion and tell user to delete games from the included HDD manager
+        -Languages: Add french to manual selection
+        -Partition creation: Add tooltip with info in regard of appropiate partition name
+        -install queue: Highlight ZSO games with blue text
+
 30 September 2023
    [v3.5.1 - Revision 2]
 

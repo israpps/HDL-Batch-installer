@@ -238,6 +238,7 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     FlexGridSizer6->AddGrowableRow(0);
     game_list__ = new wxListCtrl(Panel1, ID_LISTCTRL1, wxDefaultPosition, wxSize(388,447), wxLC_REPORT|wxLC_SINGLE_SEL|wxLC_HRULES|wxLC_VRULES|wxBORDER_SUNKEN|wxVSCROLL, wxDefaultValidator, _T("ID_LISTCTRL1"));
     game_list__->SetMinSize(wxSize(377,415));
+    game_list__->SetToolTip(_("Games marked in blue are ZSO"));
     wxListItem _col0;
     _col0.SetId(0);
     _col0.SetText( _("Game ") );
@@ -1550,7 +1551,7 @@ void HDL_Batch_installerFrame::OnExtractInstalledGameRequest(wxCommandEvent& eve
             if (wxFileExists(full_extraction_path))
             {
                 char HBUF[6];
-                std::ifstream extracted_game(full_extraction_path);
+                std::ifstream extracted_game(full_extraction_path.ToStdString());
                 if(extracted_game.is_open())
                 {
                     extracted_game.read(HBUF, sizeof(HBUF));
