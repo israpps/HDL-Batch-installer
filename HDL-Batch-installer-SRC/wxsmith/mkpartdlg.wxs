@@ -16,6 +16,7 @@
 					<object class="sizeritem">
 						<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="PARTName" member="yes">
 							<maxlength>32</maxlength>
+							<tooltip>Partition name must not be longer than 32 characters.&#x0A;&#x0A;If the &apos;create&apos; button is disabled, you probably wrote an invalid character on the partition name</tooltip>
 							<handler function="onPartitionNameChange" entry="EVT_TEXT" />
 						</object>
 						<flag>wxALL|wxALIGN_TOP</flag>

@@ -44,6 +44,7 @@ mkpartdlg::mkpartdlg(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxS
 	StaticBoxSizer1 = new wxStaticBoxSizer(wxHORIZONTAL, this, _("Partition Name"));
 	PARTName = new wxTextCtrl(this, ID_TEXTCTRL1, wxEmptyString, wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_TEXTCTRL1"));
 	PARTName->SetMaxLength(32);
+	PARTName->SetToolTip(_("Partition name must not be longer than 32 characters.\n\nIf the \'create\' button is disabled, you probably wrote an invalid character on the partition name"));
 	StaticBoxSizer1->Add(PARTName, 1, wxALL|wxALIGN_TOP, 5);
 	FlexGridSizer1->Add(StaticBoxSizer1, 1, wxALL|wxEXPAND, 5);
 	StaticBoxSizer2 = new wxStaticBoxSizer(wxHORIZONTAL, this, _("Partition Size"));
@@ -54,12 +55,12 @@ mkpartdlg::mkpartdlg(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxS
 	FlexGridSizer1->Add(BoxSizer1, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	FlexGridSizer3 = new wxFlexGridSizer(0, 5, 0, 0);
 	FlexGridSizer3->AddGrowableCol(1);
-	FlexGridSizer3->Add(0,0,1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	FlexGridSizer3->Add(-1,-1,1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	MB = new wxStaticText(this, ID_STATICTEXT1, _("128Mb"), wxDefaultPosition, wxSize(61,21), 0, _T("ID_STATICTEXT1"));
 	FlexGridSizer3->Add(MB, 1, wxTOP|wxBOTTOM|wxLEFT|wxALIGN_LEFT|wxALIGN_TOP, 10);
 	GB = new wxStaticText(this, ID_STATICTEXT2, _("0.12Gb"), wxDefaultPosition, wxSize(65,21), 0, _T("ID_STATICTEXT2"));
 	FlexGridSizer3->Add(GB, 1, wxTOP|wxBOTTOM|wxRIGHT|wxALIGN_LEFT|wxALIGN_TOP, 10);
-	FlexGridSizer3->Add(0,0,1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	FlexGridSizer3->Add(-1,-1,1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	FlexGridSizer1->Add(FlexGridSizer3, 1, wxALL|wxEXPAND, 5);
 	mkpart = new wxButton(this, ID_BUTTON1, _("Create"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
 	mkpart->Disable();
