@@ -1535,7 +1535,7 @@ void HDL_Batch_installerFrame::OnExtractInstalledGameRequest(wxCommandEvent& eve
             game_title2.Replace('?', '_',true);
             // wxString::Replace(
             //-----------------------------------
-            full_extraction_path = extraction_path + "\\" + game_title2 + ".ISO";
+            full_extraction_path = extraction_path + "\\" + game_title2 + ".iso";
             cout <<"  to: ["<< full_extraction_path <<"]\n";
             command = "HDL.EXE dump \"" + std::string(game_title.mb_str()) + "@" + std::string(hdd.mb_str()) + "\" \"" + std::string(full_extraction_path.mb_str()) + "\"";
             if (CFG::DEBUG_LEVEL > 5 || (CTOR_FLAGS & FORCE_HIGH_DEBUG_LEVEL) )
@@ -1547,6 +1547,23 @@ void HDL_Batch_installerFrame::OnExtractInstalledGameRequest(wxCommandEvent& eve
             wxExecute(command,wxEXEC_SYNC);
             //crude_SystemCapture(command);
             COLOR(07)
+            if (wxFileExists(full_extraction_path))
+            {
+                char HBUF[6];
+                std::ifstream extracted_game(full_extraction_path);
+                if(extracted_game.is_open())
+                {
+                    extracted_game.read(HBUF, sizeof(HBUF));
+                    if (!memcmp(HBUF, "ZISO", sizeof("ZISO")))
+                    {
+                        wxString newpath = full_extraction_path;
+                        newpath.RemoveLast(3);
+                        newpath += "zso";
+                        wxRenameFile(full_extraction_path, newpath);
+                    }
+                    extracted_game.close();
+                }
+            }
         }
         delete DLG;
     }
