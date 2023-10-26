@@ -632,15 +632,43 @@ void HDL_Batch_installerFrame::OnSEARCH_ISOClick(wxCommandEvent& event)
     wxString path;
     if (ISO_SEARCH_DIALOG->ShowModal() == wxID_OK)
     {
+        bool warned_about_ZSO_usage = false;
         ISO_SEARCH_DIALOG->GetPaths(ISO_PATHS);
         std::cout << "loaded ISO's: " << ISO_PATHS.GetCount() <<std::endl;
-        for (size_t game_count = 0; game_count < ISO_PATHS.GetCount(); game_count++ )
+        for (size_t game_count = 0; game_count < ISO_PATHS.GetCount(); game_count++)
         {
+            bool isZSO=false;
             path = ISO_PATHS.Item(game_count);
+            wxString extension = path.Right(4);
+            if (!extension.CmpNoCase(".zso")) // ZSO: make sure HDL Dump will be able to process the file, by using the original ISO placed on the same folder.
+            {
+                path.RemoveLast(3);
+                path += "iso";
+                if (!wxFileExists(path))
+                {
+                    COLOR(0c)
+                    std::cerr << "! Cannot find '" <<path<< "' to install ZSO game\n";
+                    COLOR(07)
+                    if (!warned_about_ZSO_usage)
+                    {
+                        wxMessageBox(_("In order to install ZSO games, the original ISO must be placed in the same folder keeping the same filename.\n"
+                                   "This is done to recover information needed to install the game\n\n"
+                                   "Example: if your game is named 'God_Of_War.ZSO', put the original ISO on the same folder named 'God_Of_war.ISO'"),error_caption,wxICON_ERROR|wxCENTRE);
+                        warned_about_ZSO_usage = true;
+
+                    }
+                    invalid_gamecount++;
+                    continue;
+                } else {
+                    std::cout << "using '" <<path<< "' to install ZSO\n";
+                    isZSO = true;
+                }
+            }
             std::cout << path << "\n";
             if (is_PS2(path))
             {
-                game_list__->InsertItem(0,path);
+                long indx = game_list__->InsertItem(0,path);
+                if (isZSO) game_list__->SetItemTextColour(indx, *wxBLUE);
                 valid_gamecount++;
             }
             else
