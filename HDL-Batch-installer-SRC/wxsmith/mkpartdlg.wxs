@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <wxsmith>
 	<object class="wxDialog" name="mkpartdlg">
+		<title>Create Partition</title>
 		<centered>1</centered>
 		<size>369,296</size>
 		<minsize>369,296</minsize>
