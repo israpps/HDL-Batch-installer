@@ -35,7 +35,7 @@ mkpartdlg::mkpartdlg(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxS
 	wxStaticBoxSizer* StaticBoxSizer1;
 	wxStaticBoxSizer* StaticBoxSizer2;
 
-	Create(parent, wxID_ANY, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER, _T("wxID_ANY"));
+	Create(parent, wxID_ANY, _("Create Partition"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER, _T("wxID_ANY"));
 	SetClientSize(wxSize(369,296));
 	SetMinSize(wxSize(369,296));
 	FlexGridSizer1 = new wxFlexGridSizer(0, 1, 0, 0);
