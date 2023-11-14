@@ -1,3 +1,11 @@
+14 November 2023
+   [v3.5.1 - Revision 4]
+
+     Change log:
+        -Game installation: Fix issue with games containing special chars (such as `á`)
+        -Game failed installation message: tell user to check log if unhandled error arises
+        -Game installation: on install error, try to retrieve windows API error if posible.
+
 26 October 2023
    [v3.5.1 - Revision 3]
 
@@ -31,7 +39,7 @@
         -UI: Add resizing capabilities to every dialog save credits and component error
         -HDDManager: Allow to disable game title display via configuration (enabled by default)
         -HDDManager: Dont display Sub-Partitions by default (also customizable on configuration)
-        -ART Download: Dont display download gauge on fast download 
+        -ART Download: Dont display download gauge on fast download
         -ART Download: add option to perform connection to artwork download service without checking certificates
 
 21 July 2023
@@ -47,7 +55,7 @@
         -Partiton creation dialog: Added bussy cursor and messages in partition creation success or error
         -PFSShell Features: Blocked on 32bit compilations untill further notice (error during I/O corrupts HDD randomly)
         -Translation: Russian translation by @stanlapru
-        -Translation: Korean translation by @DDinghoya 
+        -Translation: Korean translation by @DDinghoya
         -Dokan download link: Updated URL to latest release due to usage of newer pfsfuse
 
 12 February 2023
@@ -162,7 +170,7 @@
 
      Change log:
         -UI: Added horizontal rules to install queue and installed game list
-        -Icon package: add more icons by @Flygsand 
+        -Icon package: add more icons by @Flygsand
         -installed games: Added Feature to manually load custom icon into installed game (mark several games to perform in batch mode)
 
 24 April 2022

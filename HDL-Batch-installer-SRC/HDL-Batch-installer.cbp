@@ -303,6 +303,7 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 		<Unit filename="_bin/Debug/Common/config.INI" />
 		<Unit filename="_bin/Debug/README.TXT" />
 		<Unit filename="_bin/Debug/changes.log" />
+		<Unit filename="_bin/playground/changes.log" />
 		<Unit filename="common.cpp" />
 		<Unit filename="crude_call.h" />
 		<Unit filename="flags.h" />

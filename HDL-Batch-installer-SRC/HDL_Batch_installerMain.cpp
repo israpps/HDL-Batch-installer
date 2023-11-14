@@ -491,15 +491,17 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
 
 void cache_cleanup(void)
 {
-    if(wxFileExists(HDL_CACHE))
+    if (wxFileExists(HDL_CACHE))
     {
-        COLOR(08) std::cout << "> Cleaning HDL Cache\n";
-        COLOR(07) wxRemoveFile("./info.sys");
+        wxRemoveFile(HDL_CACHE);
     }
-    if(wxFileExists(MBR_CACHE))
+    if (wxFileExists(MBR_CACHE))
     {
-        COLOR(08) std::cout << "> Cleaning MBR Cache\n";
-        COLOR(07) wxRemoveFile("./MBR.KELF");
+        wxRemoveFile(MBR_CACHE);
+    }
+    if (wxFileExists("errdump.txt"))
+    {
+        wxRemoveFile("errdump.txt");
     }
 }
 
@@ -739,8 +741,7 @@ void HDL_Batch_installerFrame::OnButton1Click(wxCommandEvent& event)
         {
             selected_hdd->Append(line.substr(1,line.find_first_of(':')));
 
-            COLOR(0a) cout << line <<endl;
-            COLOR(07)
+            COLOR(0a) cout << line <<endl; COLOR(07)
 
             HDDCount++;
         }
@@ -760,12 +761,8 @@ void HDL_Batch_installerFrame::OnButton1Click(wxCommandEvent& event)
         selected_hdd->SetSelection(0);
         Update_hdd_data();
     }
-    if (HDDCount > 1)
-    {
-        CAN_COPY_HDD = true;
-        COPYHDD->Enable();
-    }
-    COPYHDD->Enable();
+    CAN_COPY_HDD = (HDDCount > 1);
+    COPYHDD->Enable(CAN_COPY_HDD);
 }
 
 void HDL_Batch_installerFrame::OnListCtrl1BeginDrag1(wxListEvent& event) {}
@@ -877,13 +874,13 @@ void HDL_Batch_installerFrame::OninstallClick(wxCommandEvent& event)
                             << "\n---\n"
                             << command1 <<"\n";
         COLOR(0d)
-        installation_retcode = wxExecute(command1.ToUTF8(),wxEXEC_SYNC);
+        installation_retcode = wxExecute(command1,wxEXEC_SYNC);
         COLOR(08)
         //if (CFG::DEBUG_LEVEL > 5 || (CTOR_FLAGS & FORCE_HIGH_DEBUG_LEVEL) )
         cout << "\n>returned value [" << installation_retcode <<"]\n";
         COLOR(07)
 
-        if (installation_retcode != 0 && installation_retcode != -1073741819)
+        if (installation_retcode != 0)
         {
             report_counter++;
             _filepath.Add(strr);
@@ -894,8 +891,15 @@ void HDL_Batch_installerFrame::OninstallClick(wxCommandEvent& event)
                 _reason.Add(_("There is not enough space on the HDD to install this game"));
                 not_enough_space_count++;
             }
+            else if( installation_retcode == -1) {
+                _reason.Add(wxString::Format(_("Standard error: %s"), cat_errdump()));
+            }
+
             else if( installation_retcode == RET_NO_MEM)
                 _reason.Add(_("HDL-Dump reported \"Out of memory\"."));
+
+            else if( installation_retcode == -1073741819)
+                _reason.Add(_("HDL-Dump Crashed"));
 
             else if( installation_retcode == RET_NOT_APA)
                 _reason.Add(_("not a PlayStation 2 HDD."));
@@ -916,7 +920,7 @@ void HDL_Batch_installerFrame::OninstallClick(wxCommandEvent& event)
                 _reason.Add(_("bin/cue with multiple .bin files are not supported, combine them into a single bin"));
 
             else
-                _reason.Add("Unhandled error...");
+                _reason.Add("Unhandled error. Check program log for more details...");
         }
         game_list__->DeleteItem(0);
 
@@ -966,12 +970,13 @@ void HDL_Batch_installerFrame::OnSettings(wxCommandEvent& event)
 
 void HDL_Batch_installerFrame::OnPaint(wxPaintEvent& event)
 {
-    if (first_init==true)
+    if (first_init)
     {
         return;
     }
     else
     {
+        std::cout << "Standard error: "<< cat_errdump() << "\n";
         ACTIVATE_DEBUG_LOG()
         wxFileName fname( wxTheApp->argv[0] );
         wxString config_file = fname.GetPath(wxPATH_GET_VOLUME|wxPATH_GET_SEPARATOR) + "Common\\config.INI";
@@ -2165,4 +2170,20 @@ void HDL_Batch_installerFrame::OnCalculateMD5Selected(wxCommandEvent& event)
             REPORT->ShowModal();
             delete REPORT;
         }
+}
+
+wxString HDL_Batch_installerFrame::cat_errdump()
+{
+    const char* ERRDUMP = "errdump.txt";
+    wxString DUMP = _("Cannot open error report, read the terminal logs to find the issue");
+    if (wxFileExists(ERRDUMP)) {
+        wxFile A(ERRDUMP, wxFile::read);
+        if (A.IsOpened()) {
+            A.ReadAll(&DUMP);
+            DUMP.Replace('\n', ' ',true);
+            A.Close();
+            wxRemoveFile(ERRDUMP);
+        }
+    }
+    return DUMP;
 }

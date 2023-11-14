@@ -262,6 +262,7 @@ private:
     bool Load_custom_icon(wxString ELF);
     void OnICONS_DOWNLOAD(void);
     void ask_2_download_icons(void);
+    wxString cat_errdump();
     DECLARE_EVENT_TABLE()
 public:
     wxLocale& m_locale;
