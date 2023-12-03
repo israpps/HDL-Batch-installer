@@ -1874,7 +1874,9 @@ void HDL_Batch_installerFrame::OnButton4Click(wxCommandEvent& event)
         wxMessageBox(_("You need at least one PFS partition to use this menu"), _("Could not find PFS Partitions"), wxICON_WARNING);
         return;
     }
-
+#if PFSSHELL_ALLOWED
+    PFSSHELL.CloseDevice(); //PFSShell with device attached will make HDL Dump write features crash
+#endif
     DokanMan* DOKAN_WIZARD = new DokanMan(this, pfs_partitions, winapi_device_token);
     DOKAN_WIZARD->ShowModal();
     delete DOKAN_WIZARD;
