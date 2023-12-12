@@ -1817,6 +1817,9 @@ bool Dokan_is_installed(void)
 
 void HDL_Batch_installerFrame::OnButton4Click(wxCommandEvent& event)
 {
+#if PFSSHELL_ALLOWED
+    PFSSHELL.CloseDevice(); //PFSShell with device attached will make HDL Dump write features crash
+#endif
     if (!wxFileExists(HDLBINST_APPDATA+"\\dokan_and_fuse.ini"))
     {
         wxMessageBox(_("This is the first time you use PFSFUSE\n\nPLEASE, Keep in mind that, if you mount a partition you must unmount it when you finish using this program, otherwise, you could corrupt the mounted partition or the whole HDD"),
