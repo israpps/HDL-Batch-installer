@@ -1,3 +1,9 @@
+15 December 2023
+   [v3.5.1 - Revision 5]
+
+     Change log:
+        -Partition mount: Close PFSShell HDD handler before opening mount UI
+
 14 November 2023
    [v3.5.1 - Revision 4]
 
