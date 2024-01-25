@@ -247,6 +247,6 @@ void HDDManager::OnMKPartClick(wxCommandEvent& event)
     bool should_update = false;
     mkpartdlg *MAN = new mkpartdlg(this, &should_update);
     MAN->ShowModal();
+    if (MAN->should_update) UpdateList();
     delete MAN;
-    if (should_update) UpdateList();
 }
