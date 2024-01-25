@@ -98,6 +98,7 @@ void mkpartdlg::OnmkpartClick(wxCommandEvent& event)
     if (ret == 0 ) wxMessageBox(_("Partition Creation was successfull"), wxMessageBoxCaptionStr, wxICON_INFORMATION);
     else wxMessageBox(_("Partition Creation Failed!\nPlease check log to find more information..."), wxMessageBoxCaptionStr, wxICON_ERROR);
     wxEndBusyCursor();
+    smth_changed = true;
 }
 
 void mkpartdlg::OnSlider1CmdScrollChanged(wxScrollEvent& event)
