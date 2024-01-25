@@ -14,7 +14,7 @@ class mkpartdlg: public wxDialog
 {
 	public:
 
-		mkpartdlg(wxWindow* parent, bool* smth_changed=NULL,wxWindowID id=wxID_ANY,const wxPoint& pos=wxDefaultPosition,const wxSize& size=wxDefaultSize);
+		mkpartdlg(wxWindow* parent,wxWindowID id=wxID_ANY,const wxPoint& pos=wxDefaultPosition,const wxSize& size=wxDefaultSize);
 		virtual ~mkpartdlg();
 
 		//(*Declarations(mkpartdlg)
@@ -24,6 +24,7 @@ class mkpartdlg: public wxDialog
 		wxStaticText* MB;
 		wxTextCtrl* PARTName;
 		//*)
+                smth_changed=false;
 
 	protected:
 
