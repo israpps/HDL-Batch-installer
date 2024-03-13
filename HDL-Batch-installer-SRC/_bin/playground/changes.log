@@ -1,3 +1,10 @@
+13 March 2024
+   [v3.5.1 - Revision 6]
+
+     Change log:
+        -New: German Translation by GeAd23 (www.github.com/GeAd23)
+        -HDDManager: Avoid refreshing partition table if user did nothing inside the partition creation dialog
+
 15 December 2023
    [v3.5.1 - Revision 5]
 

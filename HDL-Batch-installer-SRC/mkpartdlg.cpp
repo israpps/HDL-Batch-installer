@@ -25,7 +25,8 @@ BEGIN_EVENT_TABLE(mkpartdlg,wxDialog)
 	//*)
 END_EVENT_TABLE()
 
-mkpartdlg::mkpartdlg(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& size)
+mkpartdlg::mkpartdlg(wxWindow* parent, bool* _should_update ,wxWindowID id,const wxPoint& pos,const wxSize& size):
+should_update(_should_update)
 {
 	//(*Initialize(mkpartdlg)
 	wxBoxSizer* BoxSizer1;
@@ -98,7 +99,7 @@ void mkpartdlg::OnmkpartClick(wxCommandEvent& event)
     if (ret == 0 ) wxMessageBox(_("Partition Creation was successfull"), wxMessageBoxCaptionStr, wxICON_INFORMATION);
     else wxMessageBox(_("Partition Creation Failed!\nPlease check log to find more information..."), wxMessageBoxCaptionStr, wxICON_ERROR);
     wxEndBusyCursor();
-    smth_changed = true;
+    should_update = true;
 }
 
 void mkpartdlg::OnSlider1CmdScrollChanged(wxScrollEvent& event)
