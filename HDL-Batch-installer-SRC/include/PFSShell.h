@@ -34,11 +34,11 @@ class PFSShell
         int recoverfile(const char *mount_point, const char *src, const char *dest);
         int list_dir_objects(int dh, int lsmode);
         int RemovePartition(const char* part);
+        context_t ctx;
 
     protected:
 
     private:
-        context_t ctx;
         bool libinit = false;
         bool has_device_opened = false;
 };

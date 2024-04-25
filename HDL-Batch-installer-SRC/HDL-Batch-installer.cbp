@@ -297,6 +297,8 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 		<Unit filename="NDBMan.cpp" />
 		<Unit filename="NDBMan.h" />
 		<Unit filename="PFSShell.cpp" />
+		<Unit filename="PFSShellBrowser.cpp" />
+		<Unit filename="PFSShellBrowser.h" />
 		<Unit filename="Post_Install_Report.cpp" />
 		<Unit filename="Post_Install_Report.h" />
 		<Unit filename="_bin/Debug/Common/commit.sys" />
@@ -346,6 +348,7 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 		<Unit filename="wxsmith/HDL_Batch_installerframe.wxs" />
 		<Unit filename="wxsmith/MD5Report.wxs" />
 		<Unit filename="wxsmith/NDBMan.wxs" />
+		<Unit filename="wxsmith/PFSShellBrowser.wxs" />
 		<Unit filename="wxsmith/Post_Install_Report.wxs" />
 		<Unit filename="wxsmith/mkpartdlg.wxs" />
 		<Unit filename="wxsmith/pfsshell_wizard.wxs" />
@@ -377,6 +380,7 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 					<wxDialog wxs="wxsmith/HDDFomatMan.wxs" src="HDDFomatMan.cpp" hdr="HDDFomatMan.h" fwddecl="0" i18n="1" name="HDDFomatMan" language="CPP" />
 					<wxDialog wxs="wxsmith/mkpartdlg.wxs" src="mkpartdlg.cpp" hdr="mkpartdlg.h" fwddecl="0" i18n="1" name="mkpartdlg" language="CPP" />
 					<wxDialog wxs="wxsmith/MD5Report.wxs" src="MD5Report.cpp" hdr="MD5Report.h" fwddecl="0" i18n="1" name="MD5Report" language="CPP" />
+					<wxDialog wxs="wxsmith/PFSShellBrowser.wxs" src="PFSShellBrowser.cpp" hdr="PFSShellBrowser.h" fwddecl="0" i18n="1" name="PFSShellBrowser" language="CPP" />
 				</resources>
 			</wxsmith>
 		</Extensions>

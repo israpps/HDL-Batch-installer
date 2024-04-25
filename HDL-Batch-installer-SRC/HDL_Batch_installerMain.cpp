@@ -19,6 +19,7 @@
 #include "HDDManager.h"
 #include "HDDFomatMan.h"
 #include "MD5Report.h"
+#include "PFSShellBrowser.h"
 
 #include "hdl-dump-recodes.h"
 #include "gamename/parser.h" //includes both database & parser function
@@ -574,6 +575,9 @@ void HDL_Batch_installerFrame::OnAbout(wxCommandEvent& event)
     wxMessageBox(msg, "HDL Batch Installer");
     About About_DLG(this);
     About_DLG.ShowModal();
+    PFSShellBrowser* BROWSER = new PFSShellBrowser(this);
+    BROWSER->ShowModal();
+    delete BROWSER;
 }
 
 void HDL_Batch_installerFrame::OnRadioButton1Select(wxCommandEvent& event)

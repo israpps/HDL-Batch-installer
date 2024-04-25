@@ -42,6 +42,7 @@ class HDDManager: public wxDialog
 		void OnPARTListItemRClick(wxListEvent& event);
 		void OnPartitionDeleteRequest(wxCommandEvent& event);
 		void OnMKPartClick(wxCommandEvent& event);
+		void OnInit(wxInitDialogEvent& event);
 		//*)
         void UpdateList(void);
 

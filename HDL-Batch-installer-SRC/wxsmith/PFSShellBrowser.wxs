@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<wxsmith>
+	<object class="wxDialog" name="PFSShellBrowser">
+		<pos_arg>1</pos_arg>
+		<size_arg>1</size_arg>
+		<style>wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER</style>
+		<object class="wxBoxSizer" variable="BoxSizer1" member="no">
+			<orient>wxVERTICAL</orient>
+			<object class="sizeritem">
+				<object class="wxBoxSizer" variable="BoxSizer2" member="no">
+					<orient>wxVERTICAL</orient>
+					<object class="sizeritem">
+						<object class="wxBoxSizer" variable="BoxSizer4" member="no">
+							<object class="sizeritem">
+								<object class="wxRadioButton" name="ID_RADIOBUTTON1" variable="HDDRealRadio" member="yes">
+									<label>HDD</label>
+									<selected>1</selected>
+									<handler function="OnHDDRealRadioSelect" entry="EVT_RADIOBUTTON" />
+								</object>
+								<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<border>5</border>
+								<option>1</option>
+							</object>
+							<object class="sizeritem">
+								<object class="wxChoice" name="ID_CHOICE1" variable="HDDRealDLG" member="yes" />
+								<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<border>5</border>
+								<option>1</option>
+							</object>
+						</object>
+						<flag>wxALL|wxEXPAND</flag>
+						<border>5</border>
+						<option>1</option>
+					</object>
+					<object class="sizeritem">
+						<object class="wxBoxSizer" variable="BoxSizer5" member="no">
+							<object class="sizeritem">
+								<object class="wxRadioButton" name="ID_RADIOBUTTON2" variable="HDDFileRadio" member="yes">
+									<label>File</label>
+									<handler function="OnHDDFileRadioSelect" entry="EVT_RADIOBUTTON" />
+								</object>
+								<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<border>5</border>
+								<option>1</option>
+							</object>
+							<object class="sizeritem">
+								<object class="wxFilePickerCtrl" name="ID_FILEPICKERCTRL1" variable="HDDFileDLG" member="yes">
+									<message></message>
+									<path>D:\\Baul\\Paula\\Desktop\\DEV9hdd.raw</path>
+									<wildcard></wildcard>
+									<enabled>0</enabled>
+								</object>
+								<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<border>5</border>
+								<option>1</option>
+							</object>
+						</object>
+						<flag>wxALL|wxEXPAND</flag>
+						<border>5</border>
+						<option>1</option>
+					</object>
+					<object class="sizeritem">
+						<object class="wxBoxSizer" variable="BoxSizer6" member="no">
+							<object class="sizeritem">
+								<object class="wxButton" name="ID_BUTTON1" variable="OpenHDD" member="yes">
+									<label>Open</label>
+									<handler function="OnButton1Click" entry="EVT_BUTTON" />
+								</object>
+								<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<border>5</border>
+								<option>1</option>
+							</object>
+							<object class="sizeritem">
+								<object class="wxButton" name="ID_BUTTON2" variable="CloseHDD" member="yes">
+									<label>Close</label>
+									<enabled>0</enabled>
+									<handler function="OnButton2Click" entry="EVT_BUTTON" />
+								</object>
+								<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+								<border>5</border>
+								<option>1</option>
+							</object>
+						</object>
+						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<border>5</border>
+						<option>1</option>
+					</object>
+				</object>
+				<flag>wxALL|wxEXPAND</flag>
+				<border>5</border>
+				<option>1</option>
+			</object>
+			<object class="sizeritem">
+				<object class="wxBoxSizer" variable="BoxSizer3" member="no">
+					<object class="sizeritem">
+						<object class="wxListCtrl" name="ID_LISTCTRL1" variable="FileList" member="yes">
+							<style>wxLC_REPORT|wxLC_AUTOARRANGE|wxLC_HRULES|wxLC_VRULES</style>
+							<handler function="OnFileListItemActivated" entry="EVT_LIST_ITEM_ACTIVATED" />
+						</object>
+						<flag>wxALL|wxEXPAND</flag>
+						<border>5</border>
+						<option>1</option>
+					</object>
+				</object>
+				<flag>wxALL|wxEXPAND</flag>
+				<border>5</border>
+				<option>3</option>
+			</object>
+		</object>
+	</object>
+</wxsmith>
