@@ -36,6 +36,7 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 					<Add directory="$(#wx)/include" />
 					<Add directory="include" />
 					<Add directory="HDL-Batch-installer-SRC/include" />
+					<Add directory="${#wx}/art" />
 				</Compiler>
 				<ResourceCompiler>
 					<Add directory="$(#wx)/lib/gcc_lib/mswu" />
@@ -155,6 +156,7 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 					<Add directory="$(#wx32)/lib/gcc_lib/mswu" />
 					<Add directory="include" />
 					<Add directory="HDL-Batch-installer-SRC/include" />
+					<Add directory="${#wx32}/art" />
 				</Compiler>
 				<ResourceCompiler>
 					<Add directory="$(#wx32)/include" />

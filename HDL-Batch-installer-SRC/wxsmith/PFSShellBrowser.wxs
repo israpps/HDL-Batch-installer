@@ -94,10 +94,12 @@
 				<object class="wxBoxSizer" variable="BoxSizer3" member="no">
 					<object class="sizeritem">
 						<object class="wxListCtrl" name="ID_LISTCTRL1" variable="FileList" member="yes">
+							<minsize>550,300</minsize>
 							<style>wxLC_REPORT|wxLC_AUTOARRANGE|wxLC_HRULES|wxLC_VRULES</style>
 							<handler function="OnFileListItemActivated" entry="EVT_LIST_ITEM_ACTIVATED" />
+							<handler function="OnFileListItemRClick" entry="EVT_LIST_ITEM_RIGHT_CLICK" />
 						</object>
-						<flag>wxALL|wxEXPAND</flag>
+						<flag>wxTOP|wxEXPAND</flag>
 						<border>5</border>
 						<option>1</option>
 					</object>
@@ -105,6 +107,20 @@
 				<flag>wxALL|wxEXPAND</flag>
 				<border>5</border>
 				<option>3</option>
+			</object>
+		</object>
+		<object class="wxMenu" variable="BrowserMenu" member="yes">
+			<object class="wxMenuItem" name="ID_MENUITEM1" variable="MenuItem1" member="yes">
+				<label>Delete</label>
+			</object>
+			<object class="wxMenuItem" name="ID_MENUITEM2" variable="MenuItem2" member="yes">
+				<label>Extract</label>
+			</object>
+			<object class="wxMenuItem" name="ID_MENUITEM3" variable="MenuItem3" member="yes">
+				<label>Rename</label>
+			</object>
+			<object class="wxMenuItem" name="ID_MENUITEM4" variable="MenuItem4" member="yes">
+				<label>Create Folder</label>
 			</object>
 		</object>
 	</object>

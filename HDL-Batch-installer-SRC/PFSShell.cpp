@@ -237,8 +237,9 @@ int PFSShell::mkpart(const char *mount_point, unsigned long size_in_mb, const ch
     COLOR(07)
 }
 
-int PFSShell::ls(const char *mount_point, const char *path)
+int PFSShell::ls(const char *mount_point, const char *path, std::vector <iox_dirent_t>* dirent_return)
 {
+    if (dirent_return != NULL) dirent_return->clear();
     COLOR(0d)
     int retval = 0;
     int result = iomanX_mount("pfs0:", mount_point, 0, NULL, 0);
@@ -251,7 +252,7 @@ int PFSShell::ls(const char *mount_point, const char *path)
 #if 0
 	  printf ("Directory of %s%s\n", mount_point, path);
 #endif
-            list_dir_objects(dh, 1);
+            list_dir_objects(dh, 1, dirent_return);
 
             result = iomanX_close(dh);
             if (result < 0)
@@ -369,7 +370,7 @@ int PFSShell::recoverfile(const char *mount_point, const char *src, const char *
     return (retval);
 }
 
-int PFSShell::list_dir_objects(int dh, int lsmode)
+int PFSShell::list_dir_objects(int dh, int lsmode, std::vector <iox_dirent_t>* dirent_return)
 {
     COLOR(0d)
     int result;
@@ -419,6 +420,7 @@ int PFSShell::list_dir_objects(int dh, int lsmode)
         else if (lsmode == 1)
             printf("%s %10u  %s  %s%s\n",
                    mode, dirent.stat.size, mod_time, dirent.name, end_symbol);
+        if (dirent_return != NULL) dirent_return->push_back(dirent);
     }
     COLOR(07)
     return (result);
@@ -443,8 +445,7 @@ int PFSShell::lspart(int lsmode, std::vector <iox_dirent_t>* dirent_return)
         if (lsmode == 1)
             printf("Start (sector)  Code      Size         Timestamp  Name\n");
         while ((result = iomanX_dread(dh, &dirent)) && result != -1) {
-            if (dirent_return != NULL)
-                dirent_return->push_back(dirent);
+            if (dirent_return != NULL) dirent_return->push_back(dirent);
             // Equal to, but avoids overflows of: size * 512 / 1024 / 1024;
             uint32_t size = dirent.stat.size / 2048;
 

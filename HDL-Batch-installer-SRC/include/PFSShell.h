@@ -28,17 +28,17 @@ class PFSShell
         int FormatDevice();
         int mkpfs(const char *mount_point);
         int mkpart(const char *mount_point, unsigned long size_in_mb, const char* part_typee);
-        int ls(const char *mount_point, const char *path);
+        int ls(const char *mount_point, const char *path, std::vector <iox_dirent_t>* dirent_return);
         int lspart(int lsmode, std::vector <iox_dirent_t>* dirent_return);
         int copyto(const char *mount_point, const char *dest, const char *src);
         int recoverfile(const char *mount_point, const char *src, const char *dest);
-        int list_dir_objects(int dh, int lsmode);
         int RemovePartition(const char* part);
         context_t ctx;
 
     protected:
 
     private:
+        int list_dir_objects(int dh, int lsmode, std::vector <iox_dirent_t>* dirent_return);
         bool libinit = false;
         bool has_device_opened = false;
 };

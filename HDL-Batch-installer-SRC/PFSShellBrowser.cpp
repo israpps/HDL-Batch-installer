@@ -1,6 +1,12 @@
 #include "PFSShellBrowser.h"
 #include "PFSShell.h"
 
+#include <wx/event.h>
+#include <wx/imaglist.h>
+#include <folder.xpm>
+#include <harddisk.xpm>
+#include <filesave.xpm>
+
 extern PFSShell PFSSHELL;
 
 
@@ -10,6 +16,12 @@ enum LIST_ITEMS {
     TYPE,
 };
 std::vector<iox_dirent_t> ITEMLIST;
+
+namespace CTX {
+    wxString CWD = "./";
+    bool ISMOUNTED = false;
+    wxString MNT = wxEmptyString;
+}
 
 //(*InternalHeaders(PFSShellBrowser)
 #include <wx/intl.h>
@@ -24,6 +36,10 @@ const long PFSShellBrowser::ID_FILEPICKERCTRL1 = wxNewId();
 const long PFSShellBrowser::ID_BUTTON1 = wxNewId();
 const long PFSShellBrowser::ID_BUTTON2 = wxNewId();
 const long PFSShellBrowser::ID_LISTCTRL1 = wxNewId();
+const long PFSShellBrowser::ID_MENUITEM1 = wxNewId();
+const long PFSShellBrowser::ID_MENUITEM2 = wxNewId();
+const long PFSShellBrowser::ID_MENUITEM3 = wxNewId();
+const long PFSShellBrowser::ID_MENUITEM4 = wxNewId();
 //*)
 
 BEGIN_EVENT_TABLE(PFSShellBrowser,wxDialog)
@@ -70,9 +86,18 @@ PFSShellBrowser::PFSShellBrowser(wxWindow* parent,wxWindowID id,const wxPoint& p
 	BoxSizer1->Add(BoxSizer2, 1, wxALL|wxEXPAND, 5);
 	BoxSizer3 = new wxBoxSizer(wxHORIZONTAL);
 	FileList = new wxListCtrl(this, ID_LISTCTRL1, wxDefaultPosition, wxDefaultSize, wxLC_REPORT|wxLC_AUTOARRANGE|wxLC_HRULES|wxLC_VRULES, wxDefaultValidator, _T("ID_LISTCTRL1"));
-	BoxSizer3->Add(FileList, 1, wxALL|wxEXPAND, 5);
+	FileList->SetMinSize(wxSize(550,300));
+	BoxSizer3->Add(FileList, 1, wxTOP|wxEXPAND, 5);
 	BoxSizer1->Add(BoxSizer3, 3, wxALL|wxEXPAND, 5);
 	SetSizer(BoxSizer1);
+	MenuItem1 = new wxMenuItem((&BrowserMenu), ID_MENUITEM1, _("Delete"), wxEmptyString, wxITEM_NORMAL);
+	BrowserMenu.Append(MenuItem1);
+	MenuItem2 = new wxMenuItem((&BrowserMenu), ID_MENUITEM2, _("Extract"), wxEmptyString, wxITEM_NORMAL);
+	BrowserMenu.Append(MenuItem2);
+	MenuItem3 = new wxMenuItem((&BrowserMenu), ID_MENUITEM3, _("Rename"), wxEmptyString, wxITEM_NORMAL);
+	BrowserMenu.Append(MenuItem3);
+	MenuItem4 = new wxMenuItem((&BrowserMenu), ID_MENUITEM4, _("Create Folder"), wxEmptyString, wxITEM_NORMAL);
+	BrowserMenu.Append(MenuItem4);
 	BoxSizer1->Fit(this);
 	BoxSizer1->SetSizeHints(this);
 
@@ -81,7 +106,13 @@ PFSShellBrowser::PFSShellBrowser(wxWindow* parent,wxWindowID id,const wxPoint& p
 	Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&PFSShellBrowser::OnButton1Click);
 	Connect(ID_BUTTON2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&PFSShellBrowser::OnButton2Click);
 	Connect(ID_LISTCTRL1,wxEVT_COMMAND_LIST_ITEM_ACTIVATED,(wxObjectEventFunction)&PFSShellBrowser::OnFileListItemActivated);
+	Connect(ID_LISTCTRL1,wxEVT_COMMAND_LIST_ITEM_RIGHT_CLICK,(wxObjectEventFunction)&PFSShellBrowser::OnFileListItemRClick);
 	//*)
+	FileList->DragAcceptFiles(true);
+	//FileList->Connect(wxEVT_DROP_FILES, wxDropFilesEventHandler(PFSShellBrowser::OnDropFiles), NULL, this);
+	FileList->Connect(wxEVT_DROP_FILES, (wxObjectEventFunction)&PFSShellBrowser::OnDropFiles, NULL, this);
+	//Connect(ID_LISTCTRL1, wxEVT_DROP_FILES,(wxObjectEventFunction)&PFSShellBrowser::OnDropFiles);
+	//Connect(ID_LISTCTRL1, wxEVT_DROP_FILES, wxDropFilesEventHandler(PFSShellBrowser::OnDropFiles));
 	wxListItem col0;
     col0.SetId(LIST_ITEMS::NAME);
     col0.SetText( _("Name") );
@@ -101,10 +132,17 @@ PFSShellBrowser::PFSShellBrowser(wxWindow* parent,wxWindowID id,const wxPoint& p
     col2.SetText( _("Type") );
     col2.SetWidth(100);
     FileList->InsertColumn(LIST_ITEMS::TYPE, col2);
+
+    IMGLIST = new wxImageList(16, 16, true);
+    IMGLIST->Add(wxIcon(folder_xpm));
+    IMGLIST->Add(wxIcon(harddisk_xpm));
+    IMGLIST->Add(wxIcon(filesave_xpm));
+    FileList->SetImageList(IMGLIST, wxIMAGE_LIST_SMALL);
 }
 
 PFSShellBrowser::~PFSShellBrowser()
 {
+    delete IMGLIST;
 	//(*Destroy(PFSShellBrowser)
 	//*)
 }
@@ -125,12 +163,10 @@ void PFSShellBrowser::OnHDDFileRadioSelect(wxCommandEvent& event)
 
 void PFSShellBrowser::OnButton1Click(wxCommandEvent& event)
 {
-    const char* hdd =
-    HDDFileDLG->GetPath().mb_str();
+    const char* hdd = HDDFileDLG->GetPath().mb_str();
     if (!PFSSHELL.SelectDevice(hdd)) {
         OpenHDD->Enable(false);
         CloseHDD->Enable(true);
-        PFSSHELL.lspart(1, nullptr);
         RefreshList();
     } else {
         std::cout << "HDD OPEN ERR\n";
@@ -146,66 +182,42 @@ void PFSShellBrowser::OnButton2Click(wxCommandEvent& event)
 }
 
 void PFSShellBrowser::RefreshList(void) {
-
+    std::cout << "Listing '"<<CTX::CWD<<"'\n";
     FileList->DeleteAllItems();
-    PFSSHELL.lspart(1, &ITEMLIST);
-    wxString TMP, TMP2, cmd;
+    if (!CTX::ISMOUNTED) {
+        PFSSHELL.lspart(1, &ITEMLIST);
+    } else {
+        PFSSHELL.ls(CTX::MNT.mb_str(), CTX::CWD.mb_str(), &ITEMLIST);
+    }
+    wxString tyype, TMP2, cmd;
     wxArrayString ARR;
-    for (size_t x = ITEMLIST.size()-1; x >= 0; x--)
+    //std::cout << "ENTRIES "<<ITEMLIST.size()<<"\n";
+    for (size_t x = ITEMLIST.size()-1; x < ITEMLIST.size(); x--)
     {
+        std::cout << ITEMLIST.size() << "|" << x << std::endl;
         bool is_subpartition = (ITEMLIST[x].stat.attr == 1);
-        const int m = ITEMLIST[x].stat.mode;
-        if (m != PARTITION_TYPE::PFS &&
+        unsigned int m = ITEMLIST[x].stat.mode;
+        if ((m != PARTITION_TYPE::PFS &&
             (m & FIO_S_IFMT) != FIO_S_IFLNK &&
             (m & FIO_S_IFMT) != FIO_S_IFREG &&
             (m & FIO_S_IFMT) != FIO_S_IFDIR
-            ) //placeholder for ignoring non PFS Partitions
+            ) || !strcasecmp(".", ITEMLIST[x].name)) //placeholder for ignoring non PFS Partitions
             continue;
-        std::cout << ITEMLIST[x].name << std::endl;
         long itemIndex = FileList->InsertItem(LIST_ITEMS::NAME, ITEMLIST[x].name);// col. 1
-        FileList->SetItem(itemIndex, LIST_ITEMS::SIZET, wxString::Format("%uMB",ITEMLIST[x].stat.size / 2048)); // col. 3
-        switch (ITEMLIST[x].stat.mode)
-        {
-        case PARTITION_TYPE::MBR:
-            TMP = "MBR";
-            FileList->SetItemTextColour(itemIndex, wxColour(255, 139, 0));
-            break;
-        case PARTITION_TYPE::EXT2SWAP:
-            FileList->SetItemTextColour(itemIndex, *wxLIGHT_GREY);
-            TMP = "EXT2SWAP";
-            break;
-        case PARTITION_TYPE::EXT2:
-            FileList->SetItemTextColour(itemIndex, *wxLIGHT_GREY);
-            TMP = "EXT2";
-            break;
-        case PARTITION_TYPE::REISER:
-            FileList->SetItemTextColour(itemIndex, *wxLIGHT_GREY);
-            TMP = "REISER";
-            break;
-        case PARTITION_TYPE::PFS:
-            FileList->SetItemTextColour(itemIndex, wxColour(0, 0x80, 0x80));
-            TMP = "PFS";
-            break;
-        case PARTITION_TYPE::CFS:
-            FileList->SetItemTextColour(itemIndex, *wxLIGHT_GREY);
-            TMP = "CFS";
-            break;
-        case PARTITION_TYPE::HDL:
-            FileList->SetItemTextColour(itemIndex, *wxGREEN);
-            TMP = "HDL";
-            break;
-        case PARTITION_TYPE::FREE:
-            FileList->SetItemBackgroundColour(itemIndex, *wxLIGHT_GREY);
-            TMP = _("Empty Segment");
-            break;
-
-        default:
-            TMP = wxString::Format("UNKNOWN %#4x", ITEMLIST[x].stat.mode);
-            FileList->SetItemTextColour(itemIndex, *wxRED);
-            break;
+        if ((m & FIO_S_IFMT) != FIO_S_IFDIR) FileList->SetItem(itemIndex, LIST_ITEMS::SIZET, wxString::Format("%uMB",ITEMLIST[x].stat.size / 2048)); // col. 3
+        tyype = _("Unknown");
+        if (m == PARTITION_TYPE::PFS) {
+            tyype = _("PFS Partition");
+            FileList->SetItemImage(itemIndex, 1);
+        } else if ((m & FIO_S_IFMT) == FIO_S_IFLNK || (m & FIO_S_IFMT) == FIO_S_IFREG){
+            tyype = _("File");
+            FileList->SetItemImage(itemIndex, 2);
+        } else if ((m & FIO_S_IFMT) == FIO_S_IFDIR) {
+            tyype = _("Folder");
+            FileList->SetItemImage(itemIndex, 0);
         }
-        if (is_subpartition) TMP += "-(SUBPART)";
-        FileList->SetItem(itemIndex, LIST_ITEMS::TYPE, TMP); // col. 4
+        FileList->SetItem(itemIndex, LIST_ITEMS::TYPE, tyype);
+        //Sleep(1000);
     }
 }
 
@@ -213,5 +225,59 @@ void PFSShellBrowser::OnFileListItemActivated(wxListEvent& event)
 {
     long item = -1;
     item = FileList->GetNextItem(item, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
-    std::cout << "Item activated " << item << "\n";
+    wxString E = FileList->GetItemText(item, 0);
+    std::cout << "enter '" << E << "'\n";
+    if ((!CTX::ISMOUNTED) && E != "..") {
+        CTX::ISMOUNTED = true;
+        CTX::MNT = "hdd0:"+E;
+        CTX::CWD = "./";
+        RefreshList();
+    } else {
+        if (E != "..") {
+            CTX::CWD << E << "/";
+            RefreshList();
+        } else {
+        ///PLACEHOLDER, GO BACK
+            size_t P = CTX::CWD.find_last_of('/');
+            if (P != wxNOT_FOUND) {
+                CTX::CWD = CTX::CWD.substr(0, P-1);
+                if (CTX::CWD == "") {
+                    CTX::MNT = "";
+                    CTX::ISMOUNTED = false;
+                }
+                RefreshList();
+            }
+        }
+    }
+}
+
+void PFSShellBrowser::OnDropFiles(wxDropFilesEvent& event) {
+        wxBeginBusyCursor();
+    std::cout << "DROPEVENT\n";
+    if (event.GetNumberOfFiles() > 0) {
+
+        wxString* dropped = event.GetFiles();
+        wxASSERT(dropped);
+
+        wxString name;
+        wxArrayString files;
+
+        for (int i = 0; i < event.GetNumberOfFiles(); i++) {
+            name = dropped[i];
+            std::cout << "DROP: "<<name<<"\n";
+        }
+
+        //wxTextCtrl* textCtrl = dynamic_cast<wxTextCtrl*>(event.GetEventObject());
+        //wxASSERT(textCtrl);
+        //textCtrl->Clear();
+        //for (size_t i = 0; i < files.size(); i++) {
+        //    *textCtrl << files[i] << wxT('\n');
+        //}
+    }
+        wxEndBusyCursor();
+}
+
+void PFSShellBrowser::OnFileListItemRClick(wxListEvent& event)
+{
+    PopupMenu(&BrowserMenu);
 }
