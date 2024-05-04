@@ -21,6 +21,7 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 				<Option object_output="_obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
+				<Option use_console_runner="0" />
 				<Option parameters="--force-max-debug --stay-on-top --skip-update" />
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
@@ -32,6 +33,7 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 					<Add option="-D__WXMSW__" />
 					<Add option="-DwxUSE_UNICODE" />
 					<Add option="-DBITS=64" />
+					<Add option="-DHAVE_W32API_H" />
 					<Add directory="$(#wx)/lib/gcc_lib/mswu" />
 					<Add directory="$(#wx)/include" />
 					<Add directory="include" />
@@ -50,6 +52,9 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 					<Add option="-static" />
 					<Add option="-m64" />
 					<Add option="-mthreads" />
+					<Add option="-lwininet" />
+					<Add option="-lrpcrt4" />
+					<Add option="-lwinmm" />
 					<Add library="libwxmsw30u.a" />
 					<Add library="libwxpng.a" />
 					<Add library="libwxjpeg.a" />
@@ -258,6 +263,7 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 		</VirtualTargets>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add option="-Wl,--subsystem,windows" />
 			<Add directory="../include" />
 		</Compiler>
 		<Linker>
@@ -271,8 +277,14 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 		<Unit filename="../.github/workflows/Repack-and-release.yml" />
 		<Unit filename="../.gitignore" />
 		<Unit filename="../README.md" />
+		<Unit filename="../include/DnDFile.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="../include/file_t.h" />
 		<Unit filename="../include/wxMD5" />
+		<Unit filename="../src/DnDFile.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="About.cpp" />
 		<Unit filename="About.h" />
 		<Unit filename="ArtMan.cpp" />

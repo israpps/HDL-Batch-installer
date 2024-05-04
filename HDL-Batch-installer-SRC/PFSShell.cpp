@@ -353,7 +353,7 @@ int PFSShell::recoverfile(const char *mount_point, const char *src, const char *
                 if (result < 0)
                     printf("close: failed with %d\n", result), retval = -1;
             } else
-                printf("%s: open failed with %d\n", src_path, fh), retval = -1;
+                printf("%s: open failed with %d (%s)\n", src_path, fh, strerror(-fh)), retval = -1;
 
             result = iomanX_umount("pfs0:");
             if (result < 0)
@@ -507,3 +507,106 @@ int PFSShell::RemovePartition(const char* part)
     return (result);
 }
 
+int PFSShell::pfs_mkdir(const char* partition, const char* path, const char* newdir)
+{
+    int result = PFSShell::Mount(partition);
+    if (result < 0) {
+        return result;
+    }
+    char tmp[256];
+    strcpy(tmp, "pfs0:");
+    strcat(tmp, path);
+    if (tmp[strlen(tmp) - 1] != '/')
+        strcat(tmp, "/");
+    strcat(tmp, newdir);
+    result = iomanX_mkdir(tmp, 0777);
+    if (result < 0) {
+        COLOR(0c)
+        fprintf(stderr, "(!) '%s': %s.\n", tmp, strerror(-result));
+        COLOR(07)
+    }
+    PFSShell::UMount();
+    return (result);
+}
+
+int PFSShell::pfs_rmdir(const char* partition, const char* path, const char* target)
+{
+    int result = PFSShell::Mount(partition);
+    if (result < 0) {
+        return result;
+    }
+    char tmp[256];
+    strcpy(tmp, "pfs0:");
+    strcat(tmp, path);
+    if (tmp[strlen(tmp) - 1] != '/')
+        strcat(tmp, "/");
+    strcat(tmp, target);
+    result = iomanX_rmdir(tmp);
+    if (result < 0) {
+        COLOR(0c)
+        fprintf(stderr, "(!) %s: %d (%s).\n", tmp, result, strerror(-result));
+        COLOR(07)
+    }
+    PFSShell::UMount();
+    return (result);
+}
+
+int PFSShell::pfs_rm(const char* partition, const char* path, const char* target)
+{
+    int result = PFSShell::Mount(partition);
+    if (result < 0) {
+        return result;
+    }
+    char tmp[256];
+    strcpy(tmp, "pfs0:");
+    strcat(tmp, path);
+    if (tmp[strlen(tmp) - 1] != '/')
+        strcat(tmp, "/");
+    strcat(tmp, target);
+    result = iomanX_remove(tmp);
+    if (result < 0) {
+        COLOR(0c)
+        fprintf(stderr, "(!) %s: %s.\n", tmp, strerror(-result));
+        COLOR(07)
+    }
+    PFSShell::UMount();
+    return (result);
+}
+
+int PFSShell::pfs_rename(const char* partition, const char* path, const char* target, const char* newname)
+{
+    int result = PFSShell::Mount(partition);
+    if (result < 0) {
+        return result;
+    }
+    char tmp[256];
+    strcpy(tmp, "pfs0:");
+    strcat(tmp, path);
+    if (tmp[strlen(tmp) - 1] != '/')
+        strcat(tmp, "/");
+    strcat(tmp, target);
+    result = iomanX_rename(tmp, newname);
+    if (result < 0)
+        fprintf(stderr, "(!) %s: %s.\n", tmp, strerror(-result));
+    PFSShell::UMount();
+    return (result);
+}
+
+int PFSShell::Mount(const char* mnt) {
+    int result = iomanX_mount("pfs0:", mnt, 0, NULL, 0);
+    if (result < 0) {
+        COLOR(0c)
+        fprintf(stderr, "pfs0: mount of \"%s\" failed with %d\n", mnt, result),
+        COLOR(07)
+    }
+    return (result);
+}
+
+int PFSShell::UMount(void) {
+    int result = iomanX_umount("pfs0:");
+    if (result < 0)
+        COLOR(0c)
+        fprintf(stderr, "pfs0: umount failed with %d\n", result);
+        COLOR(07)
+    return (result);
+}

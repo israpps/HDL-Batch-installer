@@ -7,6 +7,7 @@
  * License:   GPL-3.0
  **************************************************************/
 // FRAME & Dialog
+#include "DnDFile.h"
 #include "HDL_Batch_installerMain.h"
 #include "About.h"
 #include "Config.h"
@@ -126,6 +127,7 @@ const long HDL_Batch_installerFrame::ID_BUTTON6 = wxNewId();
 const long HDL_Batch_installerFrame::ID_BUTTON9 = wxNewId();
 const long HDL_Batch_installerFrame::ID_BUTTON5 = wxNewId();
 const long HDL_Batch_installerFrame::ID_BUTTON11 = wxNewId();
+const long HDL_Batch_installerFrame::ID_BUTTON12 = wxNewId();
 const long HDL_Batch_installerFrame::ID_PANEL3 = wxNewId();
 const long HDL_Batch_installerFrame::ID_NOTEBOOK1 = wxNewId();
 const long HDL_Batch_installerFrame::ID_PANEL5 = wxNewId();
@@ -364,6 +366,8 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     BoxSizer5->Add(FUSE, 0, wxALIGN_CENTER_VERTICAL, 0);
     BoxSizer3->Add(BoxSizer5, 1, wxALL|wxEXPAND, 5);
     BoxSizer4 = new wxBoxSizer(wxHORIZONTAL);
+    PFSBrowserCall = new wxButton(Panel3, ID_BUTTON12, _("PFS FileBrowser"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON12"));
+    BoxSizer4->Add(PFSBrowserCall, 0, wxALIGN_CENTER_VERTICAL, 5);
     BoxSizer3->Add(BoxSizer4, 1, wxALL|wxEXPAND, 5);
     FlexGridSizer5->Add(BoxSizer3, 1, wxALL|wxEXPAND, 5);
     Panel3->SetSizer(FlexGridSizer5);
@@ -462,6 +466,7 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     Connect(ID_BUTTON9,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnMBRExtractRequestClick);
     Connect(ID_BUTTON5,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnMBR_EVENTClick);
     Connect(ID_BUTTON11,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnButton4Click);
+    Connect(ID_BUTTON12,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnPFSBrowserCallClick);
     Connect(ID_NOTEBOOK1,wxEVT_COMMAND_NOTEBOOK_PAGE_CHANGED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnNotebook1PageChanged);
     Connect(idMenuQuit,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnQuit);
     Connect(ID_MENUITEM13,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnCOPYHDDSelected);
@@ -488,6 +493,7 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     Connect(wxID_ANY,wxEVT_CLOSE_WINDOW,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnClose);
     Connect(wxEVT_PAINT,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnPaint);
     //*)
+
 }
 
 void cache_cleanup(void)
@@ -575,9 +581,6 @@ void HDL_Batch_installerFrame::OnAbout(wxCommandEvent& event)
     wxMessageBox(msg, "HDL Batch Installer");
     About About_DLG(this);
     About_DLG.ShowModal();
-    PFSShellBrowser* BROWSER = new PFSShellBrowser(this);
-    BROWSER->ShowModal();
-    delete BROWSER;
 }
 
 void HDL_Batch_installerFrame::OnRadioButton1Select(wxCommandEvent& event)
@@ -2195,4 +2198,13 @@ wxString HDL_Batch_installerFrame::cat_errdump()
         }
     }
     return DUMP;
+}
+
+void HDL_Batch_installerFrame::OnPFSBrowserCallClick(wxCommandEvent& event)
+{
+#if PFSSHELL_ALLOWED
+    PFSShellBrowser* BROWSER = new PFSShellBrowser(this);
+    BROWSER->ShowModal();
+    delete BROWSER;
+#endif
 }

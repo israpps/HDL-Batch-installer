@@ -1,14 +1,34 @@
 #include "PFSShellBrowser.h"
+//#include "DnDFile.h"
 #include "PFSShell.h"
 
 #include <wx/event.h>
 #include <wx/imaglist.h>
+#include <wx/msgdlg.h>
+#include <wx/arrstr.h>
+#include <wx/dnd.h>
+#include <wx/textdlg.h>
+#include <wx/dirdlg.h>
+
+///ICONS
 #include <folder.xpm>
 #include <harddisk.xpm>
 #include <filesave.xpm>
+#include <motif/question.xpm>
+
+namespace XPM {
+    int FOLDER;
+    int PARTITION;
+    int FILE;
+    int UNKNOWN;
+}
+
+#undef wxDIRCTRL_EDIT_LABELS ///hack to circunvent code::blocks shitdesign
+#define wxDIRCTRL_EDIT_LABELS wxDIRCTRL_MULTIPLE
+
+const wxString check_terminal_4_detailed_err = _("Check terminal for detailed errors");
 
 extern PFSShell PFSSHELL;
-
 
 enum LIST_ITEMS {
     NAME = 0,
@@ -18,9 +38,43 @@ enum LIST_ITEMS {
 std::vector<iox_dirent_t> ITEMLIST;
 
 namespace CTX {
-    wxString CWD = "./";
+    wxString CWD = "/";
     bool ISMOUNTED = false;
     wxString MNT = wxEmptyString;
+}
+
+
+class DnDFile : public wxFileDropTarget
+{
+public:
+    DnDFile(wxListCtrl *pOwner = nullptr) { m_pOwner = pOwner; }
+
+    virtual bool OnDropFiles(wxCoord x, wxCoord y,
+                             const wxArrayString& filenames) override;
+    bool OnDropFiles_aditional(const wxString individual_item);
+
+private:
+    wxListCtrl *m_pOwner;
+};
+#define DND_CONNECT(x) \
+    x->SetDropTarget(new DnDFile(x));
+
+bool DnDFile::OnDropFiles(wxCoord, wxCoord, const wxArrayString& filenames)
+{
+    int x;
+    size_t nFiles = filenames.GetCount();
+    std::cout << nFiles << " files dropped\n";
+    if (m_pOwner != nullptr)
+    {
+        for ( size_t n = 0; n < nFiles; n++ ) {
+            //std::cout << filenames[n] << "\n";
+            wxFileName FinalPath(filenames[n], wxPATH_DOS);
+            std::cout << "WRITE '" << FinalPath.GetFullPath() << "' -> '" << CTX::MNT <<":pfs:"<< CTX::CWD+FinalPath.GetFullName() <<"'\n";
+            x = PFSSHELL.copyto(CTX::MNT, CTX::CWD+FinalPath.GetFullName(), FinalPath.GetFullPath().mb_str());
+        }
+    }
+
+    return true;
 }
 
 //(*InternalHeaders(PFSShellBrowser)
@@ -35,11 +89,13 @@ const long PFSShellBrowser::ID_RADIOBUTTON2 = wxNewId();
 const long PFSShellBrowser::ID_FILEPICKERCTRL1 = wxNewId();
 const long PFSShellBrowser::ID_BUTTON1 = wxNewId();
 const long PFSShellBrowser::ID_BUTTON2 = wxNewId();
+const long PFSShellBrowser::ID_GENERICDIRCTRL1 = wxNewId();
 const long PFSShellBrowser::ID_LISTCTRL1 = wxNewId();
-const long PFSShellBrowser::ID_MENUITEM1 = wxNewId();
+const long PFSShellBrowser::ID_TEXTCTRL1 = wxNewId();
 const long PFSShellBrowser::ID_MENUITEM2 = wxNewId();
-const long PFSShellBrowser::ID_MENUITEM3 = wxNewId();
 const long PFSShellBrowser::ID_MENUITEM4 = wxNewId();
+const long PFSShellBrowser::ID_MENUITEM3 = wxNewId();
+const long PFSShellBrowser::ID_MENUITEM1 = wxNewId();
 //*)
 
 BEGIN_EVENT_TABLE(PFSShellBrowser,wxDialog)
@@ -56,10 +112,10 @@ PFSShellBrowser::PFSShellBrowser(wxWindow* parent,wxWindowID id,const wxPoint& p
 	wxBoxSizer* BoxSizer4;
 	wxBoxSizer* BoxSizer5;
 	wxBoxSizer* BoxSizer6;
+	wxBoxSizer* BoxSizer7;
+	wxFlexGridSizer* FlexGridSizer1;
 
-	Create(parent, id, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER, _T("id"));
-	SetClientSize(wxDefaultSize);
-	Move(wxDefaultPosition);
+	Create(parent, wxID_ANY, _("PFS Browser"), wxDefaultPosition, wxDefaultSize, wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER|wxCLOSE_BOX|wxMAXIMIZE_BOX|wxMINIMIZE_BOX, _T("wxID_ANY"));
 	BoxSizer1 = new wxBoxSizer(wxVERTICAL);
 	BoxSizer2 = new wxBoxSizer(wxVERTICAL);
 	BoxSizer4 = new wxBoxSizer(wxHORIZONTAL);
@@ -67,14 +123,14 @@ PFSShellBrowser::PFSShellBrowser(wxWindow* parent,wxWindowID id,const wxPoint& p
 	HDDRealRadio->SetValue(true);
 	BoxSizer4->Add(HDDRealRadio, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	HDDRealDLG = new wxChoice(this, ID_CHOICE1, wxDefaultPosition, wxDefaultSize, 0, 0, 0, wxDefaultValidator, _T("ID_CHOICE1"));
-	BoxSizer4->Add(HDDRealDLG, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	BoxSizer4->Add(HDDRealDLG, 4, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	BoxSizer2->Add(BoxSizer4, 1, wxALL|wxEXPAND, 5);
 	BoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
 	HDDFileRadio = new wxRadioButton(this, ID_RADIOBUTTON2, _("File"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_RADIOBUTTON2"));
 	BoxSizer5->Add(HDDFileRadio, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	HDDFileDLG = new wxFilePickerCtrl(this, ID_FILEPICKERCTRL1, _T("D:\\Baul\\Paula\\Desktop\\DEV9hdd.raw"), wxEmptyString, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxFLP_FILE_MUST_EXIST|wxFLP_OPEN|wxFLP_USE_TEXTCTRL, wxDefaultValidator, _T("ID_FILEPICKERCTRL1"));
 	HDDFileDLG->Disable();
-	BoxSizer5->Add(HDDFileDLG, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
+	BoxSizer5->Add(HDDFileDLG, 4, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	BoxSizer2->Add(BoxSizer5, 1, wxALL|wxEXPAND, 5);
 	BoxSizer6 = new wxBoxSizer(wxHORIZONTAL);
 	OpenHDD = new wxButton(this, ID_BUTTON1, _("Open"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_BUTTON1"));
@@ -85,19 +141,32 @@ PFSShellBrowser::PFSShellBrowser(wxWindow* parent,wxWindowID id,const wxPoint& p
 	BoxSizer2->Add(BoxSizer6, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	BoxSizer1->Add(BoxSizer2, 1, wxALL|wxEXPAND, 5);
 	BoxSizer3 = new wxBoxSizer(wxHORIZONTAL);
-	FileList = new wxListCtrl(this, ID_LISTCTRL1, wxDefaultPosition, wxDefaultSize, wxLC_REPORT|wxLC_AUTOARRANGE|wxLC_HRULES|wxLC_VRULES, wxDefaultValidator, _T("ID_LISTCTRL1"));
+	BoxSizer7 = new wxBoxSizer(wxVERTICAL);
+	DirCtrl = new wxGenericDirCtrl(this, ID_GENERICDIRCTRL1, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxDIRCTRL_EDIT_LABELS, wxEmptyString, 0, _T("ID_GENERICDIRCTRL1"));
+	BoxSizer7->Add(DirCtrl, 1, wxTOP|wxBOTTOM|wxLEFT|wxEXPAND, 5);
+	BoxSizer3->Add(BoxSizer7, 1, wxALL|wxEXPAND, 5);
+	FlexGridSizer1 = new wxFlexGridSizer(0, 1, 0, 0);
+	FlexGridSizer1->AddGrowableCol(0);
+	FlexGridSizer1->AddGrowableRow(0);
+	FileList = new wxListCtrl(this, ID_LISTCTRL1, wxDefaultPosition, wxDefaultSize, wxLC_REPORT|wxLC_AUTOARRANGE, wxDefaultValidator, _T("ID_LISTCTRL1"));
 	FileList->SetMinSize(wxSize(550,300));
-	BoxSizer3->Add(FileList, 1, wxTOP|wxEXPAND, 5);
-	BoxSizer1->Add(BoxSizer3, 3, wxALL|wxEXPAND, 5);
+	FileList->Disable();
+	FlexGridSizer1->Add(FileList, 3, wxTOP|wxRIGHT|wxEXPAND, 5);
+	FileListPathDisp = new wxTextCtrl(this, ID_TEXTCTRL1, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_NO_VSCROLL|wxTE_PROCESS_ENTER|wxTE_READONLY, wxDefaultValidator, _T("ID_TEXTCTRL1"));
+	FileListPathDisp->Disable();
+	FlexGridSizer1->Add(FileListPathDisp, 1, wxBOTTOM|wxRIGHT|wxEXPAND, 5);
+	BoxSizer3->Add(FlexGridSizer1, 1, wxALL|wxEXPAND, 5);
+	BoxSizer1->Add(BoxSizer3, 3, wxEXPAND, 5);
 	SetSizer(BoxSizer1);
-	MenuItem1 = new wxMenuItem((&BrowserMenu), ID_MENUITEM1, _("Delete"), wxEmptyString, wxITEM_NORMAL);
-	BrowserMenu.Append(MenuItem1);
 	MenuItem2 = new wxMenuItem((&BrowserMenu), ID_MENUITEM2, _("Extract"), wxEmptyString, wxITEM_NORMAL);
 	BrowserMenu.Append(MenuItem2);
-	MenuItem3 = new wxMenuItem((&BrowserMenu), ID_MENUITEM3, _("Rename"), wxEmptyString, wxITEM_NORMAL);
-	BrowserMenu.Append(MenuItem3);
+	BrowserMenu.AppendSeparator();
 	MenuItem4 = new wxMenuItem((&BrowserMenu), ID_MENUITEM4, _("Create Folder"), wxEmptyString, wxITEM_NORMAL);
 	BrowserMenu.Append(MenuItem4);
+	MenuItem3 = new wxMenuItem((&BrowserMenu), ID_MENUITEM3, _("Rename"), wxEmptyString, wxITEM_NORMAL);
+	BrowserMenu.Append(MenuItem3);
+	MenuItem1 = new wxMenuItem((&BrowserMenu), ID_MENUITEM1, _("Delete"), wxEmptyString, wxITEM_NORMAL);
+	BrowserMenu.Append(MenuItem1);
 	BoxSizer1->Fit(this);
 	BoxSizer1->SetSizeHints(this);
 
@@ -107,12 +176,18 @@ PFSShellBrowser::PFSShellBrowser(wxWindow* parent,wxWindowID id,const wxPoint& p
 	Connect(ID_BUTTON2,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&PFSShellBrowser::OnButton2Click);
 	Connect(ID_LISTCTRL1,wxEVT_COMMAND_LIST_ITEM_ACTIVATED,(wxObjectEventFunction)&PFSShellBrowser::OnFileListItemActivated);
 	Connect(ID_LISTCTRL1,wxEVT_COMMAND_LIST_ITEM_RIGHT_CLICK,(wxObjectEventFunction)&PFSShellBrowser::OnFileListItemRClick);
+	Connect(ID_MENUITEM2,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&PFSShellBrowser::OnRecoverFileFromHDD);
+	Connect(ID_MENUITEM4,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&PFSShellBrowser::OnMkdirFromHDD);
+	Connect(ID_MENUITEM3,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&PFSShellBrowser::OnRenameFileFromHDD);
+	Connect(ID_MENUITEM1,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&PFSShellBrowser::OnDeleteFileFromHDD);
 	//*)
 	FileList->DragAcceptFiles(true);
-	//FileList->Connect(wxEVT_DROP_FILES, wxDropFilesEventHandler(PFSShellBrowser::OnDropFiles), NULL, this);
-	FileList->Connect(wxEVT_DROP_FILES, (wxObjectEventFunction)&PFSShellBrowser::OnDropFiles, NULL, this);
-	//Connect(ID_LISTCTRL1, wxEVT_DROP_FILES,(wxObjectEventFunction)&PFSShellBrowser::OnDropFiles);
-	//Connect(ID_LISTCTRL1, wxEVT_DROP_FILES, wxDropFilesEventHandler(PFSShellBrowser::OnDropFiles));
+    //FileList->DragAcceptFiles(true);
+    //FileList->Bind(wxEVT_DROP_FILES, &PFSShellBrowser::OnDropFiles, this);
+    DirCtrl->Connect(wxEVT_TREE_BEGIN_DRAG, wxTreeEventHandler(PFSShellBrowser::OnDragFromDirCtrl), NULL, this);
+    FileList->SetDropTarget(new DnDFile(FileList));
+	//DND_CONNECT(FileList);
+
 	wxListItem col0;
     col0.SetId(LIST_ITEMS::NAME);
     col0.SetText( _("Name") );
@@ -134,10 +209,34 @@ PFSShellBrowser::PFSShellBrowser(wxWindow* parent,wxWindowID id,const wxPoint& p
     FileList->InsertColumn(LIST_ITEMS::TYPE, col2);
 
     IMGLIST = new wxImageList(16, 16, true);
-    IMGLIST->Add(wxIcon(folder_xpm));
-    IMGLIST->Add(wxIcon(harddisk_xpm));
-    IMGLIST->Add(wxIcon(filesave_xpm));
+    XPM::FOLDER = IMGLIST->Add(wxIcon(folder_xpm));
+    XPM::PARTITION = IMGLIST->Add(wxIcon(harddisk_xpm));
+    XPM::FILE = IMGLIST->Add(wxIcon(filesave_xpm));
+    XPM::UNKNOWN = IMGLIST->Add(wxIcon(question_xpm));
     FileList->SetImageList(IMGLIST, wxIMAGE_LIST_SMALL);
+
+
+    wxString line;
+	wxArrayString RET, ERR;
+
+	long retcode = wxExecute("wmic diskdrive get Caption,DeviceID,InterfaceType", RET, ERR, wxEXEC_SYNC);
+	if (retcode == 0)
+    {
+        for (size_t x=0; x<RET.GetCount();x++)
+        {
+            line = RET.Item(x);
+            wxString drive = line.SubString(line.find("\\\\.\\PHYSICALDRIVE"), line.find_first_of(' ', line.find("\\\\.\\PHYSICALDRIVE")));
+            std::cout << drive << "\n";
+            if (line == wxEmptyString || x == 0)
+                continue;
+
+            //std::cout << line.SubString(line.find("\\\\.\\PHYSICALDRIVE"), line.find_first_of(' ', line.find("\\\\.\\PHYSICALDRIVE"))) << "\n";
+            //std::cout << line.Mid(line.find_first_of(' ', line.find("\\\\.\\PHYSICALDRIVE"))) << "|\n";
+            //std::cout << line.SubString(0, line.find("\\\\.\\PHYSICALDRIVE")-1) << "\n";
+            HDDRealDLG->Append(drive);// col. 1
+        }
+    }//*/
+
 }
 
 PFSShellBrowser::~PFSShellBrowser()
@@ -163,12 +262,17 @@ void PFSShellBrowser::OnHDDFileRadioSelect(wxCommandEvent& event)
 
 void PFSShellBrowser::OnButton1Click(wxCommandEvent& event)
 {
-    const char* hdd = HDDFileDLG->GetPath().mb_str();
-    if (!PFSSHELL.SelectDevice(hdd)) {
+    wxString hdd;
+    if (HDDFileRadio->GetValue()) hdd = HDDFileDLG->GetPath().mb_str();
+    if (HDDRealRadio->GetValue()) hdd = HDDRealDLG->GetString(HDDRealDLG->GetSelection());
+    if (!PFSSHELL.SelectDevice(std::string(hdd))) {
         OpenHDD->Enable(false);
-        CloseHDD->Enable(true);
+        CloseHDD->Enable();
+        FileList->Enable();
+        FileListPathDisp->Enable();
         RefreshList();
     } else {
+        wxMessageBox(check_terminal_4_detailed_err, _("Could not open HDD")+"\n"+hdd, wxICON_ERROR);
         std::cout << "HDD OPEN ERR\n";
         PFSSHELL.CloseDevice();
     }
@@ -179,14 +283,18 @@ void PFSShellBrowser::OnButton2Click(wxCommandEvent& event)
     PFSSHELL.CloseDevice();
     OpenHDD->Enable(true);
     CloseHDD->Enable(false);
+    FileList->Enable(false);
+    FileListPathDisp->Enable(false);
 }
 
 void PFSShellBrowser::RefreshList(void) {
     std::cout << "Listing '"<<CTX::CWD<<"'\n";
     FileList->DeleteAllItems();
     if (!CTX::ISMOUNTED) {
+        FileListPathDisp->SetValue("hdd:");
         PFSSHELL.lspart(1, &ITEMLIST);
     } else {
+        FileListPathDisp->SetValue(CTX::MNT + CTX::CWD);
         PFSSHELL.ls(CTX::MNT.mb_str(), CTX::CWD.mb_str(), &ITEMLIST);
     }
     wxString tyype, TMP2, cmd;
@@ -194,27 +302,28 @@ void PFSShellBrowser::RefreshList(void) {
     //std::cout << "ENTRIES "<<ITEMLIST.size()<<"\n";
     for (size_t x = ITEMLIST.size()-1; x < ITEMLIST.size(); x--)
     {
-        std::cout << ITEMLIST.size() << "|" << x << std::endl;
-        bool is_subpartition = (ITEMLIST[x].stat.attr == 1);
+        bool is_subpartition = ((ITEMLIST[x].stat.attr == 1));
         unsigned int m = ITEMLIST[x].stat.mode;
-        if ((m != PARTITION_TYPE::PFS &&
+        if ((m != PARTITION_TYPE::PFS) &&
             (m & FIO_S_IFMT) != FIO_S_IFLNK &&
             (m & FIO_S_IFMT) != FIO_S_IFREG &&
             (m & FIO_S_IFMT) != FIO_S_IFDIR
-            ) || !strcasecmp(".", ITEMLIST[x].name)) //placeholder for ignoring non PFS Partitions
+             || !strcasecmp(".", ITEMLIST[x].name)) //placeholder for ignoring non PFS Partitions
             continue;
         long itemIndex = FileList->InsertItem(LIST_ITEMS::NAME, ITEMLIST[x].name);// col. 1
         if ((m & FIO_S_IFMT) != FIO_S_IFDIR) FileList->SetItem(itemIndex, LIST_ITEMS::SIZET, wxString::Format("%uMB",ITEMLIST[x].stat.size / 2048)); // col. 3
         tyype = _("Unknown");
         if (m == PARTITION_TYPE::PFS) {
             tyype = _("PFS Partition");
-            FileList->SetItemImage(itemIndex, 1);
+            FileList->SetItemImage(itemIndex, XPM::PARTITION);
         } else if ((m & FIO_S_IFMT) == FIO_S_IFLNK || (m & FIO_S_IFMT) == FIO_S_IFREG){
             tyype = _("File");
-            FileList->SetItemImage(itemIndex, 2);
+            FileList->SetItemImage(itemIndex, XPM::FILE);
         } else if ((m & FIO_S_IFMT) == FIO_S_IFDIR) {
             tyype = _("Folder");
-            FileList->SetItemImage(itemIndex, 0);
+            FileList->SetItemImage(itemIndex, XPM::FOLDER);
+        } else {
+            FileList->SetItemImage(itemIndex, XPM::UNKNOWN);
         }
         FileList->SetItem(itemIndex, LIST_ITEMS::TYPE, tyype);
         //Sleep(1000);
@@ -226,11 +335,19 @@ void PFSShellBrowser::OnFileListItemActivated(wxListEvent& event)
     long item = -1;
     item = FileList->GetNextItem(item, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
     wxString E = FileList->GetItemText(item, 0);
+    wxListItem T;
+    T.SetMask(wxLIST_MASK_IMAGE);
+    T.SetId(item);
+    FileList->GetItem(T);
+    if (T.GetImage() != XPM::FOLDER && T.GetImage() != XPM::PARTITION) {
+        std::cerr << __FUNCTION__ << " Attempt to enter an item wich is not folder or partition ("<<T.GetImage()<<")\n";
+        return;
+    }
     std::cout << "enter '" << E << "'\n";
-    if ((!CTX::ISMOUNTED) && E != "..") {
+    if (!CTX::ISMOUNTED) {
         CTX::ISMOUNTED = true;
         CTX::MNT = "hdd0:"+E;
-        CTX::CWD = "./";
+        CTX::CWD = "/";
         RefreshList();
     } else {
         if (E != "..") {
@@ -238,46 +355,150 @@ void PFSShellBrowser::OnFileListItemActivated(wxListEvent& event)
             RefreshList();
         } else {
         ///PLACEHOLDER, GO BACK
+            if (CTX::CWD == "/") {
+                CTX::MNT = "";
+                CTX::ISMOUNTED = false;
+                RefreshList();
+                return;
+            }
             size_t P = CTX::CWD.find_last_of('/');
             if (P != wxNOT_FOUND) {
                 CTX::CWD = CTX::CWD.substr(0, P-1);
-                if (CTX::CWD == "") {
-                    CTX::MNT = "";
-                    CTX::ISMOUNTED = false;
-                }
+                std::cout <<"["<< CTX::CWD << "]" << P << "\n";
+                RefreshList();
+            } else {
+                std::cerr << __FUNCTION__ << " " << __LINE__ << " UNHANDLED CONDITION\n";
+                CTX::MNT = "";
+                CTX::ISMOUNTED = false;
                 RefreshList();
             }
         }
     }
 }
 
-void PFSShellBrowser::OnDropFiles(wxDropFilesEvent& event) {
-        wxBeginBusyCursor();
-    std::cout << "DROPEVENT\n";
-    if (event.GetNumberOfFiles() > 0) {
-
-        wxString* dropped = event.GetFiles();
-        wxASSERT(dropped);
-
-        wxString name;
-        wxArrayString files;
-
-        for (int i = 0; i < event.GetNumberOfFiles(); i++) {
-            name = dropped[i];
-            std::cout << "DROP: "<<name<<"\n";
-        }
-
-        //wxTextCtrl* textCtrl = dynamic_cast<wxTextCtrl*>(event.GetEventObject());
-        //wxASSERT(textCtrl);
-        //textCtrl->Clear();
-        //for (size_t i = 0; i < files.size(); i++) {
-        //    *textCtrl << files[i] << wxT('\n');
-        //}
+void PFSShellBrowser::OnDragFromDirCtrl(wxTreeEvent& event) {
+    //wxWindowDisabler disabler;
+    //wxBusyCursor busyCursor;
+    if (!CTX::ISMOUNTED) return;
+    wxArrayString T;
+    wxFileDataObject data;
+    DirCtrl->GetPaths(T);
+    for (size_t x=0; x<T.GetCount();x++) {
+        //std::cout << T[x] << "| " << wxFileExists(T[x]) <<"\n";
+        if (wxFileExists(T[x])) //filter out folders
+            data.AddFile(T[x]);
     }
-        wxEndBusyCursor();
+    wxDropSource dragSource(this);
+    dragSource.SetData(data);
+    //LogDragResult(dragSource.DoDragDrop());
+    dragSource.DoDragDrop();
+    RefreshList();
+}
+
+void PFSShellBrowser::OnDropFiles(wxDropFilesEvent& event) {
+    std::cout << __FUNCTION__<< "\n";
+    wxFileDataObject data;
+    event.GetNumberOfFiles();
+    wxDropSource dragSource(this);
+    dragSource.SetData(data);
+    //LogDragResult(dragSource.DoDragDrop());
+    dragSource.DoDragDrop();
 }
 
 void PFSShellBrowser::OnFileListItemRClick(wxListEvent& event)
 {
-    PopupMenu(&BrowserMenu);
+    if (CTX::ISMOUNTED) PopupMenu(&BrowserMenu); //because all of our actions are related to PFS partitions
+}
+
+#define INFORM() std::cout << __FUNCTION__ << " '" << CTX::CWD << "'\n"
+#define ERRCHECK(z, x, y) if (z < 0) wxMessageBox(x, y, wxICON_ERROR)
+void PFSShellBrowser::OnRenameFileFromHDD(wxCommandEvent& event)
+{
+    wxString NewName, OldName;
+    const wxString RenamePrompt = _("Rename");
+    INFORM();
+    long itemIndex = -1;
+    //traverse the selected Items
+    while ((itemIndex = FileList->GetNextItem(itemIndex, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED)) != wxNOT_FOUND) {
+        OldName = FileList->GetItemText(itemIndex);
+        wxTextEntryDialog* T = new wxTextEntryDialog(this, RenamePrompt + ": " + OldName, RenamePrompt, OldName);
+        if (T->ShowModal() == wxID_OK) {
+            NewName = T->GetValue();
+            //pfs_rename(CTX::MNT.mb_str(), CTX::CWD.mb_str(), OldName, NewName);
+            std::cout <<"RENAME "<< OldName << " -> " << NewName << "\n";
+        }
+        delete T;
+    }
+}
+
+void PFSShellBrowser::OnMkdirFromHDD(wxCommandEvent& event)
+{
+    INFORM();
+    wxTextEntryDialog T(this, _("Write the name of the new folder"));
+    if (T.ShowModal() == wxID_OK) {
+        wxString NewDir = T.GetValue();
+        int x = PFSSHELL.pfs_mkdir(CTX::MNT.mb_str(), CTX::CWD.mb_str(), NewDir.mb_str());
+        ERRCHECK(x, _("Failed to create folder!"), "");
+        RefreshList();
+    }
+}
+
+void PFSShellBrowser::OnRecoverFileFromHDD(wxCommandEvent& event)
+{
+    INFORM();
+    int x = 0;
+    int ercnt = 0;
+    wxDirDialog T(this, _("Choose a folder to dump the files"));
+    if (T.ShowModal() == wxID_OK) {
+        wxString TargetPath = T.GetPath();
+        long itemIndex = -1;
+        //traverse the selected Items
+        while ((itemIndex = FileList->GetNextItem(itemIndex, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED)) != wxNOT_FOUND) {
+            wxString targ = TargetPath + "\\" + FileList->GetItemText(itemIndex);
+            wxString source = CTX::CWD + FileList->GetItemText(itemIndex);
+            std::cout <<"PULL '"<< CTX::MNT << ":pfs:" << source <<"' -> '"<< targ <<"'\n";
+            x = PFSSHELL.recoverfile(CTX::MNT.mb_str(), source.mb_str(), targ);
+            if (x < 0) ercnt++;
+        }
+    }
+    if (ercnt > 0 ) wxMessageBox(wxString::Format(_("%d files failed to be recovered")+"\n"+check_terminal_4_detailed_err, ercnt),wxMessageBoxCaptionStr, wxICON_ERROR);
+}
+
+void PFSShellBrowser::OnDeleteFileFromHDD(wxCommandEvent& event)
+{
+    INFORM();
+    int cnt = FileList->GetSelectedItemCount();
+    int ret, errcnt = 0, unk = 0;
+    if (wxMessageBox(wxString::Format(_("Delete %d files?\nThis cannot be undone"), cnt), wxMessageBoxCaptionStr, wxICON_QUESTION|wxYES_NO|wxNO_DEFAULT) == wxNO) {
+        return;
+    }
+        wxListItem T;
+        long itemIndex = -1;
+        //traverse the selected Items
+        while ((itemIndex = FileList->GetNextItem(itemIndex, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED)) != wxNOT_FOUND) {
+            wxString targ = FileList->GetItemText(itemIndex);
+            T.Clear();
+            T.SetMask(wxLIST_MASK_IMAGE);
+            T.SetId(itemIndex);
+            FileList->GetItem(T);
+            if (T.GetImage() == XPM::FILE) {
+                std::cout <<" DELETE " << CTX::MNT <<":pfs:"<< CTX::CWD << targ <<" Prop "<<T.GetImage()<<"\n";
+                ret = PFSSHELL.pfs_rm(CTX::MNT.mb_str(), CTX::CWD.mb_str(), targ);
+            } else if (T.GetImage() == XPM::FOLDER) {
+                std::cout <<" RMDIR " << CTX::MNT <<":pfs:"<< CTX::CWD << targ <<" Prop "<<T.GetImage()<<"\n";
+                ret = PFSSHELL.pfs_rmdir(CTX::MNT.mb_str(), CTX::CWD.mb_str(), targ);
+            } else {
+                std::cout << "UNKNOWN ITEM TYPE: "<<T.GetImage()<<"\n";
+                unk++;
+                continue;
+            }
+            if (ret < 0) errcnt++;
+        }
+    if (errcnt > 0 || unk >0) {
+        wxString condf;
+        if (errcnt > 0) condf += wxString::Format(_("%d errors"), errcnt);
+        if (unk > 0) condf += wxString::Format("\n" + _("%d unknown entries skipped"), unk);
+        wxMessageBox(condf + check_terminal_4_detailed_err, _("The following problems ocurred during transfer"), wxICON_ERROR);
+    }
+    RefreshList(); //to avoid adding another variable to count on the while loop
 }

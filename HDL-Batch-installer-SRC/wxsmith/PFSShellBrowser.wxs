@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <wxsmith>
 	<object class="wxDialog" name="PFSShellBrowser">
-		<pos_arg>1</pos_arg>
-		<size_arg>1</size_arg>
-		<style>wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER</style>
+		<title>PFS Browser</title>
+		<id_arg>0</id_arg>
+		<style>wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER|wxCLOSE_BOX|wxMAXIMIZE_BOX|wxMINIMIZE_BOX</style>
 		<object class="wxBoxSizer" variable="BoxSizer1" member="no">
 			<orient>wxVERTICAL</orient>
 			<object class="sizeritem">
@@ -25,7 +25,7 @@
 								<object class="wxChoice" name="ID_CHOICE1" variable="HDDRealDLG" member="yes" />
 								<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 								<border>5</border>
-								<option>1</option>
+								<option>4</option>
 							</object>
 						</object>
 						<flag>wxALL|wxEXPAND</flag>
@@ -52,7 +52,7 @@
 								</object>
 								<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
 								<border>5</border>
-								<option>1</option>
+								<option>4</option>
 							</object>
 						</object>
 						<flag>wxALL|wxEXPAND</flag>
@@ -93,34 +93,77 @@
 			<object class="sizeritem">
 				<object class="wxBoxSizer" variable="BoxSizer3" member="no">
 					<object class="sizeritem">
-						<object class="wxListCtrl" name="ID_LISTCTRL1" variable="FileList" member="yes">
-							<minsize>550,300</minsize>
-							<style>wxLC_REPORT|wxLC_AUTOARRANGE|wxLC_HRULES|wxLC_VRULES</style>
-							<handler function="OnFileListItemActivated" entry="EVT_LIST_ITEM_ACTIVATED" />
-							<handler function="OnFileListItemRClick" entry="EVT_LIST_ITEM_RIGHT_CLICK" />
+						<object class="wxBoxSizer" variable="BoxSizer7" member="no">
+							<orient>wxVERTICAL</orient>
+							<object class="sizeritem">
+								<object class="wxGenericDirCtrl" name="ID_GENERICDIRCTRL1" variable="DirCtrl" member="yes">
+									<defaultfolder></defaultfolder>
+									<filter></filter>
+									<style>wxDIRCTRL_EDIT_LABELS</style>
+								</object>
+								<flag>wxTOP|wxBOTTOM|wxLEFT|wxEXPAND</flag>
+								<border>5</border>
+								<option>1</option>
+							</object>
 						</object>
-						<flag>wxTOP|wxEXPAND</flag>
+						<flag>wxALL|wxEXPAND</flag>
+						<border>5</border>
+						<option>1</option>
+					</object>
+					<object class="sizeritem">
+						<object class="wxFlexGridSizer" variable="FlexGridSizer1" member="no">
+							<cols>1</cols>
+							<growablecols>0</growablecols>
+							<growablerows>0</growablerows>
+							<object class="sizeritem">
+								<object class="wxListCtrl" name="ID_LISTCTRL1" variable="FileList" member="yes">
+									<enabled>0</enabled>
+									<minsize>550,300</minsize>
+									<style>wxLC_REPORT|wxLC_AUTOARRANGE</style>
+									<handler function="OnFileListItemActivated" entry="EVT_LIST_ITEM_ACTIVATED" />
+									<handler function="OnFileListItemRClick" entry="EVT_LIST_ITEM_RIGHT_CLICK" />
+								</object>
+								<flag>wxTOP|wxRIGHT|wxEXPAND</flag>
+								<border>5</border>
+								<option>3</option>
+							</object>
+							<object class="sizeritem">
+								<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="FileListPathDisp" member="yes">
+									<enabled>0</enabled>
+									<style>wxTE_NO_VSCROLL|wxTE_PROCESS_ENTER|wxTE_READONLY</style>
+								</object>
+								<flag>wxBOTTOM|wxRIGHT|wxEXPAND</flag>
+								<border>5</border>
+								<option>1</option>
+							</object>
+						</object>
+						<flag>wxALL|wxEXPAND</flag>
 						<border>5</border>
 						<option>1</option>
 					</object>
 				</object>
-				<flag>wxALL|wxEXPAND</flag>
+				<flag>wxEXPAND</flag>
 				<border>5</border>
 				<option>3</option>
 			</object>
 		</object>
 		<object class="wxMenu" variable="BrowserMenu" member="yes">
-			<object class="wxMenuItem" name="ID_MENUITEM1" variable="MenuItem1" member="yes">
-				<label>Delete</label>
-			</object>
 			<object class="wxMenuItem" name="ID_MENUITEM2" variable="MenuItem2" member="yes">
 				<label>Extract</label>
+				<handler function="OnRecoverFileFromHDD" entry="EVT_MENU" />
+			</object>
+			<object class="separator" />
+			<object class="wxMenuItem" name="ID_MENUITEM4" variable="MenuItem4" member="yes">
+				<label>Create Folder</label>
+				<handler function="OnMkdirFromHDD" entry="EVT_MENU" />
 			</object>
 			<object class="wxMenuItem" name="ID_MENUITEM3" variable="MenuItem3" member="yes">
 				<label>Rename</label>
+				<handler function="OnRenameFileFromHDD" entry="EVT_MENU" />
 			</object>
-			<object class="wxMenuItem" name="ID_MENUITEM4" variable="MenuItem4" member="yes">
-				<label>Create Folder</label>
+			<object class="wxMenuItem" name="ID_MENUITEM1" variable="MenuItem1" member="yes">
+				<label>Delete</label>
+				<handler function="OnDeleteFileFromHDD" entry="EVT_MENU" />
 			</object>
 		</object>
 	</object>
