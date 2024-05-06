@@ -259,7 +259,7 @@ private:
     wxDirDialog* dump_folder;
     wxTextEntryDialog* rename_game;
     void List_refresh_request();
-    bool is_PS2(wxString path);
+    bool is_PS2(wxString path, int* disct);
     long GetFileSize(std::string filename);
     void Enable_HDD_dependant_objects(bool WTF_should_I_do);
     bool Load_custom_icon(wxString ELF);

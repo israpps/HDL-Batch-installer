@@ -27,6 +27,16 @@
 #include "MD5Man.h"
 #include "PFSShell.h"
 
+#include "xpm/cd.xpm"
+#include "xpm/dvdd.xpm"
+#include "xpm/dvddl.xpm"
+
+namespace CDXPM {
+int CD;
+int DVD;
+int DVDDL;
+}
+
 #define PFSSHELL_DISABLED_WARNING() wxMessageBox(_("HDD Management features are temporarily disabled on 32bit versions because it can cause HDD corruption"), warning_caption, wxICON_WARNING)
 #define PFSSHELL_ALLOWED_INT 0
 #define PFSSHELL_ALLOWED ((BITS != 32) || (PFSSHELL_ALLOWED_INT == 1))
@@ -493,7 +503,15 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     Connect(wxID_ANY,wxEVT_CLOSE_WINDOW,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnClose);
     Connect(wxEVT_PAINT,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnPaint);
     //*)
-
+    wxImageList* CDTLIST = new wxImageList(16, 16, true);
+    CDXPM::CD = CDTLIST->Add(wxIcon(cd_xpm));
+    CDXPM::DVD = CDTLIST->Add(wxIcon(dvd_xpm));
+    CDXPM::DVDDL = CDTLIST->Add(wxIcon(dvddl_xpm));
+    Installed_game_list->SetImageList(CDTLIST, wxIMAGE_LIST_SMALL);
+    game_list__->SetImageList(CDTLIST, wxIMAGE_LIST_SMALL);
+#ifndef PFSSHELL_ALLOWED
+    PFSBrowserCall->Hide();
+#endif
 }
 
 void cache_cleanup(void)
@@ -525,9 +543,9 @@ void HDL_Batch_installerFrame::OnQuit(wxCommandEvent& event)
 }
 
 
-bool HDL_Batch_installerFrame::is_PS2(wxString path)
+bool HDL_Batch_installerFrame::is_PS2(wxString path, int* disct)
 {
-    wxString CMD = wxString::Format("HDL.EXE cdvd_info \"%s\"",path), result_;
+    wxString CMD = wxString::Format("HDL.EXE cdvd_info2 \"%s\"",path), result_;
     wxArrayString result, errorBuffer;
     std::string couterr;
     long program_return_value = wxExecute(CMD,result,errorBuffer);
@@ -541,6 +559,11 @@ bool HDL_Batch_installerFrame::is_PS2(wxString path)
             }
             COLOR(08)
             cout << ">\t["<< result_ << "]\n";
+        }
+        if (disct != nullptr) {
+            if (result_.find("CD")!= wxNOT_FOUND) *disct = CDXPM::CD;
+            if (result_.find("DVD")!= wxNOT_FOUND) *disct = CDXPM::DVD;
+            if (result_.find("dual-layer")!= wxNOT_FOUND) *disct = CDXPM::DVDDL;
         }
         COLOR(0a)
         cout << "is a PS2 Game\n";
@@ -675,9 +698,11 @@ void HDL_Batch_installerFrame::OnSEARCH_ISOClick(wxCommandEvent& event)
                 }
             }
             std::cout << path << "\n";
-            if (is_PS2(path))
+            int type = -1;
+            if (is_PS2(path, &type))
             {
                 long indx = game_list__->InsertItem(0,path);
+                game_list__->SetItemImage(indx, type);
                 if (isZSO) game_list__->SetItemTextColour(indx, *wxBLUE);
                 valid_gamecount++;
             }
@@ -1301,10 +1326,14 @@ void HDL_Batch_installerFrame::List_refresh_request()
         long itemIndex = Installed_game_list->InsertItem(0, Gamename);// col. 1
         Installed_game_list->SetItem(itemIndex, 1, ELF); // col. 2
         Installed_game_list->SetItem(itemIndex, 2, wxString::Format(wxT("%i"),gamesize / 1024)); //col. 3
-        if (media == MEDIA_CD)
+        if (media == MEDIA_CD) {
             Installed_game_list->SetItem(itemIndex, 3, "CD"); //col. 4
-        else
+            Installed_game_list->SetItemImage(itemIndex, CDXPM::CD);
+        }
+        else {
             Installed_game_list->SetItem(itemIndex, 3, "DVD"); //col. 4
+            Installed_game_list->SetItemImage(itemIndex, CDXPM::DVD);
+        }
     }
     if (result.GetCount() <= 2) wxMessageBox(_("This HDD has no PS2 Games inside"), error_caption);
 
