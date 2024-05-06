@@ -155,6 +155,7 @@
 			<object class="separator" />
 			<object class="wxMenuItem" name="ID_MENUITEM4" variable="MenuItem4" member="yes">
 				<label>Create Folder</label>
+				<bitmap code="wxIcon(new_dir_xpm)" />
 				<handler function="OnMkdirFromHDD" entry="EVT_MENU" />
 			</object>
 			<object class="wxMenuItem" name="ID_MENUITEM3" variable="MenuItem3" member="yes">
@@ -163,6 +164,7 @@
 			</object>
 			<object class="wxMenuItem" name="ID_MENUITEM1" variable="MenuItem1" member="yes">
 				<label>Delete</label>
+				<bitmap code="wxIcon(delete_xpm)" />
 				<handler function="OnDeleteFileFromHDD" entry="EVT_MENU" />
 			</object>
 		</object>

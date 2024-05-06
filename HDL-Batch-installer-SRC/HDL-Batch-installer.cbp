@@ -265,6 +265,7 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 			<Add option="-Wall" />
 			<Add option="-Wl,--subsystem,windows" />
 			<Add directory="../include" />
+			<Add directory="xpm" />
 		</Compiler>
 		<Linker>
 			<Add option="-static-libstdc++" />
@@ -366,6 +367,9 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 		<Unit filename="wxsmith/Post_Install_Report.wxs" />
 		<Unit filename="wxsmith/mkpartdlg.wxs" />
 		<Unit filename="wxsmith/pfsshell_wizard.wxs" />
+		<Unit filename="xpm/cd.xpm" />
+		<Unit filename="xpm/dvdd.xpm" />
+		<Unit filename="xpm/dvddl.xpm" />
 		<Extensions>
 			<AutoVersioning>
 				<Scheme minor_max="90" build_max="0" rev_max="0" rev_rand_max="10" build_times_to_increment_minor="400" />

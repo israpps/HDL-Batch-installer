@@ -9,11 +9,15 @@
 #include <wx/dnd.h>
 #include <wx/textdlg.h>
 #include <wx/dirdlg.h>
+#include <wx/progdlg.h>
 
 ///ICONS
 #include <folder.xpm>
 #include <harddisk.xpm>
 #include <filesave.xpm>
+#include <new_dir.xpm>
+#include <delete.xpm>
+#include <toparent.xpm>
 #include <motif/question.xpm>
 
 namespace XPM {
@@ -21,6 +25,7 @@ namespace XPM {
     int PARTITION;
     int FILE;
     int UNKNOWN;
+    int TOPARENT;
 }
 
 #undef wxDIRCTRL_EDIT_LABELS ///hack to circunvent code::blocks shitdesign
@@ -61,23 +66,28 @@ private:
 
 bool DnDFile::OnDropFiles(wxCoord, wxCoord, const wxArrayString& filenames)
 {
-    int x;
+    int x, errcnt;
     size_t nFiles = filenames.GetCount();
     std::cout << nFiles << " files dropped\n";
+    wxProgressDialog* D = new wxProgressDialog(_("Writing files..."), "", nFiles);
     if (m_pOwner != nullptr)
     {
         for ( size_t n = 0; n < nFiles; n++ ) {
-            //std::cout << filenames[n] << "\n";
+            D->Update(n, filenames[n]);
             wxFileName FinalPath(filenames[n], wxPATH_DOS);
             std::cout << "WRITE '" << FinalPath.GetFullPath() << "' -> '" << CTX::MNT <<":pfs:"<< CTX::CWD+FinalPath.GetFullName() <<"'\n";
             x = PFSSHELL.copyto(CTX::MNT, CTX::CWD+FinalPath.GetFullName(), FinalPath.GetFullPath().mb_str());
+            if (x < 0) errcnt++;
         }
     }
-
+    delete D;
+    if (errcnt > 0) wxMessageBox(wxString::Format(_("%d errors while copying files to partition"), errcnt)+'\n'+check_terminal_4_detailed_err, wxMessageBoxCaptionStr, wxICON_ERROR);
     return true;
 }
 
 //(*InternalHeaders(PFSShellBrowser)
+#include <wx/bitmap.h>
+#include <wx/image.h>
 #include <wx/intl.h>
 #include <wx/string.h>
 //*)
@@ -162,10 +172,12 @@ PFSShellBrowser::PFSShellBrowser(wxWindow* parent,wxWindowID id,const wxPoint& p
 	BrowserMenu.Append(MenuItem2);
 	BrowserMenu.AppendSeparator();
 	MenuItem4 = new wxMenuItem((&BrowserMenu), ID_MENUITEM4, _("Create Folder"), wxEmptyString, wxITEM_NORMAL);
+	MenuItem4->SetBitmap(wxIcon(new_dir_xpm));
 	BrowserMenu.Append(MenuItem4);
 	MenuItem3 = new wxMenuItem((&BrowserMenu), ID_MENUITEM3, _("Rename"), wxEmptyString, wxITEM_NORMAL);
 	BrowserMenu.Append(MenuItem3);
 	MenuItem1 = new wxMenuItem((&BrowserMenu), ID_MENUITEM1, _("Delete"), wxEmptyString, wxITEM_NORMAL);
+	MenuItem1->SetBitmap(wxIcon(delete_xpm));
 	BrowserMenu.Append(MenuItem1);
 	BoxSizer1->Fit(this);
 	BoxSizer1->SetSizeHints(this);
@@ -213,6 +225,7 @@ PFSShellBrowser::PFSShellBrowser(wxWindow* parent,wxWindowID id,const wxPoint& p
     XPM::PARTITION = IMGLIST->Add(wxIcon(harddisk_xpm));
     XPM::FILE = IMGLIST->Add(wxIcon(filesave_xpm));
     XPM::UNKNOWN = IMGLIST->Add(wxIcon(question_xpm));
+    XPM::TOPARENT = IMGLIST->Add(wxIcon(toparent_xpm));
     FileList->SetImageList(IMGLIST, wxIMAGE_LIST_SMALL);
 
 
@@ -264,7 +277,10 @@ void PFSShellBrowser::OnButton1Click(wxCommandEvent& event)
 {
     wxString hdd;
     if (HDDFileRadio->GetValue()) hdd = HDDFileDLG->GetPath().mb_str();
-    if (HDDRealRadio->GetValue()) hdd = HDDRealDLG->GetString(HDDRealDLG->GetSelection());
+    if (HDDRealRadio->GetValue()) {
+        if (HDDRealDLG->GetSelection() < 0) return;
+        hdd = HDDRealDLG->GetString(HDDRealDLG->GetSelection());
+    }
     if (!PFSSHELL.SelectDevice(std::string(hdd))) {
         OpenHDD->Enable(false);
         CloseHDD->Enable();
@@ -283,6 +299,9 @@ void PFSShellBrowser::OnButton2Click(wxCommandEvent& event)
     PFSSHELL.CloseDevice();
     OpenHDD->Enable(true);
     CloseHDD->Enable(false);
+    CTX::CWD = "/";
+    CTX::MNT = "";
+    CTX::ISMOUNTED = false;
     FileList->Enable(false);
     FileListPathDisp->Enable(false);
 }
@@ -311,7 +330,15 @@ void PFSShellBrowser::RefreshList(void) {
              || !strcasecmp(".", ITEMLIST[x].name)) //placeholder for ignoring non PFS Partitions
             continue;
         long itemIndex = FileList->InsertItem(LIST_ITEMS::NAME, ITEMLIST[x].name);// col. 1
-        if ((m & FIO_S_IFMT) != FIO_S_IFDIR) FileList->SetItem(itemIndex, LIST_ITEMS::SIZET, wxString::Format("%uMB",ITEMLIST[x].stat.size / 2048)); // col. 3
+        if ((m & FIO_S_IFMT) != FIO_S_IFDIR) {
+            if (ITEMLIST[x].stat.size >= 2048)
+                FileList->SetItem(itemIndex, LIST_ITEMS::SIZET, wxString::Format("%.1f MB", (float)ITEMLIST[x].stat.size / 2048));
+            else if (ITEMLIST[x].stat.size >= 1024) // col. 3
+                FileList->SetItem(itemIndex, LIST_ITEMS::SIZET, wxString::Format("%.1f KB", (float)ITEMLIST[x].stat.size / 1024));
+            else
+                FileList->SetItem(itemIndex, LIST_ITEMS::SIZET, wxString::Format("%u B" , ITEMLIST[x].stat.size));
+
+        }
         tyype = _("Unknown");
         if (m == PARTITION_TYPE::PFS) {
             tyype = _("PFS Partition");
@@ -321,7 +348,8 @@ void PFSShellBrowser::RefreshList(void) {
             FileList->SetItemImage(itemIndex, XPM::FILE);
         } else if ((m & FIO_S_IFMT) == FIO_S_IFDIR) {
             tyype = _("Folder");
-            FileList->SetItemImage(itemIndex, XPM::FOLDER);
+            FileList->SetItemImage(itemIndex, (!strcasecmp("..", ITEMLIST[x].name)) ? XPM::TOPARENT : XPM::FOLDER);
+
         } else {
             FileList->SetItemImage(itemIndex, XPM::UNKNOWN);
         }
@@ -339,11 +367,11 @@ void PFSShellBrowser::OnFileListItemActivated(wxListEvent& event)
     T.SetMask(wxLIST_MASK_IMAGE);
     T.SetId(item);
     FileList->GetItem(T);
-    if (T.GetImage() != XPM::FOLDER && T.GetImage() != XPM::PARTITION) {
+    if (T.GetImage() != XPM::FOLDER && T.GetImage() != XPM::PARTITION && T.GetImage() != XPM::TOPARENT) {
         std::cerr << __FUNCTION__ << " Attempt to enter an item wich is not folder or partition ("<<T.GetImage()<<")\n";
         return;
     }
-    std::cout << "enter '" << E << "'\n";
+    std::cout << "enter '" << E << "' CWD '" << CTX::CWD << "'\n";
     if (!CTX::ISMOUNTED) {
         CTX::ISMOUNTED = true;
         CTX::MNT = "hdd0:"+E;
@@ -351,6 +379,7 @@ void PFSShellBrowser::OnFileListItemActivated(wxListEvent& event)
         RefreshList();
     } else {
         if (E != "..") {
+            //CTX::CWD << E << "/";
             CTX::CWD << E << "/";
             RefreshList();
         } else {
@@ -361,17 +390,18 @@ void PFSShellBrowser::OnFileListItemActivated(wxListEvent& event)
                 RefreshList();
                 return;
             }
+            if (CTX::CWD.EndsWith('/')) CTX::CWD.RemoveLast(1);
             size_t P = CTX::CWD.find_last_of('/');
-            if (P != wxNOT_FOUND) {
+            if (P == 0) {
+                CTX::CWD = "/";
+            } else if (P != wxNOT_FOUND) {
                 CTX::CWD = CTX::CWD.substr(0, P-1);
                 std::cout <<"["<< CTX::CWD << "]" << P << "\n";
-                RefreshList();
             } else {
-                std::cerr << __FUNCTION__ << " " << __LINE__ << " UNHANDLED CONDITION\n";
                 CTX::MNT = "";
                 CTX::ISMOUNTED = false;
-                RefreshList();
             }
+                RefreshList();
         }
     }
 }
