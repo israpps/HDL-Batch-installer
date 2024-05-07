@@ -150,16 +150,18 @@
 		<object class="wxMenu" variable="BrowserMenu" member="yes">
 			<object class="wxMenuItem" name="ID_MENUITEM2" variable="MenuItem2" member="yes">
 				<label>Extract</label>
+				<bitmap stock_id="wxART_FILE_SAVE" stock_client="wxART_BUTTON" />
 				<handler function="OnRecoverFileFromHDD" entry="EVT_MENU" />
 			</object>
 			<object class="separator" />
 			<object class="wxMenuItem" name="ID_MENUITEM4" variable="MenuItem4" member="yes">
 				<label>Create Folder</label>
-				<bitmap code="wxIcon(new_dir_xpm)" />
+				<bitmap stock_id="wxART_NEW_DIR" stock_client="wxART_BUTTON" />
 				<handler function="OnMkdirFromHDD" entry="EVT_MENU" />
 			</object>
 			<object class="wxMenuItem" name="ID_MENUITEM3" variable="MenuItem3" member="yes">
 				<label>Rename</label>
+				<bitmap stock_id="wxART_FIND_AND_REPLACE" stock_client="wxART_BUTTON" />
 				<handler function="OnRenameFileFromHDD" entry="EVT_MENU" />
 			</object>
 			<object class="wxMenuItem" name="ID_MENUITEM1" variable="MenuItem1" member="yes">

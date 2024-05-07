@@ -30,6 +30,7 @@
 #include "xpm/cd.xpm"
 #include "xpm/dvdd.xpm"
 #include "xpm/dvddl.xpm"
+#include "motif/info.xpm"
 
 namespace CDXPM {
 int CD;
@@ -103,7 +104,10 @@ wxString HDLBINST_APPDATA;
  * NOTE: lines encased between //(* and //*) are controlled by code::blocks wxwidgets project manager, changing code inside it is useless, and will be erased as sson as anyone changes the front-end
  */
 //(*InternalHeaders(HDL_Batch_installerFrame)
+#include <wx/artprov.h>
+#include <wx/bitmap.h>
 #include <wx/font.h>
+#include <wx/image.h>
 #include <wx/intl.h>
 #include <wx/settings.h>
 #include <wx/string.h>
@@ -255,7 +259,7 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     wxListItem _col0;
     _col0.SetId(0);
     _col0.SetText( _("Game ") );
-    _col0.SetWidth(370);
+    _col0.SetWidth(500);
     game_list__->InsertColumn(0, _col0);
     FlexGridSizer6->Add(game_list__, 0, wxALL|wxEXPAND, 0);
     FlexGridSizer6->Add(-1,-1,1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
@@ -394,61 +398,82 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     MenuBar1 = new wxMenuBar();
     Menu1 = new wxMenu();
     MenuItem1 = new wxMenuItem(Menu1, idMenuQuit, _("Quit\tAlt-F4"), _("Quit the application"), wxITEM_NORMAL);
+    MenuItem1->SetBitmap(wxArtProvider::GetBitmap(wxART_MAKE_ART_ID_FROM_STR(_T("wxART_QUIT")),wxART_BUTTON));
     Menu1->Append(MenuItem1);
     COPYHDD = new wxMenuItem(Menu1, ID_MENUITEM13, _("Massive game transfer"), _("Transfer all games installed on currently selected HDD into another one"), wxITEM_NORMAL);
+    COPYHDD->SetBitmap(wxArtProvider::GetBitmap(wxART_MAKE_ART_ID_FROM_STR(_T("wxART_COPY")),wxART_BUTTON));
     Menu1->Append(COPYHDD);
     COPYHDD->Enable(false);
     MenuHDDFormat = new wxMenuItem(Menu1, ID_MENUITEM15, _("Format HDD"), _("Format any device into PS2 HDD"), wxITEM_NORMAL);
+    MenuHDDFormat->SetBitmap(wxArtProvider::GetBitmap(wxART_MAKE_ART_ID_FROM_STR(_T("wxART_HARDDISK")),wxART_BUTTON));
     Menu1->Append(MenuHDDFormat);
     MenuBar1->Append(Menu1, _("&Main"));
     Menu3 = new wxMenu();
     MenuItem3 = new wxMenuItem(Menu3, SETTINGS, _("Settings\tF2"), _("configure program"), wxITEM_NORMAL);
+    MenuItem3->SetBitmap(wxArtProvider::GetBitmap(wxART_MAKE_ART_ID_FROM_STR(_T("wxART_LIST_VIEW")),wxART_BUTTON));
     Menu3->Append(MenuItem3);
     MenuBar1->Append(Menu3, _("Config"));
     Menu2 = new wxMenu();
     MenuItem2 = new wxMenuItem(Menu2, idMenuAbout, _("About\tF1"), _("Show version and credits"), wxITEM_NORMAL);
+    MenuItem2->SetBitmap(wxArtProvider::GetBitmap(wxART_MAKE_ART_ID_FROM_STR(_T("wxART_HELP")),wxART_BUTTON));
     Menu2->Append(MenuItem2);
     MenuItem5 = new wxMenuItem(Menu2, UPDT, _("Update Program"), wxEmptyString, wxITEM_NORMAL);
+    MenuItem5->SetBitmap(wxArtProvider::GetBitmap(wxART_MAKE_ART_ID_FROM_STR(_T("wxART_FILE_SAVE")),wxART_BUTTON));
     Menu2->Append(MenuItem5);
     MenuItem6 = new wxMenuItem(Menu2, ISSUE, _("Report Issue"), wxEmptyString, wxITEM_NORMAL);
+    MenuItem6->SetBitmap(wxArtProvider::GetBitmap(wxART_MAKE_ART_ID_FROM_STR(_T("wxART_INFORMATION")),wxART_BUTTON));
     Menu2->Append(MenuItem6);
     MenuBar1->Append(Menu2, _("About"));
     Menu4 = new wxMenu();
     MenuItem4 = new wxMenuItem(Menu4, ID_MENUITEM1, _("Update OPL Launcher"), _("update OPL Launcher KELF"), wxITEM_NORMAL);
+    MenuItem4->SetBitmap(wxArtProvider::GetBitmap(wxART_MAKE_ART_ID_FROM_STR(_T("wxART_GO_DOWN")),wxART_BUTTON));
     Menu4->Append(MenuItem4);
     MenuItem7 = new wxMenuItem(Menu4, ID_MENUITEM2, _("Update HDL-Dump"), _("Update the game installation tool"), wxITEM_NORMAL);
+    MenuItem7->SetBitmap(wxArtProvider::GetBitmap(wxART_MAKE_ART_ID_FROM_STR(_T("wxART_GO_DOWN")),wxART_BUTTON));
     Menu4->Append(MenuItem7);
     MenuItem14 = new wxMenuItem(Menu4, ID_MENUITEM9, _("Update game title database"), _("Update game title database"), wxITEM_NORMAL);
+    MenuItem14->SetBitmap(wxArtProvider::GetBitmap(wxART_MAKE_ART_ID_FROM_STR(_T("wxART_GO_DOWN")),wxART_BUTTON));
     Menu4->Append(MenuItem14);
     MenuItem15 = new wxMenuItem(Menu4, ID_MENUITEM10, _("Download Icons Package"), _("Update HDD-OSD icons package"), wxITEM_NORMAL);
+    MenuItem15->SetBitmap(wxArtProvider::GetBitmap(wxART_MAKE_ART_ID_FROM_STR(_T("wxART_GO_DOWN")),wxART_BUTTON));
     Menu4->Append(MenuItem15);
     MenuBar1->Append(Menu4, _("Downloads"));
     SetMenuBar(MenuBar1);
     MBR_search = new wxFileDialog(this, _("Search MBR.KELF"), wxEmptyString, _("MBR.KELF"), _("*.KELF"), wxFD_DEFAULT_STYLE|wxFD_OPEN|wxFD_FILE_MUST_EXIST, wxDefaultPosition, wxDefaultSize, _T("wxFileDialog"));
     //nedeaaa
     MenuItem8 = new wxMenuItem((&about_2_install_menu), ID_MENUITEM3, _("Open File location"), wxEmptyString, wxITEM_NORMAL);
+    MenuItem8->SetBitmap(wxArtProvider::GetBitmap(wxART_MAKE_ART_ID_FROM_STR(_T("wxART_FOLDER_OPEN")),wxART_BUTTON));
     about_2_install_menu.Append(MenuItem8);
     Redump_search = new wxMenuItem((&about_2_install_menu), ID_MENUITEM18, _("Calculate MD5 Hash"), wxEmptyString, wxITEM_NORMAL);
+    Redump_search->SetBitmap(wxArtProvider::GetBitmap(wxART_MAKE_ART_ID_FROM_STR(_T("wxART_REPORT_VIEW")),wxART_BUTTON));
     about_2_install_menu.Append(Redump_search);
     MenuItem9 = new wxMenuItem((&about_2_install_menu), ID_MENUITEM4, _("Remove from List"), wxEmptyString, wxITEM_NORMAL);
+    MenuItem9->SetBitmap(wxArtProvider::GetBitmap(wxART_MAKE_ART_ID_FROM_STR(_T("wxART_CROSS_MARK")),wxART_BUTTON));
     about_2_install_menu.Append(MenuItem9);
     MenuItem10 = new wxMenuItem((&Browser_menu), ID_MENUITEM5, _("Extract Game(s)"), wxEmptyString, wxITEM_NORMAL);
+    MenuItem10->SetBitmap(wxArtProvider::GetBitmap(wxART_MAKE_ART_ID_FROM_STR(_T("wxART_FILE_OPEN")),wxART_BUTTON));
     Browser_menu.Append(MenuItem10);
     MenuItem12 = new wxMenuItem((&Browser_menu), ID_MENUITEM7, _("Download assets"), wxEmptyString, wxITEM_NORMAL);
+    MenuItem12->SetBitmap(wxArtProvider::GetBitmap(wxART_MAKE_ART_ID_FROM_STR(_T("wxART_GO_DOWN")),wxART_BUTTON));
     Browser_menu.Append(MenuItem12);
     MenuItem18 = new wxMenuItem((&Browser_menu), ID_MENUITEM14, _("Transfer game(s) to another PS2 HDD"), wxEmptyString, wxITEM_NORMAL);
+    MenuItem18->SetBitmap(wxArtProvider::GetBitmap(wxART_MAKE_ART_ID_FROM_STR(_T("wxART_COPY")),wxART_BUTTON));
     Browser_menu.Append(MenuItem18);
     Browser_menu.AppendSeparator();
     MenuItem11 = new wxMenuItem((&Browser_menu), ID_MENUITEM6, _("Rename"), wxEmptyString, wxITEM_NORMAL);
+    MenuItem11->SetBitmap(wxArtProvider::GetBitmap(wxART_MAKE_ART_ID_FROM_STR(_T("wxART_FIND_AND_REPLACE")),wxART_BUTTON));
     Browser_menu.Append(MenuItem11);
     MenuItem16 = new wxMenuItem((&Browser_menu), ID_MENUITEM11, _("Inject OPL Launcher"), wxEmptyString, wxITEM_NORMAL);
+    MenuItem16->SetBitmap(wxArtProvider::GetBitmap(wxART_MAKE_ART_ID_FROM_STR(_T("wxART_FILE_SAVE")),wxART_BUTTON));
     Browser_menu.Append(MenuItem16);
     MenuItem17 = new wxMenuItem((&Browser_menu), ID_MENUITEM12, _("Load Custom Icon"), wxEmptyString, wxITEM_NORMAL);
     Browser_menu.Append(MenuItem17);
     Browser_menu.AppendSeparator();
     MenuItem13 = new wxMenuItem((&Browser_menu), ID_MENUITEM8, _("Information"), wxEmptyString, wxITEM_NORMAL);
+    MenuItem13->SetBitmap(wxArtProvider::GetBitmap(wxART_MAKE_ART_ID_FROM_STR(_T("wxART_INFORMATION")),wxART_BUTTON));
     Browser_menu.Append(MenuItem13);
     DeleteGameMenuItem = new wxMenuItem((&Browser_menu), DELETE_GAME_ID, _("Delete game"), wxEmptyString, wxITEM_NORMAL);
+    DeleteGameMenuItem->SetBitmap(wxArtProvider::GetBitmap(wxART_MAKE_ART_ID_FROM_STR(_T("wxART_CROSS_MARK")),wxART_BUTTON));
     Browser_menu.Append(DeleteGameMenuItem);
     DeleteGameMenuItem->Enable(false);
     Center();
@@ -503,7 +528,7 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     Connect(wxID_ANY,wxEVT_CLOSE_WINDOW,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnClose);
     Connect(wxEVT_PAINT,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnPaint);
     //*)
-    wxImageList* CDTLIST = new wxImageList(16, 16, true);
+    wxImageList* CDTLIST = new wxImageList(24, 24, true);
     CDXPM::CD = CDTLIST->Add(wxIcon(cd_xpm));
     CDXPM::DVD = CDTLIST->Add(wxIcon(dvd_xpm));
     CDXPM::DVDDL = CDTLIST->Add(wxIcon(dvddl_xpm));
@@ -561,9 +586,9 @@ bool HDL_Batch_installerFrame::is_PS2(wxString path, int* disct)
             cout << ">\t["<< result_ << "]\n";
         }
         if (disct != nullptr) {
-            if (result_.find("CD")!= wxNOT_FOUND) *disct = CDXPM::CD;
-            if (result_.find("DVD")!= wxNOT_FOUND) *disct = CDXPM::DVD;
-            if (result_.find("dual-layer")!= wxNOT_FOUND) *disct = CDXPM::DVDDL;
+            if (result_.find("CD") != wxNOT_FOUND) *disct = CDXPM::CD;
+            if (result_.find("DVD") != wxNOT_FOUND) *disct = CDXPM::DVD;
+            if (result_.find("dual-layer") != wxNOT_FOUND) *disct = CDXPM::DVDDL;
         }
         COLOR(0a)
         cout << "is a PS2 Game\n";
