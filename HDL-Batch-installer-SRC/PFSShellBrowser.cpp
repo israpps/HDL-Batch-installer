@@ -86,6 +86,7 @@ bool DnDFile::OnDropFiles(wxCoord, wxCoord, const wxArrayString& filenames)
 }
 
 //(*InternalHeaders(PFSShellBrowser)
+#include <wx/artprov.h>
 #include <wx/bitmap.h>
 #include <wx/image.h>
 #include <wx/intl.h>
@@ -169,12 +170,14 @@ PFSShellBrowser::PFSShellBrowser(wxWindow* parent,wxWindowID id,const wxPoint& p
 	BoxSizer1->Add(BoxSizer3, 3, wxEXPAND, 5);
 	SetSizer(BoxSizer1);
 	MenuItem2 = new wxMenuItem((&BrowserMenu), ID_MENUITEM2, _("Extract"), wxEmptyString, wxITEM_NORMAL);
+	MenuItem2->SetBitmap(wxArtProvider::GetBitmap(wxART_MAKE_ART_ID_FROM_STR(_T("wxART_FILE_SAVE")),wxART_BUTTON));
 	BrowserMenu.Append(MenuItem2);
 	BrowserMenu.AppendSeparator();
 	MenuItem4 = new wxMenuItem((&BrowserMenu), ID_MENUITEM4, _("Create Folder"), wxEmptyString, wxITEM_NORMAL);
-	MenuItem4->SetBitmap(wxIcon(new_dir_xpm));
+	MenuItem4->SetBitmap(wxArtProvider::GetBitmap(wxART_MAKE_ART_ID_FROM_STR(_T("wxART_NEW_DIR")),wxART_BUTTON));
 	BrowserMenu.Append(MenuItem4);
 	MenuItem3 = new wxMenuItem((&BrowserMenu), ID_MENUITEM3, _("Rename"), wxEmptyString, wxITEM_NORMAL);
+	MenuItem3->SetBitmap(wxArtProvider::GetBitmap(wxART_MAKE_ART_ID_FROM_STR(_T("wxART_FIND_AND_REPLACE")),wxART_BUTTON));
 	BrowserMenu.Append(MenuItem3);
 	MenuItem1 = new wxMenuItem((&BrowserMenu), ID_MENUITEM1, _("Delete"), wxEmptyString, wxITEM_NORMAL);
 	MenuItem1->SetBitmap(wxIcon(delete_xpm));
@@ -221,11 +224,11 @@ PFSShellBrowser::PFSShellBrowser(wxWindow* parent,wxWindowID id,const wxPoint& p
     FileList->InsertColumn(LIST_ITEMS::TYPE, col2);
 
     IMGLIST = new wxImageList(16, 16, true);
-    XPM::FOLDER = IMGLIST->Add(wxIcon(folder_xpm));
     XPM::PARTITION = IMGLIST->Add(wxIcon(harddisk_xpm));
     XPM::FILE = IMGLIST->Add(wxIcon(filesave_xpm));
     XPM::UNKNOWN = IMGLIST->Add(wxIcon(question_xpm));
     XPM::TOPARENT = IMGLIST->Add(wxIcon(toparent_xpm));
+    XPM::FOLDER = IMGLIST->Add(wxIcon(folder_xpm));
     FileList->SetImageList(IMGLIST, wxIMAGE_LIST_SMALL);
 
 
@@ -281,6 +284,10 @@ void PFSShellBrowser::OnButton1Click(wxCommandEvent& event)
         if (HDDRealDLG->GetSelection() < 0) return;
         hdd = HDDRealDLG->GetString(HDDRealDLG->GetSelection());
     }
+    /*
+    if (wxFileExists(hdd)) {
+        std::cout << "aaa\n";
+    } else std::cout << "bbb\n";*/
     if (!PFSSHELL.SelectDevice(std::string(hdd))) {
         OpenHDD->Enable(false);
         CloseHDD->Enable();
@@ -446,19 +453,22 @@ void PFSShellBrowser::OnRenameFileFromHDD(wxCommandEvent& event)
 {
     wxString NewName, OldName;
     const wxString RenamePrompt = _("Rename");
-    INFORM();
     long itemIndex = -1;
+    int x = 0;
     //traverse the selected Items
     while ((itemIndex = FileList->GetNextItem(itemIndex, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED)) != wxNOT_FOUND) {
         OldName = FileList->GetItemText(itemIndex);
         wxTextEntryDialog* T = new wxTextEntryDialog(this, RenamePrompt + ": " + OldName, RenamePrompt, OldName);
         if (T->ShowModal() == wxID_OK) {
             NewName = T->GetValue();
-            //pfs_rename(CTX::MNT.mb_str(), CTX::CWD.mb_str(), OldName, NewName);
+            if (NewName == OldName) continue; //nonsense!
             std::cout <<"RENAME "<< OldName << " -> " << NewName << "\n";
+            PFSSHELL.pfs_rename(CTX::MNT.mb_str(), CTX::CWD.mb_str(), OldName.mb_str(), wxString::Format("pfs0:%s%s", CTX::CWD, NewName).mb_str());
+            x++;
         }
         delete T;
     }
+    if (x > 0) RefreshList(); //user didnt cancel the op
 }
 
 void PFSShellBrowser::OnMkdirFromHDD(wxCommandEvent& event)
@@ -526,8 +536,8 @@ void PFSShellBrowser::OnDeleteFileFromHDD(wxCommandEvent& event)
         }
     if (errcnt > 0 || unk >0) {
         wxString condf;
-        if (errcnt > 0) condf += wxString::Format(_("%d errors"), errcnt);
-        if (unk > 0) condf += wxString::Format("\n" + _("%d unknown entries skipped"), unk);
+        if (errcnt > 0) condf += wxString::Format(_("%d errors")+"\n", errcnt);
+        if (unk > 0) condf += wxString::Format(_("%d unknown entries skipped")+"\n", unk);
         wxMessageBox(condf + check_terminal_4_detailed_err, _("The following problems ocurred during transfer"), wxICON_ERROR);
     }
     RefreshList(); //to avoid adding another variable to count on the while loop

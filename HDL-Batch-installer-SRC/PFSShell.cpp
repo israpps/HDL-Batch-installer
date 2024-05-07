@@ -7,6 +7,7 @@
 #include <iostream>
 #include "macro-vault.h"
 
+#define GENERIC_PATH_BUFFER_SIZE 256
 
 #define PFS_ZONE_SIZE 8192
 #define PFS_FRAGMENT  0x00000000
@@ -135,7 +136,7 @@ int PFSShell::mkpfs(const char *mount_point)
     COLOR(0e)
     std::cout << "creating PFS filesystem for '" << mount_point << "'\n";
     COLOR(0d)
-    char tmp[256];
+    char tmp[GENERIC_PATH_BUFFER_SIZE];
     strcpy(tmp, "hdd0:");
     strcat(tmp, mount_point);
     ret = iomanX_format("pfs:", tmp, (void *)&format_arg, sizeof(format_arg));
@@ -244,7 +245,7 @@ int PFSShell::ls(const char *mount_point, const char *path, std::vector <iox_dir
     int retval = 0;
     int result = iomanX_mount("pfs0:", mount_point, 0, NULL, 0);
     if (result >= 0) { /* mount successful */
-        char dir_path[256];
+        char dir_path[GENERIC_PATH_BUFFER_SIZE];
         strcpy(dir_path, "pfs0:");
         strcat(dir_path, path);
         int dh = iomanX_dopen(dir_path);
@@ -281,7 +282,7 @@ int PFSShell::copyto(const char *mount_point, const char *dest, const char *src)
     if (in_file != -1) {
         int result = iomanX_mount("pfs0:", mount_point, 0, NULL, 0);
         if (result >= 0) { /* mount successful */
-            char dest_path[256];
+            char dest_path[GENERIC_PATH_BUFFER_SIZE];
             strcpy(dest_path, "pfs0:");
             strcat(dest_path, dest);
 
@@ -328,7 +329,7 @@ int PFSShell::recoverfile(const char *mount_point, const char *src, const char *
     if (out_file != -1) {
         int result = iomanX_mount("pfs0:", mount_point, 0, NULL, 0);
         if (result >= 0) { /* mount successful */
-            char src_path[256];
+            char src_path[GENERIC_PATH_BUFFER_SIZE];
             strcpy(src_path, "pfs0:");
             strcat(src_path, src);
 
@@ -494,7 +495,7 @@ int PFSShell::lspart(int lsmode, std::vector <iox_dirent_t>* dirent_return)
 int PFSShell::RemovePartition(const char* part)
 {
     std::cout << "removing ["<<part << "]\n";
-    char tmp[256];
+    char tmp[GENERIC_PATH_BUFFER_SIZE];
     strcpy(tmp, "hdd0:");
     strcat(tmp, part);
     int result = iomanX_remove(tmp);
@@ -513,7 +514,7 @@ int PFSShell::pfs_mkdir(const char* partition, const char* path, const char* new
     if (result < 0) {
         return result;
     }
-    char tmp[256];
+    char tmp[GENERIC_PATH_BUFFER_SIZE];
     strcpy(tmp, "pfs0:");
     strcat(tmp, path);
     if (tmp[strlen(tmp) - 1] != '/')
@@ -535,7 +536,7 @@ int PFSShell::pfs_rmdir(const char* partition, const char* path, const char* tar
     if (result < 0) {
         return result;
     }
-    char tmp[256];
+    char tmp[GENERIC_PATH_BUFFER_SIZE];
     strcpy(tmp, "pfs0:");
     strcat(tmp, path);
     if (tmp[strlen(tmp) - 1] != '/')
@@ -557,7 +558,7 @@ int PFSShell::pfs_rm(const char* partition, const char* path, const char* target
     if (result < 0) {
         return result;
     }
-    char tmp[256];
+    char tmp[GENERIC_PATH_BUFFER_SIZE];
     strcpy(tmp, "pfs0:");
     strcat(tmp, path);
     if (tmp[strlen(tmp) - 1] != '/')
@@ -573,18 +574,23 @@ int PFSShell::pfs_rm(const char* partition, const char* path, const char* target
     return (result);
 }
 
+/// BUG: if I use a second buffer to construct the new name path iomanx moves the renamed file to parent dir
+/// as a workaround, newname must be passed a full path to the new file. EG:
+/// PFSShell::pfs_rename("hdd0:PP.a", "/a/a", "T.TXT", "pfs0:/a/a/T.TTT");
 int PFSShell::pfs_rename(const char* partition, const char* path, const char* target, const char* newname)
 {
     int result = PFSShell::Mount(partition);
     if (result < 0) {
         return result;
     }
-    char tmp[256];
+    char tmp[GENERIC_PATH_BUFFER_SIZE];
     strcpy(tmp, "pfs0:");
     strcat(tmp, path);
     if (tmp[strlen(tmp) - 1] != '/')
         strcat(tmp, "/");
+
     strcat(tmp, target);
+    printf("iomanX_rename(%s, %s);\n", tmp, newname);
     result = iomanX_rename(tmp, newname);
     if (result < 0)
         fprintf(stderr, "(!) %s: %s.\n", tmp, strerror(-result));
@@ -604,7 +610,7 @@ int PFSShell::Mount(const char* mnt) {
 
 int PFSShell::UMount(void) {
     int result = iomanX_umount("pfs0:");
-    if (result < 0)
+    if (result < 0 && result != 0) //not sure what the hell is going on. but this if statement is executing if result is == 0...
         COLOR(0c)
         fprintf(stderr, "pfs0: umount failed with %d\n", result);
         COLOR(07)
