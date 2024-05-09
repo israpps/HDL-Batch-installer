@@ -28,6 +28,7 @@ namespace XPM {
     int TOPARENT;
 }
 
+static int wxCALLBACK CompareBasedOnIconType(wxIntPtr item1, wxIntPtr item2, wxIntPtr sortData);
 #undef wxDIRCTRL_EDIT_LABELS ///hack to circunvent code::blocks shitdesign
 #define wxDIRCTRL_EDIT_LABELS wxDIRCTRL_MULTIPLE
 
@@ -363,6 +364,7 @@ void PFSShellBrowser::RefreshList(void) {
         FileList->SetItem(itemIndex, LIST_ITEMS::TYPE, tyype);
         //Sleep(1000);
     }
+    //FileList->SortItems(CompareBasedOnIconType, 0);
 }
 
 void PFSShellBrowser::OnFileListItemActivated(wxListEvent& event)
@@ -541,4 +543,30 @@ void PFSShellBrowser::OnDeleteFileFromHDD(wxCommandEvent& event)
         wxMessageBox(condf + check_terminal_4_detailed_err, _("The following problems ocurred during transfer"), wxICON_ERROR);
     }
     RefreshList(); //to avoid adding another variable to count on the while loop
+}
+
+static int wxCALLBACK CompareBasedOnIconType(wxIntPtr item1, wxIntPtr item2, wxIntPtr sortData) {
+    /*wxListCtrl *ctrl = (wxListCtrl*) sortData;
+    wxListItem A;
+    A.SetMask(wxLIST_MASK_IMAGE);
+    A.SetId(item1);
+    ctrl->GetItem(A);
+    wxListItem B;
+    B.SetMask(wxLIST_MASK_IMAGE);
+    B.SetId(item2);
+    ctrl->GetItem(B);
+    if (A.GetImage() == XPM::FOLDER && B.GetImage() == XPM::FOLDER) return 0;
+    if (A.GetImage() == XPM::FOLDER && B.GetImage() != XPM::FOLDER) return 1;
+    if (A.GetImage() != XPM::FOLDER && B.GetImage() == XPM::FOLDER) return -1;*/
+    //std::cout << item1 << "|" << item2 << "|"<< sortData<<"\n";
+    if(item1<item2) return -1;
+    if(item1>item2) return 1;
+    return 0; // if both items are equal...
+    return 0;
+
+}
+
+void PFSShellBrowser::OnSort(wxCommandEvent& WXUNUSED(event))
+{
+    FileList->SortItems(CompareBasedOnIconType, 0);
 }

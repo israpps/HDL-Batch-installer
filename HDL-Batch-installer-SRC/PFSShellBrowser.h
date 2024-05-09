@@ -58,6 +58,7 @@ class PFSShellBrowser: public wxDialog
 		//*)
 
 	private:
+        void OnSort(wxCommandEvent& WXUNUSED(event));
         void RefreshList(void);
         void OnDropFiles(wxDropFilesEvent& event);
         void OnDragFromDirCtrl(wxTreeEvent& event);
