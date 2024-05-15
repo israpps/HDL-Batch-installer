@@ -404,7 +404,7 @@ void PFSShellBrowser::OnFileListItemActivated(wxListEvent& event)
             if (P == 0) {
                 CTX::CWD = "/";
             } else if (P != wxNOT_FOUND) {
-                CTX::CWD = CTX::CWD.substr(0, P-1);
+                CTX::CWD = CTX::CWD.substr(0, P);
                 std::cout <<"["<< CTX::CWD << "]" << P << "\n";
             } else {
                 CTX::MNT = "";
