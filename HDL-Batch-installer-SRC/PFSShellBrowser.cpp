@@ -339,8 +339,8 @@ void PFSShellBrowser::RefreshList(void) {
             continue;
         long itemIndex = FileList->InsertItem(LIST_ITEMS::NAME, ITEMLIST[x].name);// col. 1
         if ((m & FIO_S_IFMT) != FIO_S_IFDIR) {
-            if (ITEMLIST[x].stat.size >= 2048)
-                FileList->SetItem(itemIndex, LIST_ITEMS::SIZET, wxString::Format("%.1f MB", (float)ITEMLIST[x].stat.size / 2048));
+            if (ITEMLIST[x].stat.size >= (1024*1024))
+                FileList->SetItem(itemIndex, LIST_ITEMS::SIZET, wxString::Format("%.1f MB", (float)ITEMLIST[x].stat.size / (1024*1024)));
             else if (ITEMLIST[x].stat.size >= 1024) // col. 3
                 FileList->SetItem(itemIndex, LIST_ITEMS::SIZET, wxString::Format("%.1f KB", (float)ITEMLIST[x].stat.size / 1024));
             else
