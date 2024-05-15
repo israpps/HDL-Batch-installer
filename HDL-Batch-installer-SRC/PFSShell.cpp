@@ -12,6 +12,34 @@
 #define PFS_ZONE_SIZE 8192
 #define PFS_FRAGMENT  0x00000000
 
+
+
+#define RD3S(CURRENT, TOTAL) ((CURRENT*100)/TOTAL) // regla de tres simples
+void
+genericgauge (float progress, size_t extra)
+{
+  int barWidth = 70;
+
+  std::cout << "[";
+  int pos = barWidth * progress;
+  for (int i = 0; i < barWidth; ++i)
+	{
+	  if (i < pos)
+		std::cout << "=";
+	  else if (i == pos)
+		std::cout << ">";
+	  else
+		std::cout << " ";
+	}
+  std::cout << "] " << int (progress * 100.0) << " % (" << extra <<")\r";
+  std::cout.flush ();
+}
+
+//
+void genericgaugepercent(int percent, size_t extra) {
+    genericgauge(percent*0.01, extra);
+}
+
 PFSShell::PFSShell()
 {
     //ctor
@@ -277,9 +305,13 @@ int PFSShell::ls(const char *mount_point, const char *path, std::vector <iox_dir
 int PFSShell::copyto(const char *mount_point, const char *dest, const char *src)
 {
     COLOR(0d)
+    size_t written = 0;
+    size_t src_size = 0;
     int retval = 0;
     int in_file = open(src, O_RDONLY | O_BINARY);
     if (in_file != -1) {
+        src_size = lseek(in_file, 0L, SEEK_END);
+        lseek(in_file, 0L, SEEK_SET);
         int result = iomanX_mount("pfs0:", mount_point, 0, NULL, 0);
         if (result >= 0) { /* mount successful */
             char dest_path[GENERIC_PATH_BUFFER_SIZE];
@@ -297,8 +329,9 @@ int PFSShell::copyto(const char *mount_point, const char *dest, const char *src)
                         printf("%s: write failed with %d\n", dest_path, result);
                         retval = -1;
                         break;
-                    }
+                    } else {written += result; genericgaugepercent((float)RD3S(written, src_size), written);}
                 }
+                printf("\n");
                 if (len < 0)
                     perror(src);
                 result = iomanX_close(fh);
@@ -324,6 +357,7 @@ int PFSShell::copyto(const char *mount_point, const char *dest, const char *src)
 int PFSShell::recoverfile(const char *mount_point, const char *src, const char *dest)
 {
     COLOR(0d)
+    size_t written = 0;
     int retval = 0;
     int out_file = open(dest, O_CREAT | O_WRONLY | O_BINARY, 0664);
     if (out_file != -1) {
@@ -343,7 +377,7 @@ int PFSShell::recoverfile(const char *mount_point, const char *src, const char *
                         perror(dest);
                         retval = -1;
                         break;
-                    }
+                    } else {written += result; std::cout << written << " bytes written\r";}
                 }
                 if (len < 0)
                     printf("%s: read failed with %d\n",
@@ -609,8 +643,9 @@ int PFSShell::Mount(const char* mnt) {
 }
 
 int PFSShell::UMount(void) {
-    int result = iomanX_umount("pfs0:");
-    if (result < 0 && result != 0) //not sure what the hell is going on. but this if statement is executing if result is == 0...
+    int result = -1;
+    result = iomanX_umount("pfs0:");
+    if (result < 0) //not sure what the hell is going on. but this if statement is executing if result is == 0...
         COLOR(0c)
         fprintf(stderr, "pfs0: umount failed with %d\n", result);
         COLOR(07)
