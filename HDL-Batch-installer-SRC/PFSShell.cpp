@@ -15,6 +15,8 @@
 
 
 #define RD3S(CURRENT, TOTAL) ((CURRENT*100)/TOTAL) // regla de tres simples
+
+//float percentage values from 0 to 1 (decimal ofc)
 void
 genericgauge (float progress, size_t extra)
 {
@@ -31,11 +33,11 @@ genericgauge (float progress, size_t extra)
 	  else
 		std::cout << " ";
 	}
-  std::cout << "] " << int (progress * 100.0) << " % (" << extra <<")\r";
+  std::cout << "] " << int (progress * 100.0) << " % (" << extra <<")b\r";
   std::cout.flush ();
 }
 
-//
+//percentage represented on signed integer. values from 0-100
 void genericgaugepercent(int percent, size_t extra) {
     genericgauge(percent*0.01, extra);
 }
@@ -358,6 +360,7 @@ int PFSShell::recoverfile(const char *mount_point, const char *src, const char *
 {
     COLOR(0d)
     size_t written = 0;
+    size_t src_size = 0;
     int retval = 0;
     int out_file = open(dest, O_CREAT | O_WRONLY | O_BINARY, 0664);
     if (out_file != -1) {
@@ -369,6 +372,8 @@ int PFSShell::recoverfile(const char *mount_point, const char *src, const char *
 
             int fh = iomanX_open(src_path, FIO_O_RDONLY);
             if (fh >= 0) {
+                src_size = iomanX_lseek(fh, 0L, SEEK_END);
+                iomanX_lseek(fh, 0L, SEEK_SET);
                 char buf[4096 * 16];
                 int len;
                 while ((len = iomanX_read(fh, buf, sizeof(buf))) > 0) {
@@ -377,7 +382,7 @@ int PFSShell::recoverfile(const char *mount_point, const char *src, const char *
                         perror(dest);
                         retval = -1;
                         break;
-                    } else {written += result; std::cout << written << " bytes written\r";}
+                    } else {written += result; genericgaugepercent((float)RD3S(written, src_size), written);}
                 }
                 if (len < 0)
                     printf("%s: read failed with %d\n",
