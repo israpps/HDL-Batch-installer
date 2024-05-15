@@ -140,7 +140,7 @@ PFSShellBrowser::PFSShellBrowser(wxWindow* parent,wxWindowID id,const wxPoint& p
 	BoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
 	HDDFileRadio = new wxRadioButton(this, ID_RADIOBUTTON2, _("File"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_RADIOBUTTON2"));
 	BoxSizer5->Add(HDDFileRadio, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-	HDDFileDLG = new wxFilePickerCtrl(this, ID_FILEPICKERCTRL1, _T("D:\\Baul\\Paula\\Desktop\\DEV9hdd.raw"), wxEmptyString, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxFLP_FILE_MUST_EXIST|wxFLP_OPEN|wxFLP_USE_TEXTCTRL, wxDefaultValidator, _T("ID_FILEPICKERCTRL1"));
+	HDDFileDLG = new wxFilePickerCtrl(this, ID_FILEPICKERCTRL1, _T("D:\\Baul\\Paula\\Desktop\\DEV9hdd.raw"), wxEmptyString, _T("*.*"), wxDefaultPosition, wxDefaultSize, wxFLP_FILE_MUST_EXIST|wxFLP_OPEN|wxFLP_USE_TEXTCTRL, wxDefaultValidator, _T("ID_FILEPICKERCTRL1"));
 	HDDFileDLG->Disable();
 	BoxSizer5->Add(HDDFileDLG, 4, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	BoxSizer2->Add(BoxSizer5, 1, wxALL|wxEXPAND, 5);
@@ -311,6 +311,7 @@ void PFSShellBrowser::OnButton2Click(wxCommandEvent& event)
     CTX::MNT = "";
     CTX::ISMOUNTED = false;
     FileList->Enable(false);
+    FileList->DeleteAllItems();
     FileListPathDisp->Enable(false);
 }
 
