@@ -12,7 +12,7 @@
 #define PFS_ZONE_SIZE 8192
 #define PFS_FRAGMENT  0x00000000
 
-
+#define IOBUFFERSIZE (4096 * 16)
 
 #define RD3S(CURRENT, TOTAL) ((CURRENT*100)/TOTAL) // regla de tres simples
 
@@ -33,7 +33,7 @@ genericgauge (float progress, size_t extra)
 	  else
 		std::cout << " ";
 	}
-  std::cout << "] " << int (progress * 100.0) << " % (" << extra <<")b\r";
+  std::cout << "] " << int (progress * 100.0) << "% (" << extra <<")b\r";
   std::cout.flush ();
 }
 
@@ -68,6 +68,7 @@ int PFSShell::SelectDevice(std::string device)
     set_atad_device_path(device.c_str());
     if (!libinit)
     {
+        std::cout << "libPFSShell init\n" << "- I/O buffer size "<< IOBUFFERSIZE << "\n";
         /* mandatory */
         COLOR(0e)
         std::cout << " - Initializing APA:\n";
@@ -323,7 +324,7 @@ int PFSShell::copyto(const char *mount_point, const char *dest, const char *src)
             int fh = iomanX_open(dest_path,
                                  FIO_O_WRONLY | FIO_O_CREAT, 0666);
             if (fh >= 0) {
-                char buf[4096 * 16];
+                char buf[IOBUFFERSIZE];
                 int len;
                 while ((len = read(in_file, buf, sizeof(buf))) > 0) {
                     result = iomanX_write(fh, buf, len);
@@ -374,7 +375,7 @@ int PFSShell::recoverfile(const char *mount_point, const char *src, const char *
             if (fh >= 0) {
                 src_size = iomanX_lseek(fh, 0L, SEEK_END);
                 iomanX_lseek(fh, 0L, SEEK_SET);
-                char buf[4096 * 16];
+                char buf[IOBUFFERSIZE];
                 int len;
                 while ((len = iomanX_read(fh, buf, sizeof(buf))) > 0) {
                     result = write(out_file, buf, len);
