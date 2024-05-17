@@ -47,7 +47,6 @@
 								<object class="wxFilePickerCtrl" name="ID_FILEPICKERCTRL1" variable="HDDFileDLG" member="yes">
 									<message></message>
 									<path>D:\\Baul\\Paula\\Desktop\\DEV9hdd.raw</path>
-									<wildcard></wildcard>
 									<enabled>0</enabled>
 								</object>
 								<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
