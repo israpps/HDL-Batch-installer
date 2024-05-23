@@ -361,7 +361,7 @@ void PFSShellBrowser::RefreshList(void) {
             (m & FIO_S_IFMT) != FIO_S_IFLNK &&
             (m & FIO_S_IFMT) != FIO_S_IFREG &&
             (m & FIO_S_IFMT) != FIO_S_IFDIR
-             || !strcasecmp(".", ITEMLIST[x].name)) //placeholder for ignoring non PFS Partitions
+             || !strcasecmp(".", ITEMLIST[x].name)) // ignoring non PFS Partitions
             continue;
         long itemIndex = FileList->InsertItem(LIST_ITEMS::NAME, ITEMLIST[x].name);// col. 1
         if ((m & FIO_S_IFMT) != FIO_S_IFDIR) {
