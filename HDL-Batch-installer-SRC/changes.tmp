@@ -1,0 +1,5 @@
+NEW	builtin PFS Filebrowser
+PFS Filebrowser	allow operating on both physical HDDs connected to the PC and Virtual Images (eg: HDD dump or PCSX2 Images)
+UI	Added Icons for most menus, dialogs and popups
+Install queue and installed game list	Display a disc icon on the list with unique colors for CD, DVD and dual layer images
+install queue	Dont show a dialogue telling how many games were added to queue if no errors arised

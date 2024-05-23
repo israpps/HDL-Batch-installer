@@ -140,7 +140,7 @@ PFSShellBrowser::PFSShellBrowser(wxWindow* parent,wxWindowID id,const wxPoint& p
 	BoxSizer5 = new wxBoxSizer(wxHORIZONTAL);
 	HDDFileRadio = new wxRadioButton(this, ID_RADIOBUTTON2, _("File"), wxDefaultPosition, wxDefaultSize, 0, wxDefaultValidator, _T("ID_RADIOBUTTON2"));
 	BoxSizer5->Add(HDDFileRadio, 1, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
-	HDDFileDLG = new wxFilePickerCtrl(this, ID_FILEPICKERCTRL1, _T("D:\\Baul\\Paula\\Desktop\\DEV9hdd.raw"), wxEmptyString, _T("*.*"), wxDefaultPosition, wxDefaultSize, wxFLP_FILE_MUST_EXIST|wxFLP_OPEN|wxFLP_USE_TEXTCTRL, wxDefaultValidator, _T("ID_FILEPICKERCTRL1"));
+	HDDFileDLG = new wxFilePickerCtrl(this, ID_FILEPICKERCTRL1, _T("D:\\Baul\\Paula\\Desktop\\DEV9hdd.raw"), wxEmptyString, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxFLP_FILE_MUST_EXIST|wxFLP_OPEN|wxFLP_USE_TEXTCTRL, wxDefaultValidator, _T("ID_FILEPICKERCTRL1"));
 	HDDFileDLG->Disable();
 	BoxSizer5->Add(HDDFileDLG, 4, wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL, 5);
 	BoxSizer2->Add(BoxSizer5, 1, wxALL|wxEXPAND, 5);
@@ -256,6 +256,14 @@ PFSShellBrowser::PFSShellBrowser(wxWindow* parent,wxWindowID id,const wxPoint& p
 
 }
 
+int GetItemIcon(wxListCtrl* CONTROL, long item) {
+    wxListItem T;
+    T.SetMask(wxLIST_MASK_IMAGE);
+    T.SetId(item);
+    CONTROL->GetItem(T);
+    return T.GetImage();
+}
+
 PFSShellBrowser::~PFSShellBrowser()
 {
     delete IMGLIST;
@@ -295,6 +303,7 @@ void PFSShellBrowser::OnButton1Click(wxCommandEvent& event)
         FileList->Enable();
         FileListPathDisp->Enable();
         RefreshList();
+        EnableCloseButton(false);
     } else {
         wxMessageBox(check_terminal_4_detailed_err, _("Could not open HDD")+"\n"+hdd, wxICON_ERROR);
         std::cout << "HDD OPEN ERR\n";
@@ -313,6 +322,22 @@ void PFSShellBrowser::OnButton2Click(wxCommandEvent& event)
     FileList->Enable(false);
     FileList->DeleteAllItems();
     FileListPathDisp->Enable(false);
+    EnableCloseButton(true);
+}
+
+#define MAX_FMT_I (4-1) //to avoid out of bounds request on S and FMT arrays
+static wxString humanSize(size_t bytes, int startindx = 0, bool is_PFS_sectors = false)
+{
+    double temp = bytes;
+    int i = startindx;
+    std::string S[] = {"B", "KB", "MB", "GB"};
+    std::string FMT[] = {"%.00lf", "%.02lf %s", "%.02lf %s", "%.01lf %s"};
+    if (is_PFS_sectors) temp /= 2; // PFS sector size can be assumed to be kb*2 size. so treat as kb and divide in half to get real size
+
+    if (temp >= 1024 && (i < MAX_FMT_I)) {temp /= 1024; i++;} //MB
+    if (temp >= 1024 && (i < MAX_FMT_I)) {temp /= 1024; i++;} //GB
+    if (temp >= 1024 && (i < MAX_FMT_I)) {temp /= 1024; i++;} //GB
+	return wxString::Format(FMT[i].c_str(), temp, S[i]);
 }
 
 void PFSShellBrowser::RefreshList(void) {
@@ -340,13 +365,12 @@ void PFSShellBrowser::RefreshList(void) {
             continue;
         long itemIndex = FileList->InsertItem(LIST_ITEMS::NAME, ITEMLIST[x].name);// col. 1
         if ((m & FIO_S_IFMT) != FIO_S_IFDIR) {
-            if (ITEMLIST[x].stat.size >= (1024*1024))
-                FileList->SetItem(itemIndex, LIST_ITEMS::SIZET, wxString::Format("%.1f MB", (float)ITEMLIST[x].stat.size / (1024*1024)));
-            else if (ITEMLIST[x].stat.size >= 1024) // col. 3
-                FileList->SetItem(itemIndex, LIST_ITEMS::SIZET, wxString::Format("%.1f KB", (float)ITEMLIST[x].stat.size / 1024));
+            wxString z;
+            if (!CTX::ISMOUNTED)
+                z = humanSize(ITEMLIST[x].stat.size, 1, true);
             else
-                FileList->SetItem(itemIndex, LIST_ITEMS::SIZET, wxString::Format("%u B" , ITEMLIST[x].stat.size));
-
+                z = humanSize(ITEMLIST[x].stat.size, 0);
+            FileList->SetItem(itemIndex, LIST_ITEMS::SIZET, z);
         }
         tyype = _("Unknown");
         if (m == PARTITION_TYPE::PFS) {
@@ -358,9 +382,9 @@ void PFSShellBrowser::RefreshList(void) {
         } else if ((m & FIO_S_IFMT) == FIO_S_IFDIR) {
             tyype = _("Folder");
             FileList->SetItemImage(itemIndex, (!strcasecmp("..", ITEMLIST[x].name)) ? XPM::TOPARENT : XPM::FOLDER);
-
         } else {
             FileList->SetItemImage(itemIndex, XPM::UNKNOWN);
+            tyype += wxString::Format(" (0x%X)", m);
         }
         FileList->SetItem(itemIndex, LIST_ITEMS::TYPE, tyype);
         //Sleep(1000);
@@ -373,12 +397,9 @@ void PFSShellBrowser::OnFileListItemActivated(wxListEvent& event)
     long item = -1;
     item = FileList->GetNextItem(item, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED);
     wxString E = FileList->GetItemText(item, 0);
-    wxListItem T;
-    T.SetMask(wxLIST_MASK_IMAGE);
-    T.SetId(item);
-    FileList->GetItem(T);
-    if (T.GetImage() != XPM::FOLDER && T.GetImage() != XPM::PARTITION && T.GetImage() != XPM::TOPARENT) {
-        std::cerr << __FUNCTION__ << " Attempt to enter an item wich is not folder or partition ("<<T.GetImage()<<")\n";
+    int T = GetItemIcon(FileList, item);
+    if (T != XPM::FOLDER && T != XPM::PARTITION && T != XPM::TOPARENT) {
+        std::cerr << __FUNCTION__ << " Attempt to enter an item wich is not folder or partition ("<< T <<")\n";
         return;
     }
     std::cout << "enter '" << E << "' CWD '" << CTX::CWD << "'\n";
@@ -515,23 +536,19 @@ void PFSShellBrowser::OnDeleteFileFromHDD(wxCommandEvent& event)
     if (wxMessageBox(wxString::Format(_("Delete %d files?\nThis cannot be undone"), cnt), wxMessageBoxCaptionStr, wxICON_QUESTION|wxYES_NO|wxNO_DEFAULT) == wxNO) {
         return;
     }
-        wxListItem T;
         long itemIndex = -1;
         //traverse the selected Items
         while ((itemIndex = FileList->GetNextItem(itemIndex, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED)) != wxNOT_FOUND) {
             wxString targ = FileList->GetItemText(itemIndex);
-            T.Clear();
-            T.SetMask(wxLIST_MASK_IMAGE);
-            T.SetId(itemIndex);
-            FileList->GetItem(T);
-            if (T.GetImage() == XPM::FILE) {
-                std::cout <<" DELETE " << CTX::MNT <<":pfs:"<< CTX::CWD << targ <<" Prop "<<T.GetImage()<<"\n";
+            int T = GetItemIcon(FileList, itemIndex);
+            if (T == XPM::FILE) {
+                std::cout <<" DELETE " << CTX::MNT <<":pfs:"<< CTX::CWD << targ <<" Prop "<<T<<"\n";
                 ret = PFSSHELL.pfs_rm(CTX::MNT.mb_str(), CTX::CWD.mb_str(), targ);
-            } else if (T.GetImage() == XPM::FOLDER) {
-                std::cout <<" RMDIR " << CTX::MNT <<":pfs:"<< CTX::CWD << targ <<" Prop "<<T.GetImage()<<"\n";
+            } else if (T == XPM::FOLDER) {
+                std::cout <<" RMDIR " << CTX::MNT <<":pfs:"<< CTX::CWD << targ <<" Prop "<<T<<"\n";
                 ret = PFSSHELL.pfs_rmdir(CTX::MNT.mb_str(), CTX::CWD.mb_str(), targ);
             } else {
-                std::cout << "UNKNOWN ITEM TYPE: "<<T.GetImage()<<"\n";
+                std::cout << "UNKNOWN ITEM TYPE: "<<T<<"\n";
                 unk++;
                 continue;
             }
@@ -570,4 +587,9 @@ static int wxCALLBACK CompareBasedOnIconType(wxIntPtr item1, wxIntPtr item2, wxI
 void PFSShellBrowser::OnSort(wxCommandEvent& WXUNUSED(event))
 {
     FileList->SortItems(CompareBasedOnIconType, 0);
+}
+//UNUSED
+void PFSShellBrowser::OnWindowClose(wxCloseEvent& event)
+{
+    PFSSHELL.CloseDevice(); //just in case
 }

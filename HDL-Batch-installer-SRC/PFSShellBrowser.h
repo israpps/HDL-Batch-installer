@@ -74,6 +74,7 @@ class PFSShellBrowser: public wxDialog
 		void OnMkdirFromHDD(wxCommandEvent& event);
 		void OnRecoverFileFromHDD(wxCommandEvent& event);
 		void OnDeleteFileFromHDD(wxCommandEvent& event);
+		void OnWindowClose(wxCloseEvent& event);
 		//*)
 
 		DECLARE_EVENT_TABLE()

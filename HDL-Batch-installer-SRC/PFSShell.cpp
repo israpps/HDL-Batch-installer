@@ -20,11 +20,11 @@
 void
 genericgauge (float progress, size_t extra)
 {
-  int barWidth = 70;
+    int barWidth = 70;
 
-  std::cout << "[";
-  int pos = barWidth * progress;
-  for (int i = 0; i < barWidth; ++i)
+    std::cout << "[";
+    int pos = barWidth * progress;
+    for (int i = 0; i < barWidth; ++i)
 	{
 	  if (i < pos)
 		std::cout << "=";
@@ -33,8 +33,8 @@ genericgauge (float progress, size_t extra)
 	  else
 		std::cout << " ";
 	}
-  std::cout << "] " << int (progress * 100.0) << "% (" << extra <<")b\r";
-  std::cout.flush ();
+    std::cout << "] " << int (progress * 100.0) << "% (" << extra <<")b\r";
+    std::cout.flush ();
 }
 
 //percentage represented on signed integer. values from 0-100
@@ -61,7 +61,7 @@ extern void init(void);
 int PFSShell::SelectDevice(std::string device)
 {
     COLOR(0e)
-    std::cout << " - accessing device " << device << "\n";
+    std::cout << " - accessing device '" << device << "'\n";
     COLOR(0d)
     if (has_device_opened)
         CloseDevice();

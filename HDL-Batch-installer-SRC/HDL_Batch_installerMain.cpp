@@ -736,21 +736,21 @@ void HDL_Batch_installerFrame::OnSEARCH_ISOClick(wxCommandEvent& event)
                 invalid_gamecount++;
             }
         }
-        wxString msg;
-        if (valid_gamecount > 0)
-        {
-            msg.append(_("Loaded:"));
-            msg.append(wxString::Format(" %i ", valid_gamecount) );
-            msg.append(_("PS2 Games"));
-        }
-        msg.append("\n");
         if (invalid_gamecount > 0)
         {
+            wxString msg;
+            if (valid_gamecount > 0)
+            {
+                msg.append(_("Loaded:"));
+                msg.append(wxString::Format(" %i ", valid_gamecount) );
+                msg.append(_("PS2 Games"));
+            }
+            msg.append("\n");
             msg.append(_("discarded"));
             msg.append(wxString::Format(" %i ", invalid_gamecount) );
             msg.append(_("invalid ISO's"));
+            wxMessageBox(msg, _("Information:"));
         }
-        wxMessageBox(msg, _("Information:"));
     }
     COLOR(0f) cout << "Loaded ISO's------------------------\n";
     COLOR(07)
