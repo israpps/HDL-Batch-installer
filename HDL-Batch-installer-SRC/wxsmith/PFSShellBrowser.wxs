@@ -4,7 +4,6 @@
 		<title>PFS Browser</title>
 		<id_arg>0</id_arg>
 		<style>wxDEFAULT_DIALOG_STYLE|wxRESIZE_BORDER|wxCLOSE_BOX|wxMAXIMIZE_BOX|wxMINIMIZE_BOX</style>
-		<handler function="OnWindowClose" entry="EVT_CLOSE" />
 		<object class="wxBoxSizer" variable="BoxSizer1" member="no">
 			<orient>wxVERTICAL</orient>
 			<object class="sizeritem">
@@ -46,8 +45,7 @@
 							</object>
 							<object class="sizeritem">
 								<object class="wxFilePickerCtrl" name="ID_FILEPICKERCTRL1" variable="HDDFileDLG" member="yes">
-									<message></message>
-									<path>D:\\Baul\\Paula\\Desktop\\DEV9hdd.raw</path>
+									<message>Choose HDD Image</message>
 									<wildcard></wildcard>
 									<enabled>0</enabled>
 								</object>
