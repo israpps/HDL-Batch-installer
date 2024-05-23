@@ -7,9 +7,40 @@
 #include <iostream>
 #include "macro-vault.h"
 
+#define GENERIC_PATH_BUFFER_SIZE 256
 
 #define PFS_ZONE_SIZE 8192
 #define PFS_FRAGMENT  0x00000000
+
+#define IOBUFFERSIZE (4096 * 16)
+
+#define RD3S(CURRENT, TOTAL) ((CURRENT*100)/TOTAL) // regla de tres simples
+
+//float percentage values from 0 to 1 (decimal ofc)
+void
+genericgauge (float progress, size_t extra)
+{
+    int barWidth = 70;
+
+    std::cout << "[";
+    int pos = barWidth * progress;
+    for (int i = 0; i < barWidth; ++i)
+	{
+	  if (i < pos)
+		std::cout << "=";
+	  else if (i == pos)
+		std::cout << ">";
+	  else
+		std::cout << " ";
+	}
+    std::cout << "] " << int (progress * 100.0) << "% (" << extra <<")b\r";
+    std::cout.flush ();
+}
+
+//percentage represented on signed integer. values from 0-100
+void genericgaugepercent(int percent, size_t extra) {
+    genericgauge(percent*0.01, extra);
+}
 
 PFSShell::PFSShell()
 {
@@ -30,13 +61,14 @@ extern void init(void);
 int PFSShell::SelectDevice(std::string device)
 {
     COLOR(0e)
-    std::cout << " - accessing device " << device << "\n";
+    std::cout << " - accessing device '" << device << "'\n";
     COLOR(0d)
     if (has_device_opened)
         CloseDevice();
     set_atad_device_path(device.c_str());
     if (!libinit)
     {
+        std::cout << "libPFSShell init\n" << "- I/O buffer size "<< IOBUFFERSIZE << "\n";
         /* mandatory */
         COLOR(0e)
         std::cout << " - Initializing APA:\n";
@@ -135,7 +167,7 @@ int PFSShell::mkpfs(const char *mount_point)
     COLOR(0e)
     std::cout << "creating PFS filesystem for '" << mount_point << "'\n";
     COLOR(0d)
-    char tmp[256];
+    char tmp[GENERIC_PATH_BUFFER_SIZE];
     strcpy(tmp, "hdd0:");
     strcat(tmp, mount_point);
     ret = iomanX_format("pfs:", tmp, (void *)&format_arg, sizeof(format_arg));
@@ -237,13 +269,14 @@ int PFSShell::mkpart(const char *mount_point, unsigned long size_in_mb, const ch
     COLOR(07)
 }
 
-int PFSShell::ls(const char *mount_point, const char *path)
+int PFSShell::ls(const char *mount_point, const char *path, std::vector <iox_dirent_t>* dirent_return)
 {
+    if (dirent_return != NULL) dirent_return->clear();
     COLOR(0d)
     int retval = 0;
     int result = iomanX_mount("pfs0:", mount_point, 0, NULL, 0);
     if (result >= 0) { /* mount successful */
-        char dir_path[256];
+        char dir_path[GENERIC_PATH_BUFFER_SIZE];
         strcpy(dir_path, "pfs0:");
         strcat(dir_path, path);
         int dh = iomanX_dopen(dir_path);
@@ -251,7 +284,7 @@ int PFSShell::ls(const char *mount_point, const char *path)
 #if 0
 	  printf ("Directory of %s%s\n", mount_point, path);
 #endif
-            list_dir_objects(dh, 1);
+            list_dir_objects(dh, 1, dirent_return);
 
             result = iomanX_close(dh);
             if (result < 0)
@@ -275,19 +308,23 @@ int PFSShell::ls(const char *mount_point, const char *path)
 int PFSShell::copyto(const char *mount_point, const char *dest, const char *src)
 {
     COLOR(0d)
+    size_t written = 0;
+    size_t src_size = 0;
     int retval = 0;
     int in_file = open(src, O_RDONLY | O_BINARY);
     if (in_file != -1) {
+        src_size = lseek(in_file, 0L, SEEK_END);
+        lseek(in_file, 0L, SEEK_SET);
         int result = iomanX_mount("pfs0:", mount_point, 0, NULL, 0);
         if (result >= 0) { /* mount successful */
-            char dest_path[256];
+            char dest_path[GENERIC_PATH_BUFFER_SIZE];
             strcpy(dest_path, "pfs0:");
             strcat(dest_path, dest);
 
             int fh = iomanX_open(dest_path,
                                  FIO_O_WRONLY | FIO_O_CREAT, 0666);
             if (fh >= 0) {
-                char buf[4096 * 16];
+                char buf[IOBUFFERSIZE];
                 int len;
                 while ((len = read(in_file, buf, sizeof(buf))) > 0) {
                     result = iomanX_write(fh, buf, len);
@@ -295,8 +332,9 @@ int PFSShell::copyto(const char *mount_point, const char *dest, const char *src)
                         printf("%s: write failed with %d\n", dest_path, result);
                         retval = -1;
                         break;
-                    }
+                    } else {written += result; genericgaugepercent((float)RD3S(written, src_size), written);}
                 }
+                printf("\n");
                 if (len < 0)
                     perror(src);
                 result = iomanX_close(fh);
@@ -322,18 +360,22 @@ int PFSShell::copyto(const char *mount_point, const char *dest, const char *src)
 int PFSShell::recoverfile(const char *mount_point, const char *src, const char *dest)
 {
     COLOR(0d)
+    size_t written = 0;
+    size_t src_size = 0;
     int retval = 0;
     int out_file = open(dest, O_CREAT | O_WRONLY | O_BINARY, 0664);
     if (out_file != -1) {
         int result = iomanX_mount("pfs0:", mount_point, 0, NULL, 0);
         if (result >= 0) { /* mount successful */
-            char src_path[256];
+            char src_path[GENERIC_PATH_BUFFER_SIZE];
             strcpy(src_path, "pfs0:");
             strcat(src_path, src);
 
             int fh = iomanX_open(src_path, FIO_O_RDONLY);
             if (fh >= 0) {
-                char buf[4096 * 16];
+                src_size = iomanX_lseek(fh, 0L, SEEK_END);
+                iomanX_lseek(fh, 0L, SEEK_SET);
+                char buf[IOBUFFERSIZE];
                 int len;
                 while ((len = iomanX_read(fh, buf, sizeof(buf))) > 0) {
                     result = write(out_file, buf, len);
@@ -341,7 +383,7 @@ int PFSShell::recoverfile(const char *mount_point, const char *src, const char *
                         perror(dest);
                         retval = -1;
                         break;
-                    }
+                    } else {written += result; genericgaugepercent((float)RD3S(written, src_size), written);}
                 }
                 if (len < 0)
                     printf("%s: read failed with %d\n",
@@ -352,7 +394,7 @@ int PFSShell::recoverfile(const char *mount_point, const char *src, const char *
                 if (result < 0)
                     printf("close: failed with %d\n", result), retval = -1;
             } else
-                printf("%s: open failed with %d\n", src_path, fh), retval = -1;
+                printf("%s: open failed with %d (%s)\n", src_path, fh, strerror(-fh)), retval = -1;
 
             result = iomanX_umount("pfs0:");
             if (result < 0)
@@ -369,7 +411,7 @@ int PFSShell::recoverfile(const char *mount_point, const char *src, const char *
     return (retval);
 }
 
-int PFSShell::list_dir_objects(int dh, int lsmode)
+int PFSShell::list_dir_objects(int dh, int lsmode, std::vector <iox_dirent_t>* dirent_return)
 {
     COLOR(0d)
     int result;
@@ -419,6 +461,7 @@ int PFSShell::list_dir_objects(int dh, int lsmode)
         else if (lsmode == 1)
             printf("%s %10u  %s  %s%s\n",
                    mode, dirent.stat.size, mod_time, dirent.name, end_symbol);
+        if (dirent_return != NULL) dirent_return->push_back(dirent);
     }
     COLOR(07)
     return (result);
@@ -443,8 +486,7 @@ int PFSShell::lspart(int lsmode, std::vector <iox_dirent_t>* dirent_return)
         if (lsmode == 1)
             printf("Start (sector)  Code      Size         Timestamp  Name\n");
         while ((result = iomanX_dread(dh, &dirent)) && result != -1) {
-            if (dirent_return != NULL)
-                dirent_return->push_back(dirent);
+            if (dirent_return != NULL) dirent_return->push_back(dirent);
             // Equal to, but avoids overflows of: size * 512 / 1024 / 1024;
             uint32_t size = dirent.stat.size / 2048;
 
@@ -493,7 +535,7 @@ int PFSShell::lspart(int lsmode, std::vector <iox_dirent_t>* dirent_return)
 int PFSShell::RemovePartition(const char* part)
 {
     std::cout << "removing ["<<part << "]\n";
-    char tmp[256];
+    char tmp[GENERIC_PATH_BUFFER_SIZE];
     strcpy(tmp, "hdd0:");
     strcat(tmp, part);
     int result = iomanX_remove(tmp);
@@ -506,3 +548,112 @@ int PFSShell::RemovePartition(const char* part)
     return (result);
 }
 
+int PFSShell::pfs_mkdir(const char* partition, const char* path, const char* newdir)
+{
+    int result = PFSShell::Mount(partition);
+    if (result < 0) {
+        return result;
+    }
+    char tmp[GENERIC_PATH_BUFFER_SIZE];
+    strcpy(tmp, "pfs0:");
+    strcat(tmp, path);
+    if (tmp[strlen(tmp) - 1] != '/')
+        strcat(tmp, "/");
+    strcat(tmp, newdir);
+    result = iomanX_mkdir(tmp, 0777);
+    if (result < 0) {
+        COLOR(0c)
+        fprintf(stderr, "(!) '%s': %s.\n", tmp, strerror(-result));
+        COLOR(07)
+    }
+    PFSShell::UMount();
+    return (result);
+}
+
+int PFSShell::pfs_rmdir(const char* partition, const char* path, const char* target)
+{
+    int result = PFSShell::Mount(partition);
+    if (result < 0) {
+        return result;
+    }
+    char tmp[GENERIC_PATH_BUFFER_SIZE];
+    strcpy(tmp, "pfs0:");
+    strcat(tmp, path);
+    if (tmp[strlen(tmp) - 1] != '/')
+        strcat(tmp, "/");
+    strcat(tmp, target);
+    result = iomanX_rmdir(tmp);
+    if (result < 0) {
+        COLOR(0c)
+        fprintf(stderr, "(!) %s: %d (%s).\n", tmp, result, strerror(-result));
+        COLOR(07)
+    }
+    PFSShell::UMount();
+    return (result);
+}
+
+int PFSShell::pfs_rm(const char* partition, const char* path, const char* target)
+{
+    int result = PFSShell::Mount(partition);
+    if (result < 0) {
+        return result;
+    }
+    char tmp[GENERIC_PATH_BUFFER_SIZE];
+    strcpy(tmp, "pfs0:");
+    strcat(tmp, path);
+    if (tmp[strlen(tmp) - 1] != '/')
+        strcat(tmp, "/");
+    strcat(tmp, target);
+    result = iomanX_remove(tmp);
+    if (result < 0) {
+        COLOR(0c)
+        fprintf(stderr, "(!) %s: %s.\n", tmp, strerror(-result));
+        COLOR(07)
+    }
+    PFSShell::UMount();
+    return (result);
+}
+
+/// BUG: if I use a second buffer to construct the new name path iomanx moves the renamed file to parent dir
+/// as a workaround, newname must be passed a full path to the new file. EG:
+/// PFSShell::pfs_rename("hdd0:PP.a", "/a/a", "T.TXT", "pfs0:/a/a/T.TTT");
+int PFSShell::pfs_rename(const char* partition, const char* path, const char* target, const char* newname)
+{
+    int result = PFSShell::Mount(partition);
+    if (result < 0) {
+        return result;
+    }
+    char tmp[GENERIC_PATH_BUFFER_SIZE];
+    strcpy(tmp, "pfs0:");
+    strcat(tmp, path);
+    if (tmp[strlen(tmp) - 1] != '/')
+        strcat(tmp, "/");
+
+    strcat(tmp, target);
+    printf("iomanX_rename(%s, %s);\n", tmp, newname);
+    result = iomanX_rename(tmp, newname);
+    if (result < 0)
+        fprintf(stderr, "(!) %s: %s.\n", tmp, strerror(-result));
+    PFSShell::UMount();
+    return (result);
+}
+
+int PFSShell::Mount(const char* mnt) {
+    int result = iomanX_mount("pfs0:", mnt, 0, NULL, 0);
+    if (result < 0) {
+        COLOR(0c)
+        fprintf(stderr, "pfs0: mount of \"%s\" failed with %d\n", mnt, result),
+        COLOR(07)
+    }
+    return (result);
+}
+
+int PFSShell::UMount(void) {
+    int result = -1;
+    result = iomanX_umount("pfs0:");
+    if (result < 0) //not sure what the hell is going on. but this if statement is executing if result is == 0...
+        COLOR(0c)
+        fprintf(stderr, "pfs0: umount failed with %d\n", result);
+        COLOR(07)
+    return (result);
+}

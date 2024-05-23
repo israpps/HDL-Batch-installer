@@ -21,6 +21,7 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 				<Option object_output="_obj/Debug/" />
 				<Option type="1" />
 				<Option compiler="gcc" />
+				<Option use_console_runner="0" />
 				<Option parameters="--force-max-debug --stay-on-top --skip-update" />
 				<Option projectLinkerOptionsRelation="2" />
 				<Compiler>
@@ -32,10 +33,12 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 					<Add option="-D__WXMSW__" />
 					<Add option="-DwxUSE_UNICODE" />
 					<Add option="-DBITS=64" />
+					<Add option="-DHAVE_W32API_H" />
 					<Add directory="$(#wx)/lib/gcc_lib/mswu" />
 					<Add directory="$(#wx)/include" />
 					<Add directory="include" />
 					<Add directory="HDL-Batch-installer-SRC/include" />
+					<Add directory="${#wx}/art" />
 				</Compiler>
 				<ResourceCompiler>
 					<Add directory="$(#wx)/lib/gcc_lib/mswu" />
@@ -49,6 +52,9 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 					<Add option="-static" />
 					<Add option="-m64" />
 					<Add option="-mthreads" />
+					<Add option="-lwininet" />
+					<Add option="-lrpcrt4" />
+					<Add option="-lwinmm" />
 					<Add library="libwxmsw30u.a" />
 					<Add library="libwxpng.a" />
 					<Add library="libwxjpeg.a" />
@@ -155,6 +161,7 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 					<Add directory="$(#wx32)/lib/gcc_lib/mswu" />
 					<Add directory="include" />
 					<Add directory="HDL-Batch-installer-SRC/include" />
+					<Add directory="${#wx32}/art" />
 				</Compiler>
 				<ResourceCompiler>
 					<Add directory="$(#wx32)/include" />
@@ -256,7 +263,9 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 		</VirtualTargets>
 		<Compiler>
 			<Add option="-Wall" />
+			<Add option="-Wl,--subsystem,windows" />
 			<Add directory="../include" />
+			<Add directory="xpm" />
 		</Compiler>
 		<Linker>
 			<Add option="-static-libstdc++" />
@@ -269,8 +278,14 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 		<Unit filename="../.github/workflows/Repack-and-release.yml" />
 		<Unit filename="../.gitignore" />
 		<Unit filename="../README.md" />
+		<Unit filename="../include/DnDFile.h">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="../include/file_t.h" />
 		<Unit filename="../include/wxMD5" />
+		<Unit filename="../src/DnDFile.cpp">
+			<Option target="&lt;{~None~}&gt;" />
+		</Unit>
 		<Unit filename="About.cpp" />
 		<Unit filename="About.h" />
 		<Unit filename="ArtMan.cpp" />
@@ -297,6 +312,8 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 		<Unit filename="NDBMan.cpp" />
 		<Unit filename="NDBMan.h" />
 		<Unit filename="PFSShell.cpp" />
+		<Unit filename="PFSShellBrowser.cpp" />
+		<Unit filename="PFSShellBrowser.h" />
 		<Unit filename="Post_Install_Report.cpp" />
 		<Unit filename="Post_Install_Report.h" />
 		<Unit filename="_bin/Debug/Common/commit.sys" />
@@ -346,9 +363,13 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 		<Unit filename="wxsmith/HDL_Batch_installerframe.wxs" />
 		<Unit filename="wxsmith/MD5Report.wxs" />
 		<Unit filename="wxsmith/NDBMan.wxs" />
+		<Unit filename="wxsmith/PFSShellBrowser.wxs" />
 		<Unit filename="wxsmith/Post_Install_Report.wxs" />
 		<Unit filename="wxsmith/mkpartdlg.wxs" />
 		<Unit filename="wxsmith/pfsshell_wizard.wxs" />
+		<Unit filename="xpm/cd.xpm" />
+		<Unit filename="xpm/dvdd.xpm" />
+		<Unit filename="xpm/dvddl.xpm" />
 		<Extensions>
 			<AutoVersioning>
 				<Scheme minor_max="90" build_max="0" rev_max="0" rev_rand_max="10" build_times_to_increment_minor="400" />
@@ -377,6 +398,7 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 					<wxDialog wxs="wxsmith/HDDFomatMan.wxs" src="HDDFomatMan.cpp" hdr="HDDFomatMan.h" fwddecl="0" i18n="1" name="HDDFomatMan" language="CPP" />
 					<wxDialog wxs="wxsmith/mkpartdlg.wxs" src="mkpartdlg.cpp" hdr="mkpartdlg.h" fwddecl="0" i18n="1" name="mkpartdlg" language="CPP" />
 					<wxDialog wxs="wxsmith/MD5Report.wxs" src="MD5Report.cpp" hdr="MD5Report.h" fwddecl="0" i18n="1" name="MD5Report" language="CPP" />
+					<wxDialog wxs="wxsmith/PFSShellBrowser.wxs" src="PFSShellBrowser.cpp" hdr="PFSShellBrowser.h" fwddecl="0" i18n="1" name="PFSShellBrowser" language="CPP" />
 				</resources>
 			</wxsmith>
 		</Extensions>

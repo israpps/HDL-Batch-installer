@@ -65,6 +65,7 @@ HDDManager::HDDManager(wxWindow* parent, std::string HDDTOK, bool DGT, bool DSP,
 	Connect(ID_LISTCTRL1,wxEVT_COMMAND_LIST_ITEM_RIGHT_CLICK,(wxObjectEventFunction)&HDDManager::OnPARTListItemRClick);
 	Connect(ID_BUTTON1,wxEVT_COMMAND_BUTTON_CLICKED,(wxObjectEventFunction)&HDDManager::OnMKPartClick);
 	Connect(ID_MENUITEM1,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDDManager::OnPartitionDeleteRequest);
+	Connect(wxID_ANY,wxEVT_INIT_DIALOG,(wxObjectEventFunction)&HDDManager::OnInit);
 	//*)
 	PFSSHELL.SelectDevice(HDD_TOKEN);
 	wxListItem col0;
@@ -124,7 +125,7 @@ void HDDManager::OnPartitionDeleteRequest(wxCommandEvent& event)
 {
     wxArrayString _PART, _TYPE;
     long item = -1;
-    while ( (item = PARTList->GetNextItem(item, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED)) != wxNOT_FOUND)
+    while ((item = PARTList->GetNextItem(item, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED)) != wxNOT_FOUND)
     {
 
         _PART.Add(PARTList->GetItemText(item, PARTLIST_ITEMS::NAME)) ;
@@ -249,4 +250,8 @@ void HDDManager::OnMKPartClick(wxCommandEvent& event)
     MAN->ShowModal();
     if (MAN->should_update) UpdateList();
     delete MAN;
+}
+
+void HDDManager::OnInit(wxInitDialogEvent& event)
+{
 }

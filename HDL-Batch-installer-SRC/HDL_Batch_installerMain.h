@@ -137,6 +137,7 @@ private:
     void OnHDDFormatMenuRequest(wxCommandEvent& event);
     void OnRedump_searchSelected(wxCommandEvent& event);
     void OnCalculateMD5Selected(wxCommandEvent& event);
+    void OnPFSBrowserCallClick(wxCommandEvent& event);
     //*)
     void OnGoToFileLocationRequest(wxString victim);
     void OnTakeOutFromTheListRequest(wxListCtrl* ListCtrl, long itemIndex);
@@ -167,6 +168,7 @@ private:
     static const long ID_BUTTON9;
     static const long ID_BUTTON5;
     static const long ID_BUTTON11;
+    static const long ID_BUTTON12;
     static const long ID_PANEL3;
     static const long ID_NOTEBOOK1;
     static const long ID_PANEL5;
@@ -203,6 +205,7 @@ private:
     wxButton* HDDManagerButton;
     wxButton* MBRExtractRequest;
     wxButton* MBR_EVENT;
+    wxButton* PFSBrowserCall;
     wxButton* Parse_hdl_toc;
     wxButton* SEARCH_ISO;
     wxButton* clear_iso_list;
@@ -256,7 +259,7 @@ private:
     wxDirDialog* dump_folder;
     wxTextEntryDialog* rename_game;
     void List_refresh_request();
-    bool is_PS2(wxString path);
+    bool is_PS2(wxString path, int* disct);
     long GetFileSize(std::string filename);
     void Enable_HDD_dependant_objects(bool WTF_should_I_do);
     bool Load_custom_icon(wxString ELF);
