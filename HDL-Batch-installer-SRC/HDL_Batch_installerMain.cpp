@@ -588,7 +588,7 @@ bool HDL_Batch_installerFrame::is_PS2(wxString path, int* disct)
         if (disct != nullptr) {
             if (result_.find("CD") != wxNOT_FOUND) *disct = CDXPM::CD;
             if (result_.find("DVD") != wxNOT_FOUND) *disct = CDXPM::DVD;
-            if (result_.find("dual-layer") != wxNOT_FOUND) *disct = CDXPM::DVDDL;
+            if (result_.find("dual layer") != wxNOT_FOUND) *disct = CDXPM::DVDDL;
         }
         COLOR(0a)
         cout << "is a PS2 Game\n";
