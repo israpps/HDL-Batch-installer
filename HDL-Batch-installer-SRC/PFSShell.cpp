@@ -294,9 +294,7 @@ int PFSShell::ls(const char *mount_point, const char *path, std::vector <iox_dir
                    dir_path, dh),
                 retval = -1;
 
-        result = iomanX_umount("pfs0:");
-        if (result < 0)
-            printf("pfs0: umount failed with %d\n", result), retval = -1;
+            if (PFSShell::UMount() < 0) retval = -1;
     } else
         printf("pfs0: mount of \"%s\" failed with %d\n",
                mount_point, result),
@@ -343,9 +341,7 @@ int PFSShell::copyto(const char *mount_point, const char *dest, const char *src)
             } else
                 printf("%s: create failed with %d\n", dest_path, fh), retval = -1;
 
-            result = iomanX_umount("pfs0:");
-            if (result < 0)
-                printf("pfs0: umount failed with %d\n", result), retval = -1;
+            if (PFSShell::UMount() < 0) retval = -1;
         } else
             printf("pfs0: mount of \"%s\" failed with %d\n",
                    mount_point, result),
@@ -396,9 +392,7 @@ int PFSShell::recoverfile(const char *mount_point, const char *src, const char *
             } else
                 printf("%s: open failed with %d (%s)\n", src_path, fh, strerror(-fh)), retval = -1;
 
-            result = iomanX_umount("pfs0:");
-            if (result < 0)
-                printf("pfs0: umount failed with %d\n", result), retval = -1;
+            if (PFSShell::UMount() < 0) retval = -1;
         } else
             printf("pfs0: mount of \"%s\" failed with %d\n",
                    mount_point, result),
@@ -653,7 +647,7 @@ int PFSShell::UMount(void) {
     result = iomanX_umount("pfs0:");
     if (result < 0) //not sure what the hell is going on. but this if statement is executing if result is == 0...
         COLOR(0c)
-        fprintf(stderr, "pfs0: umount failed with %d\n", result);
+        if (result != 0) fprintf(stderr, "pfs0: umount failed with 0x%x\n", result);
         COLOR(07)
     return (result);
 }

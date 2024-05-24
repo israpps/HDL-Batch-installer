@@ -355,14 +355,20 @@ void PFSShellBrowser::RefreshList(void) {
     //std::cout << "ENTRIES "<<ITEMLIST.size()<<"\n";
     for (size_t x = ITEMLIST.size()-1; x < ITEMLIST.size(); x--)
     {
-        bool is_subpartition = ((ITEMLIST[x].stat.attr == 1));
         unsigned int m = ITEMLIST[x].stat.mode;
-        if ((m != PARTITION_TYPE::PFS) &&
-            (m & FIO_S_IFMT) != FIO_S_IFLNK &&
-            (m & FIO_S_IFMT) != FIO_S_IFREG &&
-            (m & FIO_S_IFMT) != FIO_S_IFDIR
-             || !strcasecmp(".", ITEMLIST[x].name)) // ignoring non PFS Partitions
-            continue;
+        if (!CTX::ISMOUNTED) {
+            if (m != PARTITION_TYPE::PFS)
+                continue; // cannot browse
+            if ((ITEMLIST[x].stat.attr == 1))
+                continue; // sub partition
+        } else {
+            if (
+                ((m & FIO_S_IFMT) != FIO_S_IFLNK) && // not symlink
+                ((m & FIO_S_IFMT) != FIO_S_IFREG) && // not file?
+                ((m & FIO_S_IFMT) != FIO_S_IFDIR) // not dir
+                || !strcasecmp(".", ITEMLIST[x].name) // not parent
+                ) continue; // ignoring non supported elements and `..`
+        }
         long itemIndex = FileList->InsertItem(LIST_ITEMS::NAME, ITEMLIST[x].name);// col. 1
         if ((m & FIO_S_IFMT) != FIO_S_IFDIR) {
             wxString z;
@@ -373,18 +379,25 @@ void PFSShellBrowser::RefreshList(void) {
             FileList->SetItem(itemIndex, LIST_ITEMS::SIZET, z);
         }
         tyype = _("Unknown");
-        if (m == PARTITION_TYPE::PFS) {
-            tyype = _("PFS Partition");
-            FileList->SetItemImage(itemIndex, XPM::PARTITION);
-        } else if ((m & FIO_S_IFMT) == FIO_S_IFLNK || (m & FIO_S_IFMT) == FIO_S_IFREG){
-            tyype = _("File");
-            FileList->SetItemImage(itemIndex, XPM::FILE);
-        } else if ((m & FIO_S_IFMT) == FIO_S_IFDIR) {
-            tyype = _("Folder");
-            FileList->SetItemImage(itemIndex, (!strcasecmp("..", ITEMLIST[x].name)) ? XPM::TOPARENT : XPM::FOLDER);
+        if (!CTX::ISMOUNTED) {
+            if (m == PARTITION_TYPE::PFS) {
+                tyype = _("PFS Partition");
+                FileList->SetItemImage(itemIndex, XPM::PARTITION);
+            } else {
+                FileList->SetItemImage(itemIndex, XPM::UNKNOWN);
+                tyype += wxString::Format(" (0x%X)", m);
+            }
         } else {
-            FileList->SetItemImage(itemIndex, XPM::UNKNOWN);
-            tyype += wxString::Format(" (0x%X)", m);
+            if ((m & FIO_S_IFMT) == FIO_S_IFLNK || (m & FIO_S_IFMT) == FIO_S_IFREG) {
+                tyype = _("File");
+                FileList->SetItemImage(itemIndex, XPM::FILE);
+            } else if ((m & FIO_S_IFMT) == FIO_S_IFDIR) {
+                tyype = _("Folder");
+                FileList->SetItemImage(itemIndex, (!strcasecmp("..", ITEMLIST[x].name)) ? XPM::TOPARENT : XPM::FOLDER);
+            } else {
+                FileList->SetItemImage(itemIndex, XPM::UNKNOWN);
+                tyype += wxString::Format(" (0x%X)", m);
+            }
         }
         FileList->SetItem(itemIndex, LIST_ITEMS::TYPE, tyype);
         //Sleep(1000);
@@ -486,7 +499,7 @@ void PFSShellBrowser::OnRenameFileFromHDD(wxCommandEvent& event)
         if (T->ShowModal() == wxID_OK) {
             NewName = T->GetValue();
             if (NewName == OldName) continue; //nonsense!
-            std::cout <<"RENAME "<< OldName << " -> " << NewName << "\n";
+            std::cout <<"RENAME '"<< OldName << "' -> '" << NewName << "'\n";
             PFSSHELL.pfs_rename(CTX::MNT.mb_str(), CTX::CWD.mb_str(), OldName.mb_str(), wxString::Format("pfs0:%s%s", CTX::CWD, NewName).mb_str());
             x++;
         }
@@ -542,10 +555,10 @@ void PFSShellBrowser::OnDeleteFileFromHDD(wxCommandEvent& event)
             wxString targ = FileList->GetItemText(itemIndex);
             int T = GetItemIcon(FileList, itemIndex);
             if (T == XPM::FILE) {
-                std::cout <<" DELETE " << CTX::MNT <<":pfs:"<< CTX::CWD << targ <<" Prop "<<T<<"\n";
+                std::cout <<" DELETE '" << CTX::MNT <<":pfs:"<< CTX::CWD << targ <<"'\n";
                 ret = PFSSHELL.pfs_rm(CTX::MNT.mb_str(), CTX::CWD.mb_str(), targ);
             } else if (T == XPM::FOLDER) {
-                std::cout <<" RMDIR " << CTX::MNT <<":pfs:"<< CTX::CWD << targ <<" Prop "<<T<<"\n";
+                std::cout <<" RMDIR '" << CTX::MNT <<":pfs:"<< CTX::CWD << targ <<"'\n";
                 ret = PFSSHELL.pfs_rmdir(CTX::MNT.mb_str(), CTX::CWD.mb_str(), targ);
             } else {
                 std::cout << "UNKNOWN ITEM TYPE: "<<T<<"\n";
