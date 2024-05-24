@@ -355,14 +355,19 @@ void PFSShellBrowser::RefreshList(void) {
     //std::cout << "ENTRIES "<<ITEMLIST.size()<<"\n";
     for (size_t x = ITEMLIST.size()-1; x < ITEMLIST.size(); x--)
     {
-        bool is_subpartition = ((ITEMLIST[x].stat.attr == 1));
         unsigned int m = ITEMLIST[x].stat.mode;
-        if ((m != PARTITION_TYPE::PFS) &&
-            (m & FIO_S_IFMT) != FIO_S_IFLNK &&
-            (m & FIO_S_IFMT) != FIO_S_IFREG &&
-            (m & FIO_S_IFMT) != FIO_S_IFDIR
-             || !strcasecmp(".", ITEMLIST[x].name)) // ignoring non PFS Partitions
-            continue;
+        if (!CTX::ISMOUNTED) {
+            if ((ITEMLIST[x].stat.attr == 1)) continue; // sub partition
+            if (m != PARTITION_TYPE::PFS)
+                continue;
+        } else {
+            if (
+                ((m & FIO_S_IFMT) != FIO_S_IFLNK) && // not symlink
+                ((m & FIO_S_IFMT) != FIO_S_IFREG) && // not file?
+                ((m & FIO_S_IFMT) != FIO_S_IFDIR) // not dir
+                || !strcasecmp(".", ITEMLIST[x].name) // not parent
+                ) continue; // ignoring non supported elements and `..`
+        }
         long itemIndex = FileList->InsertItem(LIST_ITEMS::NAME, ITEMLIST[x].name);// col. 1
         if ((m & FIO_S_IFMT) != FIO_S_IFDIR) {
             wxString z;
