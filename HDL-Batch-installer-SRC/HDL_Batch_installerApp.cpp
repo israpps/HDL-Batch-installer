@@ -8,6 +8,8 @@
  **************************************************************/
 #include "HDL_Batch_installerApp.h"
 #include "flags.h"
+#include <wx/snglinst.h>
+
 //(*AppHeaders
 #include "HDL_Batch_installerMain.h"
 #include <wx/image.h>
@@ -19,6 +21,17 @@ IMPLEMENT_APP(HDL_Batch_installerApp);
 wxString Get_env(wxString ENV);
 bool HDL_Batch_installerApp::OnInit()
 {
+
+    wxSingleInstanceChecker* instance_chk = new wxSingleInstanceChecker;
+    if (instance_chk->IsAnotherRunning() && (!wxFileExists("Common\\multi_instance.opt")) )
+    {
+        wxLogError(_("Another program instance is already running, aborting."));
+
+        delete instance_chk; // OnExit() won't be called if we return false
+        instance_chk = nullptr;
+
+        return false;
+    }
     bool first_time = false;
     const wxString DOWNLOAD_COMMAND    = "Common\\wget -q --show-progress https://github.com/israpps/HDL-Batch-installer/raw/main/svr/_ICN.7z -O Common\\_ICN.7z",
                    EXTRACTION_COMMAND = "Common\\7z.exe x -oCommon -bso0 -pPDPA -y Common\\_ICN.7z";

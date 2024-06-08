@@ -573,7 +573,6 @@
 			</object>
 			<object class="wxMenuItem" name="DELETE_GAME_ID" variable="DeleteGameMenuItem" member="yes">
 				<label>Delete game</label>
-				<enabled>0</enabled>
 				<bitmap stock_id="wxART_CROSS_MARK" stock_client="wxART_BUTTON" />
 				<handler function="OnGameDeletionRequest" entry="EVT_MENU" />
 			</object>

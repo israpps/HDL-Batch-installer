@@ -56,6 +56,7 @@ jobs:
         sed -i 's/Change log:/## Latest changes:\n/' latest_changes.log
         echo "****">>latest_changes.log
         echo "See Full changelog [__Here__](https://github.com/israpps/HDL-Batch-installer/blob/Latest/Release/changes.log)">>latest_changes.log
+        echo '![GitHub Downloads (all assets, latest release)](https://img.shields.io/github/downloads/israpps/HDL-Batch-installer/latest/total?style=for-the-badge&logo=github&label=Downloads&labelColor=black)'>>latest_changes.log
         echo "----------------CHANGELOG----------------"
         cat latest_changes.log
         echo "----------------CHANGELOG----------------"
