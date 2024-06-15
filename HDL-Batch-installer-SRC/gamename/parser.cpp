@@ -64,6 +64,9 @@ EXTERNAL_DATABASE_ACCESS_FAILED:
         if (S == "") {
             return NO_MATCH;
         } else {
+            COLOR(08)
+            cout << "$ found match! [" << S << "]\n";
+            COLOR(07)
             return S;
         }
     }
