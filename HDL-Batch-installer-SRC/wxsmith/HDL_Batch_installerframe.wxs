@@ -547,6 +547,7 @@
 			</object>
 			<object class="wxMenuItem" name="ID_MENUITEM14" variable="MenuItem18" member="yes">
 				<label>Transfer game(s) to another PS2 HDD</label>
+				<enabled>0</enabled>
 				<bitmap stock_id="wxART_COPY" stock_client="wxART_BUTTON" />
 				<handler function="OnSelectiveGameMigration" entry="EVT_MENU" />
 			</object>

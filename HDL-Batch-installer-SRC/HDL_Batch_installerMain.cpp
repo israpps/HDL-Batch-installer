@@ -448,6 +448,7 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     MenuItem18 = new wxMenuItem((&Browser_menu), ID_MENUITEM14, _("Transfer game(s) to another PS2 HDD"), wxEmptyString, wxITEM_NORMAL);
     MenuItem18->SetBitmap(wxArtProvider::GetBitmap(wxART_MAKE_ART_ID_FROM_STR(_T("wxART_COPY")),wxART_BUTTON));
     Browser_menu.Append(MenuItem18);
+    MenuItem18->Enable(false);
     Browser_menu.AppendSeparator();
     MenuItem11 = new wxMenuItem((&Browser_menu), ID_MENUITEM6, _("Rename"), wxEmptyString, wxITEM_NORMAL);
     MenuItem11->SetBitmap(wxArtProvider::GetBitmap(wxART_MAKE_ART_ID_FROM_STR(_T("wxART_FIND_AND_REPLACE")),wxART_BUTTON));
