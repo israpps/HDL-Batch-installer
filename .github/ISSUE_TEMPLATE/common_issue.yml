@@ -38,7 +38,16 @@ body:
       description: Provide the version number (Press F1 to see it!)
       placeholder: "version 2.7.6 [beta] ; revision 3 ; build date: 04-07-2021"
     validations:
-      required: false
+      required: true
+
+  - type: input
+    id: winversion
+    attributes:
+      label: Windows version
+      description: Provide the windows version (search winver command)
+      placeholder: "Windows 10 PRO - version 22H2 (SO compilation 19045.4529)"
+    validations:
+      required: true
 
   - type: textarea
     id: logs
