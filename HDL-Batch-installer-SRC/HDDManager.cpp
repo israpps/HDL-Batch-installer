@@ -211,7 +211,7 @@ void HDDManager::UpdateList(void)
             TMP = "CFS";
             break;
         case PARTITION_TYPE::HDL:
-            PARTList->SetItemTextColour(itemIndex, *wxGREEN);
+            PARTList->SetItemTextColour(itemIndex, wxColour(0x32, 0xA8, 0x52));
             TMP = "HDL";
             break;
         case PARTITION_TYPE::FREE:
