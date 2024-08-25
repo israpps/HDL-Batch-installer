@@ -288,7 +288,7 @@ void DokanMan::OnART_TRANSFERClick(wxCommandEvent& event)
         {
             TMP = filelist.Item(x);
             TMP = TMP.substr(TMP.find_last_of('\\')+1);
-            std::cout <<"copying: ["<<filelist.Item(x)<<"] -> ["<<MOUNTBASE<<TMP<<"]\n";
+            std::cout <<"copying: ["<<filelist.Item(x)<<"] -> ["<<MOUNTBASE<<TMP<<"] ("x" of "filelist.GetCount()")\n";
             wxCopyFile(filelist.Item(x), MOUNTBASE+ TMP);
             if (wxFileExists(MOUNTBASE+TMP)) wxRemoveFile(filelist.Item(x));
         }
@@ -308,7 +308,7 @@ void DokanMan::OnART_TRANSFERClick(wxCommandEvent& event)
         {
             TMP = filelist.Item(x);
             TMP = TMP.substr(TMP.find_last_of('\\')+1);
-            std::cout <<"copying: ["<<filelist.Item(x)<<"] -> ["<<MOUNTBASE<<TMP<<"]\n";
+            std::cout <<"copying: ["<<filelist.Item(x)<<"] -> ["<<MOUNTBASE<<TMP<<"] ("x" of "filelist.GetCount()")\n";
             wxCopyFile(filelist.Item(x), MOUNTBASE+ TMP);
             if (wxFileExists(MOUNTBASE+TMP)) wxRemoveFile(filelist.Item(x));
         }
@@ -328,7 +328,7 @@ void DokanMan::OnART_TRANSFERClick(wxCommandEvent& event)
         {
             TMP = filelist.Item(x);
             TMP = TMP.substr(TMP.find_last_of('\\')+1);
-            std::cout <<"copying: ["<<filelist.Item(x)<<"] -> ["<<MOUNTBASE<<TMP<<"]\n";
+            std::cout <<"copying: ["<<filelist.Item(x)<<"] -> ["<<MOUNTBASE<<TMP<<"] ("x" of "filelist.GetCount()")\n";
             wxCopyFile(filelist.Item(x), MOUNTBASE+ TMP);
             if (wxFileExists(MOUNTBASE+TMP)) wxRemoveFile(filelist.Item(x));
         }
@@ -348,7 +348,7 @@ void DokanMan::OnART_TRANSFERClick(wxCommandEvent& event)
         {
             TMP = filelist.Item(x);
             TMP = TMP.substr(TMP.find_last_of('\\')+1);
-            std::cout <<"copying: ["<<filelist.Item(x)<<"] -> ["<<MOUNTBASE<<TMP<<"]\n";
+            std::cout <<"copying: ["<<filelist.Item(x)<<"] -> ["<<MOUNTBASE<<TMP<<"] ("x" of "filelist.GetCount()")\n";
             wxCopyFile(filelist.Item(x), MOUNTBASE+ TMP);
             if (wxFileExists(MOUNTBASE+TMP)) wxRemoveFile(filelist.Item(x));
         }
