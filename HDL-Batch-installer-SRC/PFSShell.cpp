@@ -14,11 +14,9 @@
 
 #define IOBUFFERSIZE (4096 * 16)
 
-#define RD3S(CURRENT, TOTAL) ((CURRENT*100)/TOTAL) // regla de tres simples
-
 //float percentage values from 0 to 1 (decimal ofc)
 void
-genericgauge (float progress, size_t extra)
+genericgauge (float progress, std::string extra)
 {
     int barWidth = 70;
 
@@ -33,12 +31,12 @@ genericgauge (float progress, size_t extra)
 	  else
 		std::cout << " ";
 	}
-    std::cout << "] " << int (progress * 100.0) << "% (" << extra <<")b\r";
+    std::cout << "] " << int (progress * 100.0) << "%" << extra <<"\r";
     std::cout.flush ();
 }
 
 //percentage represented on signed integer. values from 0-100
-void genericgaugepercent(int percent, size_t extra) {
+void genericgaugepercent(int percent, std::string extra) {
     genericgauge(percent*0.01, extra);
 }
 
@@ -289,10 +287,11 @@ int PFSShell::ls(const char *mount_point, const char *path, std::vector <iox_dir
             result = iomanX_close(dh);
             if (result < 0)
                 printf("dclose: failed with %d\n", result), retval = -1;
-        } else
+        } else {
             printf("dopen: \"%s\" failed with %d\n",
                    dir_path, dh),
                 retval = -1;
+        }
 
             if (PFSShell::UMount() < 0) retval = -1;
     } else
@@ -330,7 +329,7 @@ int PFSShell::copyto(const char *mount_point, const char *dest, const char *src)
                         printf("%s: write failed with %d\n", dest_path, result);
                         retval = -1;
                         break;
-                    } else {written += result; genericgaugepercent((float)RD3S(written, src_size), written);}
+                    } else {written += result; genericgaugepercent((float)RD3S(written, src_size), wxString::Format(" (%llu b)", written).ToStdString());}
                 }
                 printf("\n");
                 if (len < 0)
@@ -379,7 +378,7 @@ int PFSShell::recoverfile(const char *mount_point, const char *src, const char *
                         perror(dest);
                         retval = -1;
                         break;
-                    } else {written += result; genericgaugepercent((float)RD3S(written, src_size), written);}
+                    } else {written += result; genericgaugepercent((float)RD3S(written, src_size), wxString::Format("(%llu b)", written).ToStdString());}
                 }
                 if (len < 0)
                     printf("%s: read failed with %d\n",

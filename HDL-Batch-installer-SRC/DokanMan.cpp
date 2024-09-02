@@ -7,6 +7,7 @@
 #include <wx/dir.h>
 #include <wx/fileconf.h>
 #include <wx/msgdlg.h>
+
 //(*InternalHeaders(DokanMan)
 #include <wx/intl.h>
 #include <wx/string.h>
@@ -16,6 +17,7 @@ wxLongLong FREE_SPACE;
 wxLongLong TOTAL_SPACE;
 #define DOKAN_ENV "DokanLibrary1"
 #define DOKAN_ENV2 "DokanLibrary2"
+void genericgaugepercent(int percent, std::string extra);
 
 /*struct drive_t
 {
@@ -284,11 +286,12 @@ void DokanMan::OnART_TRANSFERClick(wxCommandEvent& event)
         MOUNTBASE.append("ART\\");
         if (!wxDirExists(MOUNTBASE)) wxMkDir(MOUNTBASE);
         COLOR(0d)
-        for (size_t x = 0 ; x < filelist.GetCount() ; x++)
+        for (size_t x = 0 ; x < filelist.GetCount(); x++)
         {
             TMP = filelist.Item(x);
             TMP = TMP.substr(TMP.find_last_of('\\')+1);
-            std::cout <<"copying: ["<<filelist.Item(x)<<"] -> ["<<MOUNTBASE<<TMP<<"]\n";
+            //std::cout <<"copying: ["<<filelist.Item(x)<<"] -> ["<<MOUNTBASE<<TMP<<"]\n";
+            genericgaugepercent(RD3S(x, filelist.GetCount()), TMP.ToStdString());
             wxCopyFile(filelist.Item(x), MOUNTBASE+ TMP);
             if (wxFileExists(MOUNTBASE+TMP)) wxRemoveFile(filelist.Item(x));
         }
@@ -308,7 +311,8 @@ void DokanMan::OnART_TRANSFERClick(wxCommandEvent& event)
         {
             TMP = filelist.Item(x);
             TMP = TMP.substr(TMP.find_last_of('\\')+1);
-            std::cout <<"copying: ["<<filelist.Item(x)<<"] -> ["<<MOUNTBASE<<TMP<<"]\n";
+            //std::cout <<"copying: ["<<filelist.Item(x)<<"] -> ["<<MOUNTBASE<<TMP<<"]\n";
+            genericgaugepercent(RD3S(x, filelist.GetCount()), TMP.ToStdString());
             wxCopyFile(filelist.Item(x), MOUNTBASE+ TMP);
             if (wxFileExists(MOUNTBASE+TMP)) wxRemoveFile(filelist.Item(x));
         }
@@ -328,7 +332,8 @@ void DokanMan::OnART_TRANSFERClick(wxCommandEvent& event)
         {
             TMP = filelist.Item(x);
             TMP = TMP.substr(TMP.find_last_of('\\')+1);
-            std::cout <<"copying: ["<<filelist.Item(x)<<"] -> ["<<MOUNTBASE<<TMP<<"]\n";
+            //std::cout <<"copying: ["<<filelist.Item(x)<<"] -> ["<<MOUNTBASE<<TMP<<"]\n";
+            genericgaugepercent(RD3S(x, filelist.GetCount()), TMP.ToStdString());
             wxCopyFile(filelist.Item(x), MOUNTBASE+ TMP);
             if (wxFileExists(MOUNTBASE+TMP)) wxRemoveFile(filelist.Item(x));
         }
@@ -348,7 +353,8 @@ void DokanMan::OnART_TRANSFERClick(wxCommandEvent& event)
         {
             TMP = filelist.Item(x);
             TMP = TMP.substr(TMP.find_last_of('\\')+1);
-            std::cout <<"copying: ["<<filelist.Item(x)<<"] -> ["<<MOUNTBASE<<TMP<<"]\n";
+            //std::cout <<"copying: ["<<filelist.Item(x)<<"] -> ["<<MOUNTBASE<<TMP<<"]\n";
+            genericgaugepercent(RD3S(x, filelist.GetCount()), TMP.ToStdString());
             wxCopyFile(filelist.Item(x), MOUNTBASE+ TMP);
             if (wxFileExists(MOUNTBASE+TMP)) wxRemoveFile(filelist.Item(x));
         }

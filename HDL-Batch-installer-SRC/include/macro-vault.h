@@ -43,5 +43,6 @@
 #define DB_EXTERNAL 1
 
 #define NOT_FOUND std::string::npos
+#define RD3S(CURRENT, TOTAL) ((CURRENT*100)/TOTAL) // regla de tres simples
 
 #endif //MACRO_VAULT
