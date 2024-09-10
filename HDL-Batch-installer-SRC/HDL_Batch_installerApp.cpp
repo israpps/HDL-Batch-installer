@@ -7,6 +7,7 @@
  * License:   GPL-3.0
  **************************************************************/
 #include "HDL_Batch_installerApp.h"
+#include "UpdateMan.h"
 #include "flags.h"
 #include <wx/snglinst.h>
 
@@ -221,11 +222,12 @@ bool HDL_Batch_installerApp::OnInit()
     }
 
     SPLASH_SCREEN->Hide();
-    HDL_Batch_installerFrame* Frame = new HDL_Batch_installerFrame(0,m_locale,custom_styles,ctor_flags);
+    HDL_Batch_installerFrame* Frame = new HDL_Batch_installerFrame(nullptr ,m_locale,custom_styles,ctor_flags);
     delete SPLASH_SCREEN;
     if (new_ver_available)
     {
-        if (wxMessageBox(wxString::Format(_("There's an update available for this program!\n\nGo to download page?\n\nCurrent version: [%s]\nLatest version: [%s]"), versionTAG, svr_ver),"",wxICON_INFORMATION|wxYES_NO) == wxYES)
+        UpdateMan* A = new UpdateMan(nullptr, svr_ver, versionTAG);
+        if (A->ShowModal() == wxYES)
             wxLaunchDefaultBrowser("https://github.com/israpps/HDL-Batch-installer/releases");
     }
     if (first_time)

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<wxsmith>
+	<object class="wxDialog" name="UpdateMan">
+		<pos_arg>1</pos_arg>
+		<size_arg>1</size_arg>
+		<style>wxRESIZE_BORDER|wxDIALOG_NO_PARENT|wxMAXIMIZE_BOX</style>
+		<object class="wxBoxSizer" variable="BoxSizer1" member="no">
+			<orient>wxVERTICAL</orient>
+			<object class="sizeritem">
+				<object class="wxBoxSizer" variable="BoxSizer2" member="no">
+					<orient>wxVERTICAL</orient>
+					<object class="sizeritem">
+						<object class="wxStaticText" name="ID_STATICTEXT2" variable="heading" member="yes">
+							<label></label>
+							<minsize>200,0</minsize>
+							<style>wxALIGN_CENTRE</style>
+						</object>
+						<flag>wxALL|wxEXPAND</flag>
+						<border>5</border>
+						<option>1</option>
+					</object>
+				</object>
+				<flag>wxALL|wxEXPAND</flag>
+				<border>5</border>
+				<option>2</option>
+			</object>
+			<object class="sizeritem">
+				<object class="wxStaticBoxSizer" variable="StaticBoxSizer1" member="no">
+					<label>Changes:</label>
+					<object class="sizeritem">
+						<object class="wxTextCtrl" name="ID_TEXTCTRL1" variable="UpdateDetails" member="yes">
+							<minsize>700,200</minsize>
+							<style>wxTE_MULTILINE|wxTE_READONLY</style>
+						</object>
+						<flag>wxEXPAND</flag>
+						<border>5</border>
+						<option>2</option>
+					</object>
+				</object>
+				<flag>wxLEFT|wxRIGHT|wxEXPAND</flag>
+				<border>5</border>
+				<option>3</option>
+			</object>
+			<object class="sizeritem">
+				<object class="wxBoxSizer" variable="BoxSizer4" member="no">
+					<object class="sizeritem">
+						<object class="wxButton" name="ID_BUTTON1" variable="OK" member="yes">
+							<label>OK</label>
+							<handler function="OnOKClick" entry="EVT_BUTTON" />
+						</object>
+						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<border>5</border>
+						<option>1</option>
+					</object>
+					<object class="sizeritem">
+						<object class="wxButton" name="ID_BUTTON2" variable="CANCEL" member="yes">
+							<label>Cancel</label>
+							<handler function="OnCANCELClick" entry="EVT_BUTTON" />
+						</object>
+						<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+						<border>5</border>
+						<option>1</option>
+					</object>
+				</object>
+				<flag>wxALL|wxEXPAND</flag>
+				<border>5</border>
+				<option>1</option>
+			</object>
+		</object>
+	</object>
+</wxsmith>

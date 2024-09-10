@@ -14,7 +14,7 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 			</notes>
 		</Option>
 		<Build>
-			<Target title="Debug">
+			<Target title="64-bits">
 				<Option platforms="Windows;" />
 				<Option output="_bin/playground/HDL-Batch-installer" prefix_auto="1" extension_auto="1" />
 				<Option working_dir="_bin/playground/" />
@@ -259,7 +259,7 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 			</Target>
 		</Build>
 		<VirtualTargets>
-			<Add alias="Releasers" targets="Debug;32-bits;" />
+			<Add alias="Releasers" targets="64-bits;32-bits;" />
 		</VirtualTargets>
 		<Compiler>
 			<Add option="-Wall" />
@@ -316,6 +316,8 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 		<Unit filename="PFSShellBrowser.h" />
 		<Unit filename="Post_Install_Report.cpp" />
 		<Unit filename="Post_Install_Report.h" />
+		<Unit filename="UpdateMan.cpp" />
+		<Unit filename="UpdateMan.h" />
 		<Unit filename="_bin/Debug/Common/commit.sys" />
 		<Unit filename="_bin/Debug/Common/config.INI" />
 		<Unit filename="_bin/Debug/README.TXT" />
@@ -365,6 +367,7 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 		<Unit filename="wxsmith/NDBMan.wxs" />
 		<Unit filename="wxsmith/PFSShellBrowser.wxs" />
 		<Unit filename="wxsmith/Post_Install_Report.wxs" />
+		<Unit filename="wxsmith/UpdateMan.wxs" />
 		<Unit filename="wxsmith/mkpartdlg.wxs" />
 		<Unit filename="wxsmith/pfsshell_wizard.wxs" />
 		<Unit filename="xpm/cd.xpm" />
@@ -399,6 +402,7 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 					<wxDialog wxs="wxsmith/mkpartdlg.wxs" src="mkpartdlg.cpp" hdr="mkpartdlg.h" fwddecl="0" i18n="1" name="mkpartdlg" language="CPP" />
 					<wxDialog wxs="wxsmith/MD5Report.wxs" src="MD5Report.cpp" hdr="MD5Report.h" fwddecl="0" i18n="1" name="MD5Report" language="CPP" />
 					<wxDialog wxs="wxsmith/PFSShellBrowser.wxs" src="PFSShellBrowser.cpp" hdr="PFSShellBrowser.h" fwddecl="0" i18n="1" name="PFSShellBrowser" language="CPP" />
+					<wxDialog wxs="wxsmith/UpdateMan.wxs" src="UpdateMan.cpp" hdr="UpdateMan.h" fwddecl="0" i18n="1" name="UpdateMan" language="CPP" />
 				</resources>
 			</wxsmith>
 		</Extensions>

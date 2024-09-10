@@ -1,3 +1,10 @@
+10 September 2024
+   [v3.6.0 - Revision 2]
+
+     Change log:
+        -HDDManager: Darker green for better readability (credits to @lottehime for the idea)
+        -Update manager: added dedicated update information UI wich will download and display the changelog for the latest update
+
 24 May 2024
    [v3.6.0 - Revision 1]
 
@@ -11,14 +18,12 @@
    [v3.6.0 - Revision 0]
 
      Change log:
-        -__NEW__: builtin PFS Filebrowser (only for 64bit version)
         -__NEW__: builtin PFS Filebrowser
         -PFS Filebrowser: allow operating on both physical HDDs connected to the PC and Virtual Images (eg: HDD dump or PCSX2 Images)
         -UI: Added Icons for most menus, dialogs and popups
         -Install queue and installed game list: Display a disc icon on the list with unique colors for CD, DVD and dual layer images
         -install queue: Dont show a dialogue telling how many games were added to queue if no errors arised
 
-IMPORTANT: this new PFS Filebrowser could still have some bugs around on the UI handling. its not perfect. however the backend is rock solid. if you find any issues on this new feature, please report it so I can fix it ASAP
 13 March 2024
    [v3.5.1 - Revision 6]
 

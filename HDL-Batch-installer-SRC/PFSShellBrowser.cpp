@@ -363,9 +363,9 @@ void PFSShellBrowser::RefreshList(void) {
                 continue; // sub partition
         } else {
             if (
-                ((m & FIO_S_IFMT) != FIO_S_IFLNK) && // not symlink
+                (((m & FIO_S_IFMT) != FIO_S_IFLNK) && // not symlink
                 ((m & FIO_S_IFMT) != FIO_S_IFREG) && // not file?
-                ((m & FIO_S_IFMT) != FIO_S_IFDIR) // not dir
+                ((m & FIO_S_IFMT) != FIO_S_IFDIR)) // not dir
                 || !strcasecmp(".", ITEMLIST[x].name) // not parent
                 ) continue; // ignoring non supported elements and `..`
         }
