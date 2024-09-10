@@ -3,7 +3,7 @@
 	<object class="wxDialog" name="UpdateMan">
 		<pos_arg>1</pos_arg>
 		<size_arg>1</size_arg>
-		<style>wxRESIZE_BORDER|wxDIALOG_NO_PARENT|wxMAXIMIZE_BOX</style>
+		<style>wxCAPTION|wxRESIZE_BORDER|wxDIALOG_NO_PARENT|wxMAXIMIZE_BOX</style>
 		<object class="wxBoxSizer" variable="BoxSizer1" member="no">
 			<orient>wxVERTICAL</orient>
 			<object class="sizeritem">
