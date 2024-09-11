@@ -16,6 +16,7 @@ static const wxLanguage langIds[] =
     wxLANGUAGE_KOREAN,
     wxLANGUAGE_RUSSIAN,
     wxLANGUAGE_FRENCH,
+    wxLANGUAGE_CHINESE_TAIWAN,
 };
 
 const wxString langNames[] =
@@ -29,6 +30,7 @@ const wxString langNames[] =
     "Korean",
     "Russian",
     "French",
+    "Chinese (TW)"
 };
 enum LANG_NUMS
 {
@@ -41,6 +43,7 @@ enum LANG_NUMS
     KOREAN,
     RUSSIAN,
     FRENCH,
+    CHINESE_TW,
 
     TOTAL_COUNT
 };
