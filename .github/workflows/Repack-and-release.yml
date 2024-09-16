@@ -198,5 +198,5 @@ jobs:
       env:
         DISCORD_WEBHOOK: ${{ secrets.BACKUP_WEBHOOK }}
       with:
-        args: HDL-INST/HDLBInst*.7z
+        args: HDLBInst*.7z
 
