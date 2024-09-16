@@ -30,7 +30,7 @@ const wxString langNames[] =
     "Korean",
     "Russian",
     "French",
-    "Chinese (TW)"
+    "Traditional Chinese"
 };
 enum LANG_NUMS
 {
