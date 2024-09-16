@@ -172,6 +172,10 @@ jobs:
       with:
         name: HDL-INST
 
+    - name: list
+      run: |
+        ls -R
+
     - name: Discord Webhook, Latest release
       if: github.event_name == 'push'
       uses: tsickert/discord-webhook@v2.0.2
