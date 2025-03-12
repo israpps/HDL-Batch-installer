@@ -13,12 +13,12 @@
 
 ///ICONS
 #include <folder.xpm>
-#include <harddisk.xpm>
-#include <filesave.xpm>
+#include "xpm/harddisk.xpm"
+#include "xpm/filesave.xpm"
 #include <new_dir.xpm>
 #include <delete.xpm>
 #include <toparent.xpm>
-#include <motif/question.xpm>
+#include "xpm//question.xpm"
 
 namespace XPM {
     int FOLDER;

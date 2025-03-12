@@ -157,15 +157,15 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 					<Add option="-D__WXMSW__" />
 					<Add option="-DwxUSE_UNICODE" />
 					<Add option="-DBITS=32" />
-					<Add directory="$(#wx32)/include" />
-					<Add directory="$(#wx32)/lib/gcc_lib/mswu" />
+					<Add directory="$(#wxdll)/include" />
+					<Add directory="$(#wxdll)/lib/gcc_lib/mswu" />
 					<Add directory="include" />
 					<Add directory="HDL-Batch-installer-SRC/include" />
-					<Add directory="${#wx32}/art" />
+					<Add directory="${#wxdll}/art" />
 				</Compiler>
 				<ResourceCompiler>
-					<Add directory="$(#wx32)/include" />
-					<Add directory="$(#wx32)/lib/gcc_lib/mswu" />
+					<Add directory="$(#wxdll)/include" />
+					<Add directory="$(#wxdll)/lib/gcc_lib/mswu" />
 				</ResourceCompiler>
 				<Linker>
 					<Add option="-s" />
@@ -174,7 +174,8 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 					<Add option="-static" />
 					<Add option="-m32" />
 					<Add option="-mthreads" />
-					<Add library="libwxmsw30u.a" />
+					<Add library="libwxbase32u.a" />
+					<Add library="libwxmsw32u_core.a" />
 					<Add library="libwxpng.a" />
 					<Add library="libwxjpeg.a" />
 					<Add library="libwxtiff.a" />
@@ -194,7 +195,7 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 					<Add library="libodbc32.a" />
 					<Add library="libwxregexu.a" />
 					<Add library="external/libps2hdd-x86.a" />
-					<Add directory="$(#wx32)/lib/gcc_lib" />
+					<Add directory="$(#wxdll)/lib/gcc_lib" />
 				</Linker>
 			</Target>
 			<Target title="32-bits-wx3.1.5">
@@ -264,6 +265,7 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 		<Compiler>
 			<Add option="-Wall" />
 			<Add option="-Wl,--subsystem,windows" />
+			<Add option="-DWXUSINGDLL" />
 			<Add directory="../include" />
 			<Add directory="xpm" />
 		</Compiler>

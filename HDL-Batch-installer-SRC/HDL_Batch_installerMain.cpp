@@ -30,7 +30,7 @@
 #include "xpm/cd.xpm"
 #include "xpm/dvdd.xpm"
 #include "xpm/dvddl.xpm"
-#include "motif/info.xpm"
+#include "xpm/info.xpm"
 
 namespace CDXPM {
 int CD;
