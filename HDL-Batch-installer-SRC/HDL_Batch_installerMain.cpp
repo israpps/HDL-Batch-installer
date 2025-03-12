@@ -112,7 +112,7 @@ wxString HDLBINST_APPDATA;
 #include <wx/settings.h>
 #include <wx/string.h>
 //*)
-
+#include <wx/appprogress.h>
 
 
 //(*IdInit(HDL_Batch_installerFrame)
@@ -857,12 +857,13 @@ void HDL_Batch_installerFrame::OninstallClick(wxCommandEvent& event)
                   _media
 //                   _DBA,
                   ;
-
+    wxAppProgressIndicator *toolbar_progress = new wxAppProgressIndicator(this, game_list__->GetItemCount());
     while (game_list__->GetItemCount() > 0)
     {
         command1.clear();
         if (install_progress->WasCancelled()) break;
         int current_index = (original_item_count - game_list__->GetItemCount());
+        toolbar_progress->SetValue(current_index);
         strr = game_list__->GetItemText(0,0);
         wxString resultt;
         std::cout << "\n>index: " << current_index <<std::endl;
@@ -979,6 +980,7 @@ void HDL_Batch_installerFrame::OninstallClick(wxCommandEvent& event)
     }/// /////////////////////////////////MAIN INSTALL LOOP///////////////////////////////// ///
     COLOR(08) std::cout << endl << "> installation process finished.\n";
     delete install_progress;
+    delete toolbar_progress;
     COLOR(07)
     ///
     if (report_counter != 0)
