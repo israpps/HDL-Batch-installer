@@ -523,8 +523,8 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     CDXPM::DVDDL = CDTLIST->Add(wxIcon(dvddl_xpm));
     Installed_game_list->SetImageList(CDTLIST, wxIMAGE_LIST_SMALL);
     game_list__->SetImageList(CDTLIST, wxIMAGE_LIST_SMALL);
-#ifndef PFSSHELL_ALLOWED
-    PFSBrowserCall->Hide();
+#if !PFSSHELL_ALLOWED
+    PFSBrowserCall->Enable(false);
 #endif
 }
 
@@ -1272,6 +1272,7 @@ void HDL_Batch_installerFrame::Update_hdd_data(void)
         } else {
             PFSSHELL_USABLE = false;
             wxMessageBox(("Error initializing libps2hdd service\n\nCheck log for more details\n\nHDD formatting and HDD Manager disabled"), wxMessageBoxCaptionStr, wxICON_WARNING);
+            PFSBrowserCall->Enable(false);
         }
         PFSSHELL.CloseDevice();
         MenuHDDFormat->Enable(PFSSHELL_USABLE);
