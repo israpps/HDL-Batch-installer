@@ -19,7 +19,7 @@ jobs:
     steps:
 
     - name: checkout code for release
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: "Check file existence"
       uses: andstor/file-existence-action@v1

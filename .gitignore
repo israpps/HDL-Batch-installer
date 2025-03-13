@@ -32,3 +32,4 @@ HDL-Batch-installer-SRC/_bin/playground/Downloads
 HDL-Batch-installer-SRC/HDL-Batch-installer.depend
 HDL-Batch-installer-SRC/gamename/gamename.csv
 HDL-Batch-installer-SRC/_bin/playground/errdump.txt
+HDL-Batch-installer-SRC/_bin/playground/wx*.dll

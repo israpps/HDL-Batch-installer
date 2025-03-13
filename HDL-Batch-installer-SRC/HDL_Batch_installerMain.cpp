@@ -1493,6 +1493,7 @@ void HDL_Batch_installerFrame::Onmass_header_injectionClick(wxCommandEvent& even
             }
         }
     }
+    wxAppProgressIndicator *toolbar_progress = new wxAppProgressIndicator(this, partcount);
     wxProgressDialog* DLG = new wxProgressDialog(_("Injecting OPL Launcher to..."), wxEmptyString, partcount, this);
     COLOR(08) cout <<"> writing headers...\n";
     COLOR(07)
@@ -1501,6 +1502,7 @@ void HDL_Batch_installerFrame::Onmass_header_injectionClick(wxCommandEvent& even
     {
         partition = partitions.Item(x);
         DLG->Update(x, partition);
+        toolbar_progress->SetValue(x);
         cout << "\t[" <<partition <<"]\n";
         inject_header_cmd = "HDL.EXE modify_header " + HDD + " \"" + partition + "\"";
         if (CFG::DEBUG_LEVEL > 5 || (CTOR_FLAGS & FORCE_HIGH_DEBUG_LEVEL) )
@@ -1513,6 +1515,7 @@ void HDL_Batch_installerFrame::Onmass_header_injectionClick(wxCommandEvent& even
         COLOR(07)
     }
     wxEndBusyCursor();
+    delete toolbar_progress;
     delete DLG;
     wxMessageBox( _("Header Injection finished"),"",wxICON_INFORMATION );
 }
@@ -1569,6 +1572,7 @@ void HDL_Batch_installerFrame::OnExtractInstalledGameRequest(wxCommandEvent& eve
 
     if (dump_folder->ShowModal() == wxID_OK)
     {
+        wxAppProgressIndicator *toolbar_progress = new wxAppProgressIndicator(this, ripcount);
         wxProgressDialog* DLG = new wxProgressDialog(_("extracting game..."), "", ripcount, this);
         extraction_path = dump_folder->GetPath();
         cout << std::string(extraction_path.mb_str()) <<"\n";
@@ -1579,6 +1583,7 @@ void HDL_Batch_installerFrame::OnExtractInstalledGameRequest(wxCommandEvent& eve
             game_title = Installed_game_list->GetItemText(itemIndex);// Got the selected item index
             if (game_title[0]==' ') game_title = game_title.Mid(1);
             DLG->Update(currrip++, game_title);
+            toolbar_progress->SetValue(currrip);
             cout <<"\nExtracting game ["<< game_title <<"]\n";
             game_title2 = game_title;
             COLOR(08) cout << "> Filtering illegal characters...\n";
@@ -1624,6 +1629,7 @@ void HDL_Batch_installerFrame::OnExtractInstalledGameRequest(wxCommandEvent& eve
                 }
             }
         }
+        delete toolbar_progress;
         delete DLG;
     }
 
@@ -2088,11 +2094,13 @@ void HDL_Batch_installerFrame::OnLoadCustomIcon2InstalledGameRequest(wxCommandEv
         prevcount++;
     itemIndex = -1;//reset counter for the real iteration
     wxProgressDialog* DLG = new wxProgressDialog(_("Injecting custom icon to..."), wxEmptyString, prevcount, this);
+    wxAppProgressIndicator *toolbar_progress = new wxAppProgressIndicator(this, prevcount);
 
     while ((itemIndex = Installed_game_list->GetNextItem(itemIndex, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED)) != wxNOT_FOUND)
     {
         title = Installed_game_list->GetItemText(itemIndex,0);
         DLG->Update(x, title);
+        toolbar_progress->SetValue(x);
         ELF = Installed_game_list->GetItemText(itemIndex,1);
         if( wxFileExists(icon_icn)   )
         {
@@ -2112,6 +2120,7 @@ void HDL_Batch_installerFrame::OnLoadCustomIcon2InstalledGameRequest(wxCommandEv
         x++;
     }
     delete DLG;
+    delete toolbar_progress;
     if( wxFileExists(icon_icn)   )
     {
         std::cout << "> Cleaning stray icon\n";

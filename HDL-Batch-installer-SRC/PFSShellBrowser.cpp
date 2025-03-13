@@ -10,6 +10,7 @@
 #include <wx/textdlg.h>
 #include <wx/dirdlg.h>
 #include <wx/progdlg.h>
+#include <wx/appprogress.h>
 
 ///ICONS
 #include <folder.xpm>
@@ -71,16 +72,19 @@ bool DnDFile::OnDropFiles(wxCoord, wxCoord, const wxArrayString& filenames)
     size_t nFiles = filenames.GetCount();
     std::cout << nFiles << " files dropped\n";
     wxProgressDialog* D = new wxProgressDialog(_("Writing files..."), "", nFiles);
+    wxAppProgressIndicator *toolbar_progress = new wxAppProgressIndicator(0, (int)nFiles);
     if (m_pOwner != nullptr)
     {
         for ( size_t n = 0; n < nFiles; n++ ) {
             D->Update(n, filenames[n]);
+            toolbar_progress->SetValue(n);
             wxFileName FinalPath(filenames[n], wxPATH_DOS);
             std::cout << "WRITE '" << FinalPath.GetFullPath() << "' -> '" << CTX::MNT <<":pfs:"<< CTX::CWD+FinalPath.GetFullName() <<"'\n";
             x = PFSSHELL.copyto(CTX::MNT, CTX::CWD+FinalPath.GetFullName(), FinalPath.GetFullPath().mb_str());
             if (x < 0) errcnt++;
         }
     }
+    delete toolbar_progress;
     delete D;
     if (errcnt > 0) wxMessageBox(wxString::Format(_("%d errors while copying files to partition"), errcnt)+'\n'+check_terminal_4_detailed_err, wxMessageBoxCaptionStr, wxICON_ERROR);
     return true;
