@@ -67,7 +67,7 @@ private:
 
 bool DnDFile::OnDropFiles(wxCoord, wxCoord, const wxArrayString& filenames)
 {
-    int x, errcnt;
+    int x = 0, errcnt = 0;
     size_t nFiles = filenames.GetCount();
     std::cout << nFiles << " files dropped\n";
     wxProgressDialog* D = new wxProgressDialog(_("Writing files..."), "", nFiles);
