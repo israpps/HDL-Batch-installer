@@ -269,7 +269,7 @@
 														<object class="wxTextCtrl" name="ID_TEXTCTRL2" variable="GameCountDisplay" member="yes">
 															<style>wxTE_READONLY|wxBORDER_NONE</style>
 														</object>
-														<flag>wxALL|wxALIGN_CENTER_HORIZONTAL|wxALIGN_CENTER_VERTICAL</flag>
+														<flag>wxALL|wxEXPAND</flag>
 														<border>5</border>
 														<option>2</option>
 													</object>

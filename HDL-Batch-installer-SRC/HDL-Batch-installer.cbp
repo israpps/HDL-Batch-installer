@@ -287,6 +287,7 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 		<Unit filename="../include/DnDFile.h">
 			<Option target="&lt;{~None~}&gt;" />
 		</Unit>
+		<Unit filename="../include/GetPhysicalDrives.h" />
 		<Unit filename="../include/file_t.h" />
 		<Unit filename="../include/wxMD5" />
 		<Unit filename="../src/DnDFile.cpp">
@@ -304,6 +305,7 @@ implementar switch para buscar HASH en tabla interna o redirigir a redump.org
 		<Unit filename="CopyHDD.h" />
 		<Unit filename="DokanMan.cpp" />
 		<Unit filename="DokanMan.h" />
+		<Unit filename="GetPhysicalDrives.cpp" />
 		<Unit filename="HDDFomatMan.cpp" />
 		<Unit filename="HDDFomatMan.h" />
 		<Unit filename="HDDManager.cpp" />
