@@ -10,15 +10,17 @@
 #include <wx/textdlg.h>
 #include <wx/dirdlg.h>
 #include <wx/progdlg.h>
+#include <wx/appprogress.h>
+#include "GetPhysicalDrives.h"
 
 ///ICONS
 #include <folder.xpm>
-#include <harddisk.xpm>
-#include <filesave.xpm>
+#include "xpm/harddisk.xpm"
+#include "xpm/filesave.xpm"
 #include <new_dir.xpm>
 #include <delete.xpm>
 #include <toparent.xpm>
-#include <motif/question.xpm>
+#include "xpm//question.xpm"
 
 namespace XPM {
     int FOLDER;
@@ -67,20 +69,23 @@ private:
 
 bool DnDFile::OnDropFiles(wxCoord, wxCoord, const wxArrayString& filenames)
 {
-    int x, errcnt;
+    int x = 0, errcnt = 0;
     size_t nFiles = filenames.GetCount();
     std::cout << nFiles << " files dropped\n";
     wxProgressDialog* D = new wxProgressDialog(_("Writing files..."), "", nFiles);
+    wxAppProgressIndicator *toolbar_progress = new wxAppProgressIndicator(0, (int)nFiles);
     if (m_pOwner != nullptr)
     {
         for ( size_t n = 0; n < nFiles; n++ ) {
             D->Update(n, filenames[n]);
+            toolbar_progress->SetValue(n);
             wxFileName FinalPath(filenames[n], wxPATH_DOS);
             std::cout << "WRITE '" << FinalPath.GetFullPath() << "' -> '" << CTX::MNT <<":pfs:"<< CTX::CWD+FinalPath.GetFullName() <<"'\n";
             x = PFSSHELL.copyto(CTX::MNT, CTX::CWD+FinalPath.GetFullName(), FinalPath.GetFullPath().mb_str());
             if (x < 0) errcnt++;
         }
     }
+    delete toolbar_progress;
     delete D;
     if (errcnt > 0) wxMessageBox(wxString::Format(_("%d errors while copying files to partition"), errcnt)+'\n'+check_terminal_4_detailed_err, wxMessageBoxCaptionStr, wxICON_ERROR);
     return true;
@@ -232,27 +237,10 @@ PFSShellBrowser::PFSShellBrowser(wxWindow* parent,wxWindowID id,const wxPoint& p
     XPM::FOLDER = IMGLIST->Add(wxIcon(folder_xpm));
     FileList->SetImageList(IMGLIST, wxIMAGE_LIST_SMALL);
 
-
-    wxString line;
-	wxArrayString RET, ERR;
-
-	long retcode = wxExecute("wmic diskdrive get Caption,DeviceID,InterfaceType", RET, ERR, wxEXEC_SYNC);
-	if (retcode == 0)
-    {
-        for (size_t x=0; x<RET.GetCount();x++)
-        {
-            line = RET.Item(x);
-            wxString drive = line.SubString(line.find("\\\\.\\PHYSICALDRIVE"), line.find_first_of(' ', line.find("\\\\.\\PHYSICALDRIVE")));
-            std::cout << drive << "\n";
-            if (line == wxEmptyString || x == 0)
-                continue;
-
-            //std::cout << line.SubString(line.find("\\\\.\\PHYSICALDRIVE"), line.find_first_of(' ', line.find("\\\\.\\PHYSICALDRIVE"))) << "\n";
-            //std::cout << line.Mid(line.find_first_of(' ', line.find("\\\\.\\PHYSICALDRIVE"))) << "|\n";
-            //std::cout << line.SubString(0, line.find("\\\\.\\PHYSICALDRIVE")-1) << "\n";
-            HDDRealDLG->Append(drive);// col. 1
-        }
-    }//*/
+    for (const auto &drive : GetPhysicalDrives()) {
+        std::cout << drive.deviceID << ": " << drive.caption << ", " << drive.bustype << "\n";
+        HDDRealDLG->Append(drive.deviceID);// col. 1
+    }
 
 }
 

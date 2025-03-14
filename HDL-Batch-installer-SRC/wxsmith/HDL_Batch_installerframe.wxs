@@ -19,7 +19,6 @@
 		<id_arg>0</id_arg>
 		<style>wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxMAXIMIZE_BOX|wxMINIMIZE_BOX|wxCLIP_CHILDREN</style>
 		<handler function="OnClose" entry="EVT_CLOSE" />
-		<handler function="OnPaint" entry="EVT_PAINT" />
 		<object class="wxPanel" name="ID_PANEL5" variable="Panel5" member="yes">
 			<pos>0,0</pos>
 			<minsize>557,691</minsize>
@@ -263,7 +262,15 @@
 														</object>
 														<flag>wxALL|wxEXPAND</flag>
 														<border>1</border>
-														<option>1</option>
+														<option>2</option>
+													</object>
+													<object class="sizeritem">
+														<object class="wxTextCtrl" name="ID_TEXTCTRL2" variable="GameCountDisplay" member="yes">
+															<style>wxTE_READONLY|wxBORDER_NONE</style>
+														</object>
+														<flag>wxALL|wxEXPAND</flag>
+														<border>5</border>
+														<option>2</option>
 													</object>
 													<object class="sizeritem">
 														<object class="wxButton" name="ID_BUTTON8" variable="Button3" member="yes">
@@ -276,7 +283,7 @@
 														<option>1</option>
 													</object>
 												</object>
-												<flag>wxALL|wxEXPAND</flag>
+												<flag>wxEXPAND</flag>
 												<border>5</border>
 												<option>1</option>
 											</object>

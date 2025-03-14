@@ -159,6 +159,7 @@ private:
     static const long ID_CHECKBOX2;
     static const long ID_PANEL1;
     static const long ID_BUTTON3;
+    static const long ID_TEXTCTRL2;
     static const long ID_BUTTON8;
     static const long ID_LISTCTRL2;
     static const long ID_PANEL2;
@@ -252,6 +253,7 @@ private:
     wxStaticLine* StaticLine2;
     wxStaticLine* StaticLine3;
     wxStaticLine* StaticLine4;
+    wxTextCtrl* GameCountDisplay;
     wxTextCtrl* hdd_used_space;
     //*)
     void Update_hdd_data(void);

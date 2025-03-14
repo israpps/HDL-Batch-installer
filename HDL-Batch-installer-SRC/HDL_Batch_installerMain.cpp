@@ -30,7 +30,7 @@
 #include "xpm/cd.xpm"
 #include "xpm/dvdd.xpm"
 #include "xpm/dvddl.xpm"
-#include "motif/info.xpm"
+#include "xpm/info.xpm"
 
 namespace CDXPM {
 int CD;
@@ -112,7 +112,7 @@ wxString HDLBINST_APPDATA;
 #include <wx/settings.h>
 #include <wx/string.h>
 //*)
-
+#include <wx/appprogress.h>
 
 
 //(*IdInit(HDL_Batch_installerFrame)
@@ -132,6 +132,7 @@ const long HDL_Batch_installerFrame::ID_STATICLINE4 = wxNewId();
 const long HDL_Batch_installerFrame::ID_CHECKBOX2 = wxNewId();
 const long HDL_Batch_installerFrame::ID_PANEL1 = wxNewId();
 const long HDL_Batch_installerFrame::ID_BUTTON3 = wxNewId();
+const long HDL_Batch_installerFrame::ID_TEXTCTRL2 = wxNewId();
 const long HDL_Batch_installerFrame::ID_BUTTON8 = wxNewId();
 const long HDL_Batch_installerFrame::ID_LISTCTRL2 = wxNewId();
 const long HDL_Batch_installerFrame::ID_PANEL2 = wxNewId();
@@ -306,10 +307,12 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     BoxSizer2 = new wxBoxSizer(wxHORIZONTAL);
     Parse_hdl_toc = new wxButton(Panel2, ID_BUTTON3, _("Get List"), wxDefaultPosition, wxSize(80,23), 0, wxDefaultValidator, _T("ID_BUTTON3"));
     Parse_hdl_toc->Disable();
-    BoxSizer2->Add(Parse_hdl_toc, 1, wxALL|wxEXPAND, 1);
+    BoxSizer2->Add(Parse_hdl_toc, 2, wxALL|wxEXPAND, 1);
+    GameCountDisplay = new wxTextCtrl(Panel2, ID_TEXTCTRL2, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY|wxBORDER_NONE, wxDefaultValidator, _T("ID_TEXTCTRL2"));
+    BoxSizer2->Add(GameCountDisplay, 2, wxALL|wxEXPAND, 5);
     Button3 = new wxButton(Panel2, ID_BUTTON8, _("\?"), wxDefaultPosition, wxSize(16,23), 0, wxDefaultValidator, _T("ID_BUTTON8"));
     BoxSizer2->Add(Button3, 1, wxALL|wxALIGN_TOP|wxSHAPED, 1);
-    FlexGridSizer8->Add(BoxSizer2, 1, wxALL|wxEXPAND, 5);
+    FlexGridSizer8->Add(BoxSizer2, 1, wxEXPAND, 5);
     Installed_game_list = new wxListCtrl(Panel2, ID_LISTCTRL2, wxDefaultPosition, wxSize(509,378), wxLC_REPORT|wxLC_AUTOARRANGE|wxLC_SORT_ASCENDING|wxLC_HRULES|wxLC_VRULES|wxLC_NO_SORT_HEADER|wxBORDER_SUNKEN|wxVSCROLL, wxDefaultValidator, _T("ID_LISTCTRL2"));
     Installed_game_list->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOX));
     wxListItem col0;
@@ -515,7 +518,6 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     Connect(ID_MENUITEM8,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnGameInfoRequest);
     Connect(DELETE_GAME_ID,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnGameDeletionRequest);
     Connect(wxID_ANY,wxEVT_CLOSE_WINDOW,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnClose);
-    Connect(wxEVT_PAINT,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnPaint);
     //*)
     wxImageList* CDTLIST = new wxImageList(24, 24, true);
     CDXPM::CD = CDTLIST->Add(wxIcon(cd_xpm));
@@ -523,9 +525,58 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     CDXPM::DVDDL = CDTLIST->Add(wxIcon(dvddl_xpm));
     Installed_game_list->SetImageList(CDTLIST, wxIMAGE_LIST_SMALL);
     game_list__->SetImageList(CDTLIST, wxIMAGE_LIST_SMALL);
-#ifndef PFSSHELL_ALLOWED
-    PFSBrowserCall->Hide();
+#if !PFSSHELL_ALLOWED
+    PFSBrowserCall->Enable(false);
 #endif
+    std::cout << "Standard error: "<< cat_errdump() << "\n";
+    ACTIVATE_DEBUG_LOG()
+    wxFileName fname( wxTheApp->argv[0] );
+    wxString config_file = fname.GetPath(wxPATH_GET_VOLUME|wxPATH_GET_SEPARATOR) + "Common\\config.INI";
+    wxFileConfig * main_config = new wxFileConfig( wxEmptyString, wxEmptyString, config_file);
+    if(wxFileExists(config_file))
+    {
+        COLOR(08) cout << "> Config File Loaded!\n";
+    }
+    else
+    {
+        COLOR(0c) cerr << "Can't load config file!\n  Loading default values\n";
+    }
+    main_config->Read("Installation/DataBase_Mode", &CFG::DBMODE, DB_INTERNAL);
+    main_config->Read("Init/Debug_level", &CFG::DEBUG_LEVEL, 5);
+    main_config->Read("Installation/MiniOPL", &CFG::MINIOPL_WARNING, 1);
+    main_config->Read("Installation/OSD_Hide", &CFG::OSD_HIDE, 0);
+    main_config->Read("Game_search/Default_iso_path", &CFG::DEFAULT_ISO_PATH, "C:\\");
+    main_config->Read("Installation/Default_dma", &CFG::DMA, 7);
+    main_config->Read("Installation/Custom_icons", &CFG::LOAD_CUSTOM_ICONS, true);
+    main_config->Read("FUSE/default_mountpoint", &CFG::mountpoint, "X");
+    main_config->Read("FUSE/opl_partition", &CFG::default_OPLPART, "+OPL");
+    main_config->Read("Installation/inform_unknown_ID", &CFG::SHARE_DATA, false);
+    main_config->Read("HDDManager/display_games_titles", &CFG::HDDManagerGameTitleDISP, true);
+    main_config->Read("HDDManager/display_subpartition", &CFG::HDDManagerSubPartDSP, false);
+    main_config->Read("FEATURES/allow_experimental", &CFG::ALLOW_EXPERIMENTAL, false);
+
+//  main_config->Read("Init/Check_for_Updates",&CFG::UPDATE_WARNINGS,false);
+    COLOR(08)
+    cout <<"database mode="     << CFG::DBMODE                                     <<endl;
+    cout <<"debug level="       << CFG::DEBUG_LEVEL                                <<endl;
+    cout <<"MiniOPL="           << CFG::MINIOPL_WARNING                            <<endl;
+    cout <<"OSD_Hide="          << CFG::OSD_HIDE                                   <<endl;
+    cout <<"Default_iso_path="  << std::string(CFG::DEFAULT_ISO_PATH.mb_str())     <<endl;
+    cout <<"Default DMA Mode="  << DMA_TABLE[CFG::DMA]                             <<endl;
+    cout <<"Custom Icon Loader="<< CFG::LOAD_CUSTOM_ICONS                          <<endl;
+    cout <<"Report Unknown Game ID's="<< CFG::SHARE_DATA                                 <<endl;
+    cout <<"Game Title Database, "<<GAME_AMOUNT<<" ID's registered\n";
+    COLOR(07)
+    delete main_config;
+    fname = wxTheApp->argv[0];
+
+    EXEC_PATH   = fname.GetPath(wxPATH_GET_VOLUME|wxPATH_GET_SEPARATOR);
+    HDL_CACHE   = EXEC_PATH + "info.sys";
+    MBR_CACHE   = EXEC_PATH + "MBR.KELF";
+    MiniOPL     = EXEC_PATH + "boot.kelf";
+    ICONS_FOLDER= EXEC_PATH + "Common\\ICNS\\";
+    first_init = true;
+    if (!wxDirExists(ICONS_FOLDER)) wxMkDir(ICONS_FOLDER);
 }
 
 void cache_cleanup(void)
@@ -857,12 +908,13 @@ void HDL_Batch_installerFrame::OninstallClick(wxCommandEvent& event)
                   _media
 //                   _DBA,
                   ;
-
+    wxAppProgressIndicator *toolbar_progress = new wxAppProgressIndicator(this, game_list__->GetItemCount());
     while (game_list__->GetItemCount() > 0)
     {
         command1.clear();
         if (install_progress->WasCancelled()) break;
         int current_index = (original_item_count - game_list__->GetItemCount());
+        toolbar_progress->SetValue(current_index);
         strr = game_list__->GetItemText(0,0);
         wxString resultt;
         std::cout << "\n>index: " << current_index <<std::endl;
@@ -979,6 +1031,7 @@ void HDL_Batch_installerFrame::OninstallClick(wxCommandEvent& event)
     }/// /////////////////////////////////MAIN INSTALL LOOP///////////////////////////////// ///
     COLOR(08) std::cout << endl << "> installation process finished.\n";
     delete install_progress;
+    delete toolbar_progress;
     COLOR(07)
     ///
     if (report_counter != 0)
@@ -1016,62 +1069,6 @@ void HDL_Batch_installerFrame::OnSettings(wxCommandEvent& event)
 
 void HDL_Batch_installerFrame::OnPaint(wxPaintEvent& event)
 {
-    if (first_init)
-    {
-        return;
-    }
-    else
-    {
-        std::cout << "Standard error: "<< cat_errdump() << "\n";
-        ACTIVATE_DEBUG_LOG()
-        wxFileName fname( wxTheApp->argv[0] );
-        wxString config_file = fname.GetPath(wxPATH_GET_VOLUME|wxPATH_GET_SEPARATOR) + "Common\\config.INI";
-        wxFileConfig * main_config = new wxFileConfig( wxEmptyString, wxEmptyString, config_file);
-        if(wxFileExists(config_file))
-        {
-            COLOR(08) cout << "> Config File Loaded!\n";
-        }
-        else
-        {
-            COLOR(0c) cerr << "Can't load config file!\n  Loading default values\n";
-        }
-        main_config->Read("Installation/DataBase_Mode", &CFG::DBMODE, DB_INTERNAL);
-        main_config->Read("Init/Debug_level", &CFG::DEBUG_LEVEL, 5);
-        main_config->Read("Installation/MiniOPL", &CFG::MINIOPL_WARNING, 1);
-        main_config->Read("Installation/OSD_Hide", &CFG::OSD_HIDE, 0);
-        main_config->Read("Game_search/Default_iso_path", &CFG::DEFAULT_ISO_PATH, "C:\\");
-        main_config->Read("Installation/Default_dma", &CFG::DMA, 7);
-        main_config->Read("Installation/Custom_icons", &CFG::LOAD_CUSTOM_ICONS, true);
-        main_config->Read("FUSE/default_mountpoint", &CFG::mountpoint, "X");
-        main_config->Read("FUSE/opl_partition", &CFG::default_OPLPART, "+OPL");
-        main_config->Read("Installation/inform_unknown_ID", &CFG::SHARE_DATA, false);
-        main_config->Read("HDDManager/display_games_titles", &CFG::HDDManagerGameTitleDISP, true);
-        main_config->Read("HDDManager/display_subpartition", &CFG::HDDManagerSubPartDSP, false);
-        main_config->Read("FEATURES/allow_experimental", &CFG::ALLOW_EXPERIMENTAL, false);
-
-//        main_config->Read("Init/Check_for_Updates",&CFG::UPDATE_WARNINGS,false);
-        COLOR(08)
-        cout <<"database mode="     << CFG::DBMODE                                     <<endl;
-        cout <<"debug level="       << CFG::DEBUG_LEVEL                                <<endl;
-        cout <<"MiniOPL="           << CFG::MINIOPL_WARNING                            <<endl;
-        cout <<"OSD_Hide="          << CFG::OSD_HIDE                                   <<endl;
-        cout <<"Default_iso_path="  << std::string(CFG::DEFAULT_ISO_PATH.mb_str())     <<endl;
-        cout <<"Default DMA Mode="  << DMA_TABLE[CFG::DMA]                             <<endl;
-        cout <<"Custom Icon Loader="<< CFG::LOAD_CUSTOM_ICONS                          <<endl;
-        cout <<"Report Unknown Game ID's="<< CFG::SHARE_DATA                                 <<endl;
-        cout <<"Game Title Database, "<<GAME_AMOUNT<<" ID's registered\n";
-        COLOR(07)
-        delete main_config;
-        fname = wxTheApp->argv[0];
-
-        EXEC_PATH   = fname.GetPath(wxPATH_GET_VOLUME|wxPATH_GET_SEPARATOR);
-        HDL_CACHE   = EXEC_PATH + "info.sys";
-        MBR_CACHE   = EXEC_PATH + "MBR.KELF";
-        MiniOPL     = EXEC_PATH + "boot.kelf";
-        ICONS_FOLDER= EXEC_PATH + "Common\\ICNS\\";
-        first_init = true;
-        if (!wxDirExists(ICONS_FOLDER)) wxMkDir(ICONS_FOLDER);
-    }
 }
 
 void HDL_Batch_installerFrame::OnCheckBox1Click1(wxCommandEvent& event)
@@ -1272,6 +1269,7 @@ void HDL_Batch_installerFrame::Update_hdd_data(void)
         } else {
             PFSSHELL_USABLE = false;
             wxMessageBox(("Error initializing libps2hdd service\n\nCheck log for more details\n\nHDD formatting and HDD Manager disabled"), wxMessageBoxCaptionStr, wxICON_WARNING);
+            PFSBrowserCall->Enable(false);
         }
         PFSSHELL.CloseDevice();
         MenuHDDFormat->Enable(PFSSHELL_USABLE);
@@ -1349,6 +1347,8 @@ void HDL_Batch_installerFrame::List_refresh_request()
             Installed_game_list->SetItemImage(itemIndex, CDXPM::DVD);
         }
     }
+    GameCountDisplay->Clear();
+    GameCountDisplay->AppendText(wxString::Format(_("%d games"), Installed_game_list->GetItemCount()));
     if (result.GetCount() <= 2) wxMessageBox(_("This HDD has no PS2 Games inside"), error_caption);
 
     int size_ELFID = Installed_game_list->GetColumnWidth(1);
@@ -1490,6 +1490,7 @@ void HDL_Batch_installerFrame::Onmass_header_injectionClick(wxCommandEvent& even
             }
         }
     }
+    wxAppProgressIndicator *toolbar_progress = new wxAppProgressIndicator(this, partcount);
     wxProgressDialog* DLG = new wxProgressDialog(_("Injecting OPL Launcher to..."), wxEmptyString, partcount, this);
     COLOR(08) cout <<"> writing headers...\n";
     COLOR(07)
@@ -1498,6 +1499,7 @@ void HDL_Batch_installerFrame::Onmass_header_injectionClick(wxCommandEvent& even
     {
         partition = partitions.Item(x);
         DLG->Update(x, partition);
+        toolbar_progress->SetValue(x);
         cout << "\t[" <<partition <<"]\n";
         inject_header_cmd = "HDL.EXE modify_header " + HDD + " \"" + partition + "\"";
         if (CFG::DEBUG_LEVEL > 5 || (CTOR_FLAGS & FORCE_HIGH_DEBUG_LEVEL) )
@@ -1510,6 +1512,7 @@ void HDL_Batch_installerFrame::Onmass_header_injectionClick(wxCommandEvent& even
         COLOR(07)
     }
     wxEndBusyCursor();
+    delete toolbar_progress;
     delete DLG;
     wxMessageBox( _("Header Injection finished"),"",wxICON_INFORMATION );
 }
@@ -1566,6 +1569,7 @@ void HDL_Batch_installerFrame::OnExtractInstalledGameRequest(wxCommandEvent& eve
 
     if (dump_folder->ShowModal() == wxID_OK)
     {
+        wxAppProgressIndicator *toolbar_progress = new wxAppProgressIndicator(this, ripcount);
         wxProgressDialog* DLG = new wxProgressDialog(_("extracting game..."), "", ripcount, this);
         extraction_path = dump_folder->GetPath();
         cout << std::string(extraction_path.mb_str()) <<"\n";
@@ -1576,6 +1580,7 @@ void HDL_Batch_installerFrame::OnExtractInstalledGameRequest(wxCommandEvent& eve
             game_title = Installed_game_list->GetItemText(itemIndex);// Got the selected item index
             if (game_title[0]==' ') game_title = game_title.Mid(1);
             DLG->Update(currrip++, game_title);
+            toolbar_progress->SetValue(currrip);
             cout <<"\nExtracting game ["<< game_title <<"]\n";
             game_title2 = game_title;
             COLOR(08) cout << "> Filtering illegal characters...\n";
@@ -1621,6 +1626,7 @@ void HDL_Batch_installerFrame::OnExtractInstalledGameRequest(wxCommandEvent& eve
                 }
             }
         }
+        delete toolbar_progress;
         delete DLG;
     }
 
@@ -2085,11 +2091,13 @@ void HDL_Batch_installerFrame::OnLoadCustomIcon2InstalledGameRequest(wxCommandEv
         prevcount++;
     itemIndex = -1;//reset counter for the real iteration
     wxProgressDialog* DLG = new wxProgressDialog(_("Injecting custom icon to..."), wxEmptyString, prevcount, this);
+    wxAppProgressIndicator *toolbar_progress = new wxAppProgressIndicator(this, prevcount);
 
     while ((itemIndex = Installed_game_list->GetNextItem(itemIndex, wxLIST_NEXT_ALL, wxLIST_STATE_SELECTED)) != wxNOT_FOUND)
     {
         title = Installed_game_list->GetItemText(itemIndex,0);
         DLG->Update(x, title);
+        toolbar_progress->SetValue(x);
         ELF = Installed_game_list->GetItemText(itemIndex,1);
         if( wxFileExists(icon_icn)   )
         {
@@ -2109,6 +2117,7 @@ void HDL_Batch_installerFrame::OnLoadCustomIcon2InstalledGameRequest(wxCommandEv
         x++;
     }
     delete DLG;
+    delete toolbar_progress;
     if( wxFileExists(icon_icn)   )
     {
         std::cout << "> Cleaning stray icon\n";

@@ -19,13 +19,13 @@ jobs:
     steps:
 
     - name: checkout code for release
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
     - name: "Check file existence"
-      uses: andstor/file-existence-action@v1
+      uses: andstor/file-existence-action@v3
       with:
-        files: "Release/HDL-Batch-installer.exe, Release32/HDL-Batch-installer.exe, Release/HDL.EXE, Release/boot.kelf, Release/Common/config.INI"
-        allow_failure: "true"
+        files: "Release/HDL-Batch-installer.exe, Release/HDL.EXE, Release/boot.kelf, Release/Common/config.INI"
+        fail: true
 
     - name: Install dependencies
       run: |
@@ -85,14 +85,11 @@ jobs:
 
     - name: delete previous tag/release
       if: (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main')
-      uses: dev-drprasad/delete-tag-and-release@v0.2.1
-      with:
-        delete_release: true
-        tag_name: Latest
+      run: gh release delete Latest -y --cleanup-tag
       env:
-       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Repack latest x64 build
+    - name: Repack latest build
       run: |
         SCH=${GITHUB_SHA::7}
         REF=${{ env.VERSION_TAG }}
@@ -108,22 +105,6 @@ jobs:
         cp -r Release "HDLBInst[${{ env.VERSION }}-x64]"
         7z a -t7z -r HDLBInst-x64-$REF.7z HDLBInst*x64*/*
 
-    - name: Repack latest x86 build
-      run: |
-        SCH=${GITHUB_SHA::7}
-        REF=${{ env.VERSION_TAG }}
-        cd Release
-        cd Common
-        echo 32bits build >>commit.sys
-        cd ..
-        cd ..
-        rm Release/HDL-Batch-installer.exe
-        rm Release/libps2hdd.dll
-        cp -r Release32/* Release/
-        mv Release "HDLBInst[${{ env.VERSION }}-x86]"
-        7z a -t7z -r HDLBInst-x86-$REF.7z HDLBInst*x86*/*
-
-
     - name: Upload artifacts
       if: ${{ success() }}
       uses: actions/upload-artifact@v4
@@ -134,14 +115,13 @@ jobs:
              Translation-template.7z
 
     - name: Deploy pre-release
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v2
       if: (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main')
       with:
         token: "${{ secrets.GITHUB_TOKEN }}"
         fail_on_unmatched_files: true
         files: |
              HDLBInst*x64*.7z
-             HDLBInst*x86*.7z
              Translation-template.7z
         name: "${{ env.VERSION }}"
         tag_name: "Latest"
@@ -155,7 +135,7 @@ jobs:
     steps:
 
     - name: checkout code for release
-      uses: actions/checkout@v1
+      uses: actions/checkout@v4
 
     - name: get version from changelog
       shell: bash
