@@ -19,7 +19,6 @@
 		<id_arg>0</id_arg>
 		<style>wxCAPTION|wxSYSTEM_MENU|wxRESIZE_BORDER|wxCLOSE_BOX|wxMAXIMIZE_BOX|wxMINIMIZE_BOX|wxCLIP_CHILDREN</style>
 		<handler function="OnClose" entry="EVT_CLOSE" />
-		<handler function="OnPaint" entry="EVT_PAINT" />
 		<object class="wxPanel" name="ID_PANEL5" variable="Panel5" member="yes">
 			<pos>0,0</pos>
 			<minsize>557,691</minsize>

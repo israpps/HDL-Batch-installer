@@ -518,7 +518,6 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     Connect(ID_MENUITEM8,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnGameInfoRequest);
     Connect(DELETE_GAME_ID,wxEVT_COMMAND_MENU_SELECTED,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnGameDeletionRequest);
     Connect(wxID_ANY,wxEVT_CLOSE_WINDOW,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnClose);
-    Connect(wxEVT_PAINT,(wxObjectEventFunction)&HDL_Batch_installerFrame::OnPaint);
     //*)
     wxImageList* CDTLIST = new wxImageList(24, 24, true);
     CDXPM::CD = CDTLIST->Add(wxIcon(cd_xpm));
@@ -529,6 +528,55 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
 #if !PFSSHELL_ALLOWED
     PFSBrowserCall->Enable(false);
 #endif
+    std::cout << "Standard error: "<< cat_errdump() << "\n";
+    ACTIVATE_DEBUG_LOG()
+    wxFileName fname( wxTheApp->argv[0] );
+    wxString config_file = fname.GetPath(wxPATH_GET_VOLUME|wxPATH_GET_SEPARATOR) + "Common\\config.INI";
+    wxFileConfig * main_config = new wxFileConfig( wxEmptyString, wxEmptyString, config_file);
+    if(wxFileExists(config_file))
+    {
+        COLOR(08) cout << "> Config File Loaded!\n";
+    }
+    else
+    {
+        COLOR(0c) cerr << "Can't load config file!\n  Loading default values\n";
+    }
+    main_config->Read("Installation/DataBase_Mode", &CFG::DBMODE, DB_INTERNAL);
+    main_config->Read("Init/Debug_level", &CFG::DEBUG_LEVEL, 5);
+    main_config->Read("Installation/MiniOPL", &CFG::MINIOPL_WARNING, 1);
+    main_config->Read("Installation/OSD_Hide", &CFG::OSD_HIDE, 0);
+    main_config->Read("Game_search/Default_iso_path", &CFG::DEFAULT_ISO_PATH, "C:\\");
+    main_config->Read("Installation/Default_dma", &CFG::DMA, 7);
+    main_config->Read("Installation/Custom_icons", &CFG::LOAD_CUSTOM_ICONS, true);
+    main_config->Read("FUSE/default_mountpoint", &CFG::mountpoint, "X");
+    main_config->Read("FUSE/opl_partition", &CFG::default_OPLPART, "+OPL");
+    main_config->Read("Installation/inform_unknown_ID", &CFG::SHARE_DATA, false);
+    main_config->Read("HDDManager/display_games_titles", &CFG::HDDManagerGameTitleDISP, true);
+    main_config->Read("HDDManager/display_subpartition", &CFG::HDDManagerSubPartDSP, false);
+    main_config->Read("FEATURES/allow_experimental", &CFG::ALLOW_EXPERIMENTAL, false);
+
+//  main_config->Read("Init/Check_for_Updates",&CFG::UPDATE_WARNINGS,false);
+    COLOR(08)
+    cout <<"database mode="     << CFG::DBMODE                                     <<endl;
+    cout <<"debug level="       << CFG::DEBUG_LEVEL                                <<endl;
+    cout <<"MiniOPL="           << CFG::MINIOPL_WARNING                            <<endl;
+    cout <<"OSD_Hide="          << CFG::OSD_HIDE                                   <<endl;
+    cout <<"Default_iso_path="  << std::string(CFG::DEFAULT_ISO_PATH.mb_str())     <<endl;
+    cout <<"Default DMA Mode="  << DMA_TABLE[CFG::DMA]                             <<endl;
+    cout <<"Custom Icon Loader="<< CFG::LOAD_CUSTOM_ICONS                          <<endl;
+    cout <<"Report Unknown Game ID's="<< CFG::SHARE_DATA                                 <<endl;
+    cout <<"Game Title Database, "<<GAME_AMOUNT<<" ID's registered\n";
+    COLOR(07)
+    delete main_config;
+    fname = wxTheApp->argv[0];
+
+    EXEC_PATH   = fname.GetPath(wxPATH_GET_VOLUME|wxPATH_GET_SEPARATOR);
+    HDL_CACHE   = EXEC_PATH + "info.sys";
+    MBR_CACHE   = EXEC_PATH + "MBR.KELF";
+    MiniOPL     = EXEC_PATH + "boot.kelf";
+    ICONS_FOLDER= EXEC_PATH + "Common\\ICNS\\";
+    first_init = true;
+    if (!wxDirExists(ICONS_FOLDER)) wxMkDir(ICONS_FOLDER);
 }
 
 void cache_cleanup(void)
@@ -1021,62 +1069,6 @@ void HDL_Batch_installerFrame::OnSettings(wxCommandEvent& event)
 
 void HDL_Batch_installerFrame::OnPaint(wxPaintEvent& event)
 {
-    if (first_init)
-    {
-        return;
-    }
-    else
-    {
-        std::cout << "Standard error: "<< cat_errdump() << "\n";
-        ACTIVATE_DEBUG_LOG()
-        wxFileName fname( wxTheApp->argv[0] );
-        wxString config_file = fname.GetPath(wxPATH_GET_VOLUME|wxPATH_GET_SEPARATOR) + "Common\\config.INI";
-        wxFileConfig * main_config = new wxFileConfig( wxEmptyString, wxEmptyString, config_file);
-        if(wxFileExists(config_file))
-        {
-            COLOR(08) cout << "> Config File Loaded!\n";
-        }
-        else
-        {
-            COLOR(0c) cerr << "Can't load config file!\n  Loading default values\n";
-        }
-        main_config->Read("Installation/DataBase_Mode", &CFG::DBMODE, DB_INTERNAL);
-        main_config->Read("Init/Debug_level", &CFG::DEBUG_LEVEL, 5);
-        main_config->Read("Installation/MiniOPL", &CFG::MINIOPL_WARNING, 1);
-        main_config->Read("Installation/OSD_Hide", &CFG::OSD_HIDE, 0);
-        main_config->Read("Game_search/Default_iso_path", &CFG::DEFAULT_ISO_PATH, "C:\\");
-        main_config->Read("Installation/Default_dma", &CFG::DMA, 7);
-        main_config->Read("Installation/Custom_icons", &CFG::LOAD_CUSTOM_ICONS, true);
-        main_config->Read("FUSE/default_mountpoint", &CFG::mountpoint, "X");
-        main_config->Read("FUSE/opl_partition", &CFG::default_OPLPART, "+OPL");
-        main_config->Read("Installation/inform_unknown_ID", &CFG::SHARE_DATA, false);
-        main_config->Read("HDDManager/display_games_titles", &CFG::HDDManagerGameTitleDISP, true);
-        main_config->Read("HDDManager/display_subpartition", &CFG::HDDManagerSubPartDSP, false);
-        main_config->Read("FEATURES/allow_experimental", &CFG::ALLOW_EXPERIMENTAL, false);
-
-//        main_config->Read("Init/Check_for_Updates",&CFG::UPDATE_WARNINGS,false);
-        COLOR(08)
-        cout <<"database mode="     << CFG::DBMODE                                     <<endl;
-        cout <<"debug level="       << CFG::DEBUG_LEVEL                                <<endl;
-        cout <<"MiniOPL="           << CFG::MINIOPL_WARNING                            <<endl;
-        cout <<"OSD_Hide="          << CFG::OSD_HIDE                                   <<endl;
-        cout <<"Default_iso_path="  << std::string(CFG::DEFAULT_ISO_PATH.mb_str())     <<endl;
-        cout <<"Default DMA Mode="  << DMA_TABLE[CFG::DMA]                             <<endl;
-        cout <<"Custom Icon Loader="<< CFG::LOAD_CUSTOM_ICONS                          <<endl;
-        cout <<"Report Unknown Game ID's="<< CFG::SHARE_DATA                                 <<endl;
-        cout <<"Game Title Database, "<<GAME_AMOUNT<<" ID's registered\n";
-        COLOR(07)
-        delete main_config;
-        fname = wxTheApp->argv[0];
-
-        EXEC_PATH   = fname.GetPath(wxPATH_GET_VOLUME|wxPATH_GET_SEPARATOR);
-        HDL_CACHE   = EXEC_PATH + "info.sys";
-        MBR_CACHE   = EXEC_PATH + "MBR.KELF";
-        MiniOPL     = EXEC_PATH + "boot.kelf";
-        ICONS_FOLDER= EXEC_PATH + "Common\\ICNS\\";
-        first_init = true;
-        if (!wxDirExists(ICONS_FOLDER)) wxMkDir(ICONS_FOLDER);
-    }
 }
 
 void HDL_Batch_installerFrame::OnCheckBox1Click1(wxCommandEvent& event)
