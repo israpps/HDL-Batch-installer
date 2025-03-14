@@ -1,6 +1,0 @@
-UI	Bump UI library wxwidgets from v3.0.5 (static link, monolithic library) to 3.2.6 (DLL, modular)
-Install queue	Show install progress on the HDL Batch installer icon on the toolbar (thanks to newer wxwidgets)
-PFS Filebrowser	Fixed a bug that caused that file transfers to the HDD always reported an error, even if everything went smooth
-Installed game list	Add installed game count
-HDD listing	Drop dependency of WMIC.EXE and start using WIN32 API. ensuring compatibility with win11 and beyond due to WMIC deprecation
-Development	Drop Support for 32-Bits version of HDL Batch Installer due to toolchain limitations and limited time
