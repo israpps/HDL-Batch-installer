@@ -22,10 +22,10 @@ jobs:
       uses: actions/checkout@v4
 
     - name: "Check file existence"
-      uses: andstor/file-existence-action@v1
+      uses: andstor/file-existence-action@v3
       with:
         files: "Release/HDL-Batch-installer.exe, Release/HDL.EXE, Release/boot.kelf, Release/Common/config.INI"
-        allow_failure: "true"
+        fail: true
 
     - name: Install dependencies
       run: |
@@ -85,12 +85,9 @@ jobs:
 
     - name: delete previous tag/release
       if: (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main')
-      uses: dev-drprasad/delete-tag-and-release@v0.2.1
-      with:
-        delete_release: true
-        tag_name: Latest
+      run: gh release delete Latest -y --cleanup-tag
       env:
-       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Repack latest build
       run: |
@@ -118,7 +115,7 @@ jobs:
              Translation-template.7z
 
     - name: Deploy pre-release
-      uses: softprops/action-gh-release@v1
+      uses: softprops/action-gh-release@v2
       if: (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main')
       with:
         token: "${{ secrets.GITHUB_TOKEN }}"
