@@ -132,6 +132,7 @@ const long HDL_Batch_installerFrame::ID_STATICLINE4 = wxNewId();
 const long HDL_Batch_installerFrame::ID_CHECKBOX2 = wxNewId();
 const long HDL_Batch_installerFrame::ID_PANEL1 = wxNewId();
 const long HDL_Batch_installerFrame::ID_BUTTON3 = wxNewId();
+const long HDL_Batch_installerFrame::ID_TEXTCTRL2 = wxNewId();
 const long HDL_Batch_installerFrame::ID_BUTTON8 = wxNewId();
 const long HDL_Batch_installerFrame::ID_LISTCTRL2 = wxNewId();
 const long HDL_Batch_installerFrame::ID_PANEL2 = wxNewId();
@@ -306,10 +307,12 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     BoxSizer2 = new wxBoxSizer(wxHORIZONTAL);
     Parse_hdl_toc = new wxButton(Panel2, ID_BUTTON3, _("Get List"), wxDefaultPosition, wxSize(80,23), 0, wxDefaultValidator, _T("ID_BUTTON3"));
     Parse_hdl_toc->Disable();
-    BoxSizer2->Add(Parse_hdl_toc, 1, wxALL|wxEXPAND, 1);
+    BoxSizer2->Add(Parse_hdl_toc, 2, wxALL|wxEXPAND, 1);
+    GameCountDisplay = new wxTextCtrl(Panel2, ID_TEXTCTRL2, wxEmptyString, wxDefaultPosition, wxDefaultSize, wxTE_READONLY|wxBORDER_NONE, wxDefaultValidator, _T("ID_TEXTCTRL2"));
+    BoxSizer2->Add(GameCountDisplay, 2, wxALL|wxEXPAND, 5);
     Button3 = new wxButton(Panel2, ID_BUTTON8, _("\?"), wxDefaultPosition, wxSize(16,23), 0, wxDefaultValidator, _T("ID_BUTTON8"));
     BoxSizer2->Add(Button3, 1, wxALL|wxALIGN_TOP|wxSHAPED, 1);
-    FlexGridSizer8->Add(BoxSizer2, 1, wxALL|wxEXPAND, 5);
+    FlexGridSizer8->Add(BoxSizer2, 1, wxEXPAND, 5);
     Installed_game_list = new wxListCtrl(Panel2, ID_LISTCTRL2, wxDefaultPosition, wxSize(509,378), wxLC_REPORT|wxLC_AUTOARRANGE|wxLC_SORT_ASCENDING|wxLC_HRULES|wxLC_VRULES|wxLC_NO_SORT_HEADER|wxBORDER_SUNKEN|wxVSCROLL, wxDefaultValidator, _T("ID_LISTCTRL2"));
     Installed_game_list->SetBackgroundColour(wxSystemSettings::GetColour(wxSYS_COLOUR_LISTBOX));
     wxListItem col0;
@@ -1352,6 +1355,8 @@ void HDL_Batch_installerFrame::List_refresh_request()
             Installed_game_list->SetItemImage(itemIndex, CDXPM::DVD);
         }
     }
+    GameCountDisplay->Clear();
+    GameCountDisplay->AppendText(wxString::Format(_("%d games"), Installed_game_list->GetItemCount()));
     if (result.GetCount() <= 2) wxMessageBox(_("This HDD has no PS2 Games inside"), error_caption);
 
     int size_ELFID = Installed_game_list->GetColumnWidth(1);

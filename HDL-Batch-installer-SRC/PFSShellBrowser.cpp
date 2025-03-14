@@ -11,6 +11,7 @@
 #include <wx/dirdlg.h>
 #include <wx/progdlg.h>
 #include <wx/appprogress.h>
+#include "GetPhysicalDrives.h"
 
 ///ICONS
 #include <folder.xpm>
@@ -236,27 +237,10 @@ PFSShellBrowser::PFSShellBrowser(wxWindow* parent,wxWindowID id,const wxPoint& p
     XPM::FOLDER = IMGLIST->Add(wxIcon(folder_xpm));
     FileList->SetImageList(IMGLIST, wxIMAGE_LIST_SMALL);
 
-
-    wxString line;
-	wxArrayString RET, ERR;
-
-	long retcode = wxExecute("wmic diskdrive get Caption,DeviceID,InterfaceType", RET, ERR, wxEXEC_SYNC);
-	if (retcode == 0)
-    {
-        for (size_t x=0; x<RET.GetCount();x++)
-        {
-            line = RET.Item(x);
-            wxString drive = line.SubString(line.find("\\\\.\\PHYSICALDRIVE"), line.find_first_of(' ', line.find("\\\\.\\PHYSICALDRIVE")));
-            std::cout << drive << "\n";
-            if (line == wxEmptyString || x == 0)
-                continue;
-
-            //std::cout << line.SubString(line.find("\\\\.\\PHYSICALDRIVE"), line.find_first_of(' ', line.find("\\\\.\\PHYSICALDRIVE"))) << "\n";
-            //std::cout << line.Mid(line.find_first_of(' ', line.find("\\\\.\\PHYSICALDRIVE"))) << "|\n";
-            //std::cout << line.SubString(0, line.find("\\\\.\\PHYSICALDRIVE")-1) << "\n";
-            HDDRealDLG->Append(drive);// col. 1
-        }
-    }//*/
+    for (const auto &drive : GetPhysicalDrives()) {
+        std::cout << drive.deviceID << ": " << drive.caption << ", " << drive.bustype << "\n";
+        HDDRealDLG->Append(drive.deviceID);// col. 1
+    }
 
 }
 
