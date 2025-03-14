@@ -24,7 +24,7 @@ jobs:
     - name: "Check file existence"
       uses: andstor/file-existence-action@v1
       with:
-        files: "Release/HDL-Batch-installer.exe, Release32/HDL-Batch-installer.exe, Release/HDL.EXE, Release/boot.kelf, Release/Common/config.INI"
+        files: "Release/HDL-Batch-installer.exe, Release/HDL.EXE, Release/boot.kelf, Release/Common/config.INI"
         allow_failure: "true"
 
     - name: Install dependencies
@@ -92,7 +92,7 @@ jobs:
       env:
        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Repack latest x64 build
+    - name: Repack latest build
       run: |
         SCH=${GITHUB_SHA::7}
         REF=${{ env.VERSION_TAG }}
@@ -107,22 +107,6 @@ jobs:
         cp LICENSE Release/LICENSE
         cp -r Release "HDLBInst[${{ env.VERSION }}-x64]"
         7z a -t7z -r HDLBInst-x64-$REF.7z HDLBInst*x64*/*
-
-    - name: Repack latest x86 build
-      run: |
-        SCH=${GITHUB_SHA::7}
-        REF=${{ env.VERSION_TAG }}
-        cd Release
-        cd Common
-        echo 32bits build >>commit.sys
-        cd ..
-        cd ..
-        rm Release/HDL-Batch-installer.exe
-        rm Release/libps2hdd.dll
-        cp -r Release32/* Release/
-        mv Release "HDLBInst[${{ env.VERSION }}-x86]"
-        7z a -t7z -r HDLBInst-x86-$REF.7z HDLBInst*x86*/*
-
 
     - name: Upload artifacts
       if: ${{ success() }}
@@ -141,7 +125,6 @@ jobs:
         fail_on_unmatched_files: true
         files: |
              HDLBInst*x64*.7z
-             HDLBInst*x86*.7z
              Translation-template.7z
         name: "${{ env.VERSION }}"
         tag_name: "Latest"
@@ -155,7 +138,7 @@ jobs:
     steps:
 
     - name: checkout code for release
-      uses: actions/checkout@v1
+      uses: actions/checkout@v4
 
     - name: get version from changelog
       shell: bash
