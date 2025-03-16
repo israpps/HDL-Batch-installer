@@ -66,6 +66,7 @@ bool        HDDManagerSubPartDSP;
 //    bool        UPDATE_AVAILABLE = false;
 //    bool        UPDATE_WARNINGS;
 }
+wxString CFG_ARTURL;
 bool CAN_COPY_HDD;
 wxString versionTAG;
 //wxString gserverTAG;
@@ -542,6 +543,7 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
         COLOR(0c) cerr << "Can't load config file!\n  Loading default values\n";
     }
     main_config->Read("Installation/DataBase_Mode", &CFG::DBMODE, DB_INTERNAL);
+    main_config->Read("Artwork/DataBaseURL", &CFG_ARTURL, "https://archive.org/download/OPLM_ART_2023_07/OPLM_ART_2023_07.zip/PS2%2F");
     main_config->Read("Init/Debug_level", &CFG::DEBUG_LEVEL, 5);
     main_config->Read("Installation/MiniOPL", &CFG::MINIOPL_WARNING, 1);
     main_config->Read("Installation/OSD_Hide", &CFG::OSD_HIDE, 0);
@@ -564,7 +566,7 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     cout <<"Default_iso_path="  << std::string(CFG::DEFAULT_ISO_PATH.mb_str())     <<endl;
     cout <<"Default DMA Mode="  << DMA_TABLE[CFG::DMA]                             <<endl;
     cout <<"Custom Icon Loader="<< CFG::LOAD_CUSTOM_ICONS                          <<endl;
-    cout <<"Report Unknown Game ID's="<< CFG::SHARE_DATA                                 <<endl;
+    cout <<"Artwork URL="       << CFG_ARTURL                                      <<endl;
     cout <<"Game Title Database, "<<GAME_AMOUNT<<" ID's registered\n";
     COLOR(07)
     delete main_config;
