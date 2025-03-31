@@ -41,6 +41,11 @@ jobs:
       run: echo "VERSION_TAG=$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//' | sed -r 's/\s+//g' | sed 's/Aniversary/aniv/' | sed 's/Revision/rev/' | sed 's/Release/rel/'| awk '{$1=$1;print}')" >> "$GITHUB_ENV"
       id: tag
 
+    - name: get version from changelog as release tag (clean)
+      shell: bash
+      run: echo "VERSION_TAG_CLEAN=$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//' | sed -r 's/\s+//g' | sed 's/-Aniversary/./' | sed 's/-Revision/./' | sed 's/-Release/./'| awk '{$1=$1;print}')" >> "$GITHUB_ENV"
+      id: tagclean
+
     - name: Download Latest HDL-Dump
       run: |
         cd Release
@@ -127,6 +132,20 @@ jobs:
         tag_name: "Latest"
         body_path: 'latest_changes.log'
         prerelease: false
+  
+    - name: Deploy pre-release - separate tag
+      uses: softprops/action-gh-release@v2
+      if: (github.ref == 'refs/heads/master' || github.ref == 'refs/heads/main')
+      with:
+        token: "${{ secrets.GITHUB_TOKEN }}"
+        fail_on_unmatched_files: true
+        files: |
+             HDLBInst*x64*.7z
+             Translation-template.7z
+        name: "${{ env.VERSION }}"
+        tag_name: "${{ env.VERSION_TAG_CLEAN }}"
+        body_path: 'latest_changes.log'
+        prerelease: true
 
   discord_webhooks:
     needs: Repack_and_Release

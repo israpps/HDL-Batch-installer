@@ -1,3 +1,10 @@
+31 March 2025
+   [v3.7.0 - Revision 1]
+
+     Change log:
+        -Artwork: fix artwork download (fixed URL)
+        -Artwork: Allow configurable download source for artwork (archive.org, same file layout than OPLM backups)
+
 14 March 2025
    [v3.7.0 - Revision 0]
 

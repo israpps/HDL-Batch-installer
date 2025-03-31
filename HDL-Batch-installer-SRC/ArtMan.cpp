@@ -147,13 +147,13 @@ void ArtMan::OnPaint(wxPaintEvent& event)
            download->Disable();
        }*/
 }
-
+extern wxString CFG_ARTURL;
 long ArtMan::Request_art(wxString ELF, wxString suffix)
 {
     wxString gauge_switch = (FAST->IsChecked()) ? "" : "--show-progress ";
     wxString cert_switch =  (CheckCERT->IsChecked()) ? "--no-check-certificate " : "";
     long wget_return_value;
-    wxString command = "common\\wget.exe -q " + cert_switch + gauge_switch +"https://ia802706.us.archive.org/view_archive.php?archive=/4/items/OPLM_ART_2023_07/OPLM_ART_2023_07.zip&file=PS2%2F";
+    wxString command = "common\\wget.exe -q " + cert_switch + gauge_switch + CFG_ARTURL;
     command.append(ELF);
     command.append("%2F");
     command.append(ELF);
