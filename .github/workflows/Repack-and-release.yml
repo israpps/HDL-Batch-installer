@@ -158,7 +158,7 @@ jobs:
 
     - name: get version from changelog
       shell: bash
-      run: echo "string=$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//' | awk '{$1=$1;print}')" >> "$GITHUB_ENV"
+      run: echo "VERSION=$(grep -m1 '\[*\]' Release/changes.log | sed 's/\[//' | sed 's/\]//' | awk '{$1=$1;print}')" >> "$GITHUB_ENV"
       id: version
 
     - name: get version from changelog as release tag
