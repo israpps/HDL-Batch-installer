@@ -34,8 +34,8 @@ bool HDL_Batch_installerApp::OnInit()
         return false;
     }
     bool first_time = false;
-    const wxString DOWNLOAD_COMMAND    = "Common\\wget -q --show-progress https://github.com/israpps/HDL-Batch-installer/raw/main/svr/_ICN.7z -O Common\\_ICN.7z",
-                   EXTRACTION_COMMAND = "Common\\7z.exe x -oCommon -bso0 -pPDPA -y Common\\_ICN.7z";
+    const wxString DOWNLOAD_COMMAND    = "Common\\wget -q --show-progress https://github.com/CosmicScale/HDD-OSD-Icon-Database/archive/refs/heads/main.zip -O Common\\ICONDB.ZIP",
+                   EXTRACTION_COMMAND = "Common\\7z.exe x -oCommon -bso0 -y Common\\ICONDB.ZIP";
 
     if (!wxApp::OnInit()) return false;
     wxInitAllImageHandlers();
@@ -157,13 +157,13 @@ bool HDL_Batch_installerApp::OnInit()
 
     if (ping == 0)
     {
-        if (!wxFileExists("Common\\_ICN.7z"))
+        if (!wxFileExists("Common\\ICONDB.ZIP"))
         {
             std::cout << "icon package is missing. pulling copy from svr...\n";
             wxExecute(DOWNLOAD_COMMAND, wxEXEC_SYNC);
         }
 
-        if ((!wxFileExists("Common\\Icons.INI") || !wxDirExists("Common\\ICNS")) && wxFileExists("Common\\_ICN.7z"))
+        if (!wxFileExists("Common\\HDD-OSD-Icon-Database-main\\README.md"))
         {
             std::cout << "icon manifest is missing. unpacking icons...\n";
             wxExecute(EXTRACTION_COMMAND, wxEXEC_SYNC);

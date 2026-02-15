@@ -576,7 +576,7 @@ HDL_Batch_installerFrame::HDL_Batch_installerFrame(wxWindow* parent, wxLocale& l
     HDL_CACHE   = EXEC_PATH + "info.sys";
     MBR_CACHE   = EXEC_PATH + "MBR.KELF";
     MiniOPL     = EXEC_PATH + "boot.kelf";
-    ICONS_FOLDER= EXEC_PATH + "Common\\ICNS\\";
+    ICONS_FOLDER= EXEC_PATH + "Common\\HDD-OSD-Icon-Database-main\\ico";
     first_init = true;
     if (!wxDirExists(ICONS_FOLDER)) wxMkDir(ICONS_FOLDER);
 }
@@ -889,7 +889,7 @@ void HDL_Batch_installerFrame::OninstallClick(wxCommandEvent& event)
         return;
     }
 
-    if ( (!wxFileExists(EXEC_PATH+"Common\\Icons.INI")) && (CFG::LOAD_CUSTOM_ICONS))
+    if ( (!wxFileExists(EXEC_PATH+"Common\\HDD-OSD-Icon-Database-main\\README.md")) && (CFG::LOAD_CUSTOM_ICONS))
     {
         wxEndBusyCursor();
         ask_2_download_icons();
@@ -1784,29 +1784,14 @@ void HDL_Batch_installerFrame::On_GameNameDatabaseDownloadRequest(wxCommandEvent
 }
 bool HDL_Batch_installerFrame::Load_custom_icon(wxString ELF)
 {
-    if (!wxFileExists(EXEC_PATH+"Common\\Icons.INI"))
+    if (!wxFileExists(EXEC_PATH+"Common\\HDD-OSD-Icon-Database-main\\README.md"))
     {
         ask_2_download_icons();
     }
     std::cout << "Searching custom icon: ";
-    wxFileConfig* CNF = new wxFileConfig(wxEmptyString, wxEmptyString, EXEC_PATH+"Common\\Icons.INI");
     const wxString icon_icn = EXEC_PATH + "list.ico";
     if (wxFileExists(icon_icn)) wxRemoveFile(icon_icn);
-    wxString icon_from_database;
-    CNF->Read(wxString::Format("ICONS/%s",ELF),&icon_from_database,"NOT_FOUND");
-    if (icon_from_database == "NOT_FOUND")
-    {
-        COLOR(0c)
-        std::cout << "No custom icon found\n";
-        if (CFG::DEBUG_LEVEL > 6 || (CTOR_FLAGS & FORCE_HIGH_DEBUG_LEVEL))
-            std::cout <<"["<< ELF<<"]\n";
-        COLOR(07)
-        return false;
-    }
-    else
-    {
-        std::cout << "Found Custom icon!\n";
-    }
+    wxString icon_from_database = "\\" + ELF + ".ico";
 
     if (wxFileExists(ICONS_FOLDER+icon_from_database))
     {
@@ -1820,7 +1805,6 @@ bool HDL_Batch_installerFrame::Load_custom_icon(wxString ELF)
         COLOR(0c) std::cerr << wxString::Format("> WARNING: Couldn't find icon specified by database\nELF:%s\nFILE:%s\n",ELF, icon_from_database);
         COLOR(07) return false;
     }
-    delete CNF;
     return true;
 }
 
@@ -1835,8 +1819,8 @@ void HDL_Batch_installerFrame::OnICONS_DOWNLOAD(void)
         std::cerr << "PING Result ["<<ping<<"]\n";
         return;
     }
-    const wxString DOWNLOAD_COMMAND    = "Common\\wget -q --show-progress https://github.com/israpps/HDL-Batch-installer/raw/main/svr/_ICN.7z -O Common\\_ICN.7z",
-                   EXTRACTION_COMMAND = "Common\\7z.exe x -oCommon -bso0 -y -pPDPA Common\\_ICN.7z";
+    const wxString DOWNLOAD_COMMAND    = "Common\\wget -q --show-progress https://github.com/CosmicScale/HDD-OSD-Icon-Database/archive/refs/heads/main.zip -O Common\\ICONDB.ZIP",
+                   EXTRACTION_COMMAND = "Common\\7z.exe x -oCommon -bso0 -y -pPDPA Common\\ICONDB.ZIP";
     COLOR(0e)
     std::cout << "Downloading package...\n";
     COLOR(0d)
