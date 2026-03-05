@@ -184,7 +184,7 @@ Config::Config(wxWindow* parent,wxWindowID id,const wxPoint& pos,const wxSize& s
     std::cout << "> Sync config menu elements with current config values -> ["<<ini_filename<<"]\n";
     wxFileConfig * main_config = new wxFileConfig( wxEmptyString, wxEmptyString, ini_filename);
     config_t CFGT;
-    main_config->Read("Game_search/Default_iso_path",   &CFGT.Default_iso_path,"C:\\");
+    main_config->Read("Game_search/Default_iso_path",   &CFGT.Default_iso_path, "");
     ISO_PATH_HOLDER->SetPath(CFGT.Default_iso_path);
     main_config->Read("Installation/DataBase_Mode",     &CFGT.DataBase_Mode,false);
     if (CFGT.DataBase_Mode == DB_INTERNAL) gndb_intern->SetValue(true);
@@ -232,6 +232,7 @@ void Config::Ongndb_internSelect(wxCommandEvent& event)
 void Config::OnButton2Click1(wxCommandEvent& event)
 {}
 
+#define WRITE_CONFIG_AND_REPORT(key, value); main_config->Write(key, value); std::cout << key << ":" << value << std::endl
 void Config::SaveSettings()
 {
     wxFileName fname( wxTheApp->argv[0] );
@@ -240,11 +241,8 @@ void Config::SaveSettings()
     wxFileConfig * main_config = new wxFileConfig( wxEmptyString, wxEmptyString, ini_filename);
 
     config_t CFGT;
-    //CFGT.debug_level = debug_level->GetValue();
-    CFGT.Default_iso_path           = ISO_PATH_HOLDER->GetPath();
-    if (gndb_intern->GetValue())
-        CFGT.DataBase_Mode              = DB_INTERNAL;
-    else CFGT.DataBase_Mode = DB_EXTERNAL;
+    CFGT.Default_iso_path               = ISO_PATH_HOLDER->GetPath();
+    CFGT.DataBase_Mode                  = gndb_intern->GetValue() ? DB_INTERNAL : DB_EXTERNAL;
     CFGT.MiniOPL                    	= miniopl_warning->GetValue();
     CFGT.Language                   	= language_choice->GetSelection();
     CFGT.Default_dma                	= default_dma->GetSelection();
@@ -258,37 +256,21 @@ void Config::SaveSettings()
     CFGT.HDDManagerGameTitleDISP        = HDDManagerGPD->GetValue();
     CFGT.HDDManagerDisplaySubpart       = HDDManagerSubPartDSP->GetValue();
 
-    //main_config->Write("Init/Debug_level", CFGT.debug_level);                   std::cout <<"debug_level=" << CFGT.debug_level<<std::endl;
-    main_config->Write("Game_search/Default_iso_path", CFGT.Default_iso_path);
-    std::cout <<"Default_iso_path="<<CFGT.Default_iso_path<<std::endl;
-    main_config->Write("Installation/DataBase_Mode", CFGT.DataBase_Mode);
-    std::cout <<"DataBase_Mode="<<CFGT.DataBase_Mode<<std::endl;
-    main_config->Write("Installation/MiniOPL", CFGT.MiniOPL);
-    std::cout <<"MiniOPL="<<CFGT.MiniOPL<<std::endl;
-    main_config->Write("Init/Language", CFGT.Language);
-    std::cout <<"Language ID="<< CFGT.Language <<std::endl;
-    main_config->Write("Installation/Default_dma", CFGT.Default_dma);
-    std::cout <<"Default_dma="<< DMA_TABLE[CFGT.Default_dma] <<std::endl;
-    main_config->Write("Installation/OSD_Hide", CFGT.OSD_Hide);
-    std::cout <<"OSD_Hide="<<CFGT.OSD_Hide<<std::endl;
-    main_config->Write("Init/check_for_updates", CFGT.check_updates);
-    std::cout <<"check_for_updates="<<CFGT.check_updates<<std::endl;
-    main_config->Write("Installation/Custom_icons", CFGT.custom_icons);
-    std::cout <<"Custom_icons="<<CFGT.custom_icons<<std::endl;
-    main_config->Write("Installation/inform_unknown_ID", CFGT.collect_onkown_games_ID);
-    std::cout <<"inform_unknown_ID="<<CFGT.collect_onkown_games_ID<<std::endl;
-    main_config->Write("FUSE/opl_partition",CFGT.FUSE.default_OPLPART);
-    std::cout <<"FUSE_OPL_partition="<<CFGT.FUSE.default_OPLPART<<std::endl;
-    main_config->Write("FUSE/default_mountpoint",CFGT.FUSE.mountpoint);
-    std::cout <<"FUSE_default_mountpoint="<<CFGT.FUSE.mountpoint<<std::endl;
-    main_config->Write("NBD/Default_IP",CFGT.NBD_IP);
-    std::cout <<"Default_IP="<<CFGT.NBD_IP<<std::endl;
-    main_config->Write("FEATURES/allow_experimental",CFGT.allow_experimental);
-    std::cout <<"allow_experimental_features="<<CFGT.allow_experimental<<std::endl;
-    main_config->Write("HDDManager/display_games_titles",CFGT.HDDManagerGameTitleDISP);
-    std::cout <<"dislay game title on HDDManager="<<CFGT.HDDManagerGameTitleDISP<<std::endl;
-    main_config->Write("HDDManager/display_subpartition",CFGT.HDDManagerDisplaySubpart);
-    std::cout <<"dislay sub-partitions on HDDManager="<<CFGT.HDDManagerDisplaySubpart<<std::endl;
+    WRITE_CONFIG_AND_REPORT("Game_search/Default_iso_path", CFGT.Default_iso_path);
+    WRITE_CONFIG_AND_REPORT("Installation/DataBase_Mode", CFGT.DataBase_Mode);
+    WRITE_CONFIG_AND_REPORT("Installation/MiniOPL", CFGT.MiniOPL);
+    WRITE_CONFIG_AND_REPORT("Init/Language", CFGT.Language);
+    WRITE_CONFIG_AND_REPORT("Installation/Default_dma", CFGT.Default_dma);
+    WRITE_CONFIG_AND_REPORT("Installation/OSD_Hide", CFGT.OSD_Hide);
+    WRITE_CONFIG_AND_REPORT("Init/check_for_updates", CFGT.check_updates);
+    WRITE_CONFIG_AND_REPORT("Installation/Custom_icons", CFGT.custom_icons);
+    WRITE_CONFIG_AND_REPORT("Installation/inform_unknown_ID", CFGT.collect_onkown_games_ID);
+    WRITE_CONFIG_AND_REPORT("FUSE/opl_partition",CFGT.FUSE.default_OPLPART);
+    WRITE_CONFIG_AND_REPORT("FUSE/default_mountpoint",CFGT.FUSE.mountpoint);
+    WRITE_CONFIG_AND_REPORT("NBD/Default_IP",CFGT.NBD_IP);
+    WRITE_CONFIG_AND_REPORT("FEATURES/allow_experimental",CFGT.allow_experimental);
+    WRITE_CONFIG_AND_REPORT("HDDManager/display_games_titles",CFGT.HDDManagerGameTitleDISP);
+    WRITE_CONFIG_AND_REPORT("HDDManager/display_subpartition",CFGT.HDDManagerDisplaySubpart);
 
     std::cout << "> flushing settings handler and forcing file writing\n";
     main_config->Flush();//force data writing
