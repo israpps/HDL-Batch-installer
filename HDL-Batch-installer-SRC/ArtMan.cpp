@@ -157,9 +157,9 @@ long ArtMan::Request_art(wxString ELF, wxString suffix)
     command.append(ELF);
     command.append("%2F");
     command.append(ELF);
-    if (suffix == "_BG.jpg")
+    if (suffix == "_BG.png")
     {
-        command.append("_BG_00.jpg");   ///BG is a special case...
+        command.append("_BG_00.png");   ///BG is a special case...
     }
     else
     {
@@ -206,15 +206,15 @@ void ArtMan::OndownloadClick(wxCommandEvent& event)
         COLOR(07)
         if (bg->GetValue())
         {
-            Request_art(wxString(ELF), "_BG.jpg");
+            Request_art(wxString(ELF), "_BG.png");
         }
         if (cov->GetValue())
         {
-            Request_art(ELF, "_COV.jpg");
+            Request_art(ELF, "_COV.png");
         }
         if (cov2->GetValue())
         {
-            Request_art(ELF, "_COV2.jpg");
+            Request_art(ELF, "_COV2.png");
         }
         if (ico->GetValue())
         {
@@ -222,7 +222,7 @@ void ArtMan::OndownloadClick(wxCommandEvent& event)
         }
         if (lab->GetValue())
         {
-            Request_art(ELF, "_LAB.jpg");
+            Request_art(ELF, "_LAB.png");
         }
         if (lgo->GetValue())
         {
@@ -230,11 +230,11 @@ void ArtMan::OndownloadClick(wxCommandEvent& event)
         }
         if (scr->GetValue())
         {
-            Request_art(ELF, "_SCR_00.jpg");
+            Request_art(ELF, "_SCR_00.png");
         }
         if (scr_2->GetValue())
         {
-            Request_art(ELF, "_SCR_01.jpg");
+            Request_art(ELF, "_SCR_01.png");
         }
         if (cfg->GetValue())
         {
