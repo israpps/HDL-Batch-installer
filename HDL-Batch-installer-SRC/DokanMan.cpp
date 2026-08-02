@@ -7,6 +7,7 @@
 #include <wx/dir.h>
 #include <wx/fileconf.h>
 #include <wx/msgdlg.h>
+#include <wx/filename.h>
 
 //(*InternalHeaders(DokanMan)
 #include <wx/intl.h>
@@ -357,6 +358,66 @@ void DokanMan::OnART_TRANSFERClick(wxCommandEvent& event)
             genericgaugepercent(RD3S(x, filelist.GetCount()), TMP.ToStdString());
             wxCopyFile(filelist.Item(x), MOUNTBASE+ TMP);
             if (wxFileExists(MOUNTBASE+TMP)) wxRemoveFile(filelist.Item(x));
+        }
+    }
+    COLOR(07)
+    //-----------------------------------THEMES (THM)
+    if (wxDirExists(EXEC_PATH+"Downloads\\THM"))
+    {
+        filelist.clear();
+        curdir_handler->GetAllFiles(EXEC_PATH+"Downloads\\THM",&filelist,"*.*",wxDIR_FILES);
+        MOUNTBASE = MOUNTPOINT+":\\";
+        if (!PART.StartsWith("+")) MOUNTBASE.append("OPL\\");
+        MOUNTBASE.append("THM\\");
+        if (!wxDirExists(MOUNTBASE)) wxMkDir(MOUNTBASE);
+        COLOR(0d)
+        for (size_t x = 0 ; x < filelist.GetCount() ; x++)
+        {
+            TMP = filelist.Item(x);
+            wxString relative_path = TMP.Mid((EXEC_PATH + "Downloads\\THM\\").Length());
+            wxString dest_file = MOUNTBASE + relative_path;
+            
+            // Ensure destination directory exists (for subdirectories like thm_XXXX)
+            wxFileName dest_fn(dest_file);
+            wxString dest_dir = dest_fn.GetPath();
+            if (!wxDirExists(dest_dir))
+            {
+                wxFileName::Mkdir(dest_dir, wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL);
+            }
+            
+            genericgaugepercent(RD3S(x, filelist.GetCount()), dest_fn.GetFullName().ToStdString());
+            wxCopyFile(TMP, dest_file);
+            if (wxFileExists(dest_file)) wxRemoveFile(TMP);
+        }
+    }
+    COLOR(07)
+    //-----------------------------------APPLICATIONS (APPS)
+    if (wxDirExists(EXEC_PATH+"Downloads\\APPS"))
+    {
+        filelist.clear();
+        curdir_handler->GetAllFiles(EXEC_PATH+"Downloads\\APPS",&filelist,"*.*",wxDIR_FILES);
+        MOUNTBASE = MOUNTPOINT+":\\";
+        if (!PART.StartsWith("+")) MOUNTBASE.append("OPL\\");
+        MOUNTBASE.append("APPS\\");
+        if (!wxDirExists(MOUNTBASE)) wxMkDir(MOUNTBASE);
+        COLOR(0d)
+        for (size_t x = 0 ; x < filelist.GetCount() ; x++)
+        {
+            TMP = filelist.Item(x);
+            wxString relative_path = TMP.Mid((EXEC_PATH + "Downloads\\APPS\\").Length());
+            wxString dest_file = MOUNTBASE + relative_path;
+            
+            // Ensure destination directory exists (for subdirectories)
+            wxFileName dest_fn(dest_file);
+            wxString dest_dir = dest_fn.GetPath();
+            if (!wxDirExists(dest_dir))
+            {
+                wxFileName::Mkdir(dest_dir, wxS_DIR_DEFAULT, wxPATH_MKDIR_FULL);
+            }
+            
+            genericgaugepercent(RD3S(x, filelist.GetCount()), dest_fn.GetFullName().ToStdString());
+            wxCopyFile(TMP, dest_file);
+            if (wxFileExists(dest_file)) wxRemoveFile(TMP);
         }
     }
     COLOR(07)
