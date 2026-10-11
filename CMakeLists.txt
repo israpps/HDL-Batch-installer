@@ -42,18 +42,11 @@ set(wxWidgets_USE_UNICODE ON)
 
 # core + base only, same as the Code::Blocks project. If linking ever reports missing
 # wxURL/wxSocket symbols, add "net" to this list.
-find_package(wxWidgets REQUIRED COMPONENTS core base)
+# Asking for 3.2 here makes CMake itself reject anything older, using the version
+# that FindwxWidgets reports.
+find_package(wxWidgets 3.2 REQUIRED COMPONENTS core base)
 include(${wxWidgets_USE_FILE})
-
-if(wxWidgets_CONFIG_EXECUTABLE)
-    execute_process(COMMAND ${wxWidgets_CONFIG_EXECUTABLE} --version
-                    OUTPUT_VARIABLE HDLBINST_WX_VERSION
-                    OUTPUT_STRIP_TRAILING_WHITESPACE)
-    if(HDLBINST_WX_VERSION VERSION_LESS 3.2)
-        message(FATAL_ERROR "wxWidgets 3.2 or newer is required (found ${HDLBINST_WX_VERSION}).")
-    endif()
-    message(STATUS "wxWidgets version: ${HDLBINST_WX_VERSION}")
-endif()
+message(STATUS "wxWidgets version: ${wxWidgets_VERSION_STRING}")
 
 # ---------------------------------------------------------------- sources
 set(SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/HDL-Batch-installer-SRC)
