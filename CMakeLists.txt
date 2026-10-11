@@ -52,7 +52,11 @@ message(STATUS "wxWidgets version: ${wxWidgets_VERSION_STRING}")
 set(SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/HDL-Batch-installer-SRC)
 
 set(HDLBINST_SOURCES
-    src/DnDFile.cpp
+    # src/DnDFile.cpp is intentionally NOT built: it defines a global `class DnDFile` that
+    # duplicates the one PFSShellBrowser.cpp defines locally for its own use (the one actually
+    # instantiated, via "new DnDFile(FileList)"). include/DnDFile.h is included from
+    # HDL_Batch_installerMain.cpp but that class is never used there either. Building both
+    # files gives two definitions of DnDFile::OnDropFiles with external linkage -> link error.
     ${SRC_DIR}/About.cpp
     ${SRC_DIR}/ArtMan.cpp
     ${SRC_DIR}/Component_error.cpp
