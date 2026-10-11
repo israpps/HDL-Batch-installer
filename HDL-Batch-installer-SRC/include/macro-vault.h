@@ -9,11 +9,13 @@
 
 #ifndef MACRO_VAULT
 #define MACRO_VAULT
-#define ISRA_WINDOWS
-#ifdef ISRA_WINDOWS
-#include <windows.h>
 #include <iostream>
 #include <string>
+#ifdef _WIN32
+#define ISRA_WINDOWS
+#endif
+#ifdef ISRA_WINDOWS
+#include <windows.h>
 #define COLOR_INT(args)     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),args);
 #define COLOR(args)         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),std::stoi(#args,0,16));
 #else

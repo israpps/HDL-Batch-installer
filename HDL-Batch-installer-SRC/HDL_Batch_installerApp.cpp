@@ -235,21 +235,21 @@ bool HDL_Batch_installerApp::OnInit()
         wxFile A("Common\\tinmft.sys",wxFile::write);
         A.Write("What are you looking for?\n");
         A.Close();
-        wxExecute("wmic os get Caption", unused_buffer, wxEXEC_ASYNC);
-        for (size_t x = 0; x < unused_buffer.GetCount(); x++)
+        // wmic is deprecated and no longer available on recent Windows 11 builds, so ask wxWidgets instead.
+        // On MSW the third value returned by wxGetOsVersion() is the Windows build number,
+        // and 22000 is the first Windows 11 build.
+        int os_build = 0;
+        wxGetOsVersion(nullptr, nullptr, &os_build);
+        if (os_build >= 22000 && !wxGetOsDescription().Contains("Server"))
         {
-            if (unused_buffer.Item(x).Contains("Windows 11"))
-            {
-                COLOR(0c)
-                std::cout << "-- winver: " << unused_buffer.Item(x) << "\n";
-                COLOR(07)
-                wxMessageBox(_("Windows 11 and some anti-virus software will detect HDL-Batch-Installer and underlying tools as ransomware "
-                            "due to accessing PS2 HDDs via RAW I/O (Because windows does not understand their format)\n"
-                            "If game installation gives error 5, some issue related with permissions or \"disk is not ready\" "
-                            "please consider whitelisting on your defender/AV the HDL batch installer exe, along with HDL.EXE and pfsfuse.exe "
-                            "from program folder."), _("Windows 11 detected"), wxICON_WARNING);
-                break;
-            }
+            COLOR(0c)
+            std::cout << "-- winver: Windows 11 (build " << os_build << ")\n";
+            COLOR(07)
+            wxMessageBox(_("Windows 11 and some anti-virus software will detect HDL-Batch-Installer and underlying tools as ransomware "
+                        "due to accessing PS2 HDDs via RAW I/O (Because windows does not understand their format)\n"
+                        "If game installation gives error 5, some issue related with permissions or \"disk is not ready\" "
+                        "please consider whitelisting on your defender/AV the HDL batch installer exe, along with HDL.EXE and pfsfuse.exe "
+                        "from program folder."), _("Windows 11 detected"), wxICON_WARNING);
         }
     }
     delete main_config;
