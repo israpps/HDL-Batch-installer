@@ -16,6 +16,10 @@
 #endif
 #ifdef ISRA_WINDOWS
 #include <windows.h>
+#ifdef GetClassInfo
+// <windows.h> defines GetClassInfo as a macro, which breaks wxDECLARE_*_CLASS in later wx headers
+#undef GetClassInfo
+#endif
 #define COLOR_INT(args)     SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),args);
 #define COLOR(args)         SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),std::stoi(#args,0,16));
 #else
