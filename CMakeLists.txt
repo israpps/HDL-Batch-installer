@@ -40,11 +40,11 @@ if(HDLBINST_STATIC_WX)
 endif()
 set(wxWidgets_USE_UNICODE ON)
 
-# core + base only, same as the Code::Blocks project. If linking ever reports missing
-# wxURL/wxSocket symbols, add "net" to this list.
+# core + base, same as the Code::Blocks project, plus "net" for wxWebRequest (WebGet.cpp,
+# used in place of the old "Common\WGET.EXE"/"ping" wxExecute() calls).
 # Asking for 3.2 here makes CMake itself reject anything older, using the version
 # that FindwxWidgets reports.
-find_package(wxWidgets 3.2 REQUIRED COMPONENTS core base)
+find_package(wxWidgets 3.2 REQUIRED COMPONENTS core base net)
 include(${wxWidgets_USE_FILE})
 message(STATUS "wxWidgets version: ${wxWidgets_VERSION_STRING}")
 
@@ -75,6 +75,7 @@ set(HDLBINST_SOURCES
     ${SRC_DIR}/PFSShellBrowser.cpp
     ${SRC_DIR}/Post_Install_Report.cpp
     ${SRC_DIR}/UpdateMan.cpp
+    ${SRC_DIR}/WebGet.cpp
     ${SRC_DIR}/common.cpp
     ${SRC_DIR}/gamename/database.cpp
     ${SRC_DIR}/gamename/parser.cpp

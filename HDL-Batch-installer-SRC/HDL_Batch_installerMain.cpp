@@ -9,6 +9,8 @@
 // FRAME & Dialog
 #include "DnDFile.h"
 #include "HDL_Batch_installerMain.h"
+#include "WebGet.h"
+#include <wx/utils.h>
 #include "About.h"
 #include "Config.h"
 #include "Component_error.h"
@@ -1533,7 +1535,14 @@ void HDL_Batch_installerFrame::onItemRightClick(wxListEvent& event)
 
 void HDL_Batch_installerFrame::OnGoToFileLocationRequest(wxString victim)
 {
+#ifdef __WXMSW__
     wxExecute( wxString::Format("explorer.exe \"/select,%s\"", victim) );
+#else
+    // explorer.exe's "/select," flag (highlight the file itself) has no portable equivalent
+    // across Linux/macOS file managers, so just open the containing folder instead.
+    wxFileName fn(victim);
+    wxLaunchDefaultApplication(fn.GetPath());
+#endif
 }
 
 void HDL_Batch_installerFrame::OnItemListShowRequest(wxCommandEvent& event)
@@ -1810,9 +1819,8 @@ bool HDL_Batch_installerFrame::Load_custom_icon(wxString ELF)
 
 void HDL_Batch_installerFrame::OnICONS_DOWNLOAD(void)
 {
-    wxArrayString unused_buffer;
-    long ping = -1;
-    ping = wxExecute("ping google.com", unused_buffer, wxEXEC_SYNC);
+    // Was "ping google.com" via wxExecute(): Windows-only, see WebGet.h for why.
+    long ping = WebIsReachable() ? 0 : -1;
     if (ping != 0)
     {
         wxMessageBox(_("No internet connection!"), "", wxICON_WARNING);

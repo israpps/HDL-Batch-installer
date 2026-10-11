@@ -8,6 +8,7 @@
  **************************************************************/
 #include "HDL_Batch_installerApp.h"
 #include "UpdateMan.h"
+#include "WebGet.h"
 #include "flags.h"
 #include <wx/snglinst.h>
 
@@ -153,7 +154,10 @@ bool HDL_Batch_installerApp::OnInit()
         std::cerr <<"---stdeer redirection init---\n";
     }
 
-    ping = wxExecute("ping google.com",unused_buffer,wxEXEC_SYNC);
+    // Was "ping google.com" via wxExecute(): Windows-only (Linux/macOS ping needs "-c N" or
+    // it never returns), and depended on ICMP not being firewalled. WebIsReachable() just
+    // checks that an HTTPS request can complete, which is what this check is really for.
+    ping = WebIsReachable() ? 0 : -1;
 
     if (ping == 0)
     {
@@ -178,7 +182,7 @@ bool HDL_Batch_installerApp::OnInit()
         {
             printf("we have internet! Checking for Updates...\n");
             unused_buffer.clear();
-            ping2 = wxExecute("Common\\WGET.EXE -q https://raw.githubusercontent.com/israpps/HDL-Batch-installer/main/svr/VERSION -O -",unused_buffer,wxEXEC_SYNC);
+            ping2 = WebGetLines("https://raw.githubusercontent.com/israpps/HDL-Batch-installer/main/svr/VERSION", unused_buffer) ? 0 : -1;
             if (ping2 == 0)
             {
                 //for (size_t x = 0 ; x<unused_buffer.GetCount() ; x++) {svr_ver << unused_buffer.Item(x);}
