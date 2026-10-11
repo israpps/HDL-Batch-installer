@@ -8,6 +8,7 @@
  **************************************************************/
 #include "HDL_Batch_installerApp.h"
 #include "UpdateMan.h"
+#include "WebGet.h"
 #include "flags.h"
 #include <wx/snglinst.h>
 
@@ -153,7 +154,10 @@ bool HDL_Batch_installerApp::OnInit()
         std::cerr <<"---stdeer redirection init---\n";
     }
 
-    ping = wxExecute("ping google.com",unused_buffer,wxEXEC_SYNC);
+    // Was "ping google.com" via wxExecute(): Windows-only (Linux/macOS ping needs "-c N" or
+    // it never returns), and depended on ICMP not being firewalled. WebIsReachable() just
+    // checks that an HTTPS request can complete, which is what this check is really for.
+    ping = WebIsReachable() ? 0 : -1;
 
     if (ping == 0)
     {
@@ -178,7 +182,7 @@ bool HDL_Batch_installerApp::OnInit()
         {
             printf("we have internet! Checking for Updates...\n");
             unused_buffer.clear();
-            ping2 = wxExecute("Common\\WGET.EXE -q https://raw.githubusercontent.com/israpps/HDL-Batch-installer/main/svr/VERSION -O -",unused_buffer,wxEXEC_SYNC);
+            ping2 = WebGetLines("https://raw.githubusercontent.com/israpps/HDL-Batch-installer/main/svr/VERSION", unused_buffer) ? 0 : -1;
             if (ping2 == 0)
             {
                 //for (size_t x = 0 ; x<unused_buffer.GetCount() ; x++) {svr_ver << unused_buffer.Item(x);}
@@ -235,21 +239,21 @@ bool HDL_Batch_installerApp::OnInit()
         wxFile A("Common\\tinmft.sys",wxFile::write);
         A.Write("What are you looking for?\n");
         A.Close();
-        wxExecute("wmic os get Caption", unused_buffer, wxEXEC_ASYNC);
-        for (size_t x = 0; x < unused_buffer.GetCount(); x++)
+        // wmic is deprecated and no longer available on recent Windows 11 builds, so ask wxWidgets instead.
+        // On MSW the third value returned by wxGetOsVersion() is the Windows build number,
+        // and 22000 is the first Windows 11 build.
+        int os_build = 0;
+        wxGetOsVersion(nullptr, nullptr, &os_build);
+        if (os_build >= 22000 && !wxGetOsDescription().Contains("Server"))
         {
-            if (unused_buffer.Item(x).Contains("Windows 11"))
-            {
-                COLOR(0c)
-                std::cout << "-- winver: " << unused_buffer.Item(x) << "\n";
-                COLOR(07)
-                wxMessageBox(_("Windows 11 and some anti-virus software will detect HDL-Batch-Installer and underlying tools as ransomware "
-                            "due to accessing PS2 HDDs via RAW I/O (Because windows does not understand their format)\n"
-                            "If game installation gives error 5, some issue related with permissions or \"disk is not ready\" "
-                            "please consider whitelisting on your defender/AV the HDL batch installer exe, along with HDL.EXE and pfsfuse.exe "
-                            "from program folder."), _("Windows 11 detected"), wxICON_WARNING);
-                break;
-            }
+            COLOR(0c)
+            std::cout << "-- winver: Windows 11 (build " << os_build << ")\n";
+            COLOR(07)
+            wxMessageBox(_("Windows 11 and some anti-virus software will detect HDL-Batch-Installer and underlying tools as ransomware "
+                        "due to accessing PS2 HDDs via RAW I/O (Because windows does not understand their format)\n"
+                        "If game installation gives error 5, some issue related with permissions or \"disk is not ready\" "
+                        "please consider whitelisting on your defender/AV the HDL batch installer exe, along with HDL.EXE and pfsfuse.exe "
+                        "from program folder."), _("Windows 11 detected"), wxICON_WARNING);
         }
     }
     delete main_config;

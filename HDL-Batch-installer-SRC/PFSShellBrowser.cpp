@@ -81,7 +81,7 @@ bool DnDFile::OnDropFiles(wxCoord, wxCoord, const wxArrayString& filenames)
             toolbar_progress->SetValue(n);
             wxFileName FinalPath(filenames[n], wxPATH_DOS);
             std::cout << "WRITE '" << FinalPath.GetFullPath() << "' -> '" << CTX::MNT <<":pfs:"<< CTX::CWD+FinalPath.GetFullName() <<"'\n";
-            x = PFSSHELL.copyto(CTX::MNT, CTX::CWD+FinalPath.GetFullName(), FinalPath.GetFullPath().mb_str());
+            x = PFSSHELL.copyto(CTX::MNT.mb_str(), (CTX::CWD+FinalPath.GetFullName()).mb_str(), FinalPath.GetFullPath().mb_str());
             if (x < 0) errcnt++;
         }
     }
@@ -522,7 +522,7 @@ void PFSShellBrowser::OnRecoverFileFromHDD(wxCommandEvent& event)
             wxString targ = TargetPath + "\\" + FileList->GetItemText(itemIndex);
             wxString source = CTX::CWD + FileList->GetItemText(itemIndex);
             std::cout <<"PULL '"<< CTX::MNT << ":pfs:" << source <<"' -> '"<< targ <<"'\n";
-            x = PFSSHELL.recoverfile(CTX::MNT.mb_str(), source.mb_str(), targ);
+            x = PFSSHELL.recoverfile(CTX::MNT.mb_str(), source.mb_str(), targ.mb_str());
             if (x < 0) ercnt++;
         }
     }
@@ -544,10 +544,10 @@ void PFSShellBrowser::OnDeleteFileFromHDD(wxCommandEvent& event)
             int T = GetItemIcon(FileList, itemIndex);
             if (T == XPM::FILE) {
                 std::cout <<" DELETE '" << CTX::MNT <<":pfs:"<< CTX::CWD << targ <<"'\n";
-                ret = PFSSHELL.pfs_rm(CTX::MNT.mb_str(), CTX::CWD.mb_str(), targ);
+                ret = PFSSHELL.pfs_rm(CTX::MNT.mb_str(), CTX::CWD.mb_str(), targ.mb_str());
             } else if (T == XPM::FOLDER) {
                 std::cout <<" RMDIR '" << CTX::MNT <<":pfs:"<< CTX::CWD << targ <<"'\n";
-                ret = PFSSHELL.pfs_rmdir(CTX::MNT.mb_str(), CTX::CWD.mb_str(), targ);
+                ret = PFSSHELL.pfs_rmdir(CTX::MNT.mb_str(), CTX::CWD.mb_str(), targ.mb_str());
             } else {
                 std::cout << "UNKNOWN ITEM TYPE: "<<T<<"\n";
                 unk++;

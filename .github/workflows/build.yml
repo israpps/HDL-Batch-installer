@@ -1,0 +1,62 @@
+name: Build check
+
+# Compiles the program on every push / pull request so build breaks are caught early.
+# This is a build check only: the uploaded exe is NOT a release package (it still needs
+# the wxWidgets DLLs, Common/ tools, Lang/ etc. from the Release folder).
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'CMakeLists.txt'
+      - 'HDL-Batch-installer-SRC/**'
+      - 'src/**'
+      - 'include/**'
+      - '.github/workflows/build.yml'
+  pull_request:
+    paths:
+      - 'CMakeLists.txt'
+      - 'HDL-Batch-installer-SRC/**'
+      - 'src/**'
+      - 'include/**'
+      - '.github/workflows/build.yml'
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Windows x64 (MSYS2 MinGW-w64, wxWidgets 3.2)
+    runs-on: windows-latest
+    defaults:
+      run:
+        shell: msys2 {0}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up MSYS2
+        uses: msys2/setup-msys2@v2
+        with:
+          msystem: MINGW64
+          update: true
+          install: >-
+            mingw-w64-x86_64-gcc
+            mingw-w64-x86_64-cmake
+            mingw-w64-x86_64-ninja
+            mingw-w64-x86_64-wxwidgets3.2-msw
+
+      - name: Configure
+        run: cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+
+      - name: Build
+        # "-k 0" keeps compiling after an error so one run reports every failing file
+        run: cmake --build build -- -k 0
+
+      - name: Upload build output
+        uses: actions/upload-artifact@v4
+        with:
+          name: HDL-Batch-installer-x64-build-check
+          path: |
+            build/HDL-Batch-installer.exe
+            build/libps2hdd.dll
+          if-no-files-found: error
+          retention-days: 7

@@ -1,5 +1,10 @@
 #include "database.h"
-std::map<std::string, std::string>GameNameDB = {
+
+// The table is a plain array of C strings and the map is filled at startup.
+// A 16,000 entry std::map initializer_list needs a huge amount of compiler memory/time
+// (it was getting the compiler killed on CI); this form compiles in a fraction of that.
+// Duplicate keys: the first entry wins, same as the old initializer list.
+static const char *const GameNameTable[][2] = {
     {"AEIA_000.01", "Yoake mae yori ruriiro na - brighter than dawning blue [limited edition]"},
     {"ALCH_000.01", "Katakamuna - Ushinawareta Ingaritsu [DX Pack]"},
     {"ALCH_000.02", "Baldr Force EXE [Mega Box]"},
@@ -15924,3 +15929,13 @@ std::map<std::string, std::string>GameNameDB = {
     {"XSPL_670.01", "Wonder Zone"},
     {"XSPL_670.02", "Over the Monochrome Rainbow"},
 };
+
+static std::map<std::string, std::string> BuildGameNameDB()
+{
+    std::map<std::string, std::string> db;
+    for (const auto &entry : GameNameTable)
+        db.emplace(entry[0], entry[1]);
+    return db;
+}
+
+std::map<std::string, std::string> GameNameDB = BuildGameNameDB();

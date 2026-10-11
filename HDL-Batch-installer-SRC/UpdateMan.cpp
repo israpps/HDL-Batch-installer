@@ -1,4 +1,5 @@
 #include "UpdateMan.h"
+#include "WebGet.h"
 
 #include <wx/arrstr.h>
 //(*InternalHeaders(UpdateMan)
@@ -57,8 +58,8 @@ UpdateMan::UpdateMan(wxWindow* parent, wxString newv, wxString oldv, wxWindowID 
 	msg.Printf(_("There's an update available for this program!\n\nGo to download page?\n\nCurrent version: [%s]\nLatest version: [%s]"), oldv, newv);
     heading->SetLabel(msg);
     wxArrayString data;
-    long a = wxExecute("Common\\WGET.EXE -q https://github.com/israpps/HDL-Batch-installer/raw/main/Release/changes.log -O -", data, wxEXEC_SYNC);
-    if (a == 0) {
+    bool a = WebGetLines("https://github.com/israpps/HDL-Batch-installer/raw/main/Release/changes.log", data);
+    if (a) {
         for (size_t x=0, s=0; x < data.GetCount() && s < 2; x++) {
             if (data.Item(x) == wxEmptyString) {
                 //std::cout << "empty line at :"<<x<<"\n";

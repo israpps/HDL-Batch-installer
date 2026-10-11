@@ -53,6 +53,18 @@ HDL Batch Installer was built based on wxWidgets 3.0.5 stable release, built as 
 Eventually, i'll upgrade into the latest stable release 3.2.0, wich I hope doesn´t break anything :D
 
 
+### building with CMake (MSYS2)
+
+A `CMakeLists.txt` is provided next to the Code::Blocks project. It needs MinGW-w64 and wxWidgets 3.2 or newer. From an MSYS2 MINGW64 shell:
+
+```
+pacman -S mingw-w64-x86_64-gcc mingw-w64-x86_64-cmake mingw-w64-x86_64-ninja mingw-w64-x86_64-wxwidgets3.2-msw
+cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
+cmake --build build
+```
+
+The same build runs on every push and pull request through GitHub Actions (`.github/workflows/build.yml`).
+
 ### cross compilation
 
  Currently the project is windows only, in order to make it cross platform, it will not only require to port parts of the code (wich sould not be too hard, since i tried to stick to wxWidgets as much as i could), but also the replacement of certain parts of the code (ie: PFSFuse manager UI)

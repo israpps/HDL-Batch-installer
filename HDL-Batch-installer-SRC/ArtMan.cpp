@@ -7,6 +7,7 @@
  * License:   GPL-3.0
  **************************************************************/
 #include "ArtMan.h"
+#include <wx/dir.h>
 
 //(*InternalHeaders(ArtMan)
 #include <wx/intl.h>
@@ -291,16 +292,33 @@ void ArtMan::Onothers_markallClick(wxCommandEvent& event)
 
 void ArtMan::cleanup(void)
 {
-    wxString script_contents = "@echo off\r\ncd \"%~dp0\"\r\nREM this is a script of POPS VCD Manager, made to clean files with 0 bytes size from ART sub-folder\r\n\r\n\r\ncall :CLEAN ART\r\ncall :CLEAN CFG\r\ncall :CLEAN CHT\r\n\r\ngoto :BREAK_\r\n:CLEAN\r\nif not exist %1\\ goto :EOF\r\ncd %1\r\nfor /f \"delims=\" %%x in ('dir *.* /B /A:-D') do (\r\necho %%x - %%~zx\r\nif %%~zx == 0 (\r\necho %%x is empty\r\ndel \"%%x\"\r\n)\r\n\r\n)\r\ncd ..\r\ngoto :EOF\r\n\r\n\r\n\r\n:BREAK_\r\nexit";
-    wxString script_path = EXEC_PATH+"Downloads\\Clear_broken_images.bat";
-    if (!wxFileExists(script_path))
+    // Removes 0-byte files (broken/incomplete downloads) from the ART, CFG and CHT folders.
+    // This used to write a .bat script to disk and run it via cmd.exe, which only works on
+    // Windows; doing the same cleanup directly with wx's own file APIs works identically on
+    // every platform and needs no script file at all.
+    const wxString subfolders[] = {"ART", "CFG", "CHT"};
+    const wxChar sep = wxFileName::GetPathSeparator();
+    for (const wxString& subfolder : subfolders)
     {
-        COLOR(0e)
-        std::cerr <<"Missing script file. Writing internal copy...\n";
-        wxFile a;
-        a.Open(script_path,wxFile::write);
-        a.Write(script_contents);
-        COLOR(07)
+        const wxString dirPath = EXEC_PATH + "Downloads" + sep + subfolder;
+        if (!wxDirExists(dirPath))
+            continue;
+
+        wxDir dir(dirPath);
+        if (!dir.IsOpened())
+            continue;
+
+        wxString filename;
+        bool more = dir.GetFirst(&filename, wxEmptyString, wxDIR_FILES);
+        while (more)
+        {
+            const wxString filePath = dirPath + sep + filename;
+            if (wxFileName::GetSize(filePath) == 0)
+            {
+                std::cout << filePath << " is empty, removing\n";
+                wxRemoveFile(filePath);
+            }
+            more = dir.GetNext(&filename);
+        }
     }
-    wxExecute(wxString::Format("cmd.exe /c \"%sDownloads\\Clear_broken_images.bat\"",EXEC_PATH),wxEXEC_SYNC);
 }
