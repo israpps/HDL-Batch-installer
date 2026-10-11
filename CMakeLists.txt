@@ -88,6 +88,9 @@ target_include_directories(HDL-Batch-installer PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/include
     ${SRC_DIR}/include
     ${SRC_DIR}          # also lets windres find gfx/ and manifest/ referenced by resource.rc
+    ${SRC_DIR}/xpm      # PFSShellBrowser.cpp includes folder.xpm, new_dir.xpm, delete.xpm and
+                        # toparent.xpm with <>; Code::Blocks found them in the wxWidgets source
+                        # tree (${#wx}/art), here we use the copies kept in this folder
 )
 
 if(CMAKE_SIZEOF_VOID_P EQUAL 8)

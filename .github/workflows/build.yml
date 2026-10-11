@@ -48,7 +48,8 @@ jobs:
         run: cmake -S . -B build -G Ninja -DCMAKE_BUILD_TYPE=Release
 
       - name: Build
-        run: cmake --build build
+        # "-k 0" keeps compiling after an error so one run reports every failing file
+        run: cmake --build build -- -k 0
 
       - name: Upload build output
         uses: actions/upload-artifact@v4
